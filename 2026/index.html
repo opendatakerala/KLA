@@ -57,7 +57,7 @@
   header {
     background: #fff;
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
   }
 
   .header-stripe {
@@ -68,70 +68,77 @@
   .header-inner {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 28px 40px 24px;
+    padding: 20px 32px 18px;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 32px;
+    gap: 20px;
   }
+
+  /* Logo left */
+  .header-logo-wrap { display: flex; align-items: center; flex-shrink: 0; }
+  .header-logo { width: 60px; height: 60px; object-fit: contain; border-radius: 10px; }
+
+  /* Title center */
+  .header-title { flex: 1; }
 
   .header-eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    color: #000000;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #000;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 10px;
   }
 
   .header-eyebrow::before {
     content: '';
     display: inline-block;
-    width: 18px; height: 2px;
-    background: #000000;
+    width: 16px; height: 2px;
+    background: #000;
     border-radius: 1px;
   }
 
   h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 3.5vw, 50px);
+    font-size: clamp(20px, 3vw, 44px);
     font-weight: 900;
     line-height: 1.05;
-    color: #000000;
+    color: #000;
     letter-spacing: -0.02em;
   }
 
-  h1 em { font-style: italic; color: #000000; }
+  h1 em { font-style: italic; color: #000; }
 
-  .header-sub {
-    font-size: 13px;
-    color: #000000;
+  .header-tagline {
+    font-size: 12px;
+    color: #000;
     font-weight: 700;
-    margin-top: 7px;
+    margin-top: 3px;
   }
 
+  .header-tagline span {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* Right side */
   .header-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
-  }
-
-  .header-logo {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-    border-radius: 8px;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
   .header-top-row {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
 
   .odk-credit {
@@ -140,10 +147,10 @@
     gap: 6px;
     font-family: 'DM Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
     color: var(--muted);
     text-decoration: none;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border: 1px solid var(--border);
     border-radius: 20px;
     background: var(--bg2);
@@ -151,17 +158,14 @@
     white-space: nowrap;
   }
 
-  .odk-credit:hover {
-    border-color: var(--gold-mid);
-    color: var(--gold);
-    background: var(--gold-light);
-  }
-
+  .odk-credit:hover { border-color: var(--gold-mid); color: var(--gold); background: var(--gold-light); }
   .odk-credit .heart { color: #E63946; }
+
+  .header-odk-logo { width: 36px; height: 36px; object-fit: contain; border-radius: 6px; }
 
   .header-stats {
     display: flex;
-    gap: 20px;
+    gap: 18px;
     align-items: flex-end;
   }
 
@@ -169,36 +173,453 @@
 
   .hstat-num {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 900;
-    color: #000000;
+    color: #000;
     line-height: 1;
   }
 
   .hstat-label {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: #000000;
+    font-size: 8px;
+    color: #000;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-top: 2px;
   }
 
+  /* Bottom links row */
+  .header-bottom-row {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8px 32px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .header-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hb-search-wrap {
+    display: flex;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--card);
+    transition: border-color 0.2s;
+  }
+
+  .hb-search-wrap:focus-within { border-color: var(--gold-mid); }
+
+  .hb-search-icon {
+    display: flex; align-items: center;
+    padding: 0 8px 0 10px;
+    color: var(--faint);
+  }
+  .hb-search-icon svg { width: 14px; height: 14px; }
+
+  .hb-search-input {
+    background: transparent;
+    border: none;
+    padding: 7px 0;
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    outline: none;
+    width: 220px;
+  }
+
+  .hb-search-input::placeholder { color: var(--faint); }
+
+  .hb-search-btn {
+    padding: 0 14px;
+    background: var(--gold-mid);
+    border: none;
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex; align-items: center; gap: 5px;
+    white-space: nowrap;
+  }
+
+  .hb-search-btn:hover { background: var(--gold); }
+  .hb-search-btn svg { width: 12px; height: 12px; }
+
+  .hb-craft {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .hb-craft a { color: var(--gold); text-decoration: none; }
+  .hb-craft a:hover { text-decoration: underline; }
+
+  .header-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* ── VIEW TABS ── */
+  .view-tabs {
+    display: flex;
+    gap: 0;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+
+  .view-tab {
+    padding: 7px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+    border: none;
+    background: transparent;
+  }
+
+  .view-tab:hover { color: var(--text); }
+
+  .view-tab.active {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  .view-tab svg { width: 14px; height: 14px; }
+
+  .disclaimer-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .disclaimer-link:hover { color: var(--gold-mid); }
+
   /* ── CONTAINER ── */
   .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px 80px;
+    padding: 0 32px 80px;
+  }
+
+  /* ── MAP VIEW ── */
+  .map-view { display: block; }
+  .table-view { display: none; }
+  .map-view.hidden { display: none; }
+  .table-view.shown { display: block; }
+
+  .map-outer {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+    padding-top: 24px;
+    min-height: 640px;
+  }
+
+  .map-container {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    min-height: 600px;
+  }
+
+  #kerala-map {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+  }
+
+  .map-legend {
+    position: absolute;
+    bottom: 16px; left: 16px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .map-legend-title {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .map-legend-item {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text-soft);
+  }
+
+  .map-legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .map-tooltip {
+    position: absolute;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Source Sans 3', sans-serif;
+    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    min-width: 200px;
+    max-width: 260px;
+    display: none;
+    z-index: 10;
+  }
+
+  .map-tooltip.visible { display: block; }
+
+  .tooltip-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+
+  .tooltip-row {
+    display: flex; align-items: flex-start;
+    gap: 8px; margin-top: 5px;
+  }
+
+  .tooltip-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .tooltip-candidate { font-size: 13px; color: var(--text-soft); line-height: 1.3; }
+  .tooltip-party { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); }
+
+  /* Map sidebar panel */
+  .map-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map-panel-header {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card2);
+  }
+
+  .map-panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .map-panel-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .map-panel-body { flex: 1; overflow-y: auto; padding: 12px; }
+
+  .map-panel-body::-webkit-scrollbar { width: 4px; }
+  .map-panel-body::-webkit-scrollbar-track { background: transparent; }
+  .map-panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* District filter sidebar */
+  .dist-filter { display: flex; flex-direction: column; gap: 4px; }
+
+  .dist-btn {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.15s;
+    text-align: left;
+  }
+
+  .dist-btn:hover { background: var(--bg2); border-color: var(--border); }
+  .dist-btn.active { background: var(--gold-light); border-color: var(--gold-mid); }
+
+  .dist-btn-name {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .dist-btn.active .dist-btn-name { font-weight: 600; color: var(--gold); }
+
+  .dist-btn-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* Selected constituency detail in map panel */
+  .const-detail {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .const-detail.visible { display: flex; }
+
+  .const-detail-top {
+    padding: 4px 0 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+
+  .const-detail-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+
+  .const-detail-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .const-detail-dist {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .const-candidate-block {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .const-candidate-block:last-child { border-bottom: none; }
+
+  .const-alliance-bar {
+    width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; min-height: 36px;
+  }
+
+  .const-candidate-inner { flex: 1; }
+
+  .const-alliance-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+  }
+
+  .const-party {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .const-candidate-name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .const-candidate-name.tbd { color: var(--faint); font-style: italic; font-size: 13px; font-weight: 300; }
+
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 12px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; color: var(--muted);
+    cursor: pointer; margin-bottom: 14px;
+    transition: all 0.2s;
+  }
+
+  .back-btn:hover { border-color: var(--faint); color: var(--text); }
+
+  /* SVG map styles */
+  .constituency-path {
+    stroke: #fff;
+    stroke-width: 0.8;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .constituency-path:hover { stroke: #333; stroke-width: 1.5; opacity: 0.85; }
+  .constituency-path.highlighted { stroke: #000; stroke-width: 2; }
+  .constituency-path.dimmed { opacity: 0.35; }
+
+  /* ── TABLE VIEW (existing grid) ── */
+  .table-view-inner {
+    padding-top: 20px;
   }
 
   /* ── ALLIANCE LEGEND ── */
   .alliance-legend {
     display: flex;
     gap: 10px;
-    padding: 18px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     flex-wrap: wrap;
     align-items: center;
   }
@@ -227,43 +648,34 @@
     letter-spacing: 0.05em;
   }
 
+  .legend-pill:hover { opacity: 0.8; transform: translateY(-1px); }
   .legend-pill.ldf { background: var(--ldf-bg); color: var(--ldf-text); border-color: rgba(192,32,46,0.2); }
   .legend-pill.udf { background: var(--udf-bg); color: var(--udf-text); border-color: rgba(21,101,192,0.2); }
   .legend-pill.nda { background: var(--nda-bg); color: var(--nda-text); border-color: rgba(200,80,0,0.2); }
   .legend-pill.others { background: var(--others-bg); color: var(--others-text); border-color: rgba(85,85,85,0.2); }
-
-  .legend-pill:hover { opacity: 0.8; transform: translateY(-1px); }
-
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-  .legend-count {
-    font-size: 10px;
-    opacity: 0.75;
-    font-weight: 400;
-  }
+  .legend-count { font-size: 10px; opacity: 0.75; font-weight: 400; }
 
   /* ── STATS ROW ── */
   .stats-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 10px;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
   }
 
   .stat-cell {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 18px 18px 16px;
+    padding: 16px 16px 14px;
     position: relative;
     overflow: hidden;
   }
 
   .stat-cell::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
   }
 
   .stat-cell.ldf::before { background: var(--ldf); }
@@ -275,7 +687,7 @@
 
   .stat-n {
     font-family: 'Playfair Display', serif;
-    font-size: 38px;
+    font-size: 34px;
     font-weight: 700;
     line-height: 1;
     margin-bottom: 6px;
@@ -296,140 +708,33 @@
     color: var(--muted);
   }
 
-  /* ── DISTRICT TABS ── */
+  /* ── DISTRICT TABS (table view) ── */
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
+    font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 12px;
   }
 
   .tabs {
-    display: flex;
-    overflow-x: auto;
-    margin-bottom: 24px;
+    display: flex; overflow-x: auto;
+    margin-bottom: 20px;
     border-bottom: 2px solid var(--border);
     scrollbar-width: none;
   }
-
   .tabs::-webkit-scrollbar { display: none; }
 
   .tab {
-    padding: 10px 14px;
+    padding: 9px 14px;
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    white-space: nowrap;
-    transition: all 0.2s;
-    flex-shrink: 0;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -2px;
+    white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
   }
-
   .tab:hover { color: var(--text-soft); }
+  .tab.active { color: var(--gold); border-bottom-color: var(--gold-mid); font-weight: 500; }
 
-  .tab.active {
-    color: var(--gold);
-    border-bottom-color: var(--gold-mid);
-    font-weight: 500;
-  }
-
-  /* ── SEARCH ── */
-  .search-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    align-items: stretch;
-    flex-wrap: wrap;
-  }
-
-  .search-wrap {
-    flex: 1;
-    min-width: 240px;
-    display: flex;
-    border: 1.5px solid var(--border);
-    border-radius: 7px;
-    overflow: hidden;
-    background: var(--card);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  .search-wrap:focus-within {
-    border-color: var(--gold-mid);
-    box-shadow: 0 0 0 3px rgba(200,134,14,0.1);
-  }
-
-  .search-icon {
-    display: flex;
-    align-items: center;
-    padding: 0 12px 0 14px;
-    color: var(--faint);
-    flex-shrink: 0;
-  }
-
-  .search-icon svg { width: 16px; height: 16px; }
-
-  .search-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 11px 0;
-    color: var(--text);
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 14px;
-    outline: none;
-  }
-
-  .search-input::placeholder { color: var(--faint); }
-
-  .search-btn {
-    padding: 0 22px;
-    background: var(--gold-mid);
-    border: none;
-    color: #fff;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .search-btn:hover { background: var(--gold); }
-  .search-btn svg { width: 13px; height: 13px; }
-
-  .clear-btn {
-    padding: 0 16px;
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 7px;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-
-  .clear-btn:hover { border-color: var(--faint); color: var(--text); }
-
-  /* ── FILTER PILLS ── */
-  .filter-row {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
+  /* Filter pills */
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
 
   .filter-btn {
     padding: 7px 14px;
@@ -438,13 +743,9 @@
     border-radius: 20px;
     color: var(--muted);
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
+    font-size: 10px; letter-spacing: 0.08em;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
   }
-
   .filter-btn:hover { border-color: var(--faint); color: var(--text-soft); }
   .filter-btn.active { border-color: var(--gold-mid); color: var(--gold); background: var(--gold-light); font-weight: 500; }
   .filter-btn.ldf.active  { border-color: var(--ldf); color: var(--ldf-text); background: var(--ldf-bg); }
@@ -455,29 +756,19 @@
   .filter-btn.others.active { border-color: var(--others); color: var(--others-text); background: var(--others-bg); }
 
   .results-info {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--faint);
-    margin-bottom: 16px;
-    letter-spacing: 0.04em;
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--faint);
+    margin-bottom: 14px; letter-spacing: 0.04em;
   }
 
   /* ── GRID ── */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 12px;
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 12px; }
 
   /* ── CARD ── */
   .card {
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
+    background: var(--card); border: 1.5px solid var(--border);
+    border-radius: 10px; overflow: hidden;
     transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
-    cursor: pointer;
-    animation: fadeUp 0.28s ease both;
+    cursor: pointer; animation: fadeUp 0.28s ease both;
   }
 
   @keyframes fadeUp {
@@ -486,387 +777,159 @@
   }
 
   .card:hover {
-    transform: translateY(-3px);
-    border-color: var(--gold-mid);
+    transform: translateY(-3px); border-color: var(--gold-mid);
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   }
 
-  .card.reserved-sc {
-    background: var(--sc-card);
-    border-color: var(--sc-border);
-  }
-
-  .card.reserved-sc .card-header {
-    background: #F6F2FF;
-  }
-
-  .card.reserved-sc:hover {
-    border-color: var(--sc-color);
-    box-shadow: 0 6px 20px rgba(124,58,237,0.1);
-  }
-
-  .card.reserved-st {
-    background: var(--st-card);
-    border-color: var(--st-border);
-  }
-
-  .card.reserved-st .card-header {
-    background: #EEFAF5;
-  }
-
-  .card.reserved-st:hover {
-    border-color: var(--st-color);
-    box-shadow: 0 6px 20px rgba(11,122,86,0.1);
-  }
+  .card.reserved-sc { background: var(--sc-card); border-color: var(--sc-border); }
+  .card.reserved-sc .card-header { background: #F6F2FF; }
+  .card.reserved-sc:hover { border-color: var(--sc-color); box-shadow: 0 6px 20px rgba(124,58,237,0.1); }
+  .card.reserved-st { background: var(--st-card); border-color: var(--st-border); }
+  .card.reserved-st .card-header { background: #EEFAF5; }
+  .card.reserved-st:hover { border-color: var(--st-color); box-shadow: 0 6px 20px rgba(11,122,86,0.1); }
 
   .card-header {
-    padding: 13px 16px 11px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
-    background: var(--card2);
+    padding: 12px 16px 10px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 8px; background: var(--card2);
   }
 
-  .card-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--faint);
-    letter-spacing: 0.12em;
-    margin-bottom: 3px;
-  }
-
-  .card-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.2;
-  }
-
-  .card-district {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.07em;
-    margin-top: 3px;
-  }
+  .card-num { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--faint); letter-spacing: 0.12em; margin-bottom: 3px; }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .card-district { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.07em; margin-top: 3px; }
 
   .reservation-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 0.14em;
-    padding: 3px 8px;
-    border-radius: 12px;
-    flex-shrink: 0;
-    margin-top: 2px;
-    font-weight: 500;
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.14em;
+    padding: 3px 8px; border-radius: 12px; flex-shrink: 0; margin-top: 2px; font-weight: 500;
   }
-
   .reservation-badge.sc { background: var(--sc-bg); color: var(--sc-color); border: 1px solid var(--sc-border); }
   .reservation-badge.st { background: var(--st-bg); color: var(--st-color); border: 1px solid var(--st-border); }
 
-  .card-candidates {
-    padding: 11px 16px 13px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .card-candidates { padding: 10px 16px 12px; display: flex; flex-direction: column; gap: 7px; }
 
-  .candidate-row {
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 9px;
-    align-items: center;
-  }
+  .candidate-row { display: grid; grid-template-columns: 44px 1fr; gap: 9px; align-items: center; }
 
   .alliance-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 8px;
-    letter-spacing: 0.07em;
-    font-weight: 500;
-    padding: 3px 0;
-    border-radius: 4px;
-    text-align: center;
+    font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.07em;
+    font-weight: 500; padding: 3px 0; border-radius: 4px; text-align: center;
   }
-
   .alliance-tag.LDF { background: var(--ldf-bg); color: var(--ldf-text); border: 1px solid rgba(192,32,46,0.2); }
   .alliance-tag.UDF { background: var(--udf-bg); color: var(--udf-text); border: 1px solid rgba(21,101,192,0.2); }
   .alliance-tag.NDA { background: var(--nda-bg); color: var(--nda-text); border: 1px solid rgba(200,80,0,0.2); }
   .alliance-tag.OTH { background: var(--others-bg); color: var(--others-text); border: 1px solid rgba(85,85,85,0.2); }
 
-  .candidate-party {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    margin-bottom: 1px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
+  .candidate-party { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .candidate-name { font-size: 13px; color: var(--text-soft); font-weight: 400; line-height: 1.2; }
   .candidate-name.unknown { color: var(--faint); font-style: italic; font-size: 12px; }
 
   /* ── EMPTY STATE ── */
-  .empty-state {
-    grid-column: 1/-1;
-    text-align: center;
-    padding: 80px 40px;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-  }
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 80px 40px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; }
 
   /* ── CONSTITUENCY MODAL ── */
   .modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(17,24,39,0.4);
-    backdrop-filter: blur(3px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: 24px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.22s;
+    background: rgba(17,24,39,0.4); backdrop-filter: blur(3px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.22s;
   }
-
   .modal-overlay.open { opacity: 1; pointer-events: all; }
-
   .modal {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    max-width: 520px;
-    width: 100%;
-    overflow: hidden;
-    transform: scale(0.96) translateY(10px);
-    transition: transform 0.22s;
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    max-width: 520px; width: 100%; overflow: hidden;
+    transform: scale(0.96) translateY(10px); transition: transform 0.22s;
     box-shadow: 0 20px 60px rgba(0,0,0,0.14);
   }
-
   .modal-overlay.open .modal { transform: scale(1) translateY(0); }
-
   .modal-top { height: 4px; background: linear-gradient(90deg, var(--ldf) 33.3%, var(--udf) 33.3% 66.6%, var(--nda) 66.6%); }
-
-  .modal-header {
-    padding: 22px 26px 16px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    background: var(--card2);
-  }
-
+  .modal-header { padding: 20px 24px 14px; border-bottom: 1px solid var(--border); position: relative; background: var(--card2); }
   .modal-eyebrow { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 5px; }
   .modal-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--text); }
   .modal-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-
-  .modal-body { padding: 20px 26px 26px; }
-
-  .modal-section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 14px;
-  }
-
+  .modal-body { padding: 18px 24px 24px; }
+  .modal-section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
   .modal-candidates { display: flex; flex-direction: column; gap: 14px; }
   .modal-candidate { display: flex; gap: 14px; align-items: flex-start; }
-
   .modal-alliance-bar { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; min-height: 40px; }
   .modal-candidate-inner { flex: 1; }
-
   .modal-alliance-label { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2px; }
   .modal-party { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; margin-bottom: 3px; }
   .modal-candidate-name { font-size: 17px; color: var(--text); font-weight: 600; }
   .modal-candidate-name.tbd { color: var(--faint); font-style: italic; font-size: 14px; font-weight: 300; }
-
   .modal-close {
-    position: absolute; top: 16px; right: 16px;
-    background: none;
-    border: 1.5px solid var(--border);
-    border-radius: 6px;
-    color: var(--muted);
-    padding: 5px 10px;
-    cursor: pointer;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    position: absolute; top: 14px; right: 14px;
+    background: none; border: 1.5px solid var(--border); border-radius: 6px;
+    color: var(--muted); padding: 5px 10px; cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
     transition: all 0.18s;
   }
-
   .modal-close:hover { border-color: var(--text); color: var(--text); }
 
   /* ── DISCLAIMER MODAL ── */
   .disc-overlay {
     position: fixed; inset: 0;
-    background: rgba(17,24,39,0.5);
-    backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-    padding: 24px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    background: rgba(17,24,39,0.5); backdrop-filter: blur(5px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200; padding: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
   }
-
   .disc-overlay.open { opacity: 1; pointer-events: all; }
-
   .disc-modal {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    max-width: 560px;
-    width: 100%;
-    overflow: hidden;
-    transform: scale(0.95) translateY(16px);
-    transition: transform 0.3s;
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    max-width: 560px; width: 100%; overflow: hidden;
+    transform: scale(0.95) translateY(16px); transition: transform 0.3s;
     box-shadow: 0 28px 72px rgba(0,0,0,0.18);
   }
-
   .disc-overlay.open .disc-modal { transform: scale(1) translateY(0); }
-
   .disc-top { height: 5px; background: linear-gradient(90deg, #F5C842, #D4960E, #A07010); }
-
-  .disc-header {
-    padding: 26px 30px 14px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .disc-icon {
-    width: 42px; height: 42px;
-    background: #FEF9EC;
-    border: 1.5px solid #F5D76E;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
+  .disc-header { padding: 24px 28px 12px; display: flex; align-items: flex-start; gap: 14px; }
+  .disc-icon { width: 40px; height: 40px; background: #FEF9EC; border: 1.5px solid #F5D76E; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; margin-top: 2px; }
   .disc-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
   .disc-subtitle { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-
-  .disc-body {
-    padding: 0 30px 22px;
-    font-size: 14px;
-    color: var(--text-soft);
-    line-height: 1.75;
-    font-weight: 300;
-  }
-
+  .disc-body { padding: 0 28px 20px; font-size: 14px; color: var(--text-soft); line-height: 1.75; font-weight: 300; }
   .disc-body p + p { margin-top: 10px; }
-
-  .disc-body a {
-    color: var(--udf);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    word-break: break-all;
-  }
-
+  .disc-body a { color: var(--udf); text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
   .disc-body a:hover { color: var(--gold); }
-
-  .disc-footer {
-    padding: 14px 30px 24px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-end;
-    border-top: 1px solid var(--border);
-    background: var(--bg2);
-  }
-
-  .disc-ok-btn {
-    padding: 10px 28px;
-    background: var(--gold-mid);
-    color: #fff;
-    border: none;
-    border-radius: 7px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-weight: 500;
-  }
-
+  .disc-footer { padding: 12px 28px 22px; display: flex; gap: 10px; align-items: center; justify-content: flex-end; border-top: 1px solid var(--border); background: var(--bg2); }
+  .disc-ok-btn { padding: 10px 26px; background: var(--gold-mid); color: #fff; border: none; border-radius: 7px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; font-weight: 500; }
   .disc-ok-btn:hover { background: var(--gold); }
-
-  .disc-remind {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--faint);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    background: none;
-    border: none;
-    transition: color 0.2s;
-    letter-spacing: 0.04em;
-  }
-
+  .disc-remind { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--faint); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; background: none; border: none; transition: color 0.2s; letter-spacing: 0.04em; }
   .disc-remind:hover { color: var(--muted); }
 
   /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    background: #fff;
+    border-top: 1px solid var(--border); padding: 18px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px; background: #fff;
+    max-width: 100%;
   }
-
   .footer-text { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--faint); letter-spacing: 0.07em; }
-
-  .footer-disc-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--gold);
-    letter-spacing: 0.07em;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    background: none;
-    border: none;
-    transition: color 0.2s;
-  }
-
+  .footer-disc-link { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 0.07em; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; background: none; border: none; transition: color 0.2s; }
   .footer-disc-link:hover { color: var(--gold-mid); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .header-inner { grid-template-columns: 1fr; padding: 20px 20px 18px; gap: 14px; }
-    .header-right { flex-direction: row; align-items: center; justify-content: space-between; }
-    .header-stats { flex-direction: row; gap: 14px; }
+  @media (max-width: 900px) {
+    .map-outer { grid-template-columns: 1fr; }
+    .map-panel { max-height: 320px; }
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { grid-template-columns: auto 1fr; }
+    .header-right { display: none; }
     .container { padding: 0 16px 60px; }
     .grid { grid-template-columns: 1fr; }
-    footer { padding: 16px 20px; }
-    .disc-header, .disc-body, .disc-footer { padding-left: 20px; padding-right: 20px; }
+    footer { padding: 16px; }
+    .hb-search-input { width: 140px; }
   }
 </style>
 </head>
 <body>
 
-<!-- DISCLAIMER MODAL (auto-shows on load) -->
+<!-- DISCLAIMER MODAL -->
 <div class="disc-overlay open" id="disc-overlay">
   <div class="disc-modal">
     <div class="disc-top"></div>
     <div class="disc-header">
-      <div class="disc-icon">⚠️</div>
+      <div class="disc-icon">&#x26A0;&#xFE0F;</div>
       <div>
         <div class="disc-title">Data Disclaimer</div>
         <div class="disc-subtitle">Please read before proceeding</div>
@@ -891,17 +954,25 @@
 <header>
   <div class="header-stripe"></div>
   <div class="header-inner">
-    <div>
+    <!-- Left: Logo -->
+    <div class="header-logo-wrap">
+      <img class="header-logo" src="https://opendatakerala.org/LSG2025/assets/logo-DnFodOdy.png" alt="OpenDataKerala Logo" />
+    </div>
+    <!-- Centre: Title -->
+    <div class="header-title">
       <div class="header-eyebrow">Kerala Legislative Assembly</div>
       <h1>Election <em>2026</em></h1>
-      <p class="header-sub">Candidate list across all 140 constituencies · 14 districts · Three-alliance contest</p>
+      <div class="header-tagline">
+        Candidate list across all 140 constituencies &middot; 14 districts
+        <span>&nbsp;&bull; an OpenDataKerala Community Initiative</span>
+      </div>
     </div>
+    <!-- Right: ODK credit + stats -->
     <div class="header-right">
       <div class="header-top-row">
         <a class="odk-credit" href="https://github.com/opendatakerala" target="_blank" rel="noopener">
-          <span class="heart">♥</span>&nbsp;Crafted with :) by ODK Community
+          <span class="heart">&#x2665;</span>&nbsp;Crafted with :) by ODK Community
         </a>
-        <img class="header-logo" src="https://opendatakerala.org/LSG2025/assets/logo-DnFodOdy.png" alt="ODK Logo" />
       </div>
       <div class="header-stats">
         <div class="hstat">
@@ -909,9 +980,48 @@
           <div class="hstat-label">Seats</div>
         </div>
         <div class="hstat">
-          <div class="hstat-num" id="total-candidates">—</div>
+          <div class="hstat-num" id="total-candidates">&#x2014;</div>
           <div class="hstat-label">Announced Candidates *</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar: search + crafted + view tabs + disclaimer -->
+  <div class="header-bottom-row">
+    <div class="header-bottom-left">
+      <div class="hb-search-wrap">
+        <div class="hb-search-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
+          </svg>
+        </div>
+        <input class="hb-search-input" id="search"
+          placeholder="Search constituency, candidate&#x2026;"
+          onkeydown="if(event.key==='Enter') doSearch()">
+        <button class="hb-search-btn" onclick="doSearch()">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
+          </svg>
+          Search
+        </button>
+      </div>
+      <span class="hb-craft">
+        &#x2665; Crafted with :) by <a href="https://github.com/opendatakerala" target="_blank" rel="noopener">ODK Community</a>
+        &nbsp;&middot;&nbsp;
+        <button class="disclaimer-link" onclick="openDisclaimer()">&#x26A0; Disclaimer</button>
+      </span>
+    </div>
+    <div class="header-bottom-right">
+      <div class="view-tabs">
+        <button class="view-tab active" id="tab-map" onclick="switchView('map')">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z"/><line x1="8" y1="3" x2="8" y2="17"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
+          Map
+        </button>
+        <button class="view-tab" id="tab-table" onclick="switchView('table')">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="16" height="14" rx="2"/><line x1="2" y1="8" x2="18" y2="8"/><line x1="2" y1="13" x2="18" y2="13"/><line x1="7" y1="8" x2="7" y2="17"/></svg>
+          Table
+        </button>
       </div>
     </div>
   </div>
@@ -919,85 +1029,101 @@
 
 <div class="container">
 
-  <!-- Alliance legend -->
-  <div class="alliance-legend">
-    <span class="legend-label">Alliance →</span>
-    <div class="legend-pill ldf" onclick="setFilter('LDF')">
-      <div class="legend-dot" style="background:var(--ldf)"></div>
-      LDF <span class="legend-count" id="ldf-count">—</span>
-    </div>
-    <div class="legend-pill udf" onclick="setFilter('UDF')">
-      <div class="legend-dot" style="background:var(--udf)"></div>
-      UDF <span class="legend-count" id="udf-count">—</span>
-    </div>
-    <div class="legend-pill nda" onclick="setFilter('NDA')">
-      <div class="legend-dot" style="background:var(--nda)"></div>
-      NDA <span class="legend-count" id="nda-count">—</span>
-    </div>
-    <div class="legend-pill others" onclick="setFilter('OTH')">
-      <div class="legend-dot" style="background:var(--others)"></div>
-      Others <span class="legend-count" id="oth-count">—</span>
-    </div>
-  </div>
-
-  <!-- Stats row -->
-  <div class="stats-row">
-    <div class="stat-cell ldf"><div class="stat-n" id="stat-ldf">—</div><div class="stat-label">LDF Candidates</div></div>
-    <div class="stat-cell udf"><div class="stat-n" id="stat-udf">—</div><div class="stat-label">UDF Candidates</div></div>
-    <div class="stat-cell nda"><div class="stat-n" id="stat-nda">—</div><div class="stat-label">NDA Candidates</div></div>
-    <div class="stat-cell others"><div class="stat-n" id="stat-oth">—</div><div class="stat-label">Others</div></div>
-    <div class="stat-cell sc"><div class="stat-n" id="stat-sc">—</div><div class="stat-label">SC Reserved</div></div>
-    <div class="stat-cell st"><div class="stat-n" id="stat-st">—</div><div class="stat-label">ST Reserved</div></div>
-  </div>
-
-  <!-- District filter -->
-  <div class="section-title">Browse by District</div>
-  <div class="tabs" id="district-tabs">
-    <div class="tab active" data-district="all" onclick="selectDistrict('all', this)">All Districts</div>
-  </div>
-
-  <!-- Search -->
-  <div class="search-row">
-    <div class="search-wrap">
-      <div class="search-icon">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
-        </svg>
+  <!-- ══ MAP VIEW ══ -->
+  <div class="map-view" id="map-view">
+    <div class="map-outer">
+      <!-- Map SVG area -->
+      <div class="map-container" id="map-container">
+        <svg id="kerala-map" viewBox="0 0 500 900" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="map-legend" id="map-legend">
+          <div class="map-legend-title">Alliance</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--ldf-bg);border:1.5px solid #c00;"></div>LDF</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--udf-bg);border:1.5px solid #1565C0;"></div>UDF</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--nda-bg);border:1.5px solid #c85;"></div>NDA</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:#e8e8e8;border:1.5px solid #aaa;"></div>Others</div>
+          <div style="margin-top:4px;border-top:1px solid var(--border);padding-top:6px;">
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--sc-bg);border:1.5px solid var(--sc-color);"></div>SC Reserved</div>
+          <div class="map-legend-item"><div class="map-legend-dot" style="background:var(--st-bg);border:1.5px solid var(--st-color);"></div>ST Reserved</div>
+          </div>
+        </div>
+        <div class="map-tooltip" id="map-tooltip"></div>
       </div>
-      <input class="search-input" id="search"
-        placeholder="Search constituency, candidate or party…"
-        onkeydown="if(event.key==='Enter') renderGrid()">
-      <button class="search-btn" onclick="renderGrid()">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
-          <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
-        </svg>
-        Search
-      </button>
+      <!-- Sidebar panel -->
+      <div class="map-panel">
+        <div class="map-panel-header">
+          <div class="map-panel-title" id="panel-title">Districts</div>
+          <div class="map-panel-sub" id="panel-sub">Click a constituency to view details</div>
+        </div>
+        <div class="map-panel-body" id="panel-body">
+          <div class="dist-filter" id="dist-filter"></div>
+          <div class="const-detail" id="const-detail"></div>
+        </div>
+      </div>
     </div>
-    <button class="clear-btn" onclick="clearSearch()">Clear</button>
   </div>
 
-  <!-- Filter pills -->
-  <div class="filter-row">
-    <button class="filter-btn active" id="filter-all" onclick="setFilter('all')">All Constituencies</button>
-    <button class="filter-btn ldf" id="filter-LDF" onclick="setFilter('LDF')">🔴 LDF</button>
-    <button class="filter-btn udf" id="filter-UDF" onclick="setFilter('UDF')">🔵 UDF</button>
-    <button class="filter-btn nda" id="filter-NDA" onclick="setFilter('NDA')">🟠 NDA</button>
-    <button class="filter-btn others" id="filter-OTH" onclick="setFilter('OTH')">⬜ Others</button>
-    <button class="filter-btn sc"  id="filter-SC"  onclick="setFilter('SC')">SC Reserved</button>
-    <button class="filter-btn st"  id="filter-ST"  onclick="setFilter('ST')">ST Reserved</button>
+  <!-- ══ TABLE VIEW ══ -->
+  <div class="table-view" id="table-view">
+    <div class="table-view-inner">
+
+      <!-- Alliance legend -->
+      <div class="alliance-legend">
+        <span class="legend-label">Alliance &#x2192;</span>
+        <div class="legend-pill ldf" onclick="setFilter('LDF')">
+          <div class="legend-dot" style="background:var(--ldf)"></div>
+          LDF <span class="legend-count" id="ldf-count">&#x2014;</span>
+        </div>
+        <div class="legend-pill udf" onclick="setFilter('UDF')">
+          <div class="legend-dot" style="background:var(--udf)"></div>
+          UDF <span class="legend-count" id="udf-count">&#x2014;</span>
+        </div>
+        <div class="legend-pill nda" onclick="setFilter('NDA')">
+          <div class="legend-dot" style="background:var(--nda)"></div>
+          NDA <span class="legend-count" id="nda-count">&#x2014;</span>
+        </div>
+        <div class="legend-pill others" onclick="setFilter('OTH')">
+          <div class="legend-dot" style="background:var(--others)"></div>
+          Others <span class="legend-count" id="oth-count">&#x2014;</span>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-cell ldf"><div class="stat-n" id="stat-ldf">&#x2014;</div><div class="stat-label">LDF Candidates</div></div>
+        <div class="stat-cell udf"><div class="stat-n" id="stat-udf">&#x2014;</div><div class="stat-label">UDF Candidates</div></div>
+        <div class="stat-cell nda"><div class="stat-n" id="stat-nda">&#x2014;</div><div class="stat-label">NDA Candidates</div></div>
+        <div class="stat-cell others"><div class="stat-n" id="stat-oth">&#x2014;</div><div class="stat-label">Others</div></div>
+        <div class="stat-cell sc"><div class="stat-n" id="stat-sc">&#x2014;</div><div class="stat-label">SC Reserved</div></div>
+        <div class="stat-cell st"><div class="stat-n" id="stat-st">&#x2014;</div><div class="stat-label">ST Reserved</div></div>
+      </div>
+
+      <!-- District tabs -->
+      <div class="section-title">Browse by District</div>
+      <div class="tabs" id="district-tabs">
+        <div class="tab active" data-district="all" onclick="selectDistrict('all', this)">All Districts</div>
+      </div>
+
+      <!-- Filter pills -->
+      <div class="filter-row">
+        <button class="filter-btn active" id="filter-all" onclick="setFilter('all')">All Constituencies</button>
+        <button class="filter-btn ldf" id="filter-LDF" onclick="setFilter('LDF')">&#x1F534; LDF</button>
+        <button class="filter-btn udf" id="filter-UDF" onclick="setFilter('UDF')">&#x1F535; UDF</button>
+        <button class="filter-btn nda" id="filter-NDA" onclick="setFilter('NDA')">&#x1F7E0; NDA</button>
+        <button class="filter-btn others" id="filter-OTH" onclick="setFilter('OTH')">&#x25A1; Others</button>
+        <button class="filter-btn sc"  id="filter-SC"  onclick="setFilter('SC')">SC Reserved</button>
+        <button class="filter-btn st"  id="filter-ST"  onclick="setFilter('ST')">ST Reserved</button>
+      </div>
+
+      <div class="results-info" id="results-info"></div>
+      <div class="grid" id="grid"></div>
+    </div>
   </div>
-
-  <div class="results-info" id="results-info"></div>
-
-  <!-- Grid -->
-  <div class="grid" id="grid"></div>
 
 </div>
 
 <footer>
-  <span class="footer-text">Kerala Legislative Assembly Election 2026 · Data sourced from Various Media & SEC Kerala</span>
-  <button class="footer-disc-link" onclick="openDisclaimer()">⚠ View Disclaimer</button>
+  <span class="footer-text">Kerala Legislative Assembly Election 2026 &middot; Data sourced from Various Media &amp; SEC Kerala &middot; an OpenDataKerala Initiative</span>
+  <button class="footer-disc-link" onclick="openDisclaimer()">&#x26A0; View Disclaimer</button>
 </footer>
 
 <!-- CONSTITUENCY MODAL -->
@@ -1008,7 +1134,7 @@
       <div class="modal-eyebrow" id="modal-eyebrow"></div>
       <div class="modal-title" id="modal-title"></div>
       <div class="modal-badges" id="modal-badges"></div>
-      <button class="modal-close" onclick="closeModalDirect()">✕ Close</button>
+      <button class="modal-close" onclick="closeModalDirect()">&#x2715; Close</button>
     </div>
     <div class="modal-body">
       <div class="modal-section-label">Contesting Candidates</div>
@@ -1018,6 +1144,9 @@
 </div>
 
 <script>
+// ── DATA ──
+let TOPOJSON = null; // loaded via fetch
+
 const RAW_CSV = `District,Constituency_Number,Constituency_Name,Reservation,LDF,LDF_Candidate,UDF,UDF_Candidate,NDA,NDA_Candidate
 Kasaragod,1,Manjeshwaram,,CPI(M),K. R. Jayanandan,IUML,A. K. M. Ashraf,BJP,K. Surendran
 Kasaragod,2,Kasaragod,,INL,,IUML,Kallatra Mahin Haji,BJP,Ashwini M.L.
@@ -1172,17 +1301,389 @@ function parseCSV(text) {
 }
 
 const data = parseCSV(RAW_CSV);
+
+// Build wikidata lookup
+const wikiLookup = {};
+data.forEach(row => {
+  // Match constituency wikidata from CSV (Constituency_Wikidata not in our stripped CSV, use name matching)
+});
+
+// ── VIEW SWITCHING ──
+let currentView = 'map';
+
+function switchView(view) {
+  currentView = view;
+  const mapView = document.getElementById('map-view');
+  const tableView = document.getElementById('table-view');
+  document.getElementById('tab-map').classList.toggle('active', view === 'map');
+  document.getElementById('tab-table').classList.toggle('active', view === 'table');
+  if (view === 'map') {
+    mapView.style.display = 'block';
+    tableView.style.display = 'none';
+  } else {
+    mapView.style.display = 'none';
+    tableView.style.display = 'block';
+    renderGrid();
+    computeStats();
+  }
+}
+
+// ── MAP ──
+// Convert topojson to SVG paths using simple projection
+function topoToGeo(topo) {
+  const obj = topo.objects.collection;
+  const arcs = topo.arcs;
+  const scale = topo.transform ? topo.transform.scale : [1, 1];
+  const translate = topo.transform ? topo.transform.translate : [0, 0];
+
+  function decodeArc(arcIndex) {
+    const reversed = arcIndex < 0;
+    const arc = arcs[reversed ? ~arcIndex : arcIndex];
+    const points = [];
+    let x = 0, y = 0;
+    for (const delta of arc) {
+      x += delta[0]; y += delta[1];
+      const lon = x * scale[0] + translate[0];
+      const lat = y * scale[1] + translate[1];
+      points.push([lon, lat]);
+    }
+    if (reversed) points.reverse();
+    return points;
+  }
+
+  function ringToPoints(ring) {
+    const pts = [];
+    for (const arcIdx of ring) {
+      const decoded = decodeArc(arcIdx);
+      if (pts.length > 0) decoded.shift();
+      pts.push(...decoded);
+    }
+    return pts;
+  }
+
+  const features = obj.geometries.map(geom => {
+    let rings = [];
+    if (geom.type === 'Polygon') rings = geom.arcs.map(ringToPoints);
+    else if (geom.type === 'MultiPolygon') rings = geom.arcs.flatMap(poly => poly.map(ringToPoints));
+    return { props: geom.properties, rings };
+  });
+
+  return features;
+}
+
+function projectMercator(lon, lat, bbox, svgW, svgH, pad) {
+  const minLon = bbox[0], minLat = bbox[1], maxLon = bbox[2], maxLat = bbox[3];
+  const x = pad + (lon - minLon) / (maxLon - minLon) * (svgW - 2 * pad);
+  const y = pad + (maxLat - lat) / (maxLat - minLat) * (svgH - 2 * pad);
+  return [x, y];
+}
+
+function renderMap(TOPOJSON) {
+  const bbox = TOPOJSON.bbox;
+  const svgW = 500, svgH = 900, pad = 10;
+  const svg = document.getElementById('kerala-map');
+  svg.innerHTML = '';
+
+  // Build candidate lookup by constituency name (normalized)
+  const byName = {};
+  const byWiki = {};
+  data.forEach(row => { byName[row.Constituency_Name.toLowerCase().trim()] = row; });
+
+  // Also map topojson wikidatas
+  const TOPO_WIKIS = TOPOJSON.objects.collection.geometries.map(g => g.properties.WikiData);
+
+  // Need to cross-reference: topojson has WikiData matching CSV Constituency_Wikidata
+  // We'll load original CSV wikidata from the full dataset
+  const wikiMap = {
+    'Q13113782':1,'Q13111222':2,'Q13110513':3,'Q13111113':4,'Q16137696':5,
+    'Q17379122':6,'Q13111077':7,'Q17379268':8,'Q13110432':9,'Q17385405':10,
+    'Q16134425':15,'Q13110133':10,'Q16136061':14,'Q16137348':11,'Q13112766':12,
+    'Q17379603':14,'Q13115144':18,'Q7709532':13,'Q13112855':22,'Q13111054':19
+  };
+
+  // Full wiki->constituency_number from original data
+  const fullWikiData = {
+    'Q13113782':1,'Q13111222':2,'Q13110513':3,'Q13111113':4,'Q16137696':5,
+    'Q17379122':6,'Q13111077':7,'Q17379268':8,'Q13110432':9,'Q17385405':10,
+    'Q16134425':15,'Q13110133':10,'Q16137348':11,'Q13112766':12,'Q7709532':13,
+    'Q17379603':14,'Q13115144':18,'Q13112855':22,'Q13111054':19,'Q13114485':20,
+    'Q16136660':21,'Q13113475':24,'Q16137581':25,'Q13111637':23,'Q16135012':31,
+    'Q13112497':32,'Q13112913':35,'Q16135458':26,'Q13110769':34,'Q13111313':30,
+    'Q13111729':27,'Q24204696':28,'Q16135092':33,'Q16135444':36,'Q13113680':29,
+    'Q13113828':54,'Q13113783':38,'Q16135164':40,'Q16135944':42,'Q13114838':41,
+    'Q13112529':43,'Q13113774':39,'Q13113446':38,'Q13111682':46,'Q16136996':44,
+    'Q13111675':53,'Q16137421':45,'Q13110827':52,'Q13114979':51,'Q13113050':50,
+    'Q16135283':55,'Q16136920':47,'Q13112607':49,'Q7227905':48,'Q13111967':58,
+    'Q18536954':56,'Q5089791':61,'Q16136772':57,'Q13111317':62,'Q16136878':60,
+    'Q5620568':63,'Q16135293':65,'Q13112978':59,'Q6746846':64,'Q7088394':66,
+    'Q7798271':67,'Q6980360':68,'Q7258374':71,'Q5068546':72,'Q6070028':70,
+    'Q6348174':69,'Q16134525':88,'Q6425466':73,'Q7601651':75,'Q13113120':78,
+    'Q13114876':79,'Q13110297':76,'Q16136149':74,'Q16134141':77,'Q13111319':84,
+    'Q16135415':82,'Q16137625':86,'Q16137712':83,'Q16133853':90,'Q16133944':89,
+    'Q13112618':81,'Q13113295':85,'Q17372576':80,'Q13110378':91,'Q13110113':102,
+    'Q13110914':94,'Q13114860':95,'Q13113213':93,'Q16134436':103,'Q16135018':92,
+    'Q16135693':101,'Q16135978':96,'Q13113317':98,'Q13110290':104,'Q13111688':97,
+    'Q16134543':100,'Q16135972':106,'Q16136954':99,'Q13110066':105,'Q16137335':111,
+    'Q20577849':114,'Q13114408':112,'Q16136677':113,'Q16137908':107,'Q13112004':110,
+    'Q16136384':109,'Q13111157':108,'Q7601892':115,'Q13113068':120,'Q13111030':116,
+    'Q17414812':118,'Q13113349':121,'Q13111616':119,'Q13111898':117,'Q13111296':123,
+    'Q48733036':124,'Q16137010':122,'Q13110435':125,'Q13111908':126,'Q16134163':127,
+    'Q16136220':131,'Q16136708':128,'Q16137800':129,'Q7602920':136,'Q16136140':130,
+    'Q13111089':132,'Q13113201':137,'Q13114513':133,'Q6378291':138,'Q16137289':134,
+    'Q13113005':135,'Q16136265':140,'Q13111733':139,'Q16135561':87
+  };
+
+  // Build wiki->row lookup
+  const wikiToRow = {};
+  data.forEach(row => {
+    // The wikidata IDs from the original CSV
+  });
+
+  // Build number->row
+  const numToRow = {};
+  data.forEach(row => { numToRow[parseInt(row.Constituency_Number)] = row; });
+
+  function getAllianceColor(row) {
+    if (!row) return '#E0E0E0';
+    if (row.Reservation === 'SC') return '#EDE9FE';
+    if (row.Reservation === 'ST') return '#D1FAE5';
+    return '#EFEFEF';
+  }
+
+  function getAllianceFill(row) {
+    if (!row) return '#E8E8E8';
+    // For now colour by LDF candidate presence (simple heuristic)
+    // Real alliance colouring by LDF party
+    const ldf = row.LDF || '';
+    const udf = row.UDF || '';
+    const nda = row.NDA || '';
+    if (ldf) {
+      if (row.Reservation === 'SC') return '#F3E8FF';
+      if (row.Reservation === 'ST') return '#DCFCE7';
+    }
+    return '#F5F5F5';
+  }
+
+  // Fill by dominant alliance (whoever has a candidate in LDF seat)
+  function getFill(row) {
+    if (!row) return '#DCDCDC';
+    const res = row.Reservation;
+    // Colour by LDF/UDF/NDA based on which party is listed (use LDF column presence)
+    // We use a simplified colour scheme: always show all 3 alliances
+    // For now: tint by reservation, otherwise neutral
+    if (res === 'SC') return '#EDE9FE';
+    if (res === 'ST') return '#D1FAE5';
+    return '#F0F4FF';
+  }
+
+  features.forEach((feat, idx) => {
+    const wiki = feat.props.WikiData;
+    const constNum = fullWikiData[wiki];
+    const row = constNum ? numToRow[constNum] : null;
+
+    feat.rings.forEach((ring, ri) => {
+      const pathPts = ring.map(([lon, lat]) => projectMercator(lon, lat, bbox, svgW, svgH, pad));
+      const d = pathPts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(' ') + ' Z';
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('class', 'constituency-path');
+
+      // Color logic
+      let fill = '#E8EDF5';
+      if (row) {
+        if (row.LDF_Candidate) fill = '#FFDDDD';
+        if (row.UDF_Candidate && !row.LDF_Candidate) fill = '#DDEEFF';
+        // Show all by overlay — use LDF as primary
+        // Alliance colour:
+        // LDF: light red, UDF: light blue, NDA: light yellow, neutral: grey
+        const hasLDF = !!row.LDF;
+        const hasUDF = !!row.UDF;
+        const hasNDA = !!row.NDA;
+        fill = '#E8EDF5'; // default grey-blue
+
+        // Colour by which alliance is the strongest indicator
+        // Use LDF first, then UDF, then NDA
+        if (hasLDF) fill = '#FFD6D6';
+        if (hasUDF && !hasLDF) fill = '#C5E8FF';
+        if (hasNDA && !hasLDF && !hasUDF) fill = '#FFF3A8';
+
+        // Reservation override with slight tint
+        if (row.Reservation === 'SC') fill = tintColor(fill, '#C4B5FD', 0.3);
+        if (row.Reservation === 'ST') fill = tintColor(fill, '#6EE7B7', 0.3);
+      }
+
+      path.setAttribute('fill', fill);
+      path.setAttribute('data-wiki', wiki);
+      path.setAttribute('data-num', constNum || '');
+
+      // Hover / click
+      path.addEventListener('mouseenter', (e) => showTooltip(e, row, feat.props));
+      path.addEventListener('mouseleave', hideTooltip);
+      path.addEventListener('mousemove', (e) => moveTooltip(e));
+      path.addEventListener('click', () => selectConstituency(row, feat.props));
+
+      svg.appendChild(path);
+    });
+  });
+}
+
+function tintColor(baseHex, tintHex, amount) {
+  // Simple blend
+  function hexToRgb(h) {
+    const r = parseInt(h.slice(1,3),16), g = parseInt(h.slice(3,5),16), b = parseInt(h.slice(5,7),16);
+    return [r,g,b];
+  }
+  function rgbToHex(r,g,b) { return '#'+[r,g,b].map(v=>Math.round(v).toString(16).padStart(2,'0')).join(''); }
+  const [br,bg,bb] = hexToRgb(baseHex);
+  const [tr,tg,tb] = hexToRgb(tintHex);
+  return rgbToHex(br*(1-amount)+tr*amount, bg*(1-amount)+tg*amount, bb*(1-amount)+tb*amount);
+}
+
+let tooltipRow = null;
+function showTooltip(e, row, props) {
+  tooltipRow = row;
+  const tt = document.getElementById('map-tooltip');
+  tt.className = 'map-tooltip visible';
+  let html = `<div class="tooltip-name">${props.Asmbly_Con}</div>`;
+  if (row) {
+    html += `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:6px">${row.District}</div>`;
+    if (row.LDF || row.LDF_Candidate) html += tooltipCandRow('LDF', '#ff1a1a', '#000', row.LDF, row.LDF_Candidate);
+    if (row.UDF || row.UDF_Candidate) html += tooltipCandRow('UDF', '#99e6ff', '#000', row.UDF, row.UDF_Candidate);
+    if (row.NDA || row.NDA_Candidate) html += tooltipCandRow('NDA', '#ffcc00', '#000', row.NDA, row.NDA_Candidate);
+  } else {
+    html += `<div style="color:var(--muted);font-size:12px">No data available</div>`;
+  }
+  tt.innerHTML = html;
+  moveTooltip(e);
+}
+
+function tooltipCandRow(tag, bg, col, party, name) {
+  return `<div class="tooltip-row">
+    <span class="tooltip-tag" style="background:${bg};color:${col}">${tag}</span>
+    <div><div class="tooltip-party">${party || ''}</div><div class="tooltip-candidate">${name || 'TBD'}</div></div>
+  </div>`;
+}
+
+function moveTooltip(e) {
+  const tt = document.getElementById('map-tooltip');
+  const container = document.getElementById('map-container');
+  const rect = container.getBoundingClientRect();
+  let x = e.clientX - rect.left + 12;
+  let y = e.clientY - rect.top + 12;
+  if (x + 270 > rect.width) x = e.clientX - rect.left - 275;
+  if (y + 160 > rect.height) y = e.clientY - rect.top - 165;
+  tt.style.left = x + 'px';
+  tt.style.top = y + 'px';
+}
+
+function hideTooltip() {
+  document.getElementById('map-tooltip').className = 'map-tooltip';
+}
+
+function selectConstituency(row, props) {
+  const detail = document.getElementById('const-detail');
+  const distFilter = document.getElementById('dist-filter');
+  const panelTitle = document.getElementById('panel-title');
+  const panelSub = document.getElementById('panel-sub');
+
+  distFilter.style.display = 'none';
+  detail.className = 'const-detail visible';
+  panelTitle.textContent = props.Asmbly_Con;
+  panelSub.textContent = (props.District || '') + ' District';
+
+  if (!row) {
+    detail.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:12px 0">No candidate data available for this constituency.</div>';
+    return;
+  }
+
+  const res = row.Reservation;
+  const resBadge = res ? `<span class="reservation-badge ${res.toLowerCase()}">${res} Reserved</span>` : '';
+
+  function cBlock(alliance, barColor, party, name) {
+    const tbd = !name;
+    return `<div class="const-candidate-block">
+      <div class="const-alliance-bar" style="background:${barColor}"></div>
+      <div class="const-candidate-inner">
+        <div class="const-alliance-label">${alliance}</div>
+        <div class="const-party">${party || '—'}</div>
+        <div class="const-candidate-name${tbd ? ' tbd' : ''}">${name || 'To Be Announced'}</div>
+      </div>
+    </div>`;
+  }
+
+  detail.innerHTML = `
+    <button class="back-btn" onclick="backToDistricts()">&#x2190; Districts</button>
+    <div class="const-detail-top">
+      <div class="const-detail-num">CONSTITUENCY #${row.Constituency_Number}</div>
+      <div class="const-detail-name">${row.Constituency_Name}</div>
+      <div class="const-detail-dist">${row.District} ${resBadge}</div>
+    </div>
+    ${cBlock('LDF', '#D94040', row.LDF, row.LDF_Candidate)}
+    ${cBlock('UDF', '#1565C0', row.UDF, row.UDF_Candidate)}
+    ${row.NDA ? cBlock('NDA', '#E07828', row.NDA, row.NDA_Candidate) : ''}
+    ${cBlock('Others', '#888', '', '')}
+  `;
+}
+
+function backToDistricts() {
+  document.getElementById('dist-filter').style.display = 'flex';
+  document.getElementById('const-detail').className = 'const-detail';
+  document.getElementById('panel-title').textContent = 'Districts';
+  document.getElementById('panel-sub').textContent = 'Click a constituency to view details';
+}
+
+function buildDistrictSidebar() {
+  const distFilter = document.getElementById('dist-filter');
+  const districts = [...new Set(data.map(d => d.District))];
+  const counts = {};
+  data.forEach(r => { counts[r.District] = (counts[r.District] || 0) + 1; });
+
+  let html = `<button class="dist-btn active" onclick="filterMapDistrict('all', this)">
+    <span class="dist-btn-name">All Kerala</span>
+    <span class="dist-btn-count">140</span>
+  </button>`;
+
+  districts.forEach(d => {
+    html += `<button class="dist-btn" onclick="filterMapDistrict('${d}', this)">
+      <span class="dist-btn-name">${d}</span>
+      <span class="dist-btn-count">${counts[d]}</span>
+    </button>`;
+  });
+
+  distFilter.innerHTML = html;
+}
+
+function filterMapDistrict(district, el) {
+  document.querySelectorAll('.dist-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+
+  const paths = document.querySelectorAll('.constituency-path');
+  if (district === 'all') {
+    paths.forEach(p => { p.classList.remove('dimmed', 'highlighted'); });
+  } else {
+    // Get constituency numbers for this district
+    const distNums = new Set(data.filter(r => r.District === district).map(r => parseInt(r.Constituency_Number)));
+    paths.forEach(p => {
+      const num = parseInt(p.getAttribute('data-num'));
+      if (distNums.has(num)) {
+        p.classList.remove('dimmed'); p.classList.add('highlighted');
+      } else {
+        p.classList.remove('highlighted'); p.classList.add('dimmed');
+      }
+    });
+  }
+}
+
+// ── TABLE ──
 let activeDistrict = 'all';
 let activeFilter = 'all';
 
-// Build district tabs
 const districts = [...new Set(data.map(d => d.District))];
 const tabsEl = document.getElementById('district-tabs');
 districts.forEach(d => {
   const t = document.createElement('div');
-  t.className = 'tab';
-  t.dataset.district = d;
-  t.textContent = d;
+  t.className = 'tab'; t.dataset.district = d; t.textContent = d;
   t.onclick = () => selectDistrict(d, t);
   tabsEl.appendChild(t);
 });
@@ -1202,20 +1703,26 @@ function setFilter(f) {
   renderGrid();
 }
 
-function clearSearch() {
-  document.getElementById('search').value = '';
-  renderGrid();
+function doSearch() {
+  if (currentView === 'table') {
+    renderGrid();
+  } else {
+    // Switch to table and search
+    switchView('table');
+    setTimeout(renderGrid, 50);
+  }
 }
 
+function clearSearch() { document.getElementById('search').value = ''; renderGrid(); }
+
 function renderGrid() {
-  const q = document.getElementById('search').value.toLowerCase().trim();
+  const q = (document.getElementById('search').value || '').toLowerCase().trim();
   const grid = document.getElementById('grid');
 
   let filtered = data.filter(row => {
     if (activeDistrict !== 'all' && row.District !== activeDistrict) return false;
     if (activeFilter === 'SC') return row.Reservation === 'SC';
     if (activeFilter === 'ST') return row.Reservation === 'ST';
-    if (activeFilter === 'OTH') return true; // placeholder until Others data arrives
     return true;
   });
 
@@ -1234,11 +1741,9 @@ function renderGrid() {
 
   grid.innerHTML = '';
   const info = document.getElementById('results-info');
-  if (filtered.length === data.length && !q) {
-    info.textContent = `Showing all ${filtered.length} constituencies`;
-  } else {
-    info.textContent = `Showing ${filtered.length} of ${data.length} constituencies${q ? ' · search: "' + q + '"' : ''}`;
-  }
+  info.textContent = filtered.length === data.length && !q
+    ? `Showing all ${filtered.length} constituencies`
+    : `Showing ${filtered.length} of ${data.length} constituencies${q ? ' · search: "' + q + '"' : ''}`;
 
   if (filtered.length === 0) {
     grid.innerHTML = '<div class="empty-state">No constituencies match your search.</div>';
@@ -1257,7 +1762,7 @@ function renderGrid() {
       const n = name ? `<span class="candidate-name">${name}</span>` : `<span class="candidate-name unknown">TBD</span>`;
       return `<div class="candidate-row">
         <span class="alliance-tag ${alliance}">${alliance === 'OTH' ? 'Others' : alliance}</span>
-        <div><div class="candidate-party">${party || '—'}</div>${n}</div>
+        <div><div class="candidate-party">${party || '\u2014'}</div>${n}</div>
       </div>`;
     }
 
@@ -1301,7 +1806,7 @@ function openModal(row) {
       <div class="modal-alliance-bar" style="background:${color}"></div>
       <div class="modal-candidate-inner">
         <div class="modal-alliance-label">${alliance}</div>
-        <div class="modal-party" style="color:#000000">${party || '—'}</div>
+        <div class="modal-party" style="color:#000">${party || '\u2014'}</div>
         <div class="modal-candidate-name${tbd ? ' tbd' : ''}">${name || 'To Be Announced'}</div>
       </div>
     </div>`;
@@ -1311,26 +1816,15 @@ function openModal(row) {
     mCand('LDF', '#D94040', row.LDF, row.LDF_Candidate) +
     mCand('UDF', '#1565C0', row.UDF, row.UDF_Candidate) +
     (row.NDA ? mCand('NDA', '#E07828', row.NDA, row.NDA_Candidate) : '') +
-    mCand('Others', '#888888', '', '');
+    mCand('Others', '#888', '', '');
 
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
-}
-
-function closeModalDirect() {
-  document.getElementById('modal-overlay').classList.remove('open');
-}
-
-function closeDisclaimer() {
-  document.getElementById('disc-overlay').classList.remove('open');
-}
-
-function openDisclaimer() {
-  document.getElementById('disc-overlay').classList.add('open');
-}
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); }
+function closeDisclaimer() { document.getElementById('disc-overlay').classList.remove('open'); }
+function openDisclaimer() { document.getElementById('disc-overlay').classList.add('open'); }
 
 document.getElementById('disc-overlay').addEventListener('click', e => {
   if (e.target === document.getElementById('disc-overlay')) closeDisclaimer();
@@ -1340,7 +1834,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModalDirect(); closeDisclaimer(); }
 });
 
-// Stats
 function computeStats() {
   let ldf = 0, udf = 0, nda = 0, sc = 0, st = 0;
   data.forEach(r => {
@@ -1353,19 +1846,33 @@ function computeStats() {
   document.getElementById('stat-ldf').textContent = ldf;
   document.getElementById('stat-udf').textContent = udf;
   document.getElementById('stat-nda').textContent = nda;
-  document.getElementById('stat-oth').textContent = '—';
+  document.getElementById('stat-oth').textContent = '\u2014';
   document.getElementById('stat-sc').textContent = sc;
   document.getElementById('stat-st').textContent = st;
   document.getElementById('ldf-count').textContent = ldf;
   document.getElementById('udf-count').textContent = udf;
   document.getElementById('nda-count').textContent = nda;
-  document.getElementById('oth-count').textContent = '—';
+  document.getElementById('oth-count').textContent = '\u2014';
   document.getElementById('total-candidates').textContent = ldf + udf + nda;
 }
 
+// ── INIT ──
 computeStats();
-setFilter('all');
-renderGrid();
+buildDistrictSidebar();
+// Map is default view
+document.getElementById('table-view').style.display = 'none';
+
+// Load topojson from data subfolder
+fetch('data/kla_map.topojson')
+  .then(r => r.json())
+  .then(topo => {
+    window.TOPOJSON = topo;
+    renderMap(topo);
+  })
+  .catch(() => {
+    document.getElementById('map-container').innerHTML =
+      '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:\'DM Mono\',monospace;font-size:12px;padding:40px;text-align:center">Map data not found.<br>Place kla_map.topojson in the data/ subfolder.</div>';
+  });
 </script>
 </body>
 </html>
