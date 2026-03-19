@@ -1859,16 +1859,45 @@ document.getElementById('map-view').style.display = 'none';
 renderGrid();
 computeStats();
 
-// Load topojson from data subfolder
-fetch('data/kla_map.topojson')
-  .then(r => r.json())
-  .then(topo => {
-    window.TOPOJSON = topo;
-    renderMap(topo);
+// Auto-discover any .topojson file in the data/ subfolder
+function loadTopoJSON(url) {
+  return fetch(url)
+    .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+    .then(topo => { window.TOPOJSON = topo; renderMap(topo); });
+}
+
+function showMapError() {
+  document.getElementById('map-container').innerHTML =
+    '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:\'DM Mono\',monospace;font-size:13px;padding:40px;text-align:center;flex-direction:column;gap:10px">' +
+    '<div style="font-size:28px">🗺️</div>' +
+    '<div>No .topojson file found in the <code>data/</code> folder.</div>' +
+    '<div style="font-size:11px;color:var(--faint)">Place any .topojson file in the data/ subfolder and reload.</div></div>';
+}
+
+// Try fetching data/ directory listing to find a .topojson filename
+fetch('data/')
+  .then(r => r.text())
+  .then(html => {
+    // Parse href links ending in .topojson from directory listing
+    const matches = [...html.matchAll(/href="([^"]*\.topojson)"/gi)];
+    if (matches.length > 0) {
+      // Use the first .topojson found
+      const filename = matches[0][1].replace(/^.*\//, ''); // strip any path prefix
+      return loadTopoJSON('data/' + filename);
+    }
+    throw new Error('none found');
   })
   .catch(() => {
-    document.getElementById('map-container').innerHTML =
-      '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-family:\'DM Mono\',monospace;font-size:12px;padding:40px;text-align:center">Map data not found.<br>Place kla_map.topojson in the data/ subfolder.</div>';
+    // Directory listing not available — try common filenames as fallback
+    const candidates = [
+      'kla_map.topojson', 'map.topojson', 'kerala.topojson',
+      'constituencies.topojson', 'assembly.topojson', 'india.topojson'
+    ];
+    const tryNext = (i) => {
+      if (i >= candidates.length) { showMapError(); return; }
+      loadTopoJSON('data/' + candidates[i]).catch(() => tryNext(i + 1));
+    };
+    tryNext(0);
   });
 </script>
 </body>
