@@ -936,12 +936,9 @@
       </div>
     </div>
     <div class="disc-body">
-      <p>The accuracy or completeness of the data presented on this page cannot be guaranteed. The information has been sourced from Various Medias, party social media handles and CEC website.</p>
+      <p>The accuracy or completeness of the data presented on this page cannot be guaranteed. The information has been sourced from Various Medias, party social media handles and CEC Kerala website.</p>
       <p>There is a chance for change according to time. Candidate announcements may be updated or revised by parties at any point.</p>
-      <p>If you notice any errors or discrepancies, please let us know at:<br>
-        <a href="https://github.com/opendatakerala/KLA/issues" target="_blank" rel="noopener">https://github.com/opendatakerala/KLA/issues</a><br>
-        so they can be reviewed and corrected.
-      </p>
+
     </div>
     <div class="disc-footer">
       <button class="disc-remind" onclick="closeDisclaimer()">Dismiss</button>
@@ -1009,13 +1006,13 @@
     </div>
     <div class="header-bottom-right">
       <div class="view-tabs">
-        <button class="view-tab" id="tab-map" onclick="switchView('map')">
-          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z"/><line x1="8" y1="3" x2="8" y2="17"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
-          Map
-        </button>
         <button class="view-tab active" id="tab-table" onclick="switchView('table')">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="16" height="14" rx="2"/><line x1="2" y1="8" x2="18" y2="8"/><line x1="2" y1="13" x2="18" y2="13"/><line x1="7" y1="8" x2="7" y2="17"/></svg>
           Table
+        </button>
+        <button class="view-tab" id="tab-map" onclick="switchView('map')">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z"/><line x1="8" y1="3" x2="8" y2="17"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
+          Map
         </button>
       </div>
     </div>
@@ -1142,148 +1139,6 @@
 // ── DATA ──
 let TOPOJSON = null; // loaded via fetch
 
-const RAW_CSV = `District,Constituency_Number,Constituency_Name,Reservation,LDF,LDF_Candidate,UDF,UDF_Candidate,NDA,NDA_Candidate
-Kasaragod,1,Manjeshwaram,,CPI(M),K. R. Jayanandan,IUML,A. K. M. Ashraf,BJP,K. Surendran
-Kasaragod,2,Kasaragod,,INL,,IUML,Kallatra Mahin Haji,BJP,Ashwini M.L.
-Kasaragod,3,Udma,,CPI(M),C. H. Kunhambu,INC,,BJP,Manulal Meloth
-Kasaragod,4,Kanhangad,,CPI,Govindan Pallikkappil,KEC,Shyji Ottapalli,BJP,M. Balraj
-Kasaragod,5,Thrikaripur,,CPI(M),V. P. P. Mustafa,INC,,TTP,Ravi Kulangara
-Kannur,6,Payyanur,,CPI(M),T. I. Madhusoodanan,Independent (RSP support),V. Kunjikrishnan,BJP,A. P. Gangadharan
-Kannur,7,Kalliasseri,,CPI(M),M. Vijin,INC,,BJP,A.V. Sanil Kumar
-Kannur,8,Taliparamba,,CPI(M),P. K. Shyamala,INC,,BJP,N. Haridas
-Kannur,9,Irikkur,,Kerala Congress (M),Mathew Kunnappally,INC,Sajeev Joseph,,
-Kannur,10,Azhikode,,CPI(M),K. V. Sumesh,IUML,Kareem Cheleri,BJP,K. K. Vinod Kumar
-Kannur,11,Kannur,,Congress (Secular),Kadannappalli Ramachandran,INC,,BJP,C. Raghunath
-Kannur,12,Dharmadom,,CPI(M),Pinarayi Vijayan,INC,Abdul Rasheed,BJP,K. Ranjith
-Kannur,13,Thalassery,,CPI(M),Karayi Rajan,INC,K. P. Saju,BJP,O. Nidheesh
-Kannur,14,Kuthuparamba,,RJD,P. K. Praveen,IUML,Jayanthi Rajan,BJP,Adv. Shijilal
-Kannur,15,Mattanur,,CPI(M),V. K. Sanoj,INC,,BJP,Biju Elakkuzhi
-Kannur,16,Peravoor,,CPI(M),K. K. Shailaja,INC,Sunny Joseph,BDJS,Paily Vathiatt
-Wayanad,17,Mananthavady,ST,CPI(M),O. R. Kelu,INC,Usha Vijayan,BJP,P. Shyam Raj
-Wayanad,18,Sulthan Bathery,ST,CPI(M),M. S. Viswanathan,INC,I. C. Balakrishnan,BJP,A. S. Kavitha
-Wayanad,19,Kalpetta,,RJD,P. K. Anil Kumar,INC,T. Siddique,BJP,Prasanth Malavayal
-Kozhikode,20,Vatakara,,RJD,M. K. Bhaskaran,RMPI,K. K. Rema,BJP,K. Dileep
-Kozhikode,21,Kuttiady,,CPI(M),K. P. Kunhammad Kutti Master,IUML,Parakkal Abdulla,BJP,Ramadas Manaleri
-Kozhikode,22,Nadapuram,,CPI,P. Vasantham,INC,K. M. Abhijith,BJP,C. P. Vipin Chandran
-Kozhikode,23,Koyilandy,,CPI(M),K. Dasan,INC,K. Praveen Kumar,BJP,C. R. Praphul Krishnan
-Kozhikode,24,Perambra,,CPI(M),T. P. Ramakrishnan,IUML,Fathima Thahiliya,BJP,M. Mohanan Master
-Kozhikode,25,Balussery,SC,CPI(M),K. M. Sachindev,INC,V. T. Sooraj,BJP,C. P. Sateeshan
-Kozhikode,26,Elathur,,NCP(SP),A. K. Saseendran,INC,Vidya Balakrishnan,BJP,T. Devadas
-Kozhikode,27,Kozhikode North,,CPI(M),Thottathil Ravindran,INC,K. Jayanth,BJP,Navya Haridas
-Kozhikode,28,Kozhikode South,,INL,Ahamed Devarkovil,IUML,Faisal Babu,BJP,T. Raneesh
-Kozhikode,29,Beypore,,CPI(M),Muhammad Riyas,AITC,P. V. Anvar,BJP,K. P. Prakash Babu
-Kozhikode,30,Kunnamangalam,,Independent (CPI(M) support),P. T. A. Rahim,IUML,M. A. Razak Master,BJP,V. K. Sajeevan
-Kozhikode,31,Koduvally,,Independent (CPI(M) support),Saleem Madavoor,IUML,P. K. Firos,BDJS,Giri Pambanal
-Kozhikode,32,Thiruvambady,,CPI(M),Linto Joseph,IUML,C. K. Kasim,TTP,Sunny Thomas
-Malappuram,33,Kondotty,,Independent (CPI(M) support),,IUML,T. P. Ashrafali,BJP,P. Subrahmanian
-Malappuram,34,Eranad,,CPI,Shafeer Kizhisseri,IUML,P. K. Basheer,BJP,Adv. N. Sreeprakash
-Malappuram,35,Nilambur,,Independent (CPI(M) support),U. Sharafali,INC,Aryadan Shoukath,BDJS,Gireesh Mekkad
-Malappuram,36,Wandoor,SC,CPI(M),K. K. Damodaran,INC,A. P. Anil Kumar,,
-Malappuram,37,Manjeri,,Independent (CPI support),M. Mustafa,IUML,M. Rahmathulla,BJP,Pathmasree M.
-Malappuram,38,Perinthalmanna,,CPI(M),V. P. Muhammad Haneefa,IUML,Najeeb Kanthapuram,BJP,Adv. K.P. Baburaj
-Malappuram,39,Mankada,,CPI(M),M. P. Alavi,IUML,Manjalamkuzhi Ali,BJP,Lijoy Paul
-Malappuram,40,Malappuram,,NCP(SP),K. T. Mujeeb,IUML,P. K. Kunhalikutty,BJP,Ashwathy Gupatha Kumar
-Malappuram,41,Vengara,,Independent (CPI(M) support),Muhammad Sabah Kundukuzhikkal,IUML,K. M. Shaji,BJP,Jayakrishnan V.N.
-Malappuram,42,Vallikkunnu,,INL,,IUML,T. V. Ibrahim,BJP,M. Preman Master
-Malappuram,43,Tirurangadi,,CPI,Ajit Koladi,IUML,P. M. A. Sameer,BJP,Riju C. Raghav
-Malappuram,44,Tanur,,Independent (CPI(M) support),V. Abdurahman,IUML,P. K. Navas,BJP,Deepa Puzhakkal
-Malappuram,45,Tirur,,Independent (CPI(M) support),,IUML,Kurukkoli Moideen,BJP,K. Narayanan Master
-Malappuram,46,Kottakkal,,Independent (CPI(M) support),,IUML,K. K. Abid Hussain Thangal,BDJS,Subrahmanian Chunkapally
-Malappuram,47,Thavanur,,Independent (CPI(M) support),K. T. Jaleel,INC,V. S. Joy,BDJS,Ravi Thelath
-Malappuram,48,Ponnani,,CPI(M),M. K. Sakeer,INC,K. P. Noushad Ali,BDJS,
-Palakkad,49,Thrithala,,CPI(M),M. B. Rajesh,INC,V. T. Balram,BJP,V. Unnikrishnan Master
-Palakkad,50,Pattambi,,CPI,Muhammad Muhsin,INC,,BJP,Adv. P. Manoj
-Palakkad,51,Shornur,,CPI(M),P. Mammikkutty,INC,,BJP,Sanku T. Das
-Palakkad,52,Ottapalam,,CPI(M),K. Premkumar,Ind.,P. K. Sasi,BJP,Major Ravi
-Palakkad,53,Kongad,SC,CPI(M),K. Shanthakumari,INC,K. A. Thulasi,BJP,Renu Suresh
-Palakkad,54,Mannarkkad,,CPI,Manzil Aboobacker,IUML,N. Samsudheen,AIADMK,
-Palakkad,55,Malampuzha,,CPI(M),E. Prabhakaran,INC,A. Suresh,BJP,C. Krishnakumar
-Palakkad,56,Palakkad,,Independent (CPI(M) support),N. M. R. Razaq,INC,Ramesh Pisharody,BJP,Sobha Surendran
-Palakkad,57,Tarur,SC,CPI(M),P. P. Sumod,INC,K. C. Subramanian,BJP,Suresh Babu
-Palakkad,58,Chittur,,Indian Socialist Janata Dal,Adv V. Murugadas,INC,Sumesh Achuthan,BJP,Pranesh Rajendran
-Palakkad,59,Nenmara,,CPI(M),K. Preman,INC,A. Thankappan,BDJS,A. N. Anurag
-Palakkad,60,Alathur,,CPI(M),T. M. Sasi,INC,K. N. Febin,BJP,K.V. Prasanna Kumar
-Thrissur,61,Chelakkara,SC,CPI(M),U. R. Pradeep,IUML,,BJP,K. Balakrishnan
-Thrissur,62,Kunnamkulam,,CPI(M),A. C. Moytheen,INC,,BDJS,Rijil K. R.
-Thrissur,63,Guruvayur,,CPI(M),N. K. Akbar,IUML,C. H. Rasheed,DSJP,Adv. B. Gopalakrishnan
-Thrissur,64,Manalur,,CPI(M),C. Ravindranath,INC,T. N. Prathapan,BJP,K. K. Aneesh Kumar
-Thrissur,65,Wadakkanchery,,CPI(M),Seviyar Chittilappally,INC,,BJP,Adv. T.S. Ullas Babu
-Thrissur,66,Ollur,,CPI,K. Rajan,INC,Shaji Kodankandath,BJP,Bijoy Thomas
-Thrissur,67,Thrissur,,CPI,Alankode Leelakrishnan,INC,Rajan Pallan,BJP,Padmaja Venugopal
-Thrissur,68,Nattika,SC,CPI,Geetha Gopi,INC,Sunil Lalur,BJP,C. C. Mukundan
-Thrissur,69,Kaipamangalam,,CPI,K. K. Valsaraj,INC,T. M. Nazar,BDJS,
-Thrissur,70,Irinjalakuda,,CPI(M),R. Bindu,KEC,Thomas Unniyadan,BJP,Santhosh Cherkalam
-Thrissur,71,Puthukkad,,CPI(M),K. K. Ramachandran,INC,K. M. Babu Raj,BJP,A. Nagesh
-Thrissur,72,Chalakudy,,Kerala Congress (M),Adv Biju Chirayath,INC,T. J. Saneesh Kumar Joseph,TTP,Charly Paul
-Thrissur,73,Kodungallur,,CPI,V. R. Sunil,INC,O. J. Janeesh,TTP,Varghese George
-Ernakulam,74,Perumbavoor,,Kerala Congress (M),Basil Paul,INC,,TTP,Lakshmi Priya
-Ernakulam,75,Angamaly,,CPI(M),Saju Paul,INC,Roji M. John,TTP,Promy Kuriakose
-Ernakulam,76,Aluva,,CPI(M),A. M. Ariff,INC,Anwar Sadath,,M.A. Brahmaraj
-Ernakulam,77,Kalamassery,,CPI(M),P. Rajeev,IUML,V. E. Abdul Gafoor,,
-Ernakulam,78,Paravur,,CPI,E. T. Taison,INC,V. D. Satheesan,BJP,Vathsala Prasanna Kumar
-Ernakulam,79,Vypin,,CPI(M),M. B. Shaini,INC,,,
-Ernakulam,80,Kochi,,CPI(M),K. J. Maxi,INC,,,
-Ernakulam,81,Thrippunithura,,CPI(M),K. N. Unnikrishnan,INC,,TTP,Anjali Nair
-Ernakulam,82,Ernakulam,,Indian Socialist Janata Dal,Sabu George,INC,T. J. Vinod,,P.R. Sivasankar
-Ernakulam,83,Thrikkakara,,CPI(M),Pushpadhas,INC,Uma Thomas,TTP,Akhil Marar
-Ernakulam,84,Kunnathunad,SC,CPI(M),P. V. Sreenijin,INC,V. P. Sajeendran,TTP,Babu Divakaran
-Ernakulam,85,Piravom,,Kerala Congress (M),Sabu K Jacob,KC(J),Anoop Jacob,TTP,Jibi Abraham
-Ernakulam,86,Muvattupuzha,,CPI,N. Arun,INC,Mathew Kuzhalnadan,,
-Ernakulam,87,Kothamangalam,,CPI(M),Antony John,KEC,Shibu Thekkumpuram,,
-Idukki,88,Devikulam,SC,CPI(M),A. Raj,INC,,BJP,S. Rajendran
-Idukki,89,Udumbanchola,,CPI(M),K. K. Jayachandran,INC,,BDJS,Sangeetha Viswanathan
-Idukki,90,Thodupuzha,,Kerala Congress (M),Cyriac Chazhikadan,KEC,Apu John Joseph,,
-Idukki,91,Idukki,,Kerala Congress (M),Roshi Augustine,INC,,,
-Idukki,92,Peerumade,,CPI,K. Salim Kumar,INC,,,
-Kottayam,93,Pala,,Kerala Congress (M),Jose K. Mani,DCK,Mani C. Kappan,BJP,Shone George
-Kottayam,94,Kaduthuruthy,,Kerala Congress (M),Nirmala Jimmy,KEC,Mons Joseph,BDJS,Suresh Ettikunnel
-Kottayam,95,Vaikom,SC,CPI,P. Pradeep,INC,K. Binimon,BJP,K. Ajith
-Kottayam,96,Ettumanoor,,CPI(M),V. N. Vasavan,INC,,TTP,Veena Nair
-Kottayam,97,Kottayam,,CPI(M),K. Anilkumar,INC,Thiruvanchoor Radhakrishnan,BDJS,P. Anilkumar
-Kottayam,98,Puthuppally,,CPI(M),K. M. Radhakrishnan,INC,Chandy Oommen,,
-Kottayam,99,Changanassery,,Kerala Congress (M),Job Maichil,KEC,Vinu Job,BJP,B. Radhakrishna Menon
-Kottayam,100,Kanjirappally,,Kerala Congress (M),N. Jayaraj,INC,,BJP,George Kurian
-Kottayam,101,Poonjar,,Kerala Congress (M),Sebastian Kulathunkal,INC,,BJP,P. C. George
-Alappuzha,102,Aroor,,CPI(M),Daleema,INC,Shanimol Usman,BDJS,P. S. Jyothis
-Alappuzha,103,Cherthala,,CPI,P. Prasad,INC,K. R. Rajendra Prasad,,
-Alappuzha,104,Alappuzha,,CPI(M),P. P. Chitharanjan,INC,,BJP,M.J. Job
-Alappuzha,105,Ambalappuzha,,CPI(M),H. Salam,Ind.,G. Sudhakaran,BJP,Arun Anirudhan
-Alappuzha,106,Kuttanad,,NCP(SP),Thomas K. Thomas,KEC,Reji Cheriyan,BDJS,Santhosh Santhy
-Alappuzha,107,Haripad,,CPI,T. T. Jismon,INC,Ramesh Chennithala,BJP,Sandeep Vachaspati
-Alappuzha,108,Kayamkulam,,CPI(M),U. Prathibha,INC,,BDJS,Thambi Mettuthara
-Alappuzha,109,Mavelikara,SC,CPI(M),M. S. Arun Kumar,INC,Muthara Raj,,
-Alappuzha,110,Chengannur,,CPI(M),Saji Cherian,INC,,BJP,M. V. Gopakumar
-Pathanamthitta,111,Thiruvalla,,Indian Socialist Janata Dal,Mathew T. Thomas,KEC,Varghese Mammen,BJP,Anoop Antony
-Pathanamthitta,112,Ranni,,Kerala Congress (B),Pramod Narayan,INC,,TTP,Thomas K. Samuel
-Pathanamthitta,113,Aranmula,,CPI(M),Veena George,INC,,BJP,Kummanam Rajasekharan
-Pathanamthitta,114,Konni,,CPI(M),K. U. Jenish Kumar,INC,,,
-Pathanamthitta,115,Adoor,SC,CPI,Priji Sasidharan,INC,,,
-Kollam,116,Karunagappally,,CPI,M. S. Thara,INC,C. R. Mahesh,BJP,V. S. Jithin Dev
-Kollam,117,Chavara,,Independent (CPI(M) support),Sujith Vijayanpillai,RSP,Shibu Baby John,,
-Kollam,118,Kunnathur,SC,RSP(L),Kovoor Kunjumon,RSP,Ullas Kovoor,BJP,Raji Prasad
-Kollam,119,Kottarakkara,,CPI(M),K. N. Balagopal,INC,P. Aisha Potty,BJP,R. Reshmi
-Kollam,120,Pathanapuram,,Kerala Congress (B),K. B. Ganesh Kumar,INC,Jyothikumar chamakkala,,
-Kollam,121,Punalur,,CPI,C. Ajaya Prasad,IUML,,,
-Kollam,122,Chadayamangalam,,CPI,J. Chinchu Rani,INC,,,
-Kollam,123,Kundara,,CPI(M),S. L. Sajikumar,INC,P. C. Vishnunadh,BJP,Robin Radhakrishnan (Robin RB)
-Kollam,124,Kollam,,CPI(M),S. Jayamohan,INC,Bindhu Krishna,BJP,N. Prathap Kumar
-Kollam,125,Eravipuram,,CPI(M),M. Noushad,RSP,Vishnu Mohan,,
-Kollam,126,Chathannoor,,CPI,R. Rajendran,INC,Sooraj Ravi,BJP,B. B. Gopakumar
-Thiruvananthapuram,127,Varkala,,CPI(M),V. Joy,INC,,,
-Thiruvananthapuram,128,Attingal,SC,CPI(M),O. S. Ambika,RSP,Santhosh Bhadran,BJP,P. Sudheer
-Thiruvananthapuram,129,Chirayinkeezhu,SC,CPI,Manoj B Edamana,INC,Ramya Haridas,,
-Thiruvananthapuram,130,Nedumangad,,CPI,G. R. Anil,INC,,BJP,Yuvaraj Gokul
-Thiruvananthapuram,131,Vamanapuram,,CPI(M),D. K. Murali,INC,,,
-Thiruvananthapuram,132,Kazhakkoottam,,CPI(M),Kadakampally Surendran,INC,,BJP,V. Muraleedharan
-Thiruvananthapuram,133,Vattiyoorkavu,,CPI(M),V. K. Prasanth,INC,K. Muraleedharan,BJP,R. Sreelekha
-Thiruvananthapuram,134,Thiruvananthapuram,,JKC,,CMP,C. P. John,,
-Thiruvananthapuram,135,Nemom,,CPI(M),V. Shivankutty,INC,,BJP,Rajeev Chandrasekhar
-Thiruvananthapuram,136,Aruvikkara,,CPI(M),G. Steephen,INC,,,
-Thiruvananthapuram,137,Parassala,,CPI(M),C. K. Hareendran,INC,,BJP,Gireesh Neyyar
-Thiruvananthapuram,138,Kattakkada,,CPI(M),I. B. Satheesh,INC,,BJP,P. K. Krishnadas
-Thiruvananthapuram,139,Kovalam,,Independent (CPI(M) support),Bhagat Rufus,INC,M. Vincent,,
-Thiruvananthapuram,140,Neyyattinkara,,CPI(M),K. Ansalan,INC,,,`;
-
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',');
@@ -1295,13 +1150,159 @@ function parseCSV(text) {
   }).filter(r => r.Constituency_Number);
 }
 
+const RAW_CSV = `District,Distrct_Wikidata,Constituency_Number,Constituency_Name,Constituency_Wikidata,Reservation,LDF,LDF_Candidate,LDF_Candidate_Wikidata,UDF,UDF_Candidate,UDF_Candidate_Wikidata,NDA,NDA_Candidate,NDA_Candidate_Wikidata
+Kasaragod,Q1419703,1,Manjeshwaram,Q13113782,,CPI(M),K. R. Jayanandan,,IUML,A. K. M. Ashraf,Q106687787,BJP,K. Surendran,Q25587200
+Kasaragod,Q1419703,2,Kasaragod,Q13111222,,INL,,,IUML,Kallatra Mahin Haji,        ,BJP,Ashwini M.L.,
+Kasaragod,Q1419703,3,Udma,Q13110513,,CPI(M),C. H. Kunhambu,Q13115063,INC,,,BJP,Manulal Meloth,
+Kasaragod,Q1419703,4,Kanhangad,Q13111113,,CPI,Govindan Pallikkappil,,KEC,Shyji Ottapalli,,BJP,M. Balraj,
+Kasaragod,Q1419703,5,Thrikaripur,Q16137696,,CPI(M),V. P. P. Mustafa,,INC,,                        ,TTP,Ravi Kulangara,
+Kannur,Q2980652,6,Payyanur,Q17379122,,CPI(M),T. I. Madhusoodanan,Q106679753,Independent (RSP support),V. Kunjikrishnan,,BJP,A. P. Gangadharan,
+Kannur,Q2980652,7,Kalliasseri,Q13111077,,CPI(M),M. Vijin,Q106687789,INC,,,BJP,A.V. Sanil Kumar,
+Kannur,Q2980652,8,Taliparamba,Q17379268,,CPI(M),P. K. Shyamala,,INC,,,BJP,N. Haridas,
+Kannur,Q2980652,9,Irikkur,Q13110432,,Kerala Congress (M),Mathew Kunnappally,,INC,Sajeev Joseph,Q106687786,,,
+Kannur,Q2980652,10,Azhikode,Q13110133,,CPI(M),K. V. Sumesh,Q106682053,IUML,Kareem Cheleri,,BJP,K. K. Vinod Kumar,
+Kannur,Q2980652,11,Kannur,Q16137348,,Congress (Secular),Kadannappalli Ramachandran,Q13564570,INC,,,BJP,C. Raghunath,
+Kannur,Q2980652,12,Dharmadom,Q13112766,,CPI(M),Pinarayi Vijayan,Q3595385,INC,Abdul Rasheed,,BJP,K. Ranjith,
+Kannur,Q2980652,13,Thalassery,Q7709532,,CPI(M),Karayi Rajan,,INC,K. P. Saju,,BJP,O. Nidheesh,
+Kannur,Q2980652,14,Kuthuparamba,Q17379603,,RJD,P. K. Praveen,,IUML,Jayanthi Rajan,,BJP,Adv. Shijilal,
+Kannur,Q2980652,15,Mattanur,Q16134425,,CPI(M),V. K. Sanoj,Q131584190,INC,,,BJP,Biju Elakkuzhi,
+Kannur,Q2980652,16,Peravoor,Q17385405,,CPI(M),K. K. Shailaja,Q16137667,INC,Sunny Joseph,Q20564838,BDJS,Paily Vathiatt,
+Wayanad,Q1364427,17,Mananthavady (ST),Q16136061,ST,CPI(M),O. R. Kelu,Q24952520,INC,Usha Vijayan,,BJP,P. Shyam Raj,
+Wayanad,Q1364427,18,Sulthan Bathery (ST),Q13115144,ST,CPI(M),M. S. Viswanathan,Q3115598,INC,I. C. Balakrishnan,Q23940094,BJP,A. S. Kavitha,
+Wayanad,Q1364427,19,Kalpetta,Q13111054,,RJD,P. K. Anil Kumar,,INC,T. Siddique,Q7668715,BJP,Prasanth Malavayal,
+Kozhikode,Q1142979,20,Vatakara,Q13114485,,RJD,M. K. Bhaskaran,,RMPI,K. K. Rema,Q20561285,BJP,K. Dileep,
+Kozhikode,Q1142979,21,Kuttiady,Q16136660,,CPI(M),K. P. Kunhammad Kutti Master,Q106687783,IUML,Parakkal Abdulla,Q24572542,BJP,Ramadas Manaleri,
+Kozhikode,Q1142979,22,Nadapuram,Q13112855,,CPI,P. Vasantham,,INC,K. M. Abhijith,Q138706956,BJP,C. P. Vipin Chandran,
+Kozhikode,Q1142979,23,Koyilandy,Q13111637,,CPI(M),K. Dasan,Q24007339,INC,K. Praveen Kumar,Q138706956,BJP,C. R. Praphul Krishnan,
+Kozhikode,Q1142979,24,Perambra,Q13113475,,CPI(M),T. P. Ramakrishnan,Q24555656,IUML,Fathima Thahiliya,QID Needed,BJP,M. Mohanan Master,
+Kozhikode,Q1142979,25,Balussery (SC),Q16137581,SC,CPI(M),K. M. Sachindev,,INC,V. T. Sooraj,,BJP,C. P. Sateeshan,
+Kozhikode,Q1142979,26,Elathur,Q16135458,,NCP(SP),A. K. Saseendran,,INC,Vidya Balakrishnan,,BJP,T. Devadas,
+Kozhikode,Q1142979,27,Kozhikode North,Q13111729,,CPI(M),Thottathil Ravindran,Q31700579,INC,K. Jayanth,QID needed,BJP,Navya Haridas,
+Kozhikode,Q1142979,28,Kozhikode South,Q24204696,,INL,Ahamed Devarkovil,Q106692139,IUML,Faisal Babu,,BJP,T. Raneesh,
+Kozhikode,Q1142979,29,Beypore,Q13113680,,CPI(M),Muhammad Riyas,Q80189102,AITC,P. V. Anvar,Q24952527,BJP,K. P. Prakash Babu,
+Kozhikode,Q1142979,30,Kunnamangalam,Q13111313,,Independent (CPI(M) support),P. T. A. Rahim,Q16143039,IUML,M. A. Razak Master,,BJP,V. K. Sajeevan,
+Kozhikode,Q1142979,31,Koduvally,Q16135012,,Independent (CPI(M) support),Saleem Madavoor,,IUML,P. K. Firos,,BDJS,Giri Pambanal,
+Kozhikode,Q1142979,32,Thiruvambady,Q13112497,,CPI(M),Linto Joseph,Q106692396,IUML,C. K. Kasim,,TTP,Sunny Thomas,
+Malappuram,Q1030918,33,Kondotty,Q16135092,,Independent (CPI(M) support,,,IUML,T. P. Ashrafali,QID Needed,BJP,P. Subrahmanian,
+Malappuram,Q1030918,34,Eranad,Q13110769,,CPI,Shafeer Kizhisseri,,IUML,P. K. Basheer,Q7121263,BJP,Adv. N. Sreeprakash,
+Malappuram,Q1030918,35,Nilambur,Q13112913,,Independent (CPI(M) support),U. Sharafali,Q7863540,INC,Aryadan Shoukath,Q4802630,BDJS,Gireesh Mekkad,
+Malappuram,Q1030918,36,Wandoor (SC),Q16135444,SC,CPI(M),K. K. Damodaran,,INC,A. P. Anil Kumar,Q4647269,,,
+Malappuram,Q1030918,37,Manjeri,Q13113783,,Independent (CPI support),M. Mustafa,,IUML,M. Rahmathulla,Q138701481,BJP,Pathmasree M.,
+Malappuram,Q1030918,38,Perinthalmanna,Q13113446,,CPI(M),V. P. Muhammad Haneefa,Q138678453,IUML,Najeeb Kanthapuram,Q106714094,BJP,Adv. K.P. Baburaj,
+Malappuram,Q1030918,39,Mankada,Q13113774,,CPI(M),M. P. Alavi,,IUML,Manjalamkuzhi Ali,Q6750341,BJP,Lijoy Paul,
+Malappuram,Q1030918,40,Malappuram,Q16135164,,NCP(SP),K. T. Mujeeb,,IUML,P. K. Kunhalikutty,Q7117360,BJP,Ashwathy Gupatha Kumar,
+Malappuram,Q1030918,41,Vengara,Q13114838,,Independent (CPI(M) support,Muhammad Sabah Kundukuzhikkal,,IUML,K. M. Shaji,Q16213770,BJP,Jayakrishnan V.N.,
+Malappuram,Q1030918,42,Vallikkunnu,Q16135944,,INL ,,,IUML,T. V. Ibrahim,Q24952528,BJP,M. Preman Master,
+Malappuram,Q1030918,43,Tirurangadi,Q13112529,,CPI,Ajit Koladi,,IUML,P. M. A. Sameer,,BJP,Riju C. Raghav,
+Malappuram,Q1030918,44,Tanur,Q16136996,,Independent (CPI(M) support,V. Abdurahman,Q24952529,IUML,P. K. Navas,QID Needed,BJP,Deepa Puzhakkal,
+Malappuram,Q1030918,45,Tirur,Q16137421,,Independent (CPI(M) support,,,IUML,Kurukkoli Moideen,Q106692608,BJP,K. Narayanan Master,
+Malappuram,Q1030918,46,Kottakkal,Q13111682,,Independent (CPI(M) support,,,IUML,K. K. Abid Hussain Thangal,Q24952533,BDJS,Subrahmanian Chunkapally,
+Malappuram,Q1030918,47,Thavanur,Q16136920,,Independent (CPI(M) support,K. T. Jaleel,Q15035529,INC,V. S. Joy,QID Needed,BDJS,Ravi Thelath,
+Malappuram,Q1030918,48,Ponnani,Q7227905,,CPI(M),M. K. Sakeer,Q138681975,INC,K. P. Noushad Ali,QID needed,BDJS,,
+Palakkad,Q1535742,49,Thrithala,Q13112607,,CPI(M),M. B. Rajesh,Q6712425,INC,V. T. Balram,Q22276949,BJP,V. Unnikrishnan Master,
+Palakkad,Q1535742,50,Pattambi,Q13113050,,CPI,Muhammad Muhsin,Q24952491,INC,,,BJP,Adv. P. Manoj,
+Palakkad,Q1535742,51,Shornur,Q13114979,,CPI(M),P. Mammikkutty,Q106680460,INC,,,BJP,Sanku T. Das,
+Palakkad,Q1535742,52,Ottapalam,Q13110827,,CPI(M),K. Premkumar,Q106679757,Ind.,P. K. Sasi,Q24952531,BJP,Major Ravi,Q6738295
+Palakkad,Q1535742,53,Kongad (SC),Q13111675,SC,CPI(M),K. Shanthakumari,Q106680462,INC,K. A. Thulasi,,BJP,Renu Suresh,
+Palakkad,Q1535742,54,Mannarkkad,Q13113828,,CPI,Manzil Aboobacker,,IUML,N. Samsudheen,Q24055597,AIADMK,,
+Palakkad,Q1535742,55,Malampuzha,Q16135283,,CPI(M),E. Prabhakaran,,INC,A. Suresh,,BJP,C. Krishnakumar,
+Palakkad,Q1535742,56,Palakkad,Q18536954,,Independent (CPI(M) support),N. M. R. Razaq,,INC,Ramesh Pisharody,Q7289434,BJP,Sobha Surendran,Q13560129
+Palakkad,Q1535742,57,Tarur (SC),Q16136772,SC,CPI(M),P. P. Sumod,Q106685898,INC,K. C. Subramanian,,BJP,Suresh Babu,
+Palakkad,Q1535742,58,Chittur,Q13111967,,Indian Socialist Janata Dal,Adv V. Murugadas,,INC,Sumesh Achuthan,,BJP,Pranesh Rajendran,
+Palakkad,Q1535742,59,Nenmara,Q13112978,,CPI(M),K. Preman,,INC,A. Thankappan,,BDJS,A. N. Anurag,
+Palakkad,Q1535742,60,Alathur,Q16136878,,CPI(M),T. M. Sasi,,INC,K. N. Febin,,BJP,K.V. Prasanna Kumar,
+Thrissur,Q2429655,61,Chelakkara (SC),Q5089791,SC,CPI(M),U. R. Pradeep,Q26702718,IUML,,,BJP,K. Balakrishnan,Q6323168
+Thrissur,Q2429655,62,Kunnamkulam,Q13111317,,CPI(M),A. C. Moytheen,Q24851727,INC,,,BDJS,Rijil K. R.,
+Thrissur,Q2429655,63,Guruvayur,Q5620568,,CPI(M),N. K. Akbar,Q106685268,IUML,C. H. Rasheed,,DSJP,Adv. B. Gopalakrishnan,
+Thrissur,Q2429655,64,Manalur,Q6746846,,CPI(M),C. Ravindranath,Q5006200,INC,T. N. Prathapan,Q7668536,BJP,K. K. Aneesh Kumar,
+Thrissur,Q2429655,65,Wadakkanchery,Q16135293,,CPI(M),Seviyar Chittilappally,Q106681166,INC,,,BJP,Adv. T.S. Ullas Babu,
+Thrissur,Q2429655,66,Ollur,Q7088394,,CPI,K. Rajan,Q135532539,INC,Shaji Kodankandath,,BJP,Bijoy Thomas,
+Thrissur,Q2429655,67,Thrissur,Q7798271,,CPI,Alankode Leelakrishnan,Q13223614,INC,Rajan Pallan,Q16624190,BJP,Padmaja Venugopal,
+Thrissur,Q2429655,68,Nattika (SC),Q6980360,SC,CPI,Geetha Gopi,Q5529973,INC,Sunil Lalur,,BJP,C. C. MukundanC.C. Mukundan,Q106681155
+Thrissur,Q2429655,69,Kaipamangalam,Q6348174,,CPI,K. K. Valsaraj,,INC,T. M. Nazar,,BDJS,,
+Thrissur,Q2429655,70,Irinjalakuda,Q6070028,,CPI(M),R. Bindu,Q7273492,KEC,Thomas Unniyadan,Q7794631,BJP,Santhosh Cherkalam,
+Thrissur,Q2429655,71,Puthukkad,Q7258374,,CPI(M),K. K. Ramachandran,Q106683215,INC,K. M. Babu Raj,,BJP,A. Nagesh,
+Thrissur,Q2429655,72,Chalakudy,Q5068546,,Kerala Congress (M),Adv Biju Chirayath,,INC,T. J. Saneesh Kumar Joseph,Q106696961,TTP,Charly Paul,
+Thrissur,Q2429655,73,Kodungallur,Q6425466,,CPI,V. R. Sunil,Q25589441,INC,O. J. Janeesh,,TTP,Varghese George,
+Ernakulam,Q1356097,74,Perumbavoor,Q16136149,,Kerala Congress (M),Basil Paul,,INC,,,TTP,Lakshmi Priya,Q64853044
+Ernakulam,Q1356097,75,Angamaly,Q7601651,,CPI(M),Saju Paul,Q6813188,INC,Roji M. John,Q24205009,TTP,Promy Kuriakose,
+Ernakulam,Q1356097,76,Aluva,Q13110297,,CPI(M),A. M. Ariff,Q4647242,INC,Anwar Sadath,Q24007179,,M.A. Brahmaraj,
+Ernakulam,Q1356097,77,Kalamassery,Q16134141,,CPI(M),P. Rajeev,Q92782463,IUML,V. E. Abdul Gafoor,,,,
+Ernakulam,Q1356097,78,Paravur,Q13113120,,CPI,E. T. Taison,Q47493011,INC,V. D. Satheesan,Q6956446,BJP,Vathsala Prasanna Kumar,
+Ernakulam,Q1356097,79,Vypin,Q13114876,,CPI(M),M. B. Shaini,,INC,,,,,
+Ernakulam,Q1356097,80,Kochi,Q17372576,,CPI(M),K. J. Maxi,Q25589440,INC,,,,,
+Ernakulam,Q1356097,81,Thrippunithura,Q13112618,,CPI(M),K. N. Unnikrishnan,Q106685272,INC,,,TTP,Anjali Nair,Q28810218
+Ernakulam,Q1356097,82,Ernakulam,Q16135415,,Indian Socialist Janata Dal,Sabu George,,INC,T. J. Vinod,Q72429286,,P.R. Sivasankar,
+Ernakulam,Q1356097,83,Thrikkakara,Q16137712,,CPI(M),Pushpadhas,,INC,Uma Thomas,Q112220391,TTP,Akhil Marar,
+Ernakulam,Q1356097,84,Kunnathunad (SC),Q13111319,SC,CPI(M),P. V. Sreenijin,Q106690857,INC,V. P. Sajeendran,Q6946858,TTP,Babu Divakaran,Q4838047
+Ernakulam,Q1356097,85,Piravom,Q13113295,,Kerala Congress (M),Sabu K Jacob,,KC(J),Anoop Jacob,Q4770056,TTP,Jibi Abraham,
+Ernakulam,Q1356097,86,Muvattupuzha,Q16137625,,CPI,N. Arun,,INC,Mathew Kuzhalnadan,Q106685292,,,
+Ernakulam,Q1356097,87,Kothamangalam,Q16135561,,CPI(M),Antony John,Q27916076,KEC,Shibu Thekkumpuram,,,,
+Idukki,Q301821,88,Devikulam (SC),Q16134525,SC,CPI(M),A. Raj,,INC,,,BJP,S. Rajendran,Q17129980
+Idukki,Q301821,89,Udumbanchola,Q16133944,,CPI(M),K. K. Jayachandran,Q16137589,INC,,,BDJS,Sangeetha Viswanathan,
+Idukki,Q301821,90,Thodupuzha,Q16133853,,Kerala Congress (M),Cyriac Chazhikadan,,KEC,Apu John Joseph,,,,
+Idukki,Q301821,91,Idukki,Q13110378,,Kerala Congress (M),Roshi Augustine,Q7368852,INC,,,,,
+Idukki,Q301821,92,Peerumade,Q16135018,,CPI,K. Salim Kumar,,INC,,,,,
+Kottayam,Q1353354,93,Pala,Q13113213,,Kerala Congress (M),Jose K. Mani,Q6279404,DCK,Mani C. Kappan,Q16135968,BJP,Shone George,
+Kottayam,Q1353354,94,Kaduthuruthy,Q13110914,,Kerala Congress (M),Nirmala Jimmy,,KEC,Mons Joseph,Q6898473,BDJS,Suresh Ettikunnel,
+Kottayam,Q1353354,95,Vaikom (SC),Q13114860,SC,CPI,P. Pradeep,,INC,K. Binimon,,BJP,K. Ajith,Q20560973
+Kottayam,Q1353354,96,Ettumanoor,Q16135978,,CPI(M),V. N. Vasavan,Q20564544,INC,,,TTP,Veena Nair,
+Kottayam,Q1353354,97,Kottayam,Q13111688,,CPI(M),K. Anilkumar,,INC,Thiruvanchoor Radhakrishnan,Q7785514,BDJS,P. Anilkumar,
+Kottayam,Q1353354,98,Puthuppally,Q13113317,,CPI(M),K. M. Radhakrishnan,,INC,Chandy Oommen,Q122212026,,,
+Kottayam,Q1353354,99,Changanassery,Q16136954,,Kerala Congress (M),Job Maichil,Q106713127,KEC,Vinu Job,,BJP,B. Radhakrishna Menon,
+Kottayam,Q1353354,100,Kanjirappally,Q16134543,,Kerala Congress (M),N. Jayaraj,Q23908915,INC,,,BJP,George Kurian,Q126469351
+Kottayam,Q1353354,101,Poonjar,Q16135693,,Kerala Congress (M),Sebastian Kulathunkal,Q106681984,INC,,,BJP,P. C. George,Q7117157
+Alappuzha,Q928959,102,Aroor,Q13110113,,CPI(M),Daleema,Q96361400,INC,Shanimol Usman,Q25589499,BDJS,P. S. Jyothis,
+Alappuzha,Q928959,103,Cherthala,Q16134436,,CPI,P. Prasad,Q106684967,INC,K. R. Rajendra Prasad,,,,
+Alappuzha,Q928959,104,Alappuzha,Q13110290,,CPI(M),P. P. Chitharanjan,Q106680459,INC,,,BJP,M.J. Job,
+Alappuzha,Q928959,105,Ambalappuzha,Q13110066,,CPI(M),H. Salam,Q106684971,Ind.,G. Sudhakaran,Q5512492,BJP,Arun Anirudhan,
+Alappuzha,Q928959,106,Kuttanad,Q16135972,,NCP(SP),Thomas K. Thomas,Q106708709,KEC,Reji Cheriyan,,BDJS,Santhosh Santhy,
+Alappuzha,Q928959,107,Haripad,Q16137908,,CPI,T. T. Jismon,,INC,Ramesh Chennithala,Q7289391,BJP,Sandeep Vachaspati,
+Alappuzha,Q928959,108,Kayamkulam,Q13111157,,CPI(M),U. Prathibha,Q24565100,INC,,,BDJS,Thambi Mettuthara,
+Alappuzha,Q928959,109,Mavelikara (SC),Q16136384,SC,CPI(M),M. S. Arun Kumar,Q106684972,INC,Muthara Raj,,,,
+Alappuzha,Q928959,110,Chengannur,Q13112004,,CPI(M),Saji Cherian,Q54553955,INC,,,BJP,M. V. Gopakumar,
+Pathanamthitta,Q634935,111,Thiruvalla,Q16137335,,Indian Socialist Janata Dal,Mathew T. Thomas,Q6787044,KEC,Varghese Mammen,,BJP,Anoop Antony,
+Pathanamthitta,Q634935,112,Ranni,Q13114408,,Kerala Congress (B),Pramod Narayan,Q106708733,INC,,,TTP,Thomas K. Samuel,
+Pathanamthitta,Q634935,113,Aranmula,Q16136677,,CPI(M),Veena George,Q13114748,INC,,,,Kummanam Rajasekharan,Q11103115
+Pathanamthitta,Q634935,114,Konni,Q20577849,,CPI(M),K. U. Jenish Kumar,Q72429201,INC,,,,,
+Pathanamthitta,Q634935,115,Adoor (SC),Q7601892,SC,CPI,Priji Sasidharan,,INC,,,,,
+Kollam,Q1356124,116,Karunagappally,Q13111030,,CPI,M. S. Thara,,INC,C. R. Mahesh,Q106679755,BJP,V. S. Jithin Dev,
+Kollam,Q1356124,117,Chavara,Q13111898,,Independent (CPI(M) support),Sujith Vijayanpillai,Q106730415,RSP,Shibu Baby John,Q7496081,,,
+Kollam,Q1356124,118,Kunnathur (SC),Q17414812,SC,RSP(L),Kovoor Kunjumon,Q24054037,RSP,Ullas Kovoor,,BJP,Raji Prasad,
+Kollam,Q1356124,119,Kottarakkara,Q13111616,,CPI(M),K. N. Balagopal,Q21173873,INC,P. Aisha Potty,Q23908917,BJP,R. Reshmi,
+Kollam,Q1356124,120,Pathanapuram,Q13113068,,Kerala Congress (B),K. B. Ganesh Kumar,Q13219724,INC,Jyothikumar chamakkala,,,,
+Kollam,Q1356124,121,Punalur,Q13113349,,CPI,C. Ajaya Prasad,,IUML,,,,,
+Kollam,Q1356124,122,Chadayamangalam,Q16137010,,CPI,J. Chinchu Rani,Q106680455,INC,,,,,
+Kollam,Q1356124,123,Kundara,Q13111296,,CPI(M),S. L. Sajikumar,,INC,P. C. Vishnunadh,Q16217685,BJP,Robin Radhakrishnan (Robin RB),
+Kollam,Q1356124,124,Kollam,Q48733036,,CPI(M),S. Jayamohan,,INC,Bindhu Krishna,,BJP,N. Prathap Kumar,
+Kollam,Q1356124,125,Eravipuram,Q13110435,,CPI(M),M. Noushad,Q24154647,RSP,Vishnu Mohan,,,,
+Kollam,Q1356124,126,Chathannoor,Q13111908,,CPI,R. Rajendran,Q120190547,INC,Sooraj Ravi,,BJP,B. B. Gopakumar,
+Thiruvananthapuram,Q162612,127,Varkala,Q16134163,,CPI(M),V. Joy,Q25589478,INC,,,,,
+Thiruvananthapuram,Q162612,128,Attingal (SC),Q16136708,SC,CPI(M),O. S. Ambika,Q106684836,RSP,Santhosh Bhadran,,BJP,P. Sudheer,
+Thiruvananthapuram,Q162612,129,Chirayinkeezhu (SC),Q16137800,SC,CPI,Manoj B Edamana,,INC,Ramya Haridas,Q63091672,,,
+Thiruvananthapuram,Q162612,130,Nedumangad,Q16136140,,CPI,G. R. Anil,Q106684827,INC,,,BJP,Yuvaraj Gokul,
+Thiruvananthapuram,Q162612,131,Vamanapuram,Q16136220,,CPI(M),D. K. Murali,Q25589463,INC,,,,,
+Thiruvananthapuram,Q162612,132,Kazhakkoottam,Q13111089,,CPI(M),Kadakampally Surendran,Q20560538,INC,,,BJP,V. Muraleedharan,Q13114656
+Thiruvananthapuram,Q162612,133,Vattiyoorkavu,Q13114513,,CPI(M),V. K. Prasanth,Q55759704,INC,K. Muraleedharan,Q13564486,BJP,R. Sreelekha,Q16193873
+Thiruvananthapuram,Q162612,134,Thiruvananthapuram,Q16137289,,JKC ,,,CMP,C. P. John,Q23887860,,,
+Thiruvananthapuram,Q162612,135,Nemom,Q13113005,,CPI(M),V. Shivankutty,Q20564519,INC,,,BJP,Rajeev Chandrasekhar,Q7285934
+Thiruvananthapuram,Q162612,136,Aruvikkara,Q7602920,,CPI(M),G. Steephen,Q106706208,INC,,,,,
+Thiruvananthapuram,Q162612,137,Parassala,Q13113201,,CPI(M),C. K. Hareendran,Q25589469,INC,,,BJP,Gireesh Neyyar,
+Thiruvananthapuram,Q162612,138,Kattakkada,Q6378291,,CPI(M),I. B. Satheesh,Q25589447,INC,,,BJP,P. K. Krishnadas,
+Thiruvananthapuram,Q162612,139,Kovalam,Q13111733,,Independent (CPI(M) support),Bhagat Rufus,,INC,M. Vincent,Q6713246,,,
+Thiruvananthapuram,Q162612,140,Neyyattinkara,Q16136265,,CPI(M),K. Ansalan,Q25589451,INC,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,
+Thiruvananthapuram,Q162612,,,,,,,,,,,,,`;
 const data = parseCSV(RAW_CSV);
 
-// Build wikidata lookup
-const wikiLookup = {};
-data.forEach(row => {
-  // Match constituency wikidata from CSV (Constituency_Wikidata not in our stripped CSV, use name matching)
-});
+
 
 // ── VIEW SWITCHING ──
 let currentView = 'map';
@@ -1674,14 +1675,8 @@ function filterMapDistrict(district, el) {
 let activeDistrict = 'all';
 let activeFilter = 'all';
 
-const districts = [...new Set(data.map(d => d.District))];
-const tabsEl = document.getElementById('district-tabs');
-districts.forEach(d => {
-  const t = document.createElement('div');
-  t.className = 'tab'; t.dataset.district = d; t.textContent = d;
-  t.onclick = () => selectDistrict(d, t);
-  tabsEl.appendChild(t);
-});
+
+
 
 function selectDistrict(d, el) {
   activeDistrict = d;
@@ -1852,12 +1847,22 @@ function computeStats() {
 }
 
 // ── INIT ──
-computeStats();
-buildDistrictSidebar();
-// Table is default view
-document.getElementById('map-view').style.display = 'none';
-renderGrid();
-computeStats();
+function bootApp() {
+  const distTabsEl = document.getElementById('district-tabs');
+  const allDistricts = [...new Set(data.map(d => d.District))];
+  allDistricts.forEach(d => {
+    const t = document.createElement('div');
+    t.className = 'tab'; t.dataset.district = d; t.textContent = d;
+    t.onclick = () => selectDistrict(d, t);
+    distTabsEl.appendChild(t);
+  });
+  computeStats();
+  buildDistrictSidebar();
+  document.getElementById('map-view').style.display = 'none';
+  renderGrid();
+}
+
+bootApp();
 
 // Auto-discover any .topojson file in the data/ subfolder
 function loadTopoJSON(url) {
