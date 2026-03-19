@@ -4,148 +4,163 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kerala Legislative Assembly Election 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Malayalam:ital@0;1&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C8961E;
-    --gold-light: #F5D87A;
-    --gold-dim: #7A5C12;
-    --kerala-green: #1A6B3C;
-    --kerala-green-light: #2D9B5E;
-    --saffron: #E8621A;
-    --deep-red: #8B1A1A;
-    --ldf: #E63946;
-    --udf: #2196F3;
-    --nda: #FF6B00;
-    --ink: #0D0D0D;
-    --ink-mid: #1C1C1C;
-    --ink-soft: #2E2E2E;
-    --muted: #666;
-    --faint: #AAA;
-    --border: rgba(200,150,30,0.2);
-    --bg: #080808;
-    --card: #111;
-    --card2: #161616;
+    --gold: #A0700A;
+    --gold-light: #FDF3DC;
+    --gold-mid: #C8860E;
+    --ldf: #C0202E;
+    --ldf-bg: #FEF2F3;
+    --udf: #1565C0;
+    --udf-bg: #EFF4FD;
+    --nda: #C85000;
+    --nda-bg: #FFF3EC;
+    --muted: #6B7280;
+    --faint: #9CA3AF;
+    --border: #E5E7EB;
+    --bg: #F7F6F3;
+    --bg2: #EFEDE8;
+    --card: #FFFFFF;
+    --card2: #FAFAF8;
+    --text: #111827;
+    --text-soft: #374151;
+    --sc-color: #6D28D9;
+    --sc-bg: #F5F3FF;
+    --st-color: #047857;
+    --st-bg: #ECFDF5;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
-    color: #E8E0D0;
+    color: var(--text);
     font-family: 'Source Sans 3', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
   /* ── HEADER ── */
   header {
-    position: relative;
-    padding: 0;
-    overflow: hidden;
-    background: linear-gradient(180deg, #0A0A0A 0%, #080808 100%);
+    background: #fff;
     border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   }
 
-  .header-texture {
-    position: absolute; inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(200,150,30,0.04) 39px, rgba(200,150,30,0.04) 40px),
-      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(200,150,30,0.04) 39px, rgba(200,150,30,0.04) 40px);
-    pointer-events: none;
+  .header-stripe {
+    height: 4px;
+    background: linear-gradient(90deg, var(--ldf) 33.3%, var(--udf) 33.3% 66.6%, var(--nda) 66.6%);
   }
 
   .header-inner {
-    position: relative;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 56px 40px 44px;
+    padding: 28px 40px 24px;
     display: grid;
     grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 40px;
+    align-items: center;
+    gap: 32px;
   }
 
   .header-eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.2em;
-    color: var(--gold);
+    color: var(--gold-mid);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   .header-eyebrow::before {
     content: '';
     display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--gold);
+    width: 18px; height: 2px;
+    background: var(--gold-mid);
+    border-radius: 1px;
   }
 
   h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 5vw, 64px);
+    font-size: clamp(24px, 3.5vw, 50px);
     font-weight: 900;
     line-height: 1.05;
-    color: #F0E8D8;
+    color: var(--text);
     letter-spacing: -0.02em;
   }
 
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
+  h1 em { font-style: italic; color: var(--gold-mid); }
 
   .header-sub {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--muted);
-    margin-top: 12px;
+    margin-top: 7px;
     font-weight: 300;
-    letter-spacing: 0.02em;
   }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .odk-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--bg2);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .odk-credit:hover {
+    border-color: var(--gold-mid);
+    color: var(--gold);
+    background: var(--gold-light);
+  }
+
+  .odk-credit .heart { color: #E63946; }
 
   .header-stats {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    gap: 20px;
     align-items: flex-end;
-    padding-bottom: 4px;
   }
 
-  .hstat {
-    text-align: right;
-  }
+  .hstat { text-align: right; }
 
   .hstat-num {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--gold-mid);
     line-height: 1;
   }
 
   .hstat-label {
-    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
     color: var(--muted);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
+    margin-top: 2px;
   }
 
-  .divider-bar {
-    height: 3px;
-    background: linear-gradient(90deg, var(--ldf) 33.3%, var(--udf) 33.3% 66.6%, var(--nda) 66.6%);
-    width: 100%;
-  }
-
-  /* ── LAYOUT ── */
+  /* ── CONTAINER ── */
   .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -155,89 +170,100 @@
   /* ── ALLIANCE LEGEND ── */
   .alliance-legend {
     display: flex;
-    gap: 32px;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
     gap: 10px;
-    cursor: pointer;
-    transition: opacity 0.2s;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
-  .legend-item:hover { opacity: 0.75; }
-
-  .legend-dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .legend-name {
+  .legend-label {
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.08em;
+    font-size: 9px;
     color: var(--faint);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-right: 4px;
   }
+
+  .legend-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all 0.2s;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .legend-pill.ldf { background: var(--ldf-bg); color: var(--ldf); border-color: rgba(192,32,46,0.2); }
+  .legend-pill.udf { background: var(--udf-bg); color: var(--udf); border-color: rgba(21,101,192,0.2); }
+  .legend-pill.nda { background: var(--nda-bg); color: var(--nda); border-color: rgba(200,80,0,0.2); }
+
+  .legend-pill:hover { opacity: 0.8; transform: translateY(-1px); }
+
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
   .legend-count {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
+    font-size: 10px;
+    opacity: 0.75;
+    font-weight: 400;
   }
 
   /* ── STATS ROW ── */
   .stats-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 48px;
+    grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    gap: 10px;
+    margin-bottom: 36px;
   }
 
   .stat-cell {
     background: var(--card);
-    padding: 28px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
     position: relative;
+    overflow: hidden;
   }
 
-  .stat-cell::after {
+  .stat-cell::before {
     content: '';
     position: absolute;
-    left: 0; top: 20%; bottom: 20%;
-    width: 2px;
+    top: 0; left: 0; right: 0;
+    height: 3px;
   }
 
-  .stat-cell.ldf::after { background: var(--ldf); }
-  .stat-cell.udf::after { background: var(--udf); }
-  .stat-cell.nda::after { background: var(--nda); }
-  .stat-cell.total::after { background: var(--gold); }
+  .stat-cell.ldf::before { background: var(--ldf); }
+  .stat-cell.udf::before { background: var(--udf); }
+  .stat-cell.nda::before { background: var(--nda); }
+  .stat-cell.sc::before  { background: var(--sc-color); }
+  .stat-cell.st::before  { background: var(--st-color); }
 
   .stat-n {
     font-family: 'Playfair Display', serif;
-    font-size: 44px;
+    font-size: 38px;
     font-weight: 700;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   .stat-cell.ldf .stat-n { color: var(--ldf); }
   .stat-cell.udf .stat-n { color: var(--udf); }
   .stat-cell.nda .stat-n { color: var(--nda); }
-  .stat-cell.total .stat-n { color: var(--gold); }
+  .stat-cell.sc  .stat-n { color: var(--sc-color); }
+  .stat-cell.st  .stat-n { color: var(--st-color); }
 
   .stat-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
+    font-size: 9px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -245,434 +271,286 @@
   /* ── DISTRICT TABS ── */
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 700;
-    color: #DDD;
-    margin-bottom: 20px;
+    color: var(--text);
+    margin-bottom: 12px;
   }
 
   .tabs {
     display: flex;
-    gap: 0;
     overflow-x: auto;
-    margin-bottom: 32px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border);
     scrollbar-width: none;
-    flex-wrap: nowrap;
   }
 
   .tabs::-webkit-scrollbar { display: none; }
 
   .tab {
-    padding: 12px 18px;
+    padding: 10px 14px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
     cursor: pointer;
     border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
     white-space: nowrap;
     transition: all 0.2s;
     flex-shrink: 0;
   }
 
-  .tab:hover { color: #CCC; }
+  .tab:hover { color: var(--text-soft); }
 
   .tab.active {
     color: var(--gold);
-    border-bottom-color: var(--gold);
+    border-bottom-color: var(--gold-mid);
+    font-weight: 500;
   }
 
-  /* ── CONSTITUENCY GRID ── */
-  .search-bar {
+  /* ── SEARCH ── */
+  .search-row {
     display: flex;
-    gap: 12px;
-    margin-bottom: 28px;
-    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: stretch;
     flex-wrap: wrap;
   }
 
+  .search-wrap {
+    flex: 1;
+    min-width: 240px;
+    display: flex;
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    background: var(--card);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-wrap:focus-within {
+    border-color: var(--gold-mid);
+    box-shadow: 0 0 0 3px rgba(200,134,14,0.1);
+  }
+
+  .search-icon {
+    display: flex;
+    align-items: center;
+    padding: 0 12px 0 14px;
+    color: var(--faint);
+    flex-shrink: 0;
+  }
+
+  .search-icon svg { width: 16px; height: 16px; }
+
   .search-input {
     flex: 1;
-    min-width: 200px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 10px 16px;
-    color: #DDD;
+    background: transparent;
+    border: none;
+    padding: 11px 0;
+    color: var(--text);
     font-family: 'Source Sans 3', sans-serif;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s;
   }
 
-  .search-input::placeholder { color: var(--muted); }
-  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--faint); }
 
-  .filter-btn {
-    padding: 10px 16px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--muted);
+  .search-btn {
+    padding: 0 22px;
+    background: var(--gold-mid);
+    border: none;
+    color: #fff;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .search-btn:hover { background: var(--gold); }
+  .search-btn svg { width: 13px; height: 13px; }
+
+  .clear-btn {
+    padding: 0 16px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 7px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
     letter-spacing: 0.08em;
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
   }
 
-  .filter-btn:hover { border-color: var(--faint); color: #CCC; }
-  .filter-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(200,150,30,0.05); }
+  .clear-btn:hover { border-color: var(--faint); color: var(--text); }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
+  /* ── FILTER PILLS ── */
+  .filter-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 
-  /* ── CONSTITUENCY CARD ── */
+  .filter-btn {
+    padding: 7px 14px;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover { border-color: var(--faint); color: var(--text-soft); }
+  .filter-btn.active { border-color: var(--gold-mid); color: var(--gold); background: var(--gold-light); font-weight: 500; }
+  .filter-btn.ldf.active  { border-color: var(--ldf); color: var(--ldf); background: var(--ldf-bg); }
+  .filter-btn.udf.active  { border-color: var(--udf); color: var(--udf); background: var(--udf-bg); }
+  .filter-btn.nda.active  { border-color: var(--nda); color: var(--nda); background: var(--nda-bg); }
+  .filter-btn.sc.active   { border-color: var(--sc-color); color: var(--sc-color); background: var(--sc-bg); }
+  .filter-btn.st.active   { border-color: var(--st-color); color: var(--st-color); background: var(--st-bg); }
+
+  .results-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--faint);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+  }
+
+  /* ── CARD ── */
   .card {
     background: var(--card);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
     cursor: pointer;
-    animation: fadeUp 0.3s ease both;
+    animation: fadeUp 0.28s ease both;
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .card:hover {
     transform: translateY(-3px);
-    border-color: rgba(200,150,30,0.3);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border-color: var(--gold-mid);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   }
 
   .card-header {
-    padding: 16px 20px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 13px 16px 11px;
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
+    background: var(--card2);
   }
 
   .card-num {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 4px;
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.12em;
+    margin-bottom: 3px;
   }
 
   .card-name {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
-    color: #EEE;
+    color: var(--text);
     line-height: 1.2;
   }
 
   .card-district {
-    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
     color: var(--muted);
+    letter-spacing: 0.07em;
     margin-top: 3px;
   }
 
   .reservation-badge {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    padding: 3px 7px;
-    border-radius: 3px;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    padding: 3px 8px;
+    border-radius: 12px;
     flex-shrink: 0;
     margin-top: 2px;
+    font-weight: 500;
   }
 
-  .reservation-badge.sc {
-    background: rgba(255,165,0,0.12);
-    color: #FFA500;
-    border: 1px solid rgba(255,165,0,0.25);
-  }
-
-  .reservation-badge.st {
-    background: rgba(100,200,100,0.12);
-    color: #64C864;
-    border: 1px solid rgba(100,200,100,0.25);
-  }
+  .reservation-badge.sc { background: var(--sc-bg); color: var(--sc-color); border: 1px solid rgba(109,40,217,0.2); }
+  .reservation-badge.st { background: var(--st-bg); color: var(--st-color); border: 1px solid rgba(4,120,87,0.2); }
 
   .card-candidates {
-    padding: 14px 20px 16px;
+    padding: 11px 16px 13px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .candidate-row {
     display: grid;
-    grid-template-columns: 52px 1fr;
-    gap: 10px;
+    grid-template-columns: 44px 1fr;
+    gap: 9px;
     align-items: center;
   }
 
   .alliance-tag {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
+    font-size: 8px;
+    letter-spacing: 0.07em;
     font-weight: 500;
-    padding: 3px 6px;
-    border-radius: 3px;
+    padding: 3px 0;
+    border-radius: 4px;
     text-align: center;
-    white-space: nowrap;
   }
 
-  .alliance-tag.LDF {
-    background: rgba(230, 57, 70, 0.15);
-    color: #E63946;
-    border: 1px solid rgba(230,57,70,0.3);
-  }
-
-  .alliance-tag.UDF {
-    background: rgba(33, 150, 243, 0.15);
-    color: #64B5F6;
-    border: 1px solid rgba(33,150,243,0.3);
-  }
-
-  .alliance-tag.NDA {
-    background: rgba(255, 107, 0, 0.15);
-    color: #FF9A4D;
-    border: 1px solid rgba(255,107,0,0.3);
-  }
-
-  .candidate-info {}
+  .alliance-tag.LDF { background: var(--ldf-bg); color: var(--ldf); border: 1px solid rgba(192,32,46,0.2); }
+  .alliance-tag.UDF { background: var(--udf-bg); color: var(--udf); border: 1px solid rgba(21,101,192,0.2); }
+  .alliance-tag.NDA { background: var(--nda-bg); color: var(--nda); border: 1px solid rgba(200,80,0,0.2); }
 
   .candidate-party {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
     color: var(--muted);
-    letter-spacing: 0.08em;
-    margin-bottom: 2px;
-  }
-
-  .candidate-name {
-    font-size: 13px;
-    color: #CCC;
-    font-weight: 400;
-    line-height: 1.2;
-  }
-
-  .candidate-name.unknown {
-    color: var(--muted);
-    font-style: italic;
-    font-size: 12px;
-  }
-
-  /* ── MODAL ── */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: 24px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s;
-  }
-
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .modal {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    max-width: 540px;
-    width: 100%;
+    letter-spacing: 0.04em;
+    margin-bottom: 1px;
     overflow: hidden;
-    transform: scale(0.96) translateY(16px);
-    transition: transform 0.25s;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .modal-overlay.open .modal { transform: scale(1) translateY(0); }
-
-  .modal-top {
-    height: 4px;
-    background: linear-gradient(90deg, var(--ldf), var(--udf), var(--nda));
-  }
-
-  .modal-header {
-    padding: 28px 32px 20px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .modal-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #F0E8D8;
-  }
-
-  .modal-badges {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
-
-  .modal-body {
-    padding: 24px 32px 32px;
-  }
-
-  .modal-section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-
-  .modal-candidates {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .modal-candidate {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .modal-alliance-bar {
-    width: 3px;
-    align-self: stretch;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .modal-candidate-inner { flex: 1; }
-
-  .modal-alliance-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  .modal-party {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    margin-bottom: 3px;
-  }
-
-  .modal-candidate-name {
-    font-size: 18px;
-    color: #EEE;
-    font-weight: 600;
-  }
-
-  .modal-candidate-name.tbd {
-    color: var(--muted);
-    font-style: italic;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 16px; right: 16px;
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--muted);
-    padding: 6px 10px;
-    cursor: pointer;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    transition: all 0.2s;
-  }
-
-  .modal-close:hover { border-color: var(--faint); color: #CCC; }
-
-  .modal-header { position: relative; }
-
-  /* ── DISTRICT SUMMARY ── */
-  .district-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .dist-card {
-    background: var(--card);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 6px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .dist-card:hover {
-    border-color: rgba(200,150,30,0.25);
-    transform: translateY(-2px);
-  }
-
-  .dist-card.selected {
-    border-color: var(--gold);
-    background: rgba(200,150,30,0.04);
-  }
-
-  .dist-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: #DDD;
-    margin-bottom: 10px;
-  }
-
-  .dist-seats {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-
-  .dist-mini-bar {
-    height: 3px;
-    border-radius: 2px;
-    background: var(--border);
-    overflow: hidden;
-    display: flex;
-    gap: 1px;
-  }
-
-  .dist-mini-seg { height: 100%; }
+  .candidate-name { font-size: 13px; color: var(--text-soft); font-weight: 400; line-height: 1.2; }
+  .candidate-name.unknown { color: var(--faint); font-style: italic; font-size: 12px; }
 
   /* ── EMPTY STATE ── */
   .empty-state {
@@ -685,100 +563,325 @@
     letter-spacing: 0.08em;
   }
 
+  /* ── CONSTITUENCY MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(17,24,39,0.4);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s;
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    max-width: 520px;
+    width: 100%;
+    overflow: hidden;
+    transform: scale(0.96) translateY(10px);
+    transition: transform 0.22s;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+  }
+
+  .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+
+  .modal-top { height: 4px; background: linear-gradient(90deg, var(--ldf) 33.3%, var(--udf) 33.3% 66.6%, var(--nda) 66.6%); }
+
+  .modal-header {
+    padding: 22px 26px 16px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    background: var(--card2);
+  }
+
+  .modal-eyebrow { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 5px; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--text); }
+  .modal-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+
+  .modal-body { padding: 20px 26px 26px; }
+
+  .modal-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .modal-candidates { display: flex; flex-direction: column; gap: 14px; }
+  .modal-candidate { display: flex; gap: 14px; align-items: flex-start; }
+
+  .modal-alliance-bar { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; min-height: 40px; }
+  .modal-candidate-inner { flex: 1; }
+
+  .modal-alliance-label { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--faint); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2px; }
+  .modal-party { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.04em; margin-bottom: 3px; }
+  .modal-candidate-name { font-size: 17px; color: var(--text); font-weight: 600; }
+  .modal-candidate-name.tbd { color: var(--faint); font-style: italic; font-size: 14px; font-weight: 300; }
+
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    transition: all 0.18s;
+  }
+
+  .modal-close:hover { border-color: var(--text); color: var(--text); }
+
+  /* ── DISCLAIMER MODAL ── */
+  .disc-overlay {
+    position: fixed; inset: 0;
+    background: rgba(17,24,39,0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .disc-overlay.open { opacity: 1; pointer-events: all; }
+
+  .disc-modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    max-width: 560px;
+    width: 100%;
+    overflow: hidden;
+    transform: scale(0.95) translateY(16px);
+    transition: transform 0.3s;
+    box-shadow: 0 28px 72px rgba(0,0,0,0.18);
+  }
+
+  .disc-overlay.open .disc-modal { transform: scale(1) translateY(0); }
+
+  .disc-top { height: 5px; background: linear-gradient(90deg, #F5C842, #D4960E, #A07010); }
+
+  .disc-header {
+    padding: 26px 30px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .disc-icon {
+    width: 42px; height: 42px;
+    background: #FEF9EC;
+    border: 1.5px solid #F5D76E;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .disc-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .disc-subtitle { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .disc-body {
+    padding: 0 30px 22px;
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .disc-body p + p { margin-top: 10px; }
+
+  .disc-body a {
+    color: var(--udf);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+  }
+
+  .disc-body a:hover { color: var(--gold); }
+
+  .disc-footer {
+    padding: 14px 30px 24px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .disc-ok-btn {
+    padding: 10px 28px;
+    background: var(--gold-mid);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+  }
+
+  .disc-ok-btn:hover { background: var(--gold); }
+
+  .disc-remind {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--faint);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: none;
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+  }
+
+  .disc-remind:hover { color: var(--muted); }
+
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
-    padding: 28px 40px;
-    text-align: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #fff;
   }
 
-  /* Responsive */
+  .footer-text { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--faint); letter-spacing: 0.07em; }
+
+  .footer-disc-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.07em;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: none;
+    transition: color 0.2s;
+  }
+
+  .footer-disc-link:hover { color: var(--gold-mid); }
+
+  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .header-inner { grid-template-columns: 1fr; padding: 36px 20px 28px; }
-    .header-stats { flex-direction: row; align-items: flex-start; }
-    .container { padding: 0 20px 60px; }
+    .header-inner { grid-template-columns: 1fr; padding: 20px 20px 18px; gap: 14px; }
+    .header-right { flex-direction: row; align-items: center; justify-content: space-between; }
+    .header-stats { flex-direction: row; gap: 14px; }
+    .container { padding: 0 16px 60px; }
     .grid { grid-template-columns: 1fr; }
-    footer { padding: 24px 20px; }
+    footer { padding: 16px 20px; }
+    .disc-header, .disc-body, .disc-footer { padding-left: 20px; padding-right: 20px; }
   }
 </style>
 </head>
 <body>
 
+<!-- DISCLAIMER MODAL (auto-shows on load) -->
+<div class="disc-overlay open" id="disc-overlay">
+  <div class="disc-modal">
+    <div class="disc-top"></div>
+    <div class="disc-header">
+      <div class="disc-icon">⚠️</div>
+      <div>
+        <div class="disc-title">Data Disclaimer</div>
+        <div class="disc-subtitle">Please read before proceeding</div>
+      </div>
+    </div>
+    <div class="disc-body">
+      <p>The accuracy or completeness of the data presented on this page cannot be guaranteed. The information has been sourced from Various Medias, party social media handles and SEC Kerala website.</p>
+      <p>There is a chance for change according to time. Candidate announcements may be updated or revised by parties at any point.</p>
+      <p>If you notice any errors or discrepancies, please let us know at:<br>
+        <a href="https://github.com/opendatakerala/KLA/issues" target="_blank" rel="noopener">https://github.com/opendatakerala/KLA/issues</a><br>
+        so they can be reviewed and corrected.
+      </p>
+    </div>
+    <div class="disc-footer">
+      <button class="disc-remind" onclick="closeDisclaimer()">Dismiss</button>
+      <button class="disc-ok-btn" onclick="closeDisclaimer()">I Understand</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header>
-  <div class="header-texture"></div>
+  <div class="header-stripe"></div>
   <div class="header-inner">
     <div>
       <div class="header-eyebrow">Kerala Legislative Assembly</div>
       <h1>Election <em>2026</em></h1>
       <p class="header-sub">Candidate list across all 140 constituencies · 14 districts · Three-alliance contest</p>
     </div>
-    <div class="header-stats">
-      <div class="hstat">
-        <div class="hstat-num" id="total-seats">140</div>
-        <div class="hstat-label">Constituencies</div>
-      </div>
-      <div class="hstat">
-        <div class="hstat-num" id="total-candidates">—</div>
-        <div class="hstat-label">Named Candidates</div>
+    <div class="header-right">
+      <a class="odk-credit" href="https://github.com/opendatakerala" target="_blank" rel="noopener">
+        <span class="heart">♥</span>&nbsp;Crafted with :) by ODK Community
+      </a>
+      <div class="header-stats">
+        <div class="hstat">
+          <div class="hstat-num">140</div>
+          <div class="hstat-label">Seats</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num" id="total-candidates">—</div>
+          <div class="hstat-label">Candidates</div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="divider-bar"></div>
 </header>
 
 <div class="container">
 
   <!-- Alliance legend -->
   <div class="alliance-legend">
-    <div class="legend-item" onclick="filterAlliance('all')">
-      <div class="legend-dot" style="background:#888"></div>
-      <span class="legend-name">ALL</span>
-    </div>
-    <div class="legend-item" onclick="filterAlliance('LDF')">
+    <span class="legend-label">Alliance →</span>
+    <div class="legend-pill ldf" onclick="setFilter('LDF')">
       <div class="legend-dot" style="background:var(--ldf)"></div>
-      <span class="legend-name">LDF</span>
-      <span class="legend-count" id="ldf-count">—</span>
+      LDF <span class="legend-count" id="ldf-count">—</span>
     </div>
-    <div class="legend-item" onclick="filterAlliance('UDF')">
+    <div class="legend-pill udf" onclick="setFilter('UDF')">
       <div class="legend-dot" style="background:var(--udf)"></div>
-      <span class="legend-name">UDF</span>
-      <span class="legend-count" id="udf-count">—</span>
+      UDF <span class="legend-count" id="udf-count">—</span>
     </div>
-    <div class="legend-item" onclick="filterAlliance('NDA')">
+    <div class="legend-pill nda" onclick="setFilter('NDA')">
       <div class="legend-dot" style="background:var(--nda)"></div>
-      <span class="legend-name">NDA</span>
-      <span class="legend-count" id="nda-count">—</span>
+      NDA <span class="legend-count" id="nda-count">—</span>
     </div>
   </div>
 
   <!-- Stats row -->
   <div class="stats-row">
-    <div class="stat-cell ldf">
-      <div class="stat-n" id="stat-ldf">—</div>
-      <div class="stat-label">LDF Candidates</div>
-    </div>
-    <div class="stat-cell udf">
-      <div class="stat-n" id="stat-udf">—</div>
-      <div class="stat-label">UDF Candidates</div>
-    </div>
-    <div class="stat-cell nda">
-      <div class="stat-n" id="stat-nda">—</div>
-      <div class="stat-label">NDA Candidates</div>
-    </div>
-    <div class="stat-cell total">
-      <div class="stat-n" id="stat-sc">—</div>
-      <div class="stat-label">SC Reserved</div>
-    </div>
-    <div class="stat-cell total" style="--gold: #64C864;">
-      <div class="stat-n" id="stat-st" style="color:#64C864">—</div>
-      <div class="stat-label">ST Reserved</div>
-    </div>
+    <div class="stat-cell ldf"><div class="stat-n" id="stat-ldf">—</div><div class="stat-label">LDF Candidates</div></div>
+    <div class="stat-cell udf"><div class="stat-n" id="stat-udf">—</div><div class="stat-label">UDF Candidates</div></div>
+    <div class="stat-cell nda"><div class="stat-n" id="stat-nda">—</div><div class="stat-label">NDA Candidates</div></div>
+    <div class="stat-cell sc"><div class="stat-n" id="stat-sc">—</div><div class="stat-label">SC Reserved</div></div>
+    <div class="stat-cell st"><div class="stat-n" id="stat-st">—</div><div class="stat-label">ST Reserved</div></div>
   </div>
 
   <!-- District filter -->
@@ -787,27 +890,52 @@
     <div class="tab active" data-district="all" onclick="selectDistrict('all', this)">All Districts</div>
   </div>
 
-  <!-- Search & alliance filter -->
-  <div class="search-bar">
-    <input class="search-input" id="search" placeholder="Search constituency or candidate name…" oninput="renderGrid()">
-    <button class="filter-btn" id="filter-all" onclick="setFilter('all')" class="active">All</button>
-    <button class="filter-btn" id="filter-LDF" onclick="setFilter('LDF')">LDF</button>
-    <button class="filter-btn" id="filter-UDF" onclick="setFilter('UDF')">UDF</button>
-    <button class="filter-btn" id="filter-NDA" onclick="setFilter('NDA')">NDA</button>
-    <button class="filter-btn" id="filter-SC" onclick="setFilter('SC')">SC Reserved</button>
-    <button class="filter-btn" id="filter-ST" onclick="setFilter('ST')">ST Reserved</button>
+  <!-- Search -->
+  <div class="search-row">
+    <div class="search-wrap">
+      <div class="search-icon">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
+        </svg>
+      </div>
+      <input class="search-input" id="search"
+        placeholder="Search constituency, candidate or party…"
+        onkeydown="if(event.key==='Enter') renderGrid()">
+      <button class="search-btn" onclick="renderGrid()">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
+        </svg>
+        Search
+      </button>
+    </div>
+    <button class="clear-btn" onclick="clearSearch()">Clear</button>
   </div>
 
-  <!-- Main grid -->
+  <!-- Filter pills -->
+  <div class="filter-row">
+    <button class="filter-btn active" id="filter-all" onclick="setFilter('all')">All Constituencies</button>
+    <button class="filter-btn ldf" id="filter-LDF" onclick="setFilter('LDF')">🔴 LDF</button>
+    <button class="filter-btn udf" id="filter-UDF" onclick="setFilter('UDF')">🔵 UDF</button>
+    <button class="filter-btn nda" id="filter-NDA" onclick="setFilter('NDA')">🟠 NDA</button>
+    <button class="filter-btn sc"  id="filter-SC"  onclick="setFilter('SC')">SC Reserved</button>
+    <button class="filter-btn st"  id="filter-ST"  onclick="setFilter('ST')">ST Reserved</button>
+  </div>
+
+  <div class="results-info" id="results-info"></div>
+
+  <!-- Grid -->
   <div class="grid" id="grid"></div>
 
 </div>
 
-<footer>Data compiled for 2026 Kerala Legislative Assembly Elections · All 140 constituencies · 14 Districts</footer>
+<footer>
+  <span class="footer-text">Kerala Legislative Assembly Election 2026 · Data sourced from Various Media & CEC Kerala</span>
+  <button class="footer-disc-link" onclick="openDisclaimer()">⚠ View Disclaimer</button>
+</footer>
 
-<!-- Modal -->
+<!-- CONSTITUENCY MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal">
+  <div class="modal">
     <div class="modal-top"></div>
     <div class="modal-header">
       <div class="modal-eyebrow" id="modal-eyebrow"></div>
@@ -965,7 +1093,6 @@ Thiruvananthapuram,138,Kattakkada,,CPI(M),I. B. Satheesh,INC,,BJP,P. K. Krishnad
 Thiruvananthapuram,139,Kovalam,,Independent (CPI(M) support),Bhagat Rufus,INC,M. Vincent,,
 Thiruvananthapuram,140,Neyyattinkara,,CPI(M),K. Ansalan,INC,,,`;
 
-// Parse CSV
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',');
@@ -981,10 +1108,8 @@ const data = parseCSV(RAW_CSV);
 let activeDistrict = 'all';
 let activeFilter = 'all';
 
-// Compute districts
-const districts = [...new Set(data.map(d => d.District))];
-
 // Build district tabs
+const districts = [...new Set(data.map(d => d.District))];
 const tabsEl = document.getElementById('district-tabs');
 districts.forEach(d => {
   const t = document.createElement('div');
@@ -1010,15 +1135,9 @@ function setFilter(f) {
   renderGrid();
 }
 
-function filterAlliance(a) {
-  setFilter(a === 'all' ? 'all' : a);
-}
-
-function hasCandidate(row, alliance) {
-  if (alliance === 'LDF') return !!row.LDF_Candidate;
-  if (alliance === 'UDF') return !!row.UDF_Candidate;
-  if (alliance === 'NDA') return !!row.NDA_Candidate;
-  return false;
+function clearSearch() {
+  document.getElementById('search').value = '';
+  renderGrid();
 }
 
 function renderGrid() {
@@ -1029,9 +1148,6 @@ function renderGrid() {
     if (activeDistrict !== 'all' && row.District !== activeDistrict) return false;
     if (activeFilter === 'SC') return row.Reservation === 'SC';
     if (activeFilter === 'ST') return row.Reservation === 'ST';
-    if (activeFilter === 'LDF') return true; // show all but highlight
-    if (activeFilter === 'UDF') return true;
-    if (activeFilter === 'NDA') return true;
     return true;
   });
 
@@ -1043,11 +1159,18 @@ function renderGrid() {
       row.NDA_Candidate.toLowerCase().includes(q) ||
       row.LDF.toLowerCase().includes(q) ||
       row.UDF.toLowerCase().includes(q) ||
-      row.NDA.toLowerCase().includes(q)
+      row.NDA.toLowerCase().includes(q) ||
+      row.District.toLowerCase().includes(q)
     );
   }
 
   grid.innerHTML = '';
+  const info = document.getElementById('results-info');
+  if (filtered.length === data.length && !q) {
+    info.textContent = `Showing all ${filtered.length} constituencies`;
+  } else {
+    info.textContent = `Showing ${filtered.length} of ${data.length} constituencies${q ? ' · search: "' + q + '"' : ''}`;
+  }
 
   if (filtered.length === 0) {
     grid.innerHTML = '<div class="empty-state">No constituencies match your search.</div>';
@@ -1057,41 +1180,33 @@ function renderGrid() {
   filtered.forEach((row, idx) => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.animationDelay = Math.min(idx * 20, 300) + 'ms';
+    card.style.animationDelay = Math.min(idx * 12, 260) + 'ms';
 
     const res = row.Reservation;
     const resBadge = res ? `<span class="reservation-badge ${res.toLowerCase()}">${res}</span>` : '';
 
-    function candidateRow(alliance, party, name) {
-      const displayName = name
-        ? `<span class="candidate-name">${name}</span>`
-        : `<span class="candidate-name unknown">TBD</span>`;
-      const displayParty = party || '—';
-      return `
-        <div class="candidate-row">
-          <span class="alliance-tag ${alliance}">${alliance}</span>
-          <div class="candidate-info">
-            <div class="candidate-party">${displayParty}</div>
-            ${displayName}
-          </div>
-        </div>`;
+    function cRow(alliance, party, name) {
+      const n = name ? `<span class="candidate-name">${name}</span>` : `<span class="candidate-name unknown">TBD</span>`;
+      return `<div class="candidate-row">
+        <span class="alliance-tag ${alliance}">${alliance}</span>
+        <div><div class="candidate-party">${party || '—'}</div>${n}</div>
+      </div>`;
     }
 
     card.innerHTML = `
       <div class="card-header">
         <div>
-          <div class="card-num">#${row.Constituency_Number}</div>
+          <div class="card-num">CONSTITUENCY #${row.Constituency_Number}</div>
           <div class="card-name">${row.Constituency_Name}</div>
           <div class="card-district">${row.District}</div>
         </div>
         ${resBadge}
       </div>
       <div class="card-candidates">
-        ${candidateRow('LDF', row.LDF, row.LDF_Candidate)}
-        ${candidateRow('UDF', row.UDF, row.UDF_Candidate)}
-        ${row.NDA ? candidateRow('NDA', row.NDA, row.NDA_Candidate) : ''}
-      </div>
-    `;
+        ${cRow('LDF', row.LDF, row.LDF_Candidate)}
+        ${cRow('UDF', row.UDF, row.UDF_Candidate)}
+        ${row.NDA ? cRow('NDA', row.NDA, row.NDA_Candidate) : ''}
+      </div>`;
 
     card.onclick = () => openModal(row);
     grid.appendChild(card);
@@ -1111,25 +1226,22 @@ function openModal(row) {
     badges.appendChild(b);
   }
 
-  function modalCandidate(alliance, color, party, name) {
-    const n = name || 'To Be Announced';
-    const isTbd = !name;
-    return `
-      <div class="modal-candidate">
-        <div class="modal-alliance-bar" style="background:${color}"></div>
-        <div class="modal-candidate-inner">
-          <div class="modal-alliance-label">${alliance}</div>
-          <div class="modal-party" style="color:${color}">${party || '—'}</div>
-          <div class="modal-candidate-name${isTbd ? ' tbd' : ''}">${n}</div>
-        </div>
-      </div>`;
+  function mCand(alliance, color, party, name) {
+    const tbd = !name;
+    return `<div class="modal-candidate">
+      <div class="modal-alliance-bar" style="background:${color}"></div>
+      <div class="modal-candidate-inner">
+        <div class="modal-alliance-label">${alliance}</div>
+        <div class="modal-party" style="color:${color}">${party || '—'}</div>
+        <div class="modal-candidate-name${tbd ? ' tbd' : ''}">${name || 'To Be Announced'}</div>
+      </div>
+    </div>`;
   }
 
-  const cands = document.getElementById('modal-candidates');
-  cands.innerHTML =
-    modalCandidate('LDF', '#E63946', row.LDF, row.LDF_Candidate) +
-    modalCandidate('UDF', '#64B5F6', row.UDF, row.UDF_Candidate) +
-    (row.NDA ? modalCandidate('NDA', '#FF9A4D', row.NDA, row.NDA_Candidate) : '');
+  document.getElementById('modal-candidates').innerHTML =
+    mCand('LDF', '#C0202E', row.LDF, row.LDF_Candidate) +
+    mCand('UDF', '#1565C0', row.UDF, row.UDF_Candidate) +
+    (row.NDA ? mCand('NDA', '#C85000', row.NDA, row.NDA_Candidate) : '');
 
   document.getElementById('modal-overlay').classList.add('open');
 }
@@ -1142,11 +1254,23 @@ function closeModalDirect() {
   document.getElementById('modal-overlay').classList.remove('open');
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModalDirect();
+function closeDisclaimer() {
+  document.getElementById('disc-overlay').classList.remove('open');
+}
+
+function openDisclaimer() {
+  document.getElementById('disc-overlay').classList.add('open');
+}
+
+document.getElementById('disc-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('disc-overlay')) closeDisclaimer();
 });
 
-// Compute stats
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModalDirect(); closeDisclaimer(); }
+});
+
+// Stats
 function computeStats() {
   let ldf = 0, udf = 0, nda = 0, sc = 0, st = 0;
   data.forEach(r => {
@@ -1156,7 +1280,6 @@ function computeStats() {
     if (r.Reservation === 'SC') sc++;
     if (r.Reservation === 'ST') st++;
   });
-  const total = ldf + udf + nda;
   document.getElementById('stat-ldf').textContent = ldf;
   document.getElementById('stat-udf').textContent = udf;
   document.getElementById('stat-nda').textContent = nda;
@@ -1165,7 +1288,7 @@ function computeStats() {
   document.getElementById('ldf-count').textContent = ldf;
   document.getElementById('udf-count').textContent = udf;
   document.getElementById('nda-count').textContent = nda;
-  document.getElementById('total-candidates').textContent = total;
+  document.getElementById('total-candidates').textContent = ldf + udf + nda;
 }
 
 computeStats();
