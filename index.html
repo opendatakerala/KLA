@@ -373,7 +373,20 @@
     cursor: pointer;
     transition: fill 0.15s, opacity 0.15s;
   }
-  #kerala-map .const-path:hover {
+  #kerala-map .const-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    font-weight: 600;
+    fill: #111;
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: central;
+    paint-order: stroke;
+    stroke: rgba(255,255,255,0.85);
+    stroke-width: 2.5px;
+    display: none;
+  }
+  #kerala-map.show-labels .const-label { display: block; }
     opacity: 0.75;
     stroke: #333;
     stroke-width: 1px;
@@ -498,10 +511,25 @@
   }
 
   .map-panel-header {
-    padding: 16px 18px 12px;
+    padding: 12px 14px 10px;
     border-bottom: 1px solid var(--border);
     background: var(--card2);
   }
+
+  .map-panel-header-row {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+
+  .map-clear-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 11px; border-radius: 20px; cursor: pointer;
+    border: 1.5px solid var(--border); background: var(--card); color: var(--muted);
+    transition: all 0.18s;
+  }
+  .map-clear-btn:hover { border-color: var(--faint); color: var(--text-soft); }
+  .map-clear-btn.active { background: #FEF2F2; border-color: #DC2626; color: #DC2626; }
 
   .map-panel-title {
     font-family: 'Inter', sans-serif; font-weight: 700;
@@ -1393,16 +1421,16 @@
     position: fixed;
     bottom: 0; left: 0; right: 0;
     background: #fff;
-    border-top: 1px solid var(--border);
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    border-top: 1.5px solid var(--border);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.10);
     z-index: 50;
-    padding: 0;
-    height: 58px;
+    height: 68px;
   }
 
   .mobile-nav-inner {
     display: flex;
     height: 100%;
+    width: 100%;
   }
 
   .mobile-nav-btn {
@@ -1411,21 +1439,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 5px;
     background: none;
     border: none;
+    border-top: 3px solid transparent;
     cursor: pointer;
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted);
-    transition: all 0.2s;
-    border-top: 2px solid transparent;
+    transition: color 0.18s, background 0.18s, border-color 0.18s;
+    padding: 6px 4px 4px;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .mobile-nav-btn svg { width: 20px; height: 20px; }
-  .mobile-nav-btn.active { color: var(--gold); border-top-color: var(--gold-mid); }
+  .mobile-nav-btn:active { background: var(--bg2); }
+  .mobile-nav-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+  .mobile-nav-btn .mnb-label { font-size: 10px; line-height: 1; }
+  .mobile-nav-btn.active { color: var(--gold); border-top-color: var(--gold-mid); background: var(--gold-light); }
+  #mob-clear-btn.has-filters { color: #DC2626; border-top-color: #DC2626; background: #FEF2F2; }
+  #mob-clear-btn.has-filters svg { stroke: #DC2626; }
 
   /* ── RESPONSIVE: TABLET (≤900px) ── */
   @media (max-width: 900px) {
@@ -1474,8 +1509,8 @@
     .mobile-bottom-nav { display: flex; }
 
     /* Add bottom padding so content isn't hidden behind nav */
-    .container { padding: 0 12px 80px; }
-    body { padding-bottom: 58px; }
+    .container { padding: 0 12px 88px; }
+    body { padding-bottom: 68px; }
 
     /* Map */
     .map-outer { gap: 12px; padding-top: 16px; }
@@ -1500,8 +1535,8 @@
     .tabs { margin-bottom: 14px; }
     .tab { padding: 8px 10px; font-size: 9px; }
 
-    .filter-row { gap: 5px; margin-bottom: 14px; }
-    .filter-btn { padding: 6px 11px; font-size: 9px; }
+    .filter-row { gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+    .filter-btn { padding: 8px 14px; font-size: 11px; border-radius: 8px; min-height: 36px; }
 
     .gender-alliance-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .gender-cell-num { font-size: 20px; }
@@ -1559,8 +1594,8 @@
 
   /* Safe area for notched phones */
   @supports (padding-bottom: env(safe-area-inset-bottom)) {
-    .mobile-bottom-nav { padding-bottom: env(safe-area-inset-bottom); height: calc(58px + env(safe-area-inset-bottom)); }
-    body { padding-bottom: calc(58px + env(safe-area-inset-bottom)); }
+    .mobile-bottom-nav { padding-bottom: env(safe-area-inset-bottom); height: calc(68px + env(safe-area-inset-bottom)); }
+    body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
   }
 
 
@@ -1706,8 +1741,6 @@
   .map-party-btn.active .mpb-count { color: rgba(255,255,255,0.7); }
 
 </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 </head>
 <body>
 
@@ -1836,10 +1869,15 @@
       <!-- Sidebar panel -->
       <div class="map-panel">
         <div class="map-panel-header">
-          <div class="map-panel-title" id="panel-title">Districts</div>
-          <button class="map-women-btn" id="map-women-btn" onclick="toggleMapWomen(this)">
-            <span class="map-women-icon">♀</span> Women Candidates
-          </button>
+          <div class="map-panel-header-row">
+            <button class="map-women-btn" id="map-women-btn" onclick="toggleMapWomen(this)">
+              <span class="map-women-icon">♀</span> Women
+            </button>
+            <button class="map-clear-btn" id="map-clear-btn" onclick="clearMapFilters()" title="Reset map filters">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              Clear
+            </button>
+          </div>
         </div>
         <div class="map-panel-body" id="panel-body">
           <div class="map-panel-section-label">Party</div>
@@ -1987,35 +2025,37 @@
 <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
   <div class="mobile-nav-inner">
     <button class="mobile-nav-btn active" id="mob-tab-table" onclick="switchView('table')">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
-        <rect x="2" y="3" width="16" height="14" rx="2"/>
-        <line x1="2" y1="8" x2="18" y2="8"/>
-        <line x1="2" y1="13" x2="18" y2="13"/>
-        <line x1="7" y1="8" x2="7" y2="17"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="3" y1="15" x2="21" y2="15"/>
+        <line x1="9" y1="9" x2="9" y2="21"/>
       </svg>
-      Table
+      <span class="mnb-label">Table</span>
     </button>
     <button class="mobile-nav-btn" id="mob-tab-map" onclick="switchView('map')">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z"/>
-        <line x1="8" y1="3" x2="8" y2="17"/>
-        <line x1="12" y1="5" x2="12" y2="19"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21"/>
+        <line x1="9" y1="3" x2="9" y2="18"/>
+        <line x1="15" y1="6" x2="15" y2="21"/>
       </svg>
-      Map
+      <span class="mnb-label">Map</span>
     </button>
     <button class="mobile-nav-btn" id="mob-clear-btn" onclick="clearAllFilters()">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 3l14 14M17 3L3 17"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/>
+        <line x1="10" y1="11" x2="10" y2="17"/>
+        <line x1="14" y1="11" x2="14" y2="17"/>
       </svg>
-      Clear
+      <span class="mnb-label">Clear</span>
     </button>
     <button class="mobile-nav-btn" onclick="openDisclaimer()">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
-        <circle cx="10" cy="10" r="8"/>
-        <line x1="10" y1="9" x2="10" y2="14"/>
-        <circle cx="10" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/>
+        <line x1="12" y1="11" x2="12" y2="17"/>
+        <circle cx="12" cy="7.5" r="0.8" fill="currentColor" stroke="none"/>
       </svg>
-      Info
+      <span class="mnb-label">Info</span>
     </button>
   </div>
 </nav>
@@ -2120,67 +2160,195 @@ function buildDistrictSidebar() {
 }
 
 
-// Active map party filter
-let activeMapParty = null;
+// ── MAP PANEL STATE ──
+let activeMapParty    = null;
+let activeMapDistrict = 'all';
 
+// ── MAP CLEAR ──
+function clearMapFilters() {
+  activeMapParty    = null;
+  activeMapDistrict = 'all';
+  mapWomenActive    = false;
+
+  // Reset women button
+  const wb = document.getElementById('map-women-btn');
+  if (wb) wb.classList.remove('active');
+
+  // Reset clear button
+  const cb = document.getElementById('map-clear-btn');
+  if (cb) cb.classList.remove('active');
+
+  // Reset party buttons
+  document.querySelectorAll('.map-party-btn').forEach(b => b.classList.remove('active'));
+  const allPBtn = document.getElementById('map-party-all');
+  if (allPBtn) allPBtn.classList.add('active');
+
+  // Reset district buttons
+  document.querySelectorAll('.dist-btn').forEach(b => b.classList.remove('active'));
+  const allDBtn = document.querySelector('.dist-btn[data-district="all"]');
+  if (allDBtn) allDBtn.classList.add('active');
+
+  // Restore map colours, remove dim/highlight, reset zoom, hide labels
+  if (_mapSvg) {
+    _mapSvg.selectAll('.const-path')
+      .style('fill', d => getConstColor(wikiDataLookup[d.properties.WikiData], mapColorMode))
+      .style('opacity', 1)
+      .classed('dimmed', false)
+      .classed('highlighted', false);
+    _mapSvg.selectAll('.const-label').remove();
+    _mapZoomTo(null); // reset zoom
+  }
+  document.getElementById('kerala-map').classList.remove('show-labels');
+}
+
+// ── PARTY FILTER (D3-based) ──
 function filterMapParty(party, el) {
   document.querySelectorAll('.map-party-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   activeMapParty = party === 'all' ? null : party;
 
+  // Update clear button state
+  _syncMapClearBtn();
+
+  if (!_mapSvg) return;
+
+  const alColors = { LDF: '#EE0000', UDF: '#0078FF', NDA: '#FF9933', OTH: '#33AA00' };
+
   if (!activeMapParty) {
-    // Reset to alliance coloring
-    setMapColorMode('alliance', document.querySelector('.map-mode-btn.all.active') || el);
+    // Reset to current colour mode
+    _mapSvg.selectAll('.const-path')
+      .style('fill', d => getConstColor(wikiDataLookup[d.properties.WikiData], mapColorMode))
+      .style('opacity', 1);
     return;
   }
 
-  // Color map: highlight constituencies where this party is contesting
-  const allianceColors = { LDF: '#EE0000', UDF: '#0078FF', NDA: '#FF9933', OTH: '#33AA00' };
-  data.forEach(row => {
-    const num = row.Constituency_Number;
-    const g = document.getElementById('c' + num);
-    if (!g) return;
-    const path = g.querySelector('path');
-    if (!path) return;
-
-    let hasParty = false;
-    let partyAlliance = null;
-    ['LDF','UDF','NDA'].forEach(a => {
-      if (row[a] === activeMapParty && row[a+'_Candidate']) { hasParty = true; partyAlliance = a; }
-    });
-    if (!hasParty) {
-      (row.Others_list||[]).forEach(o => { if (o.party === activeMapParty && o.name) { hasParty = true; partyAlliance = 'OTH'; }});
+  _mapSvg.selectAll('.const-path').each(function(d) {
+    const row = wikiDataLookup[d.properties.WikiData];
+    let hasParty = false, partyAlliance = null;
+    if (row) {
+      ['LDF','UDF','NDA'].forEach(a => {
+        if (row[a] === activeMapParty && row[a+'_Candidate']) { hasParty = true; partyAlliance = a; }
+      });
+      if (!hasParty) (row.Others_list||[]).forEach(o => {
+        if (o.party === activeMapParty && o.name) { hasParty = true; partyAlliance = 'OTH'; }
+      });
     }
+    d3.select(this)
+      .style('fill',    hasParty ? (alColors[partyAlliance] || '#33AA00') : '#d8d8d8')
+      .style('opacity', hasParty ? 1 : 0.35);
+  });
+}
 
-    if (hasParty) {
-      path.style.fill = allianceColors[partyAlliance] || '#33AA00';
-      path.style.opacity = '1';
-    } else {
-      path.style.fill = '#d8d8d8';
-      path.style.opacity = '0.4';
-    }
+// ── DISTRICT FILTER — zoom + labels ──
+let _mapZoom = null;      // d3 zoom behaviour
+let _mapGeoFeatures = []; // cached features for re-projection
+
+function _syncMapClearBtn() {
+  const active = activeMapParty !== null || activeMapDistrict !== 'all' || mapWomenActive;
+  const cb = document.getElementById('map-clear-btn');
+  if (cb) cb.classList.toggle('active', active);
+}
+
+function _mapZoomTo(districtName) {
+  if (!_mapSvg || !_mapGeoFeatures.length) return;
+  const container = document.getElementById('kerala-map');
+  const w = container.clientWidth  || 400;
+  const h = container.clientHeight || 600;
+
+  if (!districtName) {
+    // Zoom out to full Kerala
+    _mapSvg.transition().duration(600)
+      .attr('viewBox', `0 0 ${w} ${h}`);
+    return;
+  }
+
+  // Find bounding box of all features in this district
+  const proj = d3.geoMercator().fitSize([w, h], { type:'FeatureCollection', features: _mapGeoFeatures });
+  const pathGen = d3.geoPath().projection(proj);
+
+  const distFeatures = _mapGeoFeatures.filter(f => {
+    const row = wikiDataLookup[f.properties.WikiData];
+    return row && row.District === districtName;
+  });
+  if (!distFeatures.length) return;
+
+  // Compute bounding box of all district paths
+  let x0=Infinity, y0=Infinity, x1=-Infinity, y1=-Infinity;
+  distFeatures.forEach(f => {
+    const b = pathGen.bounds(f);
+    if (b[0][0] < x0) x0 = b[0][0];
+    if (b[0][1] < y0) y0 = b[0][1];
+    if (b[1][0] > x1) x1 = b[1][0];
+    if (b[1][1] > y1) y1 = b[1][1];
+  });
+
+  const pad = 24;
+  x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;
+  _mapSvg.transition().duration(650)
+    .attr('viewBox', `${x0} ${y0} ${x1-x0} ${y1-y0}`);
+}
+
+function _addConstLabels(districtName) {
+  if (!_mapSvg || !_mapGeoFeatures.length) return;
+  _mapSvg.selectAll('.const-label').remove();
+
+  const container = document.getElementById('kerala-map');
+  const w = container.clientWidth  || 400;
+  const h = container.clientHeight || 600;
+  const proj    = d3.geoMercator().fitSize([w, h], { type:'FeatureCollection', features: _mapGeoFeatures });
+  const pathGen = d3.geoPath().projection(proj);
+
+  const distFeatures = districtName === 'all'
+    ? _mapGeoFeatures
+    : _mapGeoFeatures.filter(f => {
+        const row = wikiDataLookup[f.properties.WikiData];
+        return row && row.District === districtName;
+      });
+
+  distFeatures.forEach(f => {
+    const row = wikiDataLookup[f.properties.WikiData];
+    if (!row) return;
+    const centroid = pathGen.centroid(f);
+    if (!centroid || isNaN(centroid[0])) return;
+    _mapSvg.append('text')
+      .attr('class', 'const-label')
+      .attr('x', centroid[0])
+      .attr('y', centroid[1])
+      .text(row.Constituency_Name);
   });
 }
 
 function filterMapDistrict(district, el) {
   document.querySelectorAll('.dist-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
+  activeMapDistrict = district;
+  _syncMapClearBtn();
 
-  const paths = document.querySelectorAll('.const-path');
+  if (!_mapSvg) return;
+
   if (district === 'all') {
-    paths.forEach(p => { p.classList.remove('dimmed', 'highlighted'); });
-  } else {
-    // Get constituency numbers for this district
-    const distNums = new Set(data.filter(r => r.District === district).map(r => parseInt(r.Constituency_Number)));
-    paths.forEach(p => {
-      const num = parseInt(p.getAttribute('data-num'));
-      if (distNums.has(num)) {
-        p.classList.remove('dimmed'); p.classList.add('highlighted');
-      } else {
-        p.classList.remove('highlighted'); p.classList.add('dimmed');
-      }
-    });
+    _mapSvg.selectAll('.const-path')
+      .classed('dimmed', false).classed('highlighted', false)
+      .style('opacity', 1);
+    _mapSvg.selectAll('.const-label').remove();
+    _mapZoomTo(null);
+    document.getElementById('kerala-map').classList.remove('show-labels');
+    return;
   }
+
+  _mapSvg.selectAll('.const-path').each(function(d) {
+    const row = wikiDataLookup[d.properties.WikiData];
+    const inDistrict = row && row.District === district;
+    d3.select(this)
+      .classed('highlighted', inDistrict)
+      .classed('dimmed', !inDistrict)
+      .style('opacity', inDistrict ? 1 : 0.2);
+  });
+
+  // Zoom and show labels
+  _mapZoomTo(district);
+  _addConstLabels(district);
+  document.getElementById('kerala-map').classList.add('show-labels');
 }
 
 // ── TABLE ──
@@ -2298,6 +2466,13 @@ function renderGrid() {
 
     card.onclick = () => openModal(row);
     grid.appendChild(card);
+  });
+
+  // Sync the clear button highlight on both desktop and mobile
+  const hasFilters = activeFilter !== 'all' || activeDistrict !== 'all' || activeParty !== null || (document.getElementById('search').value || '').trim() !== '';
+  ['clear-btn','mob-clear-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('has-filters', hasFilters);
   });
 }
 
@@ -2434,6 +2609,7 @@ function renderMap() {
   if (!container) return;
 
   const features = topojson.feature(TOPO_DATA, TOPO_DATA.objects.collection).features;
+  _mapGeoFeatures = features; // cache for zoom/labels
   const w = container.clientWidth  || 400;
   const h = container.clientHeight || 600;
 
@@ -2514,10 +2690,18 @@ function setMapColorMode(mode, el) {
     const wb = document.getElementById('map-women-btn');
     if (wb) wb.classList.remove('active');
   }
+  // Reset party filter
+  activeMapParty = null;
+  document.querySelectorAll('.map-party-btn').forEach(b => b.classList.remove('active'));
+  const allPBtn = document.getElementById('map-party-all');
+  if (allPBtn) allPBtn.classList.add('active');
+
+  _syncMapClearBtn();
+
   if (!_mapSvg) return;
   _mapSvg.selectAll('.const-path').each(function(d) {
     const row = wikiDataLookup[d.properties.WikiData];
-    d3.select(this).style('fill', getConstColor(row, mode)).classed('dimmed', false);
+    d3.select(this).style('fill', getConstColor(row, mode)).style('opacity', 1).classed('dimmed', false);
   });
 }
 
@@ -2563,9 +2747,11 @@ function clearAllFilters() {
   // Reset party bubbles
   document.querySelectorAll('#party-bubble-row .bbl').forEach(b => b.classList.remove('active'));
 
-  // Hide clear button highlight
-  const clearBtn = document.getElementById('clear-btn');
-  if (clearBtn) clearBtn.classList.remove('has-filters');
+  // Hide clear button highlight on both desktop and mobile
+  ['clear-btn','mob-clear-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('has-filters');
+  });
 
   renderGrid();
 }
@@ -2835,6 +3021,7 @@ function filterByParty(party, alliance, el) {
 function toggleMapWomen(btn) {
   mapWomenActive = !mapWomenActive;
   btn.classList.toggle('active', mapWomenActive);
+  _syncMapClearBtn();
   if (!_mapSvg) return;
   _mapSvg.selectAll('.const-path').each(function(d) {
     const row = wikiDataLookup[d.properties.WikiData];
@@ -2855,10 +3042,11 @@ function toggleMapWomen(btn) {
   });
 }
 
-bootApp();
-
-// Auto-discover any .topojson file in the data/ subfolder
+// bootApp() is called after D3/TopoJSON load below
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>bootApp();</script>
 <div id="map-tooltip" style="position:fixed;background:rgba(0,0,0,0.85);color:#fff;padding:5px 10px;border-radius:6px;font-family:'DM Mono',monospace;font-size:11px;pointer-events:none;z-index:9999;display:none;white-space:nowrap;"></div>
 </body>
 </html>
