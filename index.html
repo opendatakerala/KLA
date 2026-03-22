@@ -1559,6 +1559,70 @@
     body { padding-bottom: calc(58px + env(safe-area-inset-bottom)); }
   }
 
+
+  /* ── CLEAR/RESET BUTTON ── */
+  .clear-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.06em;
+    color: var(--muted);
+    transition: all 0.16s;
+  }
+  .clear-btn:hover {
+    border-color: #EE0000; color: #c00; background: #fff5f5;
+  }
+  .clear-btn.has-filters {
+    border-color: #EE0000; color: #c00; background: #FFDDDD;
+    animation: pulse-clear 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-clear { 0%,100% { box-shadow: 0 0 0 0 rgba(238,0,0,0.15); } 50% { box-shadow: 0 0 0 4px rgba(238,0,0,0.15); } }
+
+  /* ── MAP PANEL SECTION LABEL ── */
+  .map-panel-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 6px 0 4px;
+    padding: 0 2px;
+  }
+
+  /* ── MAP PARTY FILTER ── */
+  .party-filter {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .map-party-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: var(--muted);
+    transition: all 0.14s;
+    text-align: left;
+  }
+  .map-party-btn .mpb-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 7px;
+  }
+  .map-party-btn .mpb-label { flex: 1; }
+  .map-party-btn .mpb-count { font-size: 9px; color: var(--faint); }
+  .map-party-btn:hover { border-color: var(--faint); color: var(--text-soft); }
+  .map-party-btn.active {
+    border-color: var(--text); background: var(--text); color: #fff;
+    font-weight: 700;
+  }
+  .map-party-btn.active .mpb-count { color: rgba(255,255,255,0.7); }
+
 </style>
 </head>
 <body>
@@ -1649,6 +1713,10 @@
           Map
         </button>
       </div>
+      <button class="clear-btn" id="clear-btn" onclick="clearAllFilters()" title="Reset all filters">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3l14 14M17 3L3 17"/></svg>
+        Clear
+      </button>
       <button class="disclaimer-link" onclick="openDisclaimer()">&#x26A0; Disclaimer</button>
     </div>
   </div>
@@ -1829,6 +1897,9 @@
           <div class="map-panel-sub" id="panel-sub">Click a constituency to view details</div>
         </div>
         <div class="map-panel-body" id="panel-body">
+          <div class="map-panel-section-label">Party</div>
+          <div class="party-filter" id="party-filter"></div>
+          <div class="map-panel-section-label" style="margin-top:10px">District</div>
           <div class="dist-filter" id="dist-filter"></div>
           <div class="const-detail" id="const-detail"></div>
         </div>
@@ -1989,6 +2060,12 @@
       </svg>
       Map
     </button>
+    <button class="mobile-nav-btn" id="mob-clear-btn" onclick="clearAllFilters()">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 3l14 14M17 3L3 17"/>
+      </svg>
+      Clear
+    </button>
     <button class="mobile-nav-btn" onclick="openDisclaimer()">
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
         <circle cx="10" cy="10" r="8"/>
@@ -2030,31 +2107,123 @@ const data = DATA;
 let currentView = 'table';
 
 function buildDistrictSidebar() {
+  // ── Party filter in map panel ──
+  const partyFilter = document.getElementById('party-filter');
+  if (partyFilter) {
+    const allianceColors = { LDF: '#EE0000', UDF: '#0078FF', NDA: '#FF9933', OTH: '#33AA00' };
+    const parties = [];
+    const seen = {};
+    const counts = {};
+    data.forEach(function(r) {
+      ['LDF','UDF','NDA'].forEach(function(a) {
+        if (r[a] && r[a+'_Candidate']) {
+          counts[r[a]] = (counts[r[a]] || 0) + 1;
+          if (!seen[r[a]]) { seen[r[a]] = true; parties.push({ party: r[a], alliance: a }); }
+        }
+      });
+      (r.Others_list || []).forEach(function(o) {
+        if (o.party && o.name) {
+          counts[o.party] = (counts[o.party] || 0) + 1;
+          if (!seen[o.party]) { seen[o.party] = true; parties.push({ party: o.party, alliance: 'OTH' }); }
+        }
+      });
+    });
+    parties.sort(function(a,b){ return (counts[b.party]||0) - (counts[a.party]||0); });
+
+    var ph = '<button class="map-party-btn active" id="map-party-all" data-party="all">'
+      + '<span class="mpb-dot" style="background:var(--text)"></span>'
+      + '<span class="mpb-label">All Parties</span>'
+      + '<span class="mpb-count">' + data.length + '</span></button>';
+    parties.forEach(function(item) {
+      var c = allianceColors[item.alliance] || '#888';
+      var tip = (PARTY_LOOKUP[item.party] && PARTY_LOOKUP[item.party].full) ? PARTY_LOOKUP[item.party].full : item.party;
+      ph += '<button class="map-party-btn" data-party="' + item.party.replace(/"/g,'&quot;') + '" title="' + tip.replace(/"/g,'&quot;') + '">'
+        + '<span class="mpb-dot" style="background:' + c + '"></span>'
+        + '<span class="mpb-label">' + item.party + '</span>'
+        + '<span class="mpb-count">' + (counts[item.party]||0) + '</span></button>';
+    });
+    partyFilter.innerHTML = ph;
+
+    // Use event delegation — no inline onclick needed
+    partyFilter.addEventListener('click', function(e) {
+      var btn = e.target.closest('.map-party-btn');
+      if (!btn) return;
+      filterMapParty(btn.dataset.party, btn);
+    });
+  }
+
+  // ── District filter in map panel ──
   const distFilter = document.getElementById('dist-filter');
-  const districts = [...new Set(data.map(d => d.District))];
-  const counts = {};
-  data.forEach(r => { counts[r.District] = (counts[r.District] || 0) + 1; });
+  const districts = [...new Set(data.map(function(d){ return d.District; }))];
+  const dCounts = {};
+  data.forEach(function(r){ dCounts[r.District] = (dCounts[r.District] || 0) + 1; });
 
-  let html = `<button class="dist-btn active" onclick="filterMapDistrict('all', this)">
-    <span class="dist-btn-name">All Kerala</span>
-    <span class="dist-btn-count">140</span>
-  </button>`;
-
-  districts.forEach(d => {
-    html += `<button class="dist-btn" onclick="filterMapDistrict('${d}', this)">
-      <span class="dist-btn-name">${d}</span>
-      <span class="dist-btn-count">${counts[d]}</span>
-    </button>`;
+  var dh = '<button class="dist-btn active" data-district="all">'
+    + '<span class="dist-btn-name">All Kerala</span>'
+    + '<span class="dist-btn-count">140</span></button>';
+  districts.forEach(function(d) {
+    dh += '<button class="dist-btn" data-district="' + d + '">'
+      + '<span class="dist-btn-name">' + d + '</span>'
+      + '<span class="dist-btn-count">' + (dCounts[d]||0) + '</span></button>';
   });
+  distFilter.innerHTML = dh;
 
-  distFilter.innerHTML = html;
+  // Event delegation for district buttons
+  distFilter.addEventListener('click', function(e) {
+    var btn = e.target.closest('.dist-btn');
+    if (!btn) return;
+    filterMapDistrict(btn.dataset.district, btn);
+  });
+}
+
+
+// Active map party filter
+let activeMapParty = null;
+
+function filterMapParty(party, el) {
+  document.querySelectorAll('.map-party-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  activeMapParty = party === 'all' ? null : party;
+
+  if (!activeMapParty) {
+    // Reset to alliance coloring
+    setMapColorMode('alliance', document.querySelector('.map-mode-btn.all.active') || el);
+    return;
+  }
+
+  // Color map: highlight constituencies where this party is contesting
+  const allianceColors = { LDF: '#EE0000', UDF: '#0078FF', NDA: '#FF9933', OTH: '#33AA00' };
+  data.forEach(row => {
+    const num = row.Constituency_Number;
+    const g = document.getElementById('c' + num);
+    if (!g) return;
+    const path = g.querySelector('path');
+    if (!path) return;
+
+    let hasParty = false;
+    let partyAlliance = null;
+    ['LDF','UDF','NDA'].forEach(a => {
+      if (row[a] === activeMapParty && row[a+'_Candidate']) { hasParty = true; partyAlliance = a; }
+    });
+    if (!hasParty) {
+      (row.Others_list||[]).forEach(o => { if (o.party === activeMapParty && o.name) { hasParty = true; partyAlliance = 'OTH'; }});
+    }
+
+    if (hasParty) {
+      path.style.fill = allianceColors[partyAlliance] || '#33AA00';
+      path.style.opacity = '1';
+    } else {
+      path.style.fill = '#d8d8d8';
+      path.style.opacity = '0.4';
+    }
+  });
 }
 
 function filterMapDistrict(district, el) {
   document.querySelectorAll('.dist-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
 
-  const paths = document.querySelectorAll('.constituency-path');
+  const paths = document.querySelectorAll('.const-path');
   if (district === 'all') {
     paths.forEach(p => { p.classList.remove('dimmed', 'highlighted'); });
   } else {
@@ -2402,6 +2571,37 @@ function clearBrowseFilter() {
 
   const clearBtn = document.getElementById('browse-clear-btn');
   if (clearBtn) clearBtn.style.display = 'none';
+  renderGrid();
+}
+
+function clearAllFilters() {
+  // Reset table filters
+  activeDistrict = 'all';
+  activeFilter = 'all';
+  activeConstituency = null;
+  activeParty = null;
+
+  // Reset search
+  const searchEl = document.getElementById('search');
+  if (searchEl) searchEl.value = '';
+
+  // Reset filter buttons
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  const allBtn = document.getElementById('filter-all');
+  if (allBtn) allBtn.classList.add('active');
+
+  // Reset district tabs
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const allTab = document.querySelector('.tab[data-district="all"]');
+  if (allTab) allTab.classList.add('active');
+
+  // Reset party bubbles
+  document.querySelectorAll('#party-bubble-row .bbl').forEach(b => b.classList.remove('active'));
+
+  // Hide clear button highlight
+  const clearBtn = document.getElementById('clear-btn');
+  if (clearBtn) clearBtn.classList.remove('has-filters');
+
   renderGrid();
 }
 
