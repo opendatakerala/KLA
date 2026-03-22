@@ -1280,6 +1280,17 @@
   .bbl.bbl-nda.active .bbl-label, .bbl.bbl-nda:hover .bbl-label { color: #000; font-weight: 700; }
   .bbl.bbl-nda.active .bbl-count, .bbl.bbl-nda:hover .bbl-count { color: #000; font-weight: 800; }
 
+  .bbl.bbl-oth { background: #EEFFEE; border-color: rgba(51,170,0,0.3); }
+  .bbl.bbl-oth .bbl-label { color: #228800; }
+  .bbl.bbl-oth .bbl-count { color: #228800; }
+  .bbl.bbl-oth.active, .bbl.bbl-oth:hover {
+    background: #33AA00; border-color: #228800;
+    box-shadow: 0 3px 10px rgba(51,170,0,0.35);
+    transform: translateY(-1px);
+  }
+  .bbl.bbl-oth.active .bbl-label, .bbl.bbl-oth:hover .bbl-label { color: #000; font-weight: 700; }
+  .bbl.bbl-oth.active .bbl-count, .bbl.bbl-oth:hover .bbl-count { color: #000; font-weight: 800; }
+
   /* District bubbles */
   .bbl.bbl-district {
     background: var(--card);
@@ -2209,7 +2220,7 @@ function openModal(row) {
     mCand('LDF', '#D94040', row.LDF, row.LDF_Candidate) +
     mCand('UDF', '#1565C0', row.UDF, row.UDF_Candidate) +
     (row.NDA ? mCand('NDA', '#E07828', row.NDA, row.NDA_Candidate) : '') +
-    mCand('Others', '#888', '', '');
+    (row.Others_list || []).map(o => mCand(o.party || 'Others', '#33AA55', o.party, o.name)).join('');
 
   document.getElementById('modal-overlay').classList.add('open');
 }
@@ -2426,11 +2437,16 @@ function buildPartyStats() {
       if (!partyMap[party]) partyMap[party] = { count: 0, alliance: a };
       partyMap[party].count++;
     });
+    (r.Others_list || []).forEach(o => {
+      if (!o.party || !o.name) return;
+      if (!partyMap[o.party]) partyMap[o.party] = { count: 0, alliance: 'OTH' };
+      partyMap[o.party].count++;
+    });
   });
 
   const sorted = Object.entries(partyMap).sort((a,b) => b[1].count - a[1].count);
   const total  = data.length;
-  const allianceClass = { LDF: 'ldf', UDF: 'udf', NDA: 'nda' };
+  const allianceClass = { LDF: 'ldf', UDF: 'udf', NDA: 'nda', OTH: 'oth' };
 
   row.innerHTML =
     sorted.map(([party, info]) => {
