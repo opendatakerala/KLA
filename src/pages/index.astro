@@ -88,7 +88,6 @@ const pageTitle = "Kerala Legislative Assembly Election 2026";
 
 <script>
 import * as d3 from 'd3';
-import * as topojson from 'topojson-client';
 import { computeStats, getPartyStats, getDistricts } from '../lib/stats.js';
 import { filterData, searchData } from '../lib/filter.js';
 import { createCardHTML, createModalHTML } from '../lib/grid.js';
@@ -96,7 +95,7 @@ import { ALLIANCE_COLORS } from '../lib/constants.js';
 import { initLanguage, setLanguage, t, tReplace } from '../lib/i18n.js';
 import constituencies from '../data/constituencies.json';
 import partyLookup from '../data/party-lookup.json';
-import topoJson from '../data/kla_map.topojson?raw';
+import mapSvgText from '../data/kla-map.svg?raw';
 
 const DATA = constituencies;
 const PARTIES = partyLookup;
@@ -221,47 +220,38 @@ function switchView(view) {
 
 // Map
 let mapSvg = null;
-let mapFeatures = [];
 
 function initMap() {
   const container = document.getElementById('kerala-map');
   if (!container) return;
 
-  // Use imported topoJSON directly
-  const topo = JSON.parse(topoJson);
-  const features = topojson.feature(topo, topo.objects.collection).features;
-  mapFeatures = features;
+  container.innerHTML = mapSvgText;
   
-  const w = container.clientWidth || 400;
-  const h = container.clientHeight || 600;
-
-  const projection = d3.geoMercator().fitSize([w, h], { type: 'FeatureCollection', features });
-  const pathGen = d3.geoPath().projection(projection);
-
-  mapSvg = d3.select(container).append('svg')
-    .attr('preserveAspectRatio', 'xMidYMid meet');
-
+  mapSvg = d3.select(container).select('svg');
+  
   const tooltip = document.getElementById('map-tooltip');
 
-  mapSvg.selectAll('.const-path')
-    .data(features)
-    .enter()
-    .append('path')
-    .attr('class', 'const-path')
-    .attr('d', pathGen)
-    .each(function(d) {
-      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+  mapSvg.selectAll('path')
+    .each(function() {
+      const path = d3.select(this);
+      const qid = path.attr('id');
+      const row = DATA.find(x => x.Constituency_Wikidata === qid);
+      
       if (row) {
-        d3.select(this)
+        path
           .attr('id', 'c' + row.Constituency_Number)
-          .attr('data-num', row.Constituency_Number);
+          .attr('data-num', row.Constituency_Number)
+          .attr('class', 'const-path');
       }
+      
       const color = getConstColor(row);
-      d3.select(this).style('fill', color);
+      path.style('fill', color).style('cursor', 'pointer');
     })
-    .on('mouseenter', function(event, d) {
-      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
-      const name = row ? row.Constituency_Name : d.properties.Asmbly_Con;
+    .on('mouseenter', function(event) {
+      const path = d3.select(this);
+      const qid = path.attr('id');
+      const row = DATA.find(x => x.Constituency_Wikidata === qid);
+      const name = row ? row.Constituency_Name : (path.attr('data-name') || '');
       const num = row ? row.Constituency_Number : '';
       const al = row ? (row.LDF_Candidate ? 'LDF' : row.UDF_Candidate ? 'UDF' : row.NDA_Candidate ? 'NDA' : '') : '';
       
@@ -279,8 +269,10 @@ function initMap() {
     .on('mouseleave', function() {
       if (tooltip) tooltip.style.display = 'none';
     })
-    .on('click', function(event, d) {
-      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+    .on('click', function() {
+      const path = d3.select(this);
+      const qid = path.attr('id');
+      const row = DATA.find(x => x.Constituency_Wikidata === qid);
       if (row) openModal(row);
     });
 }
@@ -310,8 +302,10 @@ function setMapColorMode(mode) {
   }
   
   if (mapSvg) {
-    mapSvg.selectAll('.const-path').each(function(d) {
-      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+    mapSvg.selectAll('.const-path').each(function() {
+      const path = d3.select(this);
+      const qid = path.attr('id');
+      const row = DATA.find(x => x.Constituency_Wikidata === qid);
       d3.select(this).style('fill', getConstColor(row)).style('opacity', 1).classed('dimmed', false);
     });
   }
