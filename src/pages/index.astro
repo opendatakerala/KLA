@@ -87,7 +87,6 @@ const pageTitle = "Kerala Legislative Assembly Election 2026";
 </Layout>
 
 <script>
-import * as d3 from 'd3';
 import { computeStats, getPartyStats, getDistricts } from '../lib/stats.js';
 import { filterData, searchData } from '../lib/filter.js';
 import { createCardHTML, createModalHTML } from '../lib/grid.js';
@@ -95,7 +94,7 @@ import { ALLIANCE_COLORS } from '../lib/constants.js';
 import { initLanguage, setLanguage, t, tReplace } from '../lib/i18n.js';
 import constituencies from '../data/constituencies.json';
 import partyLookup from '../data/party-lookup.json';
-import mapSvgText from '../data/kla-map.svg?raw';
+
 
 const DATA = constituencies;
 const PARTIES = partyLookup;
@@ -106,9 +105,7 @@ let activeDistrict = 'all';
 let activeFilter = 'all';
 let activeParty = null;
 let mapColorMode = 'alliance';
-let mapWomenActive = false;
-let activeMapParty = null;
-let activeMapDistrict = 'all';
+
 
 // DOM elements
 const grid = document.getElementById('grid');
@@ -218,140 +215,6 @@ function switchView(view) {
   }
 }
 
-// Map
-let mapSvg = null;
-
-function initMap() {
-  const container = document.getElementById('kerala-map');
-  if (!container) return;
-
-  container.innerHTML = mapSvgText;
-  
-  mapSvg = d3.select(container).select('svg');
-  
-  const tooltip = document.getElementById('map-tooltip');
-
-  mapSvg.selectAll('path')
-    .each(function() {
-      const path = d3.select(this);
-      const qid = path.attr('id');
-      const row = DATA.find(x => x.Constituency_Wikidata === qid);
-      
-      if (row) {
-        path
-          .attr('id', 'c' + row.Constituency_Number)
-          .attr('data-num', row.Constituency_Number)
-          .attr('class', 'const-path');
-      }
-      
-      const color = getConstColor(row);
-      path.style('fill', color).style('cursor', 'pointer');
-    })
-    .on('mouseenter', function(event) {
-      const path = d3.select(this);
-      const qid = path.attr('id');
-      const row = DATA.find(x => x.Constituency_Wikidata === qid);
-      const name = row ? row.Constituency_Name : (path.attr('data-name') || '');
-      const num = row ? row.Constituency_Number : '';
-      const al = row ? (row.LDF_Candidate ? 'LDF' : row.UDF_Candidate ? 'UDF' : row.NDA_Candidate ? 'NDA' : '') : '';
-      
-      if (tooltip) {
-        tooltip.textContent = (num ? '#' + num + ' ' : '') + name + (al ? ' · ' + al : '');
-        tooltip.style.display = 'block';
-      }
-    })
-    .on('mousemove', function(event) {
-      if (tooltip) {
-        tooltip.style.left = (event.clientX + 14) + 'px';
-        tooltip.style.top = (event.clientY - 8) + 'px';
-      }
-    })
-    .on('mouseleave', function() {
-      if (tooltip) tooltip.style.display = 'none';
-    })
-    .on('click', function() {
-      const path = d3.select(this);
-      const qid = path.attr('id');
-      const row = DATA.find(x => x.Constituency_Wikidata === qid);
-      if (row) openModal(row);
-    });
-}
-
-function getConstColor(row) {
-  if (!row) return '#d4e0d4';
-  if (mapColorMode === 'alliance' || !mapColorMode) {
-    if (row.LDF_Candidate && row.UDF_Candidate && row.NDA_Candidate) return '#e0e0e0';
-    if (row.LDF_Candidate) return ALLIANCE_COLORS.LDF;
-    if (row.UDF_Candidate) return ALLIANCE_COLORS.UDF;
-    if (row.NDA_Candidate) return ALLIANCE_COLORS.NDA;
-    return '#d4e0d4';
-  }
-  const key = mapColorMode.toUpperCase();
-  return row[key + '_Candidate'] ? ALLIANCE_COLORS[key] : '#d8d8d8';
-}
-
-function setMapColorMode(mode) {
-  mapColorMode = mode;
-  document.querySelectorAll('.map-mode-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.mode === mode);
-  });
-  
-  if (mapWomenActive) {
-    mapWomenActive = false;
-    document.getElementById('map-women-btn').classList.remove('active');
-  }
-  
-  if (mapSvg) {
-    mapSvg.selectAll('.const-path').each(function() {
-      const path = d3.select(this);
-      const qid = path.attr('id');
-      const row = DATA.find(x => x.Constituency_Wikidata === qid);
-      d3.select(this).style('fill', getConstColor(row)).style('opacity', 1).classed('dimmed', false);
-    });
-  }
-}
-
-function buildMapFilters() {
-  // Party filter
-  const partyFilter = document.getElementById('party-filter');
-  const partyStats = getPartyStats(DATA);
-  
-  let partyHtml = `<button class="map-party-btn active" data-party="all">
-    <span class="mpb-dot" style="background:var(--text)"></span>
-    <span class="mpb-label">${t('map.allParties')}</span>
-    <span class="mpb-count">${DATA.length}</span>
-  </button>`;
-  
-  partyStats.forEach(p => {
-    const color = ALLIANCE_COLORS[p.alliance] || '#888';
-    partyHtml += `<button class="map-party-btn" data-party="${p.party}">
-      <span class="mpb-dot" style="background:${color}"></span>
-      <span class="mpb-label">${p.party}</span>
-      <span class="mpb-count">${p.count}</span>
-    </button>`;
-  });
-  partyFilter.innerHTML = partyHtml;
-  
-  // District filter
-  const distFilter = document.getElementById('dist-filter');
-  const districts = getDistricts(DATA);
-  const dCounts = {};
-  DATA.forEach(r => { dCounts[r.District] = (dCounts[r.District] || 0) + 1; });
-  
-  let distHtml = `<button class="dist-btn active" data-district="all">
-    <span class="dist-btn-name">${t('map.allKerala')}</span>
-    <span class="dist-btn-count">140</span>
-  </button>`;
-  
-  districts.forEach(d => {
-    distHtml += `<button class="dist-btn" data-district="${d}">
-      <span class="dist-btn-name">${d}</span>
-      <span class="dist-btn-count">${dCounts[d]}</span>
-    </button>`;
-  });
-  distFilter.innerHTML = distHtml;
-}
-
 function initDistrictTabs() {
   const districts = getDistricts(DATA);
   districts.forEach(d => {
@@ -410,12 +273,6 @@ function handleViewClick(e) {
   switchView(tab.dataset.view);
 }
 
-function handleMapModeClick(e) {
-  const btn = e.target.closest('.map-mode-btn');
-  if (!btn) return;
-  setMapColorMode(btn.dataset.mode);
-}
-
 function handleModalClick(e) {
   if (e.target === modalOverlay) closeModal();
 }
@@ -437,10 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Build UI
   initDistrictTabs();
-  buildMapFilters();
   updateStats();
   renderGrid();
-  initMap();
   
   // Hide map by default
   document.getElementById('map-view').style.display = 'none';
@@ -453,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
   clearBtn.addEventListener('click', handleClear);
   
   document.querySelector('.view-tabs').addEventListener('click', handleViewClick);
-  document.querySelector('.map-mode-row').addEventListener('click', handleMapModeClick);
   
   // Language switcher - disabled for production
   // TODO: Enable when Malayalam translations are ready
