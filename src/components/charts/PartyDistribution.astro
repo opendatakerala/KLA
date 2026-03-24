@@ -1,22 +1,22 @@
 ---
 ---
 
-<div class="party-bars" id="party-bars">
-  <div class="bar-wrapper">
-    <div class="bar-label">LDF</div>
-    <div class="bar-chart" id="bar-chart-ldf"></div>
+<div class="party-pies" id="party-pies">
+  <div class="pie-wrapper">
+    <div class="pie-label">LDF</div>
+    <div class="pie-chart" id="pie-chart-ldf"></div>
   </div>
-  <div class="bar-wrapper">
-    <div class="bar-label">UDF</div>
-    <div class="bar-chart" id="bar-chart-udf"></div>
+  <div class="pie-wrapper">
+    <div class="pie-label">UDF</div>
+    <div class="pie-chart" id="pie-chart-udf"></div>
   </div>
-  <div class="bar-wrapper">
-    <div class="bar-label">NDA</div>
-    <div class="bar-chart" id="bar-chart-nda"></div>
+  <div class="pie-wrapper">
+    <div class="pie-label">NDA</div>
+    <div class="pie-chart" id="pie-chart-nda"></div>
   </div>
-  <div class="bar-wrapper">
-    <div class="bar-label">Others</div>
-    <div class="bar-chart" id="bar-chart-others"></div>
+  <div class="pie-wrapper">
+    <div class="pie-label">Others</div>
+    <div class="pie-chart" id="pie-chart-others"></div>
   </div>
 </div>
 
@@ -31,7 +31,7 @@
     '#c49c94', '#f7b6d2', '#c7c7c7', '#dbdb8d', '#9edae5'
   ];
 
-  function renderPartyBar(alliance, containerId) {
+  function renderPartyPie(alliance, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -48,38 +48,40 @@
     
     const option = {
       tooltip: {
-        trigger: 'axis',
-        axisPointer: { type: 'shadow' }
+        trigger: 'item',
+        formatter: '{b}: {c} ({d}%)'
       },
-      grid: {
-        left: '3%',
-        right: '15%',
-        bottom: '3%',
-        top: '3%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'value',
-        axisLabel: { fontFamily: 'DM Mono', fontSize: 10 }
-      },
-      yAxis: {
-        type: 'category',
-        data: data.map(d => d.name),
-        inverse: true,
-        axisLabel: { fontFamily: 'DM Mono', fontSize: 9, width: 150, overflow: 'truncate' }
+      legend: {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 5,
+        top: 'center',
+        bottom: 10,
+        width: 80,
+        textStyle: { fontFamily: 'DM Mono', fontSize: 9 },
+        pageTextStyle: { fontFamily: 'DM Mono', fontSize: 9 }
       },
       series: [{
-        type: 'bar',
-        data: data.map(d => ({
-          value: d.value,
-          itemStyle: d.itemStyle
-        })),
+        type: 'pie',
+        radius: ['30%', '65%'],
+        center: ['35%', '50%'],
         label: {
           show: true,
-          position: 'right',
+          formatter: '{b}\n{c}',
+          fontSize: 9,
           fontFamily: 'DM Mono',
-          fontSize: 10
-        }
+          lineHeight: 12,
+          padding: [2, 0, 0, 0]
+        },
+        labelLine: { show: false },
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+          }
+        },
+        data
       }]
     };
 
@@ -89,10 +91,10 @@
 
   function init() {
     const charts = [
-      renderPartyBar('LDF', 'bar-chart-ldf'),
-      renderPartyBar('UDF', 'bar-chart-udf'),
-      renderPartyBar('NDA', 'bar-chart-nda'),
-      renderPartyBar('Others', 'bar-chart-others')
+      renderPartyPie('LDF', 'pie-chart-ldf'),
+      renderPartyPie('UDF', 'pie-chart-udf'),
+      renderPartyPie('NDA', 'pie-chart-nda'),
+      renderPartyPie('Others', 'pie-chart-others')
     ];
 
     window.addEventListener('resize', () => {
@@ -104,31 +106,31 @@
 </script>
 
 <style>
-  .party-bars {
+  .party-pies {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
 
   @media (max-width: 900px) {
-    .party-bars {
+    .party-pies {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 500px) {
-    .party-bars {
+    .party-pies {
       grid-template-columns: 1fr;
     }
   }
 
-  .bar-wrapper {
+  .pie-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .bar-label {
+  .pie-label {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
     font-weight: 600;
@@ -137,8 +139,8 @@
     color: var(--text-soft);
   }
 
-  .bar-chart {
+  .pie-chart {
     width: 100%;
-    height: 320px;
+    height: 300px;
   }
 </style>
