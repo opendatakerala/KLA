@@ -1,0 +1,68 @@
+---
+const { totalCandidates = '—' } = Astro.props;
+---
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <div class="header-logo-wrap">
+      <img class="header-logo" src="https://opendatakerala.org/LSG2025/assets/logo-DnFodOdy.png" alt="OpenDataKerala Logo" />
+    </div>
+    <div class="header-title">
+      <div class="header-eyebrow">Kerala Legislative Assembly</div>
+      <h1>Election <em>2026</em></h1>
+      <div class="header-tagline">
+        Candidate list across all 140 constituencies &middot; 14 districts
+        <span>&nbsp;&bull; an OpenDataKerala Community Initiative</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-stats">
+        <div class="hstat">
+          <div class="hstat-num">140</div>
+          <div class="hstat-label">Seats</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num" id="total-candidates">{totalCandidates}</div>
+          <div class="hstat-label">Announced Candidates *</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-bottom-row">
+    <div class="header-bottom-left">
+      <div class="hb-search-wrap">
+        <div class="hb-search-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
+          </svg>
+        </div>
+        <input class="hb-search-input" id="search" placeholder="Search constituency, candidate…" />
+        <button class="hb-search-btn" id="search-btn">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="9" cy="9" r="5.5"/><line x1="13" y1="13" x2="17" y2="17"/>
+          </svg>
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="header-bottom-right">
+      <div class="view-tabs">
+        <button class="view-tab active" id="tab-table" data-view="table">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="16" height="14" rx="2"/><line x1="2" y1="8" x2="18" y2="8"/><line x1="2" y1="13" x2="18" y2="13"/><line x1="7" y1="8" x2="7" y2="17"/></svg>
+          Table
+        </button>
+        <button class="view-tab" id="tab-map" data-view="map">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z"/><line x1="8" y1="3" x2="8" y2="17"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
+          Map
+        </button>
+      </div>
+      <button class="clear-btn" id="clear-btn">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3l14 14M17 3L3 17"/></svg>
+        Clear
+      </button>
+      <button class="disclaimer-link" id="disclaimer-btn">⚠ Disclaimer</button>
+    </div>
+  </div>
+</header>

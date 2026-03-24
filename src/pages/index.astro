@@ -1,0 +1,470 @@
+---
+import Layout from '../components/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+import MapView from '../components/MapView.astro';
+
+import constituencies from '../data/constituencies.json';
+import partyLookup from '../data/party-lookup.json';
+
+const pageTitle = "Kerala Legislative Assembly Election 2026";
+---
+
+<Layout title={pageTitle}>
+  <Header totalCandidates="—" />
+
+  <div class="container">
+    <MapView />
+
+    <div class="table-view" id="table-view">
+      <div class="table-view-inner">
+        <div class="stats-row">
+          <div class="stat-cell ldf">
+            <div class="stat-n" id="stat-ldf">—</div>
+            <div class="stat-label">LDF Candidates</div>
+          </div>
+          <div class="stat-cell udf">
+            <div class="stat-n" id="stat-udf">—</div>
+            <div class="stat-label">UDF Candidates</div>
+          </div>
+          <div class="stat-cell nda">
+            <div class="stat-n" id="stat-nda">—</div>
+            <div class="stat-label">NDA Candidates</div>
+          </div>
+          <div class="stat-cell sc">
+            <div class="stat-n" id="stat-sc">—</div>
+            <div class="stat-label">SC Reserved</div>
+          </div>
+          <div class="stat-cell st">
+            <div class="stat-n" id="stat-st">—</div>
+            <div class="stat-label">ST Reserved</div>
+          </div>
+        </div>
+
+        <div class="filter-row" id="filter-row">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn ldf" data-filter="LDF">LDF</button>
+          <button class="filter-btn udf" data-filter="UDF">UDF</button>
+          <button class="filter-btn nda" data-filter="NDA">NDA</button>
+          <button class="filter-btn sc" data-filter="SC">SC Reserved</button>
+          <button class="filter-btn st" data-filter="ST">ST Reserved</button>
+          <button class="filter-btn female" data-filter="female">♀ Women</button>
+        </div>
+
+        <div class="section-title">Browse by District</div>
+        <div class="tabs" id="district-tabs">
+          <div class="tab active" data-district="all">All Districts</div>
+        </div>
+
+        <div class="results-info" id="results-info"></div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-top"></div>
+      <div class="modal-header">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-badges" id="modal-badges"></div>
+        <button class="modal-close" id="modal-close">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section-label">Contesting Candidates</div>
+        <div class="modal-candidates" id="modal-candidates"></div>
+      </div>
+    </div>
+  </div>
+
+  <Disclaimer />
+</Layout>
+
+<script>
+import * as d3 from 'd3';
+import * as topojson from 'topojson-client';
+import { computeStats, getPartyStats, getDistricts } from '../lib/stats.js';
+import { filterData, searchData } from '../lib/filter.js';
+import { createCardHTML, createModalHTML } from '../lib/grid.js';
+import { ALLIANCE_COLORS } from '../lib/constants.js';
+import constituencies from '../data/constituencies.json';
+import partyLookup from '../data/party-lookup.json';
+
+const DATA = constituencies;
+const PARTIES = partyLookup;
+
+// State
+let topoData = null;
+let currentView = 'table';
+let activeDistrict = 'all';
+let activeFilter = 'all';
+let activeParty = null;
+let mapColorMode = 'alliance';
+let mapWomenActive = false;
+let activeMapParty = null;
+let activeMapDistrict = 'all';
+
+// DOM elements
+const grid = document.getElementById('grid');
+const resultsInfo = document.getElementById('results-info');
+const districtTabs = document.getElementById('district-tabs');
+const searchInput = document.getElementById('search');
+const searchBtn = document.getElementById('search-btn');
+const clearBtn = document.getElementById('clear-btn');
+const modalOverlay = document.getElementById('modal-overlay');
+const discOverlay = document.getElementById('disc-overlay');
+
+// Stats
+function updateStats() {
+  const stats = computeStats(DATA);
+  const total = stats.ldf + stats.udf + stats.nda + stats.others;
+  
+  document.getElementById('stat-ldf').textContent = stats.ldf;
+  document.getElementById('stat-udf').textContent = stats.udf;
+  document.getElementById('stat-nda').textContent = stats.nda;
+  document.getElementById('stat-sc').textContent = stats.sc;
+  document.getElementById('stat-st').textContent = stats.st;
+  document.getElementById('total-candidates').textContent = total;
+}
+
+// Grid
+function renderGrid() {
+  let filtered = filterData(DATA, { 
+    district: activeDistrict, 
+    filter: activeFilter, 
+    search: searchInput.value,
+    party: activeParty 
+  });
+
+  const total = DATA.length;
+  const shown = filtered.length;
+  const query = searchInput.value.trim();
+  
+  if (shown === total && !query && activeDistrict === 'all' && activeFilter === 'all') {
+    resultsInfo.textContent = `Showing all ${shown} constituencies`;
+  } else {
+    resultsInfo.textContent = `Showing ${shown} of ${total} constituencies${query ? ' · search: "' + query + '"' : ''}`;
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state">No constituencies match your search.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((row, idx) => {
+    const card = createCardHTML(row);
+    return card;
+  }).join('');
+
+  // Add click handlers
+  grid.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const num = card.dataset.constNumber;
+      const row = DATA.find(d => d.Constituency_Number === num);
+      if (row) openModal(row);
+    });
+  });
+
+  // Update clear button
+  const hasFilters = activeFilter !== 'all' || activeDistrict !== 'all' || activeParty || query;
+  clearBtn.classList.toggle('has-filters', hasFilters);
+}
+
+// Modal
+function openModal(row) {
+  const html = createModalHTML(row, PARTIES);
+  document.getElementById('modal-eyebrow').textContent = html.eyebrow;
+  document.getElementById('modal-title').textContent = html.title;
+  document.getElementById('modal-badges').innerHTML = html.badges;
+  document.getElementById('modal-candidates').innerHTML = html.candidates;
+  modalOverlay.classList.add('open');
+}
+
+function closeModal() {
+  modalOverlay.classList.remove('open');
+}
+
+// Disclaimer
+function closeDisclaimer() {
+  discOverlay.classList.remove('open');
+}
+
+function openDisclaimer() {
+  discOverlay.classList.add('open');
+}
+
+// View switching
+function switchView(view) {
+  currentView = view;
+  const mapView = document.getElementById('map-view');
+  const tableView = document.getElementById('table-view');
+  
+  document.querySelectorAll('.view-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.view === view);
+  });
+  
+  if (view === 'map') {
+    mapView.style.display = 'block';
+    tableView.style.display = 'none';
+  } else {
+    mapView.style.display = 'none';
+    tableView.style.display = 'block';
+  }
+}
+
+// Map
+let mapSvg = null;
+let mapFeatures = [];
+
+async function initMap() {
+  const container = document.getElementById('kerala-map');
+  if (!container) return;
+
+  // Load topoJSON
+  if (!topoData) {
+    const resp = await fetch('/kla_map.topojson');
+    topoData = await resp.json();
+  }
+
+  const features = topojson.feature(topoData, topoData.objects.collection).features;
+  mapFeatures = features;
+  
+  const w = container.clientWidth || 400;
+  const h = container.clientHeight || 600;
+
+  const projection = d3.geoMercator().fitSize([w, h], { type: 'FeatureCollection', features });
+  const pathGen = d3.geoPath().projection(projection);
+
+  mapSvg = d3.select(container).append('svg')
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+  const tooltip = document.getElementById('map-tooltip');
+
+  mapSvg.selectAll('.const-path')
+    .data(features)
+    .enter()
+    .append('path')
+    .attr('class', 'const-path')
+    .attr('d', pathGen)
+    .each(function(d) {
+      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+      if (row) {
+        d3.select(this)
+          .attr('id', 'c' + row.Constituency_Number)
+          .attr('data-num', row.Constituency_Number);
+      }
+      const color = getConstColor(row);
+      d3.select(this).style('fill', color);
+    })
+    .on('mouseenter', function(event, d) {
+      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+      const name = row ? row.Constituency_Name : d.properties.Asmbly_Con;
+      const num = row ? row.Constituency_Number : '';
+      const al = row ? (row.LDF_Candidate ? 'LDF' : row.UDF_Candidate ? 'UDF' : row.NDA_Candidate ? 'NDA' : '') : '';
+      
+      if (tooltip) {
+        tooltip.textContent = (num ? '#' + num + ' ' : '') + name + (al ? ' · ' + al : '');
+        tooltip.style.display = 'block';
+      }
+    })
+    .on('mousemove', function(event) {
+      if (tooltip) {
+        tooltip.style.left = (event.clientX + 14) + 'px';
+        tooltip.style.top = (event.clientY - 8) + 'px';
+      }
+    })
+    .on('mouseleave', function() {
+      if (tooltip) tooltip.style.display = 'none';
+    })
+    .on('click', function(event, d) {
+      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+      if (row) openModal(row);
+    });
+}
+
+function getConstColor(row) {
+  if (!row) return '#d4e0d4';
+  if (mapColorMode === 'alliance' || !mapColorMode) {
+    if (row.LDF_Candidate && row.UDF_Candidate && row.NDA_Candidate) return '#e0e0e0';
+    if (row.LDF_Candidate) return ALLIANCE_COLORS.LDF;
+    if (row.UDF_Candidate) return ALLIANCE_COLORS.UDF;
+    if (row.NDA_Candidate) return ALLIANCE_COLORS.NDA;
+    return '#d4e0d4';
+  }
+  const key = mapColorMode.toUpperCase();
+  return row[key + '_Candidate'] ? ALLIANCE_COLORS[key] : '#d8d8d8';
+}
+
+function setMapColorMode(mode) {
+  mapColorMode = mode;
+  document.querySelectorAll('.map-mode-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+  
+  if (mapWomenActive) {
+    mapWomenActive = false;
+    document.getElementById('map-women-btn').classList.remove('active');
+  }
+  
+  if (mapSvg) {
+    mapSvg.selectAll('.const-path').each(function(d) {
+      const row = DATA.find(x => x.Constituency_Wikidata === d.properties.WikiData);
+      d3.select(this).style('fill', getConstColor(row)).style('opacity', 1).classed('dimmed', false);
+    });
+  }
+}
+
+function buildMapFilters() {
+  // Party filter
+  const partyFilter = document.getElementById('party-filter');
+  const partyStats = getPartyStats(DATA);
+  
+  let partyHtml = `<button class="map-party-btn active" data-party="all">
+    <span class="mpb-dot" style="background:var(--text)"></span>
+    <span class="mpb-label">All Parties</span>
+    <span class="mpb-count">${DATA.length}</span>
+  </button>`;
+  
+  partyStats.forEach(p => {
+    const color = ALLIANCE_COLORS[p.alliance] || '#888';
+    partyHtml += `<button class="map-party-btn" data-party="${p.party}">
+      <span class="mpb-dot" style="background:${color}"></span>
+      <span class="mpb-label">${p.party}</span>
+      <span class="mpb-count">${p.count}</span>
+    </button>`;
+  });
+  partyFilter.innerHTML = partyHtml;
+  
+  // District filter
+  const distFilter = document.getElementById('dist-filter');
+  const districts = getDistricts(DATA);
+  const dCounts = {};
+  DATA.forEach(r => { dCounts[r.District] = (dCounts[r.District] || 0) + 1; });
+  
+  let distHtml = `<button class="dist-btn active" data-district="all">
+    <span class="dist-btn-name">All Kerala</span>
+    <span class="dist-btn-count">140</span>
+  </button>`;
+  
+  districts.forEach(d => {
+    distHtml += `<button class="dist-btn" data-district="${d}">
+      <span class="dist-btn-name">${d}</span>
+      <span class="dist-btn-count">${dCounts[d]}</span>
+    </button>`;
+  });
+  distFilter.innerHTML = distHtml;
+}
+
+function initDistrictTabs() {
+  const districts = getDistricts(DATA);
+  districts.forEach(d => {
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.dataset.district = d;
+    tab.textContent = d;
+    districtTabs.appendChild(tab);
+  });
+}
+
+// Event handlers
+function handleFilterClick(e) {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  
+  activeFilter = btn.dataset.filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeParty = null;
+  renderGrid();
+}
+
+function handleDistrictClick(e) {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  
+  activeDistrict = tab.dataset.district;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  renderGrid();
+}
+
+function handleSearch() {
+  renderGrid();
+}
+
+function handleClear() {
+  activeFilter = 'all';
+  activeDistrict = 'all';
+  activeParty = null;
+  searchInput.value = '';
+  
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+  
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.tab[data-district="all"]').classList.add('active');
+  
+  renderGrid();
+}
+
+function handleViewClick(e) {
+  const tab = e.target.closest('.view-tab');
+  if (!tab) return;
+  switchView(tab.dataset.view);
+}
+
+function handleMapModeClick(e) {
+  const btn = e.target.closest('.map-mode-btn');
+  if (!btn) return;
+  setMapColorMode(btn.dataset.mode);
+}
+
+function handleModalClick(e) {
+  if (e.target === modalOverlay) closeModal();
+}
+
+function handleDiscClick(e) {
+  const ok = e.target.id === 'disc-ok' || e.target.id === 'disc-dismiss';
+  if (ok || e.target === discOverlay) closeDisclaimer();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  // Build UI
+  initDistrictTabs();
+  buildMapFilters();
+  updateStats();
+  renderGrid();
+  initMap();
+  
+  // Hide map by default
+  document.getElementById('map-view').style.display = 'none';
+  
+  // Event listeners
+  document.getElementById('filter-row').addEventListener('click', handleFilterClick);
+  districtTabs.addEventListener('click', handleDistrictClick);
+  searchBtn.addEventListener('click', handleSearch);
+  searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSearch(); });
+  clearBtn.addEventListener('click', handleClear);
+  
+  document.querySelector('.view-tabs').addEventListener('click', handleViewClick);
+  document.querySelector('.map-mode-row').addEventListener('click', handleMapModeClick);
+  
+  modalOverlay.addEventListener('click', handleModalClick);
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('disclaimer-btn').addEventListener('click', openDisclaimer);
+  document.getElementById('footer-disc-link').addEventListener('click', openDisclaimer);
+  discOverlay.addEventListener('click', handleDiscClick);
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeDisclaimer();
+    }
+  });
+});
+</script>

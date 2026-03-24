@@ -1,0 +1,110 @@
+{
+  "CPI(M)": {
+    "full": "Communist Party of India (Marxist)",
+    "alliance": "LDF"
+  },
+  "CPI": {
+    "full": "Communist Party of India",
+    "alliance": "LDF"
+  },
+  "KC (M)": {
+    "full": "Kerala Congress (Mani)",
+    "alliance": "LDF"
+  },
+  "NCP(SP)": {
+    "full": "Nationalist Congress Party (Sharadchandra Pawar)",
+    "alliance": "LDF"
+  },
+  "RJD": {
+    "full": "Rashtriya Janata Dal",
+    "alliance": "LDF"
+  },
+  "INL": {
+    "full": "Indian National League",
+    "alliance": "LDF"
+  },
+  "Congress (Secular)": {
+    "full": "Congress (Secular)",
+    "alliance": "LDF"
+  },
+  "KC (B)": {
+    "full": "Kerala Congress (B)",
+    "alliance": "LDF"
+  },
+  "INC": {
+    "full": "Indian National Congress",
+    "alliance": "UDF"
+  },
+  "IUML": {
+    "full": "Indian Union Muslim League",
+    "alliance": "UDF"
+  },
+  "KC": {
+    "full": "Kerala Congress",
+    "alliance": "UDF"
+  },
+  "RSP": {
+    "full": "Revolutionary Socialist Party",
+    "alliance": "UDF"
+  },
+  "KC(J)": {
+    "full": "Kerala Congress (Jacob)",
+    "alliance": "UDF"
+  },
+  "RMPI": {
+    "full": "Revolutionary Marxist Party of India",
+    "alliance": "UDF"
+  },
+  "CMP": {
+    "full": "Communist Marxist Party",
+    "alliance": "UDF"
+  },
+  "BJP": {
+    "full": "Bharatiya Janata Party",
+    "alliance": "NDA"
+  },
+  "BDJS": {
+    "full": "Bharath Dharma Jana Sena",
+    "alliance": "NDA"
+  },
+  "TTP": {
+    "full": "Twenty20 Kizhakkambalam",
+    "alliance": "NDA"
+  },
+  "AAP": {
+    "full": "Aam Aadmi Party",
+    "alliance": "Others"
+  },
+  "SDPI": {
+    "full": "Social Democratic Party of India",
+    "alliance": "Others"
+  },
+  "JRS": {
+    "full": "Janata Rajyam Sabha",
+    "alliance": "NDA"
+  },
+  "AITC": {
+    "full": "All India Trinamool Congress",
+    "alliance": "UDF"
+  },
+  "DCK": {
+    "full": "Democratic Congress Kerala",
+    "alliance": "UDF"
+  },
+  "RSP(L)": {
+    "full": "Revolutionary Socialist Party (Leninist)",
+    "alliance": "LDF"
+  },
+  "Indian Socialist Janata Dal": {
+    "full": "Indian Socialist Janata Dal",
+    "alliance": "LDF"
+  },
+  "Kerala Congress (B)": {
+    "full": "Kerala Congress (B)",
+    "alliance": "LDF"
+  },
+  "Kerala Congress (M)": {
+    "full": "Kerala Congress (M)",
+    "alliance": "LDF"
+  }
+}
