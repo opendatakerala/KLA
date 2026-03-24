@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Disclaimer from '../components/Disclaimer.astro';
 import MapView from '../components/MapView.astro';
+import StatsSection from '../components/StatsSection.astro';
 
 import constituencies from '../data/constituencies.json';
 import partyLookup from '../data/party-lookup.json';
@@ -15,6 +16,7 @@ const pageTitle = "Kerala Legislative Assembly Election 2026";
   <Header totalCandidates="—" />
 
   <div class="container">
+    <StatsSection />
     <MapView />
 
     <div class="table-view" id="table-view">

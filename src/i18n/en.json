@@ -32,7 +32,12 @@
     "udf": "UDF Candidates",
     "nda": "NDA Candidates",
     "sc": "SC Reserved",
-    "st": "ST Reserved"
+    "st": "ST Reserved",
+    "partyDistribution": "Party Distribution",
+    "genderDistribution": "Gender Distribution",
+    "criminalCases": "Criminal Cases",
+    "educationDistribution": "Education",
+    "comingSoon": "Data coming soon"
   },
   "filters": {
     "all": "All",

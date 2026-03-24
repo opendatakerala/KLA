@@ -1,0 +1,420 @@
+---
+---
+
+<div class="stats-section" id="stats-section">
+  <div class="stats-tabs">
+    <button class="stats-tab active" data-stat="candidates-by-party">
+      <span data-i18n="stats.partyDistribution">Party Distribution</span>
+    </button>
+    <button class="stats-tab" data-stat="gender-distribution">
+      <span data-i18n="stats.genderDistribution">Gender Distribution</span>
+    </button>
+    <button class="stats-tab" data-stat="criminal-cases" disabled>
+      <span data-i18n="stats.criminalCases">Criminal Cases</span>
+      <span class="coming-soon">Coming Soon</span>
+    </button>
+    <button class="stats-tab" data-stat="education-distribution" disabled>
+      <span data-i18n="stats.educationDistribution">Education</span>
+      <span class="coming-soon">Coming Soon</span>
+    </button>
+  </div>
+
+  <div class="stats-content">
+    <div class="stats-panel active" id="candidates-by-party-panel">
+      <div class="party-pies">
+        <div class="pie-wrapper" id="pie-ldf">
+          <div class="pie-label">LDF</div>
+          <div class="pie-chart" id="pie-chart-ldf"></div>
+        </div>
+        <div class="pie-wrapper" id="pie-udf">
+          <div class="pie-label">UDF</div>
+          <div class="pie-chart" id="pie-chart-udf"></div>
+        </div>
+        <div class="pie-wrapper" id="pie-nda">
+          <div class="pie-label">NDA</div>
+          <div class="pie-chart" id="pie-chart-nda"></div>
+        </div>
+        <div class="pie-wrapper" id="pie-others">
+          <div class="pie-label">Others</div>
+          <div class="pie-chart" id="pie-chart-others"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-panel" id="gender-distribution-panel">
+      <div class="gender-pies">
+        <div class="pie-wrapper-large" id="pie-overall">
+          <div class="pie-label" data-i18n="stats.overall">Overall</div>
+          <div class="pie-chart-large" id="pie-chart-overall"></div>
+        </div>
+        <div class="pies-small">
+          <div class="pie-wrapper" id="pie-gender-ldf">
+            <div class="pie-label">LDF</div>
+            <div class="pie-chart" id="pie-chart-gender-ldf"></div>
+          </div>
+          <div class="pie-wrapper" id="pie-gender-udf">
+            <div class="pie-label">UDF</div>
+            <div class="pie-chart" id="pie-chart-gender-udf"></div>
+          </div>
+          <div class="pie-wrapper" id="pie-gender-nda">
+            <div class="pie-label">NDA</div>
+            <div class="pie-chart" id="pie-chart-gender-nda"></div>
+          </div>
+          <div class="pie-wrapper" id="pie-gender-others">
+            <div class="pie-label">Others</div>
+            <div class="pie-chart" id="pie-chart-gender-others"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-panel" id="criminal-cases-panel">
+      <div class="placeholder">
+        <div class="placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+        </div>
+        <div class="placeholder-text" data-i18n="stats.comingSoon">Data coming soon</div>
+      </div>
+    </div>
+    <div class="stats-panel" id="education-distribution-panel">
+      <div class="placeholder">
+        <div class="placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+        </div>
+        <div class="placeholder-text" data-i18n="stats.comingSoon">Data coming soon</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import * as echarts from 'echarts';
+  import candidatesByParty from '../data/candidates-by-party.json';
+  import genderDistribution from '../data/gender-distribution.json';
+
+  const ALLIANCE_COLORS = {
+    LDF: '#EE0000',
+    UDF: '#0078FF',
+    NDA: '#FF9933',
+    Others: '#33AA00'
+  };
+
+  const GENDER_COLORS = {
+    male: '#3B82F6',
+    female: '#EC4899',
+    transgender: '#8B5CF6',
+    unknown: '#9CA3AF'
+  };
+
+  const PARTY_PALETTE = [
+    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
+    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+    '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5',
+    '#c49c94', '#f7b6d2', '#c7c7c7', '#dbdb8d', '#9edae5'
+  ];
+
+  function renderPartyPie(alliance, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const parties = candidatesByParty[alliance] || {};
+    const data = Object.entries(parties).map(([name, value], idx) => ({
+      name,
+      value,
+      itemStyle: { color: PARTY_PALETTE[idx % PARTY_PALETTE.length] }
+    }));
+
+    const chart = echarts.init(container, null, { renderer: 'svg' });
+    
+    const option = {
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} ({d}%)'
+      },
+      series: [{
+        type: 'pie',
+        radius: ['45%', '75%'],
+        center: ['50%', '50%'],
+        label: {
+          show: true,
+          formatter: '{b}\n{c}',
+          fontSize: 9,
+          fontFamily: 'DM Mono',
+          lineHeight: 14,
+          padding: [4, 0, 0, 0]
+        },
+        labelLine: { show: false },
+        data
+      }]
+    };
+
+    chart.setOption(option);
+    return chart;
+  }
+
+  function renderCandidatesByParty() {
+    const charts = [
+      renderPartyPie('LDF', 'pie-chart-ldf'),
+      renderPartyPie('UDF', 'pie-chart-udf'),
+      renderPartyPie('NDA', 'pie-chart-nda'),
+      renderPartyPie('Others', 'pie-chart-others')
+    ];
+
+    window.addEventListener('resize', () => {
+      charts.forEach(c => c && c.resize());
+    });
+  }
+
+  function renderGenderPie(data, containerId, size = 'small') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const chart = echarts.init(container, null, { renderer: 'svg' });
+    
+    const chartData = Object.entries(data)
+      .filter(([k, v]) => v > 0)
+      .map(([key, value]) => ({
+        name: key.charAt(0).toUpperCase() + key.slice(1),
+        value,
+        itemStyle: { color: GENDER_COLORS[key] || '#9CA3AF' }
+      }));
+
+    const option = {
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} ({d}%)'
+      },
+      series: [{
+        type: 'pie',
+        radius: size === 'large' ? ['35%', '70%'] : ['40%', '70%'],
+        center: ['50%', '50%'],
+        label: {
+          show: true,
+          formatter: '{b}\n{c}',
+          fontSize: 10,
+          fontFamily: 'DM Mono',
+          lineHeight: 14,
+          padding: [4, 0, 0, 0]
+        },
+        labelLine: { show: false },
+        data: chartData
+      }]
+    };
+
+    chart.setOption(option);
+    return chart;
+  }
+
+  function renderGenderDistribution() {
+    const charts = [
+      renderGenderPie(genderDistribution.overall, 'pie-chart-overall', 'large'),
+      renderGenderPie(genderDistribution.byAlliance?.LDF || {}, 'pie-chart-gender-ldf'),
+      renderGenderPie(genderDistribution.byAlliance?.UDF || {}, 'pie-chart-gender-udf'),
+      renderGenderPie(genderDistribution.byAlliance?.NDA || {}, 'pie-chart-gender-nda'),
+      renderGenderPie(genderDistribution.byAlliance?.Others || {}, 'pie-chart-gender-others')
+    ];
+
+    window.addEventListener('resize', () => {
+      charts.forEach(c => c && c.resize());
+    });
+  }
+
+  function initStats() {
+    const tabs = document.querySelectorAll('.stats-tab');
+    const panels = document.querySelectorAll('.stats-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (tab.hasAttribute('disabled')) return;
+
+        const stat = tab.dataset.stat;
+
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(`${stat}-panel`).classList.add('active');
+
+        if (stat === 'candidates-by-party') {
+          renderCandidatesByParty();
+        } else if (stat === 'gender-distribution') {
+          renderGenderDistribution();
+        }
+      });
+    });
+
+    renderCandidatesByParty();
+  }
+
+  document.addEventListener('DOMContentLoaded', initStats);
+</script>
+
+<style>
+  .stats-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .stats-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card2);
+    overflow-x: auto;
+  }
+
+  .stats-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .stats-tab:hover:not([disabled]) {
+    border-color: var(--gold-mid);
+    color: var(--text-soft);
+  }
+
+  .stats-tab.active {
+    background: var(--gold-light);
+    border-color: var(--gold-mid);
+    color: var(--gold);
+  }
+
+  .stats-tab[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .stats-tab .coming-soon {
+    font-size: 8px;
+    padding: 2px 6px;
+    background: var(--bg2);
+    border-radius: 10px;
+    color: var(--faint);
+  }
+
+  .stats-content {
+    padding: 20px;
+    min-height: 380px;
+  }
+
+  .stats-panel {
+    display: none;
+  }
+
+  .stats-panel.active {
+    display: block;
+  }
+
+  .party-pies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .party-pies {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .party-pies {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pie-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pie-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    color: var(--text-soft);
+  }
+
+  .pie-chart {
+    width: 100%;
+    height: 200px;
+  }
+
+  .gender-pies {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .pie-wrapper-large {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background: var(--card2);
+    border-radius: 10px;
+  }
+
+  .pie-chart-large {
+    width: 100%;
+    max-width: 400px;
+    height: 280px;
+  }
+
+  .pies-small {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 800px) {
+    .pies-small {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 340px;
+    color: var(--muted);
+  }
+
+  .placeholder-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    color: var(--faint);
+  }
+
+  .placeholder-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+</style>
