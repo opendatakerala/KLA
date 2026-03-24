@@ -3,9 +3,9 @@ import PartyDistribution from './charts/PartyDistribution.astro';
 import GenderDistribution from './charts/GenderDistribution.astro';
 ---
 
-<div class="stats-section" id="stats-section">
+<div class="stats-section collapsed" id="stats-section">
   <div class="stats-tabs">
-    <button class="stats-tab active" data-stat="candidates-by-party">
+    <button class="stats-tab" data-stat="candidates-by-party">
       <span data-i18n="stats.partyDistribution">Party Distribution</span>
     </button>
     <button class="stats-tab" data-stat="gender-distribution">
@@ -22,7 +22,7 @@ import GenderDistribution from './charts/GenderDistribution.astro';
   </div>
 
   <div class="stats-content">
-    <div class="stats-panel active" id="candidates-by-party-panel">
+    <div class="stats-panel" id="candidates-by-party-panel">
       <PartyDistribution />
     </div>
 
@@ -56,6 +56,7 @@ import GenderDistribution from './charts/GenderDistribution.astro';
 
 <script>
   function initStats() {
+    const section = document.getElementById('stats-section');
     const tabs = document.querySelectorAll('.stats-tab');
     const panels = document.querySelectorAll('.stats-panel');
 
@@ -70,6 +71,7 @@ import GenderDistribution from './charts/GenderDistribution.astro';
 
         tab.classList.add('active');
         document.getElementById(`${stat}-panel`).classList.add('active');
+        section.classList.remove('collapsed');
       });
     });
   }
@@ -139,6 +141,10 @@ import GenderDistribution from './charts/GenderDistribution.astro';
   .stats-content {
     padding: 20px;
     min-height: 380px;
+  }
+
+  .stats-section.collapsed .stats-content {
+    display: none;
   }
 
   .stats-panel {
