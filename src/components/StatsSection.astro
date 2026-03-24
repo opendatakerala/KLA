@@ -65,6 +65,15 @@ import GenderDistribution from './charts/GenderDistribution.astro';
         if (tab.hasAttribute('disabled')) return;
 
         const stat = tab.dataset.stat;
+        const isActive = tab.classList.contains('active');
+        const isCollapsed = section.classList.contains('collapsed');
+
+        if (isActive && !isCollapsed) {
+          section.classList.add('collapsed');
+          tab.classList.remove('active');
+          document.getElementById(`${stat}-panel`).classList.remove('active');
+          return;
+        }
 
         tabs.forEach(t => t.classList.remove('active'));
         panels.forEach(p => p.classList.remove('active'));
