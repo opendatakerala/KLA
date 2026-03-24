@@ -1,0 +1,141 @@
+---
+---
+
+<div class="party-bars" id="party-bars">
+  <div class="bar-wrapper">
+    <div class="bar-label">LDF</div>
+    <div class="bar-chart" id="bar-chart-ldf"></div>
+  </div>
+  <div class="bar-wrapper">
+    <div class="bar-label">UDF</div>
+    <div class="bar-chart" id="bar-chart-udf"></div>
+  </div>
+  <div class="bar-wrapper">
+    <div class="bar-label">NDA</div>
+    <div class="bar-chart" id="bar-chart-nda"></div>
+  </div>
+  <div class="bar-wrapper">
+    <div class="bar-label">Others</div>
+    <div class="bar-chart" id="bar-chart-others"></div>
+  </div>
+</div>
+
+<script>
+  import * as echarts from 'echarts';
+  import candidatesByParty from '../../data/candidates-by-party.json';
+
+  const PARTY_PALETTE = [
+    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
+    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+    '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5',
+    '#c49c94', '#f7b6d2', '#c7c7c7', '#dbdb8d', '#9edae5'
+  ];
+
+  function renderPartyBar(alliance, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const parties = candidatesByParty[alliance] || {};
+    const data = Object.entries(parties).map(([name, value], idx) => ({
+      name,
+      value,
+      itemStyle: { color: PARTY_PALETTE[idx % PARTY_PALETTE.length] }
+    }));
+
+    const chart = echarts.init(container, null, { renderer: 'svg' });
+    
+    const option = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+      },
+      grid: {
+        left: '3%',
+        right: '10%',
+        bottom: '3%',
+        top: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'value',
+        axisLabel: { fontFamily: 'DM Mono', fontSize: 10 }
+      },
+      yAxis: {
+        type: 'category',
+        data: data.map(d => d.name),
+        axisLabel: { fontFamily: 'DM Mono', fontSize: 9, width: 100, overflow: 'truncate' }
+      },
+      series: [{
+        type: 'bar',
+        data: data.map(d => ({
+          value: d.value,
+          itemStyle: d.itemStyle
+        })),
+        label: {
+          show: true,
+          position: 'right',
+          fontFamily: 'DM Mono',
+          fontSize: 10
+        }
+      }]
+    };
+
+    chart.setOption(option);
+    return chart;
+  }
+
+  function init() {
+    const charts = [
+      renderPartyBar('LDF', 'bar-chart-ldf'),
+      renderPartyBar('UDF', 'bar-chart-udf'),
+      renderPartyBar('NDA', 'bar-chart-nda'),
+      renderPartyBar('Others', 'bar-chart-others')
+    ];
+
+    window.addEventListener('resize', () => {
+      charts.forEach(c => c && c.resize());
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+
+<style>
+  .party-bars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .party-bars {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .party-bars {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    color: var(--text-soft);
+  }
+
+  .bar-chart {
+    width: 100%;
+    height: 240px;
+  }
+</style>

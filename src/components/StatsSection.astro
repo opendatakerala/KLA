@@ -1,4 +1,6 @@
 ---
+import PartyDistribution from './charts/PartyDistribution.astro';
+import GenderDistribution from './charts/GenderDistribution.astro';
 ---
 
 <div class="stats-section" id="stats-section">
@@ -21,51 +23,11 @@
 
   <div class="stats-content">
     <div class="stats-panel active" id="candidates-by-party-panel">
-      <div class="party-bars">
-        <div class="bar-wrapper" id="bar-ldf">
-          <div class="bar-label">LDF</div>
-          <div class="bar-chart" id="bar-chart-ldf"></div>
-        </div>
-        <div class="bar-wrapper" id="bar-udf">
-          <div class="bar-label">UDF</div>
-          <div class="bar-chart" id="bar-chart-udf"></div>
-        </div>
-        <div class="bar-wrapper" id="bar-nda">
-          <div class="bar-label">NDA</div>
-          <div class="bar-chart" id="bar-chart-nda"></div>
-        </div>
-        <div class="bar-wrapper" id="bar-others">
-          <div class="bar-label">Others</div>
-          <div class="bar-chart" id="bar-chart-others"></div>
-        </div>
-      </div>
+      <PartyDistribution />
     </div>
 
     <div class="stats-panel" id="gender-distribution-panel">
-      <div class="gender-pies">
-        <div class="pie-wrapper-large" id="pie-overall">
-          <div class="pie-label" data-i18n="stats.overall">Overall</div>
-          <div class="pie-chart-large" id="pie-chart-overall"></div>
-        </div>
-        <div class="pies-small">
-          <div class="pie-wrapper" id="pie-gender-ldf">
-            <div class="pie-label">LDF</div>
-            <div class="pie-chart" id="pie-chart-gender-ldf"></div>
-          </div>
-          <div class="pie-wrapper" id="pie-gender-udf">
-            <div class="pie-label">UDF</div>
-            <div class="pie-chart" id="pie-chart-gender-udf"></div>
-          </div>
-          <div class="pie-wrapper" id="pie-gender-nda">
-            <div class="pie-label">NDA</div>
-            <div class="pie-chart" id="pie-chart-gender-nda"></div>
-          </div>
-          <div class="pie-wrapper" id="pie-gender-others">
-            <div class="pie-label">Others</div>
-            <div class="pie-chart" id="pie-chart-gender-others"></div>
-          </div>
-        </div>
-      </div>
+      <GenderDistribution />
     </div>
 
     <div class="stats-panel" id="criminal-cases-panel">
@@ -78,6 +40,7 @@
         <div class="placeholder-text" data-i18n="stats.comingSoon">Data coming soon</div>
       </div>
     </div>
+
     <div class="stats-panel" id="education-distribution-panel">
       <div class="placeholder">
         <div class="placeholder-icon">
@@ -92,151 +55,6 @@
 </div>
 
 <script>
-  import * as echarts from 'echarts';
-  import candidatesByParty from '../data/candidates-by-party.json';
-  import genderDistribution from '../data/gender-distribution.json';
-
-  const ALLIANCE_COLORS = {
-    LDF: '#EE0000',
-    UDF: '#0078FF',
-    NDA: '#FF9933',
-    Others: '#33AA00'
-  };
-
-  const GENDER_COLORS = {
-    male: '#3B82F6',
-    female: '#EC4899',
-    transgender: '#8B5CF6',
-    unknown: '#9CA3AF'
-  };
-
-  const PARTY_PALETTE = [
-    '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
-    '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
-    '#aec7e8', '#ffbb78', '#98df8a', '#ff9896', '#c5b0d5',
-    '#c49c94', '#f7b6d2', '#c7c7c7', '#dbdb8d', '#9edae5'
-  ];
-
-  function renderPartyBar(alliance, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    const parties = candidatesByParty[alliance] || {};
-    const data = Object.entries(parties).map(([name, value], idx) => ({
-      name,
-      value,
-      itemStyle: { color: PARTY_PALETTE[idx % PARTY_PALETTE.length] }
-    }));
-
-    const chart = echarts.init(container, null, { renderer: 'svg' });
-    
-    const option = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: { type: 'shadow' }
-      },
-      grid: {
-        left: '3%',
-        right: '10%',
-        bottom: '3%',
-        top: '3%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'value',
-        axisLabel: { fontFamily: 'DM Mono', fontSize: 10 }
-      },
-      yAxis: {
-        type: 'category',
-        data: data.map(d => d.name),
-        axisLabel: { fontFamily: 'DM Mono', fontSize: 9, width: 100, overflow: 'truncate' }
-      },
-      series: [{
-        type: 'bar',
-        data: data.map(d => ({
-          value: d.value,
-          itemStyle: d.itemStyle
-        })),
-        label: {
-          show: true,
-          position: 'right',
-          fontFamily: 'DM Mono',
-          fontSize: 10
-        }
-      }]
-    };
-
-    chart.setOption(option);
-    return chart;
-  }
-
-  function renderCandidatesByParty() {
-    const charts = [
-      renderPartyBar('LDF', 'bar-chart-ldf'),
-      renderPartyBar('UDF', 'bar-chart-udf'),
-      renderPartyBar('NDA', 'bar-chart-nda'),
-      renderPartyBar('Others', 'bar-chart-others')
-    ];
-
-    window.addEventListener('resize', () => {
-      charts.forEach(c => c && c.resize());
-    });
-  }
-
-  function renderGenderPie(data, containerId, size = 'small') {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    const chart = echarts.init(container, null, { renderer: 'svg' });
-    
-    const chartData = Object.entries(data)
-      .filter(([k, v]) => v > 0)
-      .map(([key, value]) => ({
-        name: key.charAt(0).toUpperCase() + key.slice(1),
-        value,
-        itemStyle: { color: GENDER_COLORS[key] || '#9CA3AF' }
-      }));
-
-    const option = {
-      tooltip: {
-        trigger: 'item',
-        formatter: '{b}: {c} ({d}%)'
-      },
-      series: [{
-        type: 'pie',
-        radius: size === 'large' ? ['35%', '70%'] : ['40%', '70%'],
-        center: ['50%', '50%'],
-        label: {
-          show: true,
-          formatter: '{b}\n{c}',
-          fontSize: 10,
-          fontFamily: 'DM Mono',
-          lineHeight: 14,
-          padding: [4, 0, 0, 0]
-        },
-        labelLine: { show: false },
-        data: chartData
-      }]
-    };
-
-    chart.setOption(option);
-    return chart;
-  }
-
-  function renderGenderDistribution() {
-    const charts = [
-      renderGenderPie(genderDistribution.overall, 'pie-chart-overall', 'large'),
-      renderGenderPie(genderDistribution.byAlliance?.LDF || {}, 'pie-chart-gender-ldf'),
-      renderGenderPie(genderDistribution.byAlliance?.UDF || {}, 'pie-chart-gender-udf'),
-      renderGenderPie(genderDistribution.byAlliance?.NDA || {}, 'pie-chart-gender-nda'),
-      renderGenderPie(genderDistribution.byAlliance?.Others || {}, 'pie-chart-gender-others')
-    ];
-
-    window.addEventListener('resize', () => {
-      charts.forEach(c => c && c.resize());
-    });
-  }
-
   function initStats() {
     const tabs = document.querySelectorAll('.stats-tab');
     const panels = document.querySelectorAll('.stats-panel');
@@ -252,16 +70,8 @@
 
         tab.classList.add('active');
         document.getElementById(`${stat}-panel`).classList.add('active');
-
-        if (stat === 'candidates-by-party') {
-          renderCandidatesByParty();
-        } else if (stat === 'gender-distribution') {
-          renderGenderDistribution();
-        }
       });
     });
-
-    renderCandidatesByParty();
   }
 
   document.addEventListener('DOMContentLoaded', initStats);
@@ -337,77 +147,6 @@
 
   .stats-panel.active {
     display: block;
-  }
-
-  .party-bars {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-
-  @media (max-width: 900px) {
-    .party-bars {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 500px) {
-    .party-bars {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .bar-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bar-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
-    color: var(--text-soft);
-  }
-
-  .bar-chart {
-    width: 100%;
-    height: 240px;
-  }
-
-  .gender-pies {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .pie-wrapper-large {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    background: var(--card2);
-    border-radius: 10px;
-  }
-
-  .pie-chart-large {
-    width: 100%;
-    max-width: 400px;
-    height: 280px;
-  }
-
-  .pies-small {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-
-  @media (max-width: 800px) {
-    .pies-small {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 
   .placeholder {
