@@ -37,9 +37,11 @@
     unknown: '#9CA3AF'
   };
 
+  let charts = [];
+
   function renderGenderPie(data, containerId, size = 'small') {
     const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!container) return null;
 
     const chart = echarts.init(container, null, { renderer: 'svg' });
     
@@ -58,12 +60,12 @@
       },
       series: [{
         type: 'pie',
-        radius: size === 'large' ? ['35%', '70%'] : ['40%', '70%'],
+        radius: size === 'large' ? ['30%', '65%'] : ['35%', '65%'],
         center: ['50%', '50%'],
         label: {
           show: true,
           formatter: '{b}\n{c}',
-          fontSize: 10,
+          fontSize: size === 'large' ? 11 : 9,
           fontFamily: 'DM Mono',
           lineHeight: 14,
           padding: [4, 0, 0, 0]
@@ -77,14 +79,23 @@
     return chart;
   }
 
-  function init() {
-    const charts = [
+  function renderAll() {
+    charts = [
       renderGenderPie(genderDistribution.overall, 'pie-chart-overall', 'large'),
       renderGenderPie(genderDistribution.byAlliance?.LDF || {}, 'pie-chart-gender-ldf'),
       renderGenderPie(genderDistribution.byAlliance?.UDF || {}, 'pie-chart-gender-udf'),
       renderGenderPie(genderDistribution.byAlliance?.NDA || {}, 'pie-chart-gender-nda'),
       renderGenderPie(genderDistribution.byAlliance?.Others || {}, 'pie-chart-gender-others')
     ];
+  }
+
+  function init() {
+    requestAnimationFrame(() => {
+      renderAll();
+      setTimeout(() => {
+        charts.forEach(c => c && c.resize());
+      }, 100);
+    });
 
     window.addEventListener('resize', () => {
       charts.forEach(c => c && c.resize());
@@ -112,8 +123,8 @@
 
   .pie-chart-large {
     width: 100%;
-    max-width: 400px;
-    height: 280px;
+    max-width: 500px;
+    height: 320px;
   }
 
   .pies-small {
@@ -145,6 +156,6 @@
 
   .pie-chart {
     width: 100%;
-    height: 160px;
+    height: 200px;
   }
 </style>
