@@ -1,7 +1,4 @@
 /* Map View */
-.map-view { display: none; }
-.table-view { display: block; }
-
 .map-outer {
   display: grid;
   grid-template-columns: 1fr 340px;
