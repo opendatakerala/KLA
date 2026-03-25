@@ -38,9 +38,9 @@
             .attr('class', 'const-path' + (isSc ? ' reserved-sc' : isSt ? ' reserved-st' : ''));
           
           if (isSc) {
-            path.style('fill', 'var(--sc-color)');
+            path.attr('fill', '#7C3AED');
           } else if (isSt) {
-            path.style('fill', 'var(--st-color)');
+            path.attr('fill', '#0B7A56');
           }
         }
         
