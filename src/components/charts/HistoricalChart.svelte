@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import * as echarts from 'echarts';
   
   export let seriesData = [];
   
@@ -11,10 +12,11 @@
     Others: '#33AA55'
   };
   
+  const ALLIANCES = ['LDF', 'UDF', 'NDA', 'Others'];
+  
   let currentView = 'bars';
-  let chart = null;
   let chartContainer;
-  let barsContent = '';
+  let chart = null;
   
   onMount(() => {
     currentView = localStorage.getItem(STORAGE_KEY) || 'bars';
@@ -24,107 +26,59 @@
     };
   });
   
-  $: if (seriesData.length > 0) {
-    render();
-  }
-  
   function setView(view) {
     currentView = view;
     localStorage.setItem(STORAGE_KEY, view);
-    render();
+    
+    if ((view === 'line' || view === 'stacked') && chartContainer && seriesData.length > 0) {
+      setTimeout(renderChart, 0);
+    }
   }
   
-  function render() {
-    if (seriesData.length === 0) return;
+  function renderChart() {
+    if (!chartContainer || seriesData.length === 0) return;
     
     if (chart) {
       chart.dispose();
       chart = null;
     }
     
-    if (currentView === 'bars') {
-      renderBars();
-    } else if (currentView === 'line') {
-      renderLine();
-    } else if (currentView === 'stacked') {
-      renderStacked();
-    }
-  }
-  
-  function renderBars() {
-    let html = '<div class="modal-historical">';
-    seriesData.forEach(d => {
-      html += `<div class="historical-year"><div class="historical-year-label">${d.year}</div>`;
-      ['LDF', 'UDF', 'NDA', 'Others'].forEach(al => {
-        if (d.allianceVotes[al] > 0) {
-          const pct = d.totalVotes > 0 ? ((d.allianceVotes[al] / d.totalVotes) * 100).toFixed(1) : 0;
-          html += `<div class="historical-bar"><span class="historical-alliance ${al}">${al}</span><div class="historical-bar-track"><div class="historical-bar-fill" style="width:${pct}%;background:${COLORS[al]}"></div></div><span class="historical-pct">${pct}%</span></div>`;
-        }
-      });
-      html += '</div>';
-    });
-    html += '</div>';
-    barsContent = html;
-  }
-  
-  async function renderLine() {
-    barsContent = '';
-    if (!chartContainer) return;
-    
-    const echarts = await import('echarts');
-    
     chart = echarts.init(chartContainer, null, { renderer: 'svg' });
     
-    const series = ['LDF', 'UDF', 'NDA', 'Others'].map(alliance => ({
-      name: alliance,
-      type: 'line',
-      data: seriesData.map(d => {
-        const pct = d.totalVotes > 0 ? (d.allianceVotes[alliance] / d.totalVotes) * 100 : 0;
-        return parseFloat(pct.toFixed(1));
-      }),
-      smooth: true,
-      itemStyle: { color: COLORS[alliance] },
-      lineStyle: { width: 2 },
-      symbol: 'circle',
-      symbolSize: 8
-    }));
+    let series;
     
-    const option = {
-      tooltip: { trigger: 'axis' },
-      legend: { data: ['LDF', 'UDF', 'NDA', 'Others'], bottom: 0 },
-      grid: { left: 40, right: 20, top: 20, bottom: 50 },
-      xAxis: { type: 'category', data: seriesData.map(d => d.year) },
-      yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
-      series
-    };
-    
-    chart.setOption(option);
-  }
-  
-  async function renderStacked() {
-    barsContent = '';
-    if (!chartContainer) return;
-    
-    const echarts = await import('echarts');
-    
-    chart = echarts.init(chartContainer, null, { renderer: 'svg' });
-    
-    const series = ['LDF', 'UDF', 'NDA', 'Others']
-      .filter(alliance => seriesData.some(d => d.allianceVotes[alliance] > 0))
-      .map(alliance => ({
+    if (currentView === 'line') {
+      series = ALLIANCES.map(alliance => ({
         name: alliance,
-        type: 'bar',
-        stack: 'total',
+        type: 'line',
         data: seriesData.map(d => {
           const pct = d.totalVotes > 0 ? (d.allianceVotes[alliance] / d.totalVotes) * 100 : 0;
           return parseFloat(pct.toFixed(1));
         }),
-        itemStyle: { color: COLORS[alliance] }
+        smooth: true,
+        itemStyle: { color: COLORS[alliance] },
+        lineStyle: { width: 2 },
+        symbol: 'circle',
+        symbolSize: 8
       }));
+    } else if (currentView === 'stacked') {
+      series = ALLIANCES
+        .filter(alliance => seriesData.some(d => d.allianceVotes[alliance] > 0))
+        .map(alliance => ({
+          name: alliance,
+          type: 'bar',
+          stack: 'total',
+          data: seriesData.map(d => {
+            const pct = d.totalVotes > 0 ? (d.allianceVotes[alliance] / d.totalVotes) * 100 : 0;
+            return parseFloat(pct.toFixed(1));
+          }),
+          itemStyle: { color: COLORS[alliance] }
+        }));
+    }
     
     const option = {
       tooltip: { trigger: 'axis' },
-      legend: { data: series.map(s => s.name), bottom: 0 },
+      legend: { data: ALLIANCES, bottom: 0 },
       grid: { left: 40, right: 20, top: 20, bottom: 50 },
       xAxis: { type: 'category', data: seriesData.map(d => d.year) },
       yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
@@ -132,6 +86,10 @@
     };
     
     chart.setOption(option);
+  }
+  
+  function getPct(votes, total) {
+    return total > 0 ? ((votes / total) * 100).toFixed(1) : '0.0';
   }
 </script>
 
@@ -160,12 +118,33 @@
         Stacked
       </button>
     </div>
+    
     {#if currentView === 'bars'}
-      <div class="historical-content">
-        {@html barsContent}
+      <div class="bars-view">
+        {#each seriesData as yearData}
+          <div class="year-group">
+            <div class="year-label">{yearData.year}</div>
+            <div class="bars-container">
+              {#each ALLIANCES as alliance}
+                {#if yearData.allianceVotes[alliance] > 0}
+                  <div class="bar-row">
+                    <span class="alliance-label" style="color: {COLORS[alliance]}">{alliance}</span>
+                    <div class="bar-track">
+                      <div 
+                        class="bar-fill" 
+                        style="width: {getPct(yearData.allianceVotes[alliance], yearData.totalVotes)}%; background: {COLORS[alliance]}"
+                      ></div>
+                    </div>
+                    <span class="pct-label">{getPct(yearData.allianceVotes[alliance], yearData.totalVotes)}%</span>
+                  </div>
+                {/if}
+              {/each}
+            </div>
+          </div>
+        {/each}
       </div>
     {:else}
-      <div class="historical-chart" bind:this={chartContainer}></div>
+      <div class="chart-view" bind:this={chartContainer}></div>
     {/if}
   </div>
 {/if}
@@ -205,47 +184,45 @@
     border-color: var(--text);
   }
 
-  .historical-chart {
-    width: 100%;
-    height: 250px;
-  }
-
-  .historical-content :global(.modal-historical) {
+  .bars-view {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
   }
 
-  .historical-content :global(.historical-year) {
-    margin-bottom: 8px;
+  .year-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .historical-content :global(.historical-year-label) {
+  .year-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     color: var(--muted);
-    margin-bottom: 8px;
+    letter-spacing: 0.05em;
   }
 
-  .historical-content :global(.historical-bar) {
+  .bars-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .bar-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 4px;
   }
 
-  .historical-content :global(.historical-alliance) {
+  .alliance-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
+    font-weight: 600;
     width: 32px;
   }
 
-  .historical-content :global(.historical-alliance.LDF) { color: #D94040; }
-  .historical-content :global(.historical-alliance.UDF) { color: #1565C0; }
-  .historical-content :global(.historical-alliance.NDA) { color: #E07828; }
-  .historical-content :global(.historical-alliance.Others) { color: #33AA55; }
-
-  .historical-content :global(.historical-bar-track) {
+  .bar-track {
     flex: 1;
     height: 6px;
     background: var(--card2);
@@ -253,16 +230,22 @@
     overflow: hidden;
   }
 
-  .historical-content :global(.historical-bar-fill) {
+  .bar-fill {
     height: 100%;
     border-radius: 3px;
+    transition: width 0.3s ease;
   }
 
-  .historical-content :global(.historical-pct) {
+  .pct-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
     color: var(--muted);
     width: 36px;
     text-align: right;
+  }
+
+  .chart-view {
+    width: 100%;
+    height: 250px;
   }
 </style>

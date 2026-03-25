@@ -1,5 +1,6 @@
 <script>
-  import { selectedConstituency, closeModal, getHistoricalData } from '../stores/constituencyStore.js';
+  import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
+  import { getHistoricalData } from '../stores/historicalStore.js';
   import HistoricalChart from './charts/HistoricalChart.svelte';
 
   $: currentModal = $selectedConstituency;
