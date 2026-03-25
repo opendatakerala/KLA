@@ -9,47 +9,40 @@
   let collapsed = true;
   let activeTab = '';
 
-  function handleTabClick(tab) {
-    if (tab.disabled) return;
+  function handleTabClick(stat) {
+    if (stat === 'criminal-cases' || stat === 'education-distribution') return;
 
-    const stat = tab.dataset.stat;
-    const isActive = tab.classList.contains('active');
-
-    if (isActive && !collapsed) {
+    if (activeTab === stat && !collapsed) {
       collapsed = true;
-      tab.classList.remove('active');
-      return;
+      activeTab = '';
+    } else {
+      activeTab = stat;
+      collapsed = false;
     }
-
-    document.querySelectorAll('.stats-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.stats-panel').forEach(p => p.classList.remove('active'));
-
-    tab.classList.add('active');
-    document.getElementById(`${stat}-panel`)?.classList.add('active');
-    collapsed = false;
 
     setTimeout(() => {
       window.dispatchEvent(new Event('stats-tab-shown'));
     }, 10);
   }
-
-  onMount(() => {
-    const section = document.getElementById('stats-section');
-    const tabs = document.querySelectorAll('.stats-tab');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => handleTabClick(tab));
-    });
-  });
 </script>
 
 <div class="stats-section" class:collapsed id="stats-section">
   <StatsBar {stats} />
   <div class="stats-tabs">
-    <button class="stats-tab" data-stat="candidates-by-party">
+    <button 
+      class="stats-tab" 
+      class:active={activeTab === 'candidates-by-party'}
+      data-stat="candidates-by-party"
+      on:click={() => handleTabClick('candidates-by-party')}
+    >
       <span data-i18n="stats.partyDistribution">Party Distribution</span>
     </button>
-    <button class="stats-tab" data-stat="gender-distribution">
+    <button 
+      class="stats-tab"
+      class:active={activeTab === 'gender-distribution'}
+      data-stat="gender-distribution"
+      on:click={() => handleTabClick('gender-distribution')}
+    >
       <span data-i18n="stats.genderDistribution">Gender Distribution</span>
     </button>
     <button class="stats-tab" data-stat="criminal-cases" disabled>
@@ -63,15 +56,15 @@
   </div>
 
   <div class="stats-content">
-    <div class="stats-panel" id="candidates-by-party-panel">
+    <div class="stats-panel" class:active={activeTab === 'candidates-by-party'}>
       <PartyDistribution />
     </div>
 
-    <div class="stats-panel" id="gender-distribution-panel">
+    <div class="stats-panel" class:active={activeTab === 'gender-distribution'}>
       <GenderDistribution />
     </div>
 
-    <div class="stats-panel" id="criminal-cases-panel">
+    <div class="stats-panel" class:active={activeTab === 'criminal-cases'}>
       <div class="placeholder">
         <div class="placeholder-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -82,7 +75,7 @@
       </div>
     </div>
 
-    <div class="stats-panel" id="education-distribution-panel">
+    <div class="stats-panel" class:active={activeTab === 'education-distribution'}>
       <div class="placeholder">
         <div class="placeholder-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
