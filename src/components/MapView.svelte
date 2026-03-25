@@ -25,7 +25,7 @@
       .each(function() {
         const path = d3.select(this);
         const qid = path.attr('id');
-        const row = data.find(x => x.Constituency_Wikidata === qid);
+        const row = data.find(x => x.constituency_Wikidata === qid);
         
         if (row) {
           const isSc = row.reservation === 'SC';
@@ -37,14 +37,14 @@
             .classed('const-path', true)
             .classed('reserved-sc', isSc)
             .classed('reserved-st', isSt);
+        } else {
+          path.classed('const-path', true);
         }
-        
-        path.classed('const-path', true);
       })
       .on('mouseenter', function(event) {
         const path = d3.select(this);
         const qid = path.attr('id');
-        const row = data.find(x => x.Constituency_Wikidata === qid);
+        const row = data.find(x => x.constituency_Wikidata === qid);
         const name = row ? row.constituency_Name : (path.attr('data-name') || '');
         const num = row ? row.constituency_Number : '';
         
@@ -72,7 +72,7 @@
       .on('click', function() {
         const path = d3.select(this);
         const qid = path.attr('id');
-        const row = data.find(x => x.Constituency_Wikidata === qid);
+        const row = data.find(x => x.constituency_Wikidata === qid);
         if (row) openModal(row);
       });
     
@@ -87,7 +87,7 @@
     mapSvg.selectAll('.const-path').each(function() {
       const path = d3.select(this);
       const qid = path.attr('id');
-      const row = data.find(x => x.Constituency_Wikidata === qid);
+      const row = data.find(x => x.constituency_Wikidata === qid);
       
       if (!row) return;
       
