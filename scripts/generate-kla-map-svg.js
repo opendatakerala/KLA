@@ -65,7 +65,7 @@ function generate() {
       }).join(' ');
     }
     
-    svg += `    <path fill="#b7484b" stroke="#232323" stroke-width="0.003" id="${qid}" data-name="${name}" d="${pathData}"/>\n`;
+    svg += `    <path fill="#9ca3af" stroke="#232323" stroke-width="0.003" id="${qid}" data-name="${name}" d="${pathData}"/>\n`;
   });
   
   svg += `  </g>\n`;
