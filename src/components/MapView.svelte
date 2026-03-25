@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import mapSvgText from '../data/kla-map.svg?raw';
-  import { filteredConstituencies, openModal, filters } from '../stores/constituencyStore.js';
+  import { filteredConstituencies, openModal } from '../stores/constituencyStore.js';
   import Modal from './Modal.svelte';
 
   export let data = [];
@@ -10,7 +10,6 @@
   let mapSvg = null;
   
   $: filteredData = $filteredConstituencies;
-  $: activeFilters = $filters;
 
   function initMap() {
     const container = document.getElementById('kerala-map');
@@ -35,16 +34,12 @@
           path
             .attr('id', 'c' + row.constituency_Number)
             .attr('data-num', row.constituency_Number)
-            .attr('class', 'const-path' + (isSc ? ' reserved-sc' : isSt ? ' reserved-st' : ''));
-          
-          if (isSc) {
-            path.attr('fill', '#7C3AED');
-          } else if (isSt) {
-            path.attr('fill', '#0B7A56');
-          }
+            .classed('const-path', true)
+            .classed('reserved-sc', isSc)
+            .classed('reserved-st', isSt);
         }
         
-        path.style('cursor', 'pointer');
+        path.classed('const-path', true);
       })
       .on('mouseenter', function(event) {
         const path = d3.select(this);
@@ -96,11 +91,8 @@
       
       if (!row) return;
       
-      if (filteredIds.has(row.constituency_Wikidata)) {
-        path.style('opacity', 1);
-      } else {
-        path.style('opacity', 0.2);
-      }
+      path.classed('highlighted', filteredIds.has(row.constituency_Wikidata))
+          .classed('dimmed', !filteredIds.has(row.constituency_Wikidata));
     });
   }
 
@@ -151,8 +143,24 @@
     height: auto;
   }
 
-  #kerala-map :global(path) {
+  #kerala-map :global(path.const-path) {
     transition: opacity 0.2s, fill 0.2s;
+  }
+
+  #kerala-map :global(path.const-path.reserved-sc) {
+    fill: #7C3AED;
+  }
+
+  #kerala-map :global(path.const-path.reserved-st) {
+    fill: #0B7A56;
+  }
+
+  #kerala-map :global(path.dimmed) {
+    opacity: 0.2;
+  }
+
+  #kerala-map :global(path.highlighted) {
+    opacity: 1;
   }
 
   .map-legend {
