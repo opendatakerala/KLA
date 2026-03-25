@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.2.0",
+    "astro": "^6.0.8",
     "d3": "^7.9.0",
     "echarts": "^6.0.0",
     "topojson-client": "^3.1.0"
