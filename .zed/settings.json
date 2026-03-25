@@ -1,0 +1,39 @@
+{
+  "tab_size": 2,
+  "indent_size": 2,
+  "indent_on_input": true,
+  "format_on_save": "off",
+  "show_whitespace": true,
+  "default_language": "svelte",
+  "languages": {
+    "Svelte": {
+      "tab_size": 2,
+      "indent_on_input": true
+    },
+    "JavaScript": {
+      "tab_size": 2,
+      "indent_on_input": true
+    },
+    "TypeScript": {
+      "tab_size": 2,
+      "indent_on_input": true
+    },
+    "JSON": {
+      "tab_size": 2
+    }
+  },
+  "editor": {
+    "git_gutter": "visible",
+    "line_numbers": "on",
+    "relative_line_numbers": false,
+    "show_indent_guides": true,
+    "wrap": false,
+    "rulers": [],
+    "buffer_font_size": 14,
+    "buffer_font_family": "JetBrains Mono"
+  },
+  "theme": {
+    "mode": "dark",
+    "dark": "One Dark Pro"
+  }
+}

@@ -1,27 +1,52 @@
 <script>
-  const PROD_HOSTNAME = "opendatakerala.org";
-  if (typeof window !== 'undefined' && location.hostname !== PROD_HOSTNAME) {
-    document.getElementById("disc-overlay")?.classList.remove("open");
-  }
+    const hideOverlay = () => {
+        document.getElementById("disc-overlay")?.classList.remove("open");
+    };
+    const PROD_HOSTNAME = "opendatakerala.org";
+    if (typeof window !== "undefined" && location.hostname !== PROD_HOSTNAME) {
+        hideOverlay();
+    }
 </script>
 
 <div class="disc-overlay open" id="disc-overlay">
-  <div class="disc-modal">
-    <div class="disc-top"></div>
-    <div class="disc-header">
-      <div class="disc-icon">⚠️</div>
-      <div>
-        <div class="disc-title" data-i18n="disclaimer.title">Data Disclaimer</div>
-        <div class="disc-subtitle" data-i18n="disclaimer.subtitle">Please read before proceeding</div>
-      </div>
+    <div class="disc-modal">
+        <div class="disc-top"></div>
+        <div class="disc-header">
+            <div class="disc-icon">⚠️</div>
+            <div>
+                <div class="disc-title" data-i18n="disclaimer.title">
+                    Data Disclaimer
+                </div>
+                <div class="disc-subtitle" data-i18n="disclaimer.subtitle">
+                    Please read before proceeding
+                </div>
+            </div>
+        </div>
+        <div class="disc-body">
+            <p data-i18n="disclaimer.body1">
+                The accuracy or completeness of the data presented on this page
+                cannot be guaranteed. The information has been sourced from
+                Various Medias, party social media handles and CEC Kerala
+                website.
+            </p>
+            <p data-i18n="disclaimer.body2">
+                There is a chance for change according to time. Candidate
+                announcements may be updated or revised by parties at any point.
+            </p>
+        </div>
+        <div class="disc-footer">
+            <button
+                class="disc-remind"
+                id="disc-dismiss"
+                data-i18n="disclaimer.dismiss"
+                on:click={hideOverlay}>Dismiss</button
+            >
+            <button
+                class="disc-ok-btn"
+                id="disc-ok"
+                data-i18n="disclaimer.ok"
+                on:click={hideOverlay}>I Understand</button
+            >
+        </div>
     </div>
-    <div class="disc-body">
-      <p data-i18n="disclaimer.body1">The accuracy or completeness of the data presented on this page cannot be guaranteed. The information has been sourced from Various Medias, party social media handles and CEC Kerala website.</p>
-      <p data-i18n="disclaimer.body2">There is a chance for change according to time. Candidate announcements may be updated or revised by parties at any point.</p>
-    </div>
-    <div class="disc-footer">
-      <button class="disc-remind" id="disc-dismiss" data-i18n="disclaimer.dismiss">Dismiss</button>
-      <button class="disc-ok-btn" id="disc-ok" data-i18n="disclaimer.ok">I Understand</button>
-    </div>
-  </div>
 </div>
