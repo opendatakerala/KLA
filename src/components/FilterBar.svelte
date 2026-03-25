@@ -1,106 +1,112 @@
 <script>
   import { 
     filters, 
-    setAlliance, 
     setReservation, 
     toggleWomen,
     setParty,
+    setDistrict,
     partyList,
+    districtList,
     clearFilters
   } from '../stores/constituencyStore.js';
   
-  $: activeAlliance = $filters.alliance;
   $: activeReservation = $filters.reservation;
   $: activeWomen = $filters.women;
   $: activeParty = $filters.party;
+  $: activeDistrict = $filters.district;
   $: parties = $partyList;
-  
-  function handleAllianceClick(alliance) {
-    setAlliance(alliance === activeAlliance ? 'all' : alliance);
-  }
+  $: districts = $districtList;
   
   function handleReservationClick(reservation) {
     setReservation(reservation === activeReservation ? 'all' : reservation);
   }
   
-  function handlePartyChange(e) {
-    setParty(e.target.value);
+  function handlePartyClick(party) {
+    setParty(party === activeParty ? 'all' : party);
+  }
+
+  function handleDistrictClick(district) {
+    setDistrict(district === activeDistrict ? 'all' : district);
   }
 </script>
 
 <div class="filter-bar">
-  <div class="filter-row">
-    <button 
-      class="filter-btn" 
-      class:active={activeAlliance === 'all'}
-      on:click={() => setAlliance('all')}
-    >
-      <span data-i18n="filters.all">All</span>
-    </button>
-    <button 
-      class="filter-btn ldf"
-      class:active={activeAlliance === 'LDF'}
-      on:click={() => handleAllianceClick('LDF')}
-    >
-      LDF
-    </button>
-    <button 
-      class="filter-btn udf"
-      class:active={activeAlliance === 'UDF'}
-      on:click={() => handleAllianceClick('UDF')}
-    >
-      UDF
-    </button>
-    <button 
-      class="filter-btn nda"
-      class:active={activeAlliance === 'NDA'}
-      on:click={() => handleAllianceClick('NDA')}
-    >
-      NDA
-    </button>
-  </div>
-  
-  <div class="filter-row">
-    <button 
-      class="filter-btn"
-      class:active={activeReservation === 'SC'}
-      on:click={() => handleReservationClick('SC')}
-    >
-      <span data-i18n="filters.sc">SC Reserved</span>
-    </button>
-    <button 
-      class="filter-btn"
-      class:active={activeReservation === 'ST'}
-      on:click={() => handleReservationClick('ST')}
-    >
-      <span data-i18n="filters.st">ST Reserved</span>
-    </button>
-    <button 
-      class="filter-btn female"
-      class:active={activeWomen}
-      on:click={toggleWomen}
-    >
-      ♀ <span data-i18n="filters.women">Women</span>
-    </button>
-  </div>
-  
-  <div class="filter-row">
-    <select 
-      class="party-select"
-      bind:value={activeParty}
-      on:change={handlePartyChange}
-    >
-      <option value="all">All Parties</option>
-      {#each parties as party}
-        <option value={party.party}>{party.party} ({party.count})</option>
-      {/each}
-    </select>
-    
-    {#if activeAlliance !== 'all' || activeReservation !== 'all' || activeWomen || activeParty !== 'all' || $filters.search}
-      <button class="clear-filters-btn" on:click={clearFilters}>
-        <span data-i18n="filters.clear">Clear Filters</span>
+  <div class="filter-group">
+    <div class="filter-label">Category</div>
+    <div class="filter-row">
+      <button 
+        class="filter-btn"
+        class:active={activeReservation === 'all'}
+        on:click={() => setReservation('all')}
+      >
+        <span data-i18n="filters.all">All</span>
       </button>
-    {/if}
+      <button 
+        class="filter-btn sc"
+        class:active={activeReservation === 'SC'}
+        on:click={() => handleReservationClick('SC')}
+      >
+        <span data-i18n="filters.sc">SC</span>
+      </button>
+      <button 
+        class="filter-btn st"
+        class:active={activeReservation === 'ST'}
+        on:click={() => handleReservationClick('ST')}
+      >
+        <span data-i18n="filters.st">ST</span>
+      </button>
+      <button 
+        class="filter-btn female"
+        class:active={activeWomen}
+        on:click={toggleWomen}
+      >
+        ♀ <span data-i18n="filters.women">Women</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <div class="filter-label">Party</div>
+    <div class="filter-row">
+      <button 
+        class="filter-btn"
+        class:active={activeParty === 'all'}
+        on:click={() => setParty('all')}
+      >
+        <span data-i18n="filters.all">All</span>
+      </button>
+      {#each parties.slice(0, 10) as party}
+        <button 
+          class="filter-btn party-btn"
+          class:active={activeParty === party.party}
+          on:click={() => handlePartyClick(party.party)}
+        >
+          {party.party}
+        </button>
+      {/each}
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <div class="filter-label">District</div>
+    <div class="filter-row district-row">
+      <button 
+        class="filter-btn"
+        class:active={activeDistrict === 'all'}
+        on:click={() => setDistrict('all')}
+      >
+        <span data-i18n="browse.allDistricts">All</span>
+      </button>
+      {#each districts as district}
+        <button 
+          class="filter-btn"
+          class:active={activeDistrict === district}
+          on:click={() => handleDistrictClick(district)}
+        >
+          {district}
+        </button>
+      {/each}
+    </div>
   </div>
 </div>
 
@@ -108,11 +114,25 @@
   .filter-bar {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     padding: 12px 16px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .filter-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
   }
 
   .filter-row {
@@ -122,8 +142,13 @@
     align-items: center;
   }
 
+  .district-row {
+    max-height: 80px;
+    overflow-y: auto;
+  }
+
   .filter-btn {
-    padding: 6px 12px;
+    padding: 6px 10px;
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -145,22 +170,16 @@
     color: var(--gold);
   }
 
-  .filter-btn.ldf.active {
-    background: #ffebee;
-    border-color: #EE0000;
-    color: #EE0000;
+  .filter-btn.sc.active {
+    background: var(--sc-bg);
+    border-color: var(--sc-color);
+    color: var(--sc-color);
   }
 
-  .filter-btn.udf.active {
-    background: #e3f2fd;
-    border-color: #0078FF;
-    color: #0078FF;
-  }
-
-  .filter-btn.nda.active {
-    background: #fff3e0;
-    border-color: #FF9933;
-    color: #FF9933;
+  .filter-btn.st.active {
+    background: var(--st-bg);
+    border-color: var(--st-color);
+    color: var(--st-color);
   }
 
   .filter-btn.female.active {
@@ -169,37 +188,10 @@
     color: #EC4899;
   }
 
-  .party-select {
-    padding: 6px 10px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    cursor: pointer;
-    min-width: 150px;
-  }
-
-  .party-select:focus {
-    outline: none;
-    border-color: var(--gold-mid);
-  }
-
-  .clear-filters-btn {
-    padding: 6px 10px;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .clear-filters-btn:hover {
-    background: var(--card2);
-    color: var(--text);
+  .filter-btn.party-btn {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>

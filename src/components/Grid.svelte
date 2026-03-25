@@ -1,5 +1,5 @@
 <script>
-  import { filteredConstituencies, filters, openModal, constituencies } from '../stores/constituencyStore.js';
+  import { filteredConstituencies, openModal, constituencies } from '../stores/constituencyStore.js';
   import Modal from './Modal.svelte';
 
   export let data = [];
@@ -10,20 +10,6 @@
   }
 
   $: filteredData = $filteredConstituencies;
-  $: searchQuery = $filters.search;
-  $: activeDistrict = $filters.district;
-  $: activeAlliance = $filters.alliance;
-  $: activeReservation = $filters.reservation;
-
-  function getResultsInfo() {
-    if (searchQuery) {
-      return `Showing ${filteredData.length} of ${total} results · Search: "${searchQuery}"`;
-    } else if (activeDistrict !== 'all' || activeAlliance !== 'all' || activeReservation !== 'all') {
-      return `Showing ${filteredData.length} of ${total} constituencies`;
-    } else {
-      return `Showing all ${total} constituencies`;
-    }
-  }
 
   function createCandidateRow(alliance, party, name) {
     const allianceClass = alliance === "LDF" ? "LDF" : alliance === "UDF" ? "UDF" : alliance === "NDA" ? "NDA" : "OTH";
@@ -43,10 +29,6 @@
     openModal(row);
   }
 </script>
-
-<div class="results-info" id="results-info">
-  {getResultsInfo()}
-</div>
 
 <div class="grid" id="grid">
   {#each filteredData as row (row.constituency_Number)}
@@ -97,14 +79,6 @@
 <Modal />
 
 <style>
-  .results-info {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 12px;
-    letter-spacing: 0.02em;
-  }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
