@@ -20,7 +20,7 @@ function candidateRow(alliance, party, name, t = (k) => k) {
 }
 
 export function createCardHTML(row, t = (k) => k) {
-  const res = row.Reservation;
+  const res = row.reservation;
   const resBadge = res 
     ? `<span class="reservation-badge ${res.toLowerCase()}">${res} ${t('modal.reserved')}</span>` 
     : '';
@@ -28,27 +28,33 @@ export function createCardHTML(row, t = (k) => k) {
   const cardClass = res === 'SC' ? 'card reserved-sc' : 
                     res === 'ST' ? 'card reserved-st' : 'card';
   
-  return `<div class="${cardClass}" data-const-number="${row.Constituency_Number}">
+  const candidates = row.candidates || [];
+  const ldfCand = candidates.find(c => c.alliance === 'LDF');
+  const udfCand = candidates.find(c => c.alliance === 'UDF');
+  const ndaCand = candidates.find(c => c.alliance === 'NDA');
+  const othersCand = candidates.filter(c => c.alliance === 'Others');
+  
+  return `<div class="${cardClass}" data-const-number="${row.constituency_Number}">
     <div class="card-header">
       <div>
-        <div class="card-num">CONSTITUENCY #${row.Constituency_Number}</div>
-        <div class="card-name">${row.Constituency_Name}</div>
+        <div class="card-num">CONSTITUENCY #${row.constituency_Number}</div>
+        <div class="card-name">${row.constituency_Name}</div>
         <div class="card-district">${row.District}</div>
       </div>
       ${resBadge}
     </div>
     <div class="card-candidates">
-      ${candidateRow('LDF', row.LDF, row.LDF_Candidate)}
-      ${candidateRow('UDF', row.UDF, row.UDF_Candidate)}
-      ${row.NDA ? candidateRow('NDA', row.NDA, row.NDA_Candidate) : ''}
-      ${(row.Others_list || []).map(o => candidateRow('OTH', o.party, o.name)).join('')}
+      ${ldfCand ? candidateRow('LDF', ldfCand.party, ldfCand.name) : ''}
+      ${udfCand ? candidateRow('UDF', udfCand.party, udfCand.name) : ''}
+      ${ndaCand ? candidateRow('NDA', ndaCand.party, ndaCand.name) : ''}
+      ${othersCand.map(o => candidateRow('OTH', o.party, o.name)).join('')}
     </div>
   </div>`;
 }
 
-export function createModalHTML(row, partyLookup, t = (k) => k) {
-  const badges = row.Reservation 
-    ? `<span class="reservation-badge ${row.Reservation.toLowerCase()}">${row.Reservation} ${t('modal.reserved')}</span>` 
+export function createModalHTML(row, partyLookup, t = (k) => k, historicalData = null) {
+  const badges = row.reservation 
+    ? `<span class="reservation-badge ${row.reservation.toLowerCase()}">${row.reservation} ${t('modal.reserved')}</span>` 
     : '';
   
   function modalCandidate(alliance, color, party, name) {
@@ -63,17 +69,70 @@ export function createModalHTML(row, partyLookup, t = (k) => k) {
     </div>`;
   }
   
+  const candidates = row.candidates || [];
+  const ldfCand = candidates.find(c => c.alliance === 'LDF');
+  const udfCand = candidates.find(c => c.alliance === 'UDF');
+  const ndaCand = candidates.find(c => c.alliance === 'NDA');
+  const othersCand = candidates.filter(c => c.alliance === 'Others');
+  
+  let candidatesHtml = '';
+  if (ldfCand) candidatesHtml += modalCandidate('LDF', '#D94040', ldfCand.party, ldfCand.name);
+  if (udfCand) candidatesHtml += modalCandidate('UDF', '#1565C0', udfCand.party, udfCand.name);
+  if (ndaCand) candidatesHtml += modalCandidate('NDA', '#E07828', ndaCand.party, ndaCand.name);
+  othersCand.forEach(o => {
+    candidatesHtml += modalCandidate(o.party || 'Others', '#33AA55', o.party, o.name);
+  });
+
+  let historicalHtml = '';
+  if (historicalData && row.constituency_Wikidata) {
+    const years = Object.keys(historicalData.years || {});
+    if (years.length > 0) {
+      const constData = historicalData.byConstituency;
+      
+      historicalHtml = '<div class="modal-section-label">Historical Results (Lok Sabha)</div><div class="modal-historical">';
+      
+      years.forEach(year => {
+        const yearLabel = historicalData.years[year];
+        const yearData = constData[yearLabel]?.[row.constituency_Wikidata];
+        
+        if (yearData && yearData.candidates) {
+          historicalHtml += `<div class="historical-year"><div class="historical-year-label">${yearLabel}</div>`;
+          
+          const allianceVotes = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
+          let totalVotes = 0;
+          
+          yearData.candidates.forEach(c => {
+            const votes = c.votes || 0;
+            totalVotes += votes;
+            if (c.alliance && allianceVotes.hasOwnProperty(c.alliance)) {
+              allianceVotes[c.alliance] += votes;
+            } else {
+              allianceVotes['Others'] += votes;
+            }
+          });
+          
+          ['LDF', 'UDF', 'NDA', 'Others'].forEach(al => {
+            if (allianceVotes[al] > 0) {
+              const pct = totalVotes > 0 ? ((allianceVotes[al] / totalVotes) * 100).toFixed(1) : 0;
+              const colors = { LDF: '#D94040', UDF: '#1565C0', NDA: '#E07828', Others: '#33AA55' };
+              historicalHtml += `<div class="historical-bar"><span class="historical-alliance ${al}">${al}</span><div class="historical-bar-track"><div class="historical-bar-fill" style="width:${pct}%;background:${colors[al]}"></div></div><span class="historical-pct">${pct}%</span></div>`;
+            }
+          });
+          
+          historicalHtml += '</div>';
+        }
+      });
+      
+      historicalHtml += '</div>';
+    }
+  }
+  
   return {
-    eyebrow: `${row.District} · Constituency #${row.Constituency_Number}`,
-    title: row.Constituency_Name,
+    eyebrow: `${row.District} · Constituency #${row.constituency_Number}`,
+    title: row.constituency_Name,
     badges,
-    candidates: 
-      modalCandidate('LDF', '#D94040', row.LDF, row.LDF_Candidate) +
-      modalCandidate('UDF', '#1565C0', row.UDF, row.UDF_Candidate) +
-      (row.NDA ? modalCandidate('NDA', '#E07828', row.NDA, row.NDA_Candidate) : '') +
-      (row.Others_list || []).map(o => 
-        modalCandidate(o.party || 'Others', '#33AA55', o.party, o.name)
-      ).join('')
+    candidates: candidatesHtml,
+    historical: historicalHtml
   };
 }
 

@@ -8,6 +8,7 @@ import StatsSection from '../components/StatsSection.astro';
 
 import constituencies from '../data/constituencies.json';
 import partyLookup from '../data/party-lookup.json';
+import historicalComparison from '../data/historical-comparison.json';
 
 const pageTitle = "Kerala Legislative Assembly Election 2026";
 ---
@@ -79,6 +80,7 @@ const pageTitle = "Kerala Legislative Assembly Election 2026";
       <div class="modal-body">
         <div class="modal-section-label" data-i18n="modal.contestingCandidates">Contesting Candidates</div>
         <div class="modal-candidates" id="modal-candidates"></div>
+        <div id="modal-historical"></div>
       </div>
     </div>
   </div>
@@ -94,6 +96,7 @@ import { ALLIANCE_COLORS } from '../lib/constants.js';
 import { initLanguage, setLanguage, t, tReplace } from '../lib/i18n.js';
 import constituencies from '../data/constituencies.json';
 import partyLookup from '../data/party-lookup.json';
+import historicalComparison from '../data/historical-comparison.json';
 
 
 const DATA = constituencies;
@@ -163,7 +166,7 @@ function renderGrid() {
   grid.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       const num = card.dataset.constNumber;
-      const row = DATA.find(d => d.Constituency_Number === num);
+      const row = DATA.find(d => d.constituency_Number === num);
       if (row) openModal(row);
     });
   });
@@ -175,11 +178,12 @@ function renderGrid() {
 
 // Modal
 function openModal(row) {
-  const html = createModalHTML(row, PARTIES, t);
+  const html = createModalHTML(row, PARTIES, t, historicalComparison);
   document.getElementById('modal-eyebrow').textContent = html.eyebrow;
   document.getElementById('modal-title').textContent = html.title;
   document.getElementById('modal-badges').innerHTML = html.badges;
   document.getElementById('modal-candidates').innerHTML = html.candidates;
+  document.getElementById('modal-historical').innerHTML = html.historical || '';
   modalOverlay.classList.add('open');
 }
 

@@ -312,6 +312,42 @@
 
 .modal-candidates { display: flex; flex-direction: column; gap: 14px; }
 
+.modal-historical { margin-top: 24px; }
+
+.historical-year { margin-bottom: 16px; }
+
+.historical-year-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.historical-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+.historical-alliance {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  width: 32px;
+}
+
+.historical-alliance.LDF { color: #D94040; }
+.historical-alliance.UDF { color: #1565C0; }
+.historical-alliance.NDA { color: #E07828; }
+.historical-alliance.Others { color: #33AA55; }
+
+.historical-bar-track { flex: 1; height: 6px; background: var(--card2); border-radius: 3px; overflow: hidden; }
+
+.historical-bar-fill { height: 100%; border-radius: 3px; }
+
+.historical-pct {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  width: 36px;
+  text-align: right;
+}
+
 .modal-candidate { display: flex; gap: 14px; align-items: flex-start; }
 
 .modal-alliance-bar { width: 3px; align-self: stretch; border-radius: 2px; flex-shrink: 0; min-height: 40px; }
