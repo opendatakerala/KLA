@@ -1,0 +1,193 @@
+<script>
+  import { onMount } from 'svelte';
+  import * as echarts from "echarts";
+  import genderDistribution from "../../data/gender-distribution.json";
+
+  const GENDER_COLORS = {
+    male: "#3B82F6",
+    female: "#EC4899",
+    transgender: "#8B5CF6",
+    unknown: "#9CA3AF",
+  };
+
+  let charts = [];
+
+  function renderGenderPie(data, containerId, size = "small") {
+    const container = document.getElementById(containerId);
+    if (!container) return null;
+
+    const chart = echarts.init(container, null, { renderer: "svg" });
+
+    const chartData = Object.entries(data)
+      .filter(([k, v]) => v > 0)
+      .map(([key, value]) => ({
+        name: key.charAt(0).toUpperCase() + key.slice(1),
+        value,
+        itemStyle: { color: GENDER_COLORS[key] || "#9CA3AF" },
+      }));
+
+    const option = {
+      tooltip: {
+        trigger: "item",
+        formatter: "{b}: {c} ({d}%)",
+      },
+      series: [
+        {
+          type: "pie",
+          radius: "50%",
+          center: ["50%", "50%"],
+          label: {
+            show: true,
+            position: "outer",
+            alignTo: "labelLine",
+            bleedMargin: 10,
+            formatter: "{b}\n{c}",
+            fontSize: size === "large" ? 18 : 14,
+            fontFamily: "DM Mono",
+            lineHeight: 18,
+            padding: [4, 0, 0, 0],
+          },
+          data: chartData,
+        },
+      ],
+    };
+
+    chart.setOption(option);
+    return chart;
+  }
+
+  function renderAll() {
+    charts = [
+      renderGenderPie(
+        genderDistribution.overall,
+        "pie-chart-overall",
+        "large",
+      ),
+      renderGenderPie(
+        genderDistribution.byAlliance?.LDF || {},
+        "pie-chart-gender-ldf",
+      ),
+      renderGenderPie(
+        genderDistribution.byAlliance?.UDF || {},
+        "pie-chart-gender-udf",
+      ),
+      renderGenderPie(
+        genderDistribution.byAlliance?.NDA || {},
+        "pie-chart-gender-nda",
+      ),
+      renderGenderPie(
+        genderDistribution.byAlliance?.Others || {},
+        "pie-chart-gender-others",
+      ),
+    ];
+  }
+
+  onMount(() => {
+    requestAnimationFrame(() => {
+      renderAll();
+      setTimeout(() => {
+        charts.forEach((c) => c && c.resize());
+      }, 100);
+    });
+
+    window.addEventListener("resize", () => {
+      charts.forEach((c) => c && c.resize());
+    });
+
+    window.addEventListener("stats-tab-shown", () => {
+      charts.forEach((c) => c && c.resize());
+    });
+  });
+</script>
+
+<div class="gender-pies">
+    <div class="pie-wrapper-large">
+        <div class="pie-label" data-i18n="stats.overall">Overall</div>
+        <div class="pie-chart-large" id="pie-chart-overall"></div>
+    </div>
+    <div class="pies-small">
+        <div class="pie-wrapper">
+            <div class="pie-label">LDF</div>
+            <div class="pie-chart" id="pie-chart-gender-ldf"></div>
+        </div>
+        <div class="pie-wrapper">
+            <div class="pie-label">UDF</div>
+            <div class="pie-chart" id="pie-chart-gender-udf"></div>
+        </div>
+        <div class="pie-wrapper">
+            <div class="pie-label">NDA</div>
+            <div class="pie-chart" id="pie-chart-gender-nda"></div>
+        </div>
+        <div class="pie-wrapper">
+            <div class="pie-label">Others</div>
+            <div class="pie-chart" id="pie-chart-gender-others"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .gender-pies {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .pie-wrapper-large {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        background: var(--card2);
+        border-radius: 10px;
+    }
+
+    .pie-chart-large {
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
+    }
+
+    @media (max-width: 600px) {
+        .pie-chart-large {
+            height: 280px;
+        }
+    }
+
+    .pies-small {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+        .pies-small {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 500px) {
+        .pies-small {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .pie-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pie-label {
+        font-family: "DM Mono", monospace;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+        color: var(--text-soft);
+    }
+
+    .pie-chart {
+        width: 100%;
+        height: 280px;
+    }
+</style>

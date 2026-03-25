@@ -1,5 +1,5 @@
 <script>
-  import { districtStore, setDistrict } from '../../stores/gridStore.js';
+  import { districtStore, setDistrict } from '../stores/gridStore.js';
   
   export let districts = [];
   

@@ -1,6 +1,7 @@
----
-import MapController from './MapController.astro';
----
+<script>
+  import MapController from './MapController.svelte';
+</script>
+
 <MapController />
 <div class="map-view" id="map-view">
   <div class="map-outer">

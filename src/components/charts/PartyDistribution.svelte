@@ -1,25 +1,3 @@
----
----
-
-<div class="party-dist" id="party-dist">
-  <div class="party-alliance" id="party-ldf">
-    <div class="alliance-label">LDF</div>
-    <div class="party-list"></div>
-  </div>
-  <div class="party-alliance" id="party-udf">
-    <div class="alliance-label">UDF</div>
-    <div class="party-list"></div>
-  </div>
-  <div class="party-alliance" id="party-nda">
-    <div class="alliance-label">NDA</div>
-    <div class="party-list"></div>
-  </div>
-  <div class="party-alliance" id="party-others">
-    <div class="alliance-label">Others</div>
-    <div class="party-list"></div>
-  </div>
-</div>
-
 <script>
   import * as d3 from 'd3';
   import candidatesByParty from '../../data/candidates-by-party.json';
@@ -60,15 +38,33 @@
     });
   }
 
-  function init() {
+  import { onMount } from 'svelte';
+  onMount(() => {
     renderAlliance('LDF', 'party-ldf');
     renderAlliance('UDF', 'party-udf');
     renderAlliance('NDA', 'party-nda');
     renderAlliance('Others', 'party-others');
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
+  });
 </script>
+
+<div class="party-dist" id="party-dist">
+  <div class="party-alliance" id="party-ldf">
+    <div class="alliance-label">LDF</div>
+    <div class="party-list"></div>
+  </div>
+  <div class="party-alliance" id="party-udf">
+    <div class="alliance-label">UDF</div>
+    <div class="party-list"></div>
+  </div>
+  <div class="party-alliance" id="party-nda">
+    <div class="alliance-label">NDA</div>
+    <div class="party-list"></div>
+  </div>
+  <div class="party-alliance" id="party-others">
+    <div class="alliance-label">Others</div>
+    <div class="party-list"></div>
+  </div>
+</div>
 
 <style>
   .party-dist {

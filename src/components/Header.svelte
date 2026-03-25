@@ -1,6 +1,6 @@
----
-const { totalCandidates = '—' } = Astro.props;
----
+<script>
+  export let totalCandidates = '—';
+</script>
 
 <header>
   <div class="header-stripe"></div>

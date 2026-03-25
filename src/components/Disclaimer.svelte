@@ -1,11 +1,10 @@
----
----
 <script>
   const PROD_HOSTNAME = "opendatakerala.org";
-  if (location.hostname !== PROD_HOSTNAME) {
+  if (typeof window !== 'undefined' && location.hostname !== PROD_HOSTNAME) {
     document.getElementById("disc-overlay")?.classList.remove("open");
   }
 </script>
+
 <div class="disc-overlay open" id="disc-overlay">
   <div class="disc-modal">
     <div class="disc-top"></div>

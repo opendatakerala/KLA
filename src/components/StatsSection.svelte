@@ -1,9 +1,50 @@
----
-import PartyDistribution from './charts/PartyDistribution.astro';
-import GenderDistribution from './charts/GenderDistribution.astro';
----
+<script>
+  import { onMount } from 'svelte';
+  import StatsBar from './StatsBar.svelte';
+  import PartyDistribution from './charts/PartyDistribution.svelte';
+  import GenderDistribution from './charts/GenderDistribution.svelte';
 
-<div class="stats-section collapsed" id="stats-section">
+  export let stats = { ldf: 0, udf: 0, nda: 0, sc: 0, st: 0 };
+
+  let collapsed = true;
+  let activeTab = '';
+
+  function handleTabClick(tab) {
+    if (tab.disabled) return;
+
+    const stat = tab.dataset.stat;
+    const isActive = tab.classList.contains('active');
+
+    if (isActive && !collapsed) {
+      collapsed = true;
+      tab.classList.remove('active');
+      return;
+    }
+
+    document.querySelectorAll('.stats-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.stats-panel').forEach(p => p.classList.remove('active'));
+
+    tab.classList.add('active');
+    document.getElementById(`${stat}-panel`)?.classList.add('active');
+    collapsed = false;
+
+    setTimeout(() => {
+      window.dispatchEvent(new Event('stats-tab-shown'));
+    }, 10);
+  }
+
+  onMount(() => {
+    const section = document.getElementById('stats-section');
+    const tabs = document.querySelectorAll('.stats-tab');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => handleTabClick(tab));
+    });
+  });
+</script>
+
+<div class="stats-section" class:collapsed id="stats-section">
+  <StatsBar {stats} />
   <div class="stats-tabs">
     <button class="stats-tab" data-stat="candidates-by-party">
       <span data-i18n="stats.partyDistribution">Party Distribution</span>
@@ -53,44 +94,6 @@ import GenderDistribution from './charts/GenderDistribution.astro';
     </div>
   </div>
 </div>
-
-<script>
-  function initStats() {
-    const section = document.getElementById('stats-section');
-    const tabs = document.querySelectorAll('.stats-tab');
-    const panels = document.querySelectorAll('.stats-panel');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        if (tab.hasAttribute('disabled')) return;
-
-        const stat = tab.dataset.stat;
-        const isActive = tab.classList.contains('active');
-        const isCollapsed = section.classList.contains('collapsed');
-
-        if (isActive && !isCollapsed) {
-          section.classList.add('collapsed');
-          tab.classList.remove('active');
-          document.getElementById(`${stat}-panel`).classList.remove('active');
-          return;
-        }
-
-        tabs.forEach(t => t.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-
-        tab.classList.add('active');
-        document.getElementById(`${stat}-panel`).classList.add('active');
-        section.classList.remove('collapsed');
-
-        setTimeout(() => {
-          window.dispatchEvent(new Event('stats-tab-shown'));
-        }, 10);
-      });
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', initStats);
-</script>
 
 <style>
   .stats-section {

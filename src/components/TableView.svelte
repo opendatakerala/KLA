@@ -1,28 +1,16 @@
----
-import StatsBar from './svelte/StatsBar.svelte';
-import FilterBar from './svelte/FilterBar.svelte';
-import DistrictTabs from './svelte/DistrictTabs.svelte';
-import SearchBar from './svelte/SearchBar.svelte';
-import Grid from './svelte/Grid.svelte';
+<script>
+  import StatsBar from './StatsBar.svelte';
+  import FilterBar from './FilterBar.svelte';
+  import DistrictTabs from './DistrictTabs.svelte';
+  import SearchBar from './SearchBar.svelte';
+  import Grid from './Grid.svelte';
 
-interface Stats {
-  ldf: number;
-  udf: number;
-  nda: number;
-  sc: number;
-  st: number;
-}
-
-interface Props {
-  stats: Stats;
-  districts: string[];
-  data: object[];
-  total: number;
-  historicalData: object;
-}
-
-const { stats, districts, data, total, historicalData } = Astro.props;
----
+  export let stats = { ldf: 0, udf: 0, nda: 0, sc: 0, st: 0 };
+  export let districts = [];
+  export let data = [];
+  export let total = 0;
+  export let historicalData = {};
+</script>
 
 <div class="data-explorer" id="data-explorer">
   <div class="explorer-toolbar">
@@ -52,11 +40,11 @@ const { stats, districts, data, total, historicalData } = Astro.props;
     <FilterBar client:load />
   </div>
 
-  <DistrictTabs client:load districts={districts} />
+  <DistrictTabs client:load {districts} />
 
   <Grid 
     client:load 
-    data={data} 
+    {data} 
     {total}
     {historicalData}
   />

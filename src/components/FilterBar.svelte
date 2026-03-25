@@ -1,5 +1,5 @@
 <script>
-  import { filterStore, setFilter } from '../../stores/gridStore.js';
+  import { filterStore, setFilter } from '../stores/gridStore.js';
   
   let activeFilter = 'all';
   

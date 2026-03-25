@@ -1,5 +1,5 @@
 <script>
-  import { searchStore, setSearch } from '../../stores/gridStore.js';
+  import { searchStore, setSearch } from '../stores/gridStore.js';
   
   let searchValue = '';
   
