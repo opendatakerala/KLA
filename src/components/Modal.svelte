@@ -1,25 +1,20 @@
 <script>
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
-  import { getHistoricalData } from '../stores/historicalStore.js';
   import HistoricalChart from './charts/HistoricalChart.svelte';
 
-  $: currentModal = $selectedConstituency;
-  
-  $: seriesData = currentModal ? getHistoricalData(currentModal.qid) : [];
+  const ALLIANCE_COLORS = {
+    LDF: '#D94040',
+    UDF: '#1565C0',
+    NDA: '#E07828',
+    Others: '#33AA55'
+  };
 
-  function createModalCandidate(alliance, color, party, name) {
-    const tbd = !name;
-    return `
-      <div class="modal-candidate">
-        <div class="modal-alliance-bar" style="background:${color}"></div>
-        <div class="modal-candidate-inner">
-          <div class="modal-alliance-label">${alliance}</div>
-          <div class="modal-party" style="color:#000">${party || "—"}</div>
-          <div class="modal-candidate-name${tbd ? " tbd" : ""}">${name || "To be announced"}</div>
-        </div>
-      </div>
-    `;
-  }
+  $: currentModal = $selectedConstituency;
+
+  $: ldfCandidates = currentModal?.candidates?.filter(c => c.alliance === 'LDF') || [];
+  $: udfCandidates = currentModal?.candidates?.filter(c => c.alliance === 'UDF') || [];
+  $: ndaCandidates = currentModal?.candidates?.filter(c => c.alliance === 'NDA') || [];
+  $: othersCandidates = currentModal?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || [];
 
   function handleClose() {
     closeModal();
@@ -68,26 +63,72 @@
         <div class="modal-section-label" data-i18n="modal.contestingCandidates">
           Contesting Candidates
         </div>
-        <div class="modal-candidates">
-          {#each currentModal.candidates.filter((c) => c.alliance === "LDF") as c}
-            {@html createModalCandidate("LDF", "#D94040", c.party, c.name)}
-          {/each}
-          {#each currentModal.candidates.filter((c) => c.alliance === "UDF") as c}
-            {@html createModalCandidate("UDF", "#1565C0", c.party, c.name)}
-          {/each}
-          {#each currentModal.candidates.filter((c) => c.alliance === "NDA") as c}
-            {@html createModalCandidate("NDA", "#E07828", c.party, c.name)}
-          {/each}
-          {#each currentModal.candidates.filter((c) => c.alliance === "Others") as c}
-            {@html createModalCandidate(c.party || "Others", "#33AA55", c.party, c.name)}
-          {/each}
-        </div>
+        
+        {#if ldfCandidates.length > 0}
+          <div class="candidate-group">
+            {#each ldfCandidates as c}
+              <div class="candidate-row">
+                <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
+                <div class="candidate-info">
+                  <div class="alliance-label">LDF</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{c.name || 'To be announced'}</div>
+                </div>
+              </div>
+            {/each}
+          </div>
+        {/if}
+
+        {#if udfCandidates.length > 0}
+          <div class="candidate-group">
+            {#each udfCandidates as c}
+              <div class="candidate-row">
+                <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
+                <div class="candidate-info">
+                  <div class="alliance-label">UDF</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{c.name || 'To be announced'}</div>
+                </div>
+              </div>
+            {/each}
+          </div>
+        {/if}
+
+        {#if ndaCandidates.length > 0}
+          <div class="candidate-group">
+            {#each ndaCandidates as c}
+              <div class="candidate-row">
+                <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
+                <div class="candidate-info">
+                  <div class="alliance-label">NDA</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{c.name || 'To be announced'}</div>
+                </div>
+              </div>
+            {/each}
+          </div>
+        {/if}
+
+        {#if othersCandidates.length > 0}
+          <div class="candidate-group">
+            {#each othersCandidates as c}
+              <div class="candidate-row">
+                <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
+                <div class="candidate-info">
+                  <div class="alliance-label">Others</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{c.name || 'To be announced'}</div>
+                </div>
+              </div>
+            {/each}
+          </div>
+        {/if}
 
         {#if currentModal.qid}
           <div class="modal-section-label">
             Historical Results (Lok Sabha)
           </div>
-          <HistoricalChart {seriesData} />
+          <HistoricalChart />
         {/if}
       </div>
     </div>
@@ -216,13 +257,14 @@
     margin-top: 0;
   }
 
-  .modal-candidates {
+  .candidate-group {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 12px;
+    margin-bottom: 12px;
   }
 
-  :global(.modal-candidate) {
+  .candidate-row {
     display: flex;
     background: var(--card2);
     border-radius: 8px;
@@ -230,17 +272,17 @@
     min-height: 70px;
   }
 
-  :global(.modal-alliance-bar) {
+  .alliance-bar {
     width: 4px;
     flex-shrink: 0;
   }
 
-  :global(.modal-candidate-inner) {
+  .candidate-info {
     padding: 10px 12px;
     flex: 1;
   }
 
-  :global(.modal-alliance-label) {
+  .alliance-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     font-weight: 600;
@@ -248,20 +290,21 @@
     opacity: 0.7;
   }
 
-  :global(.modal-party) {
+  .candidate-party {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 14px;
     margin-top: 2px;
+    color: #000;
   }
 
-  :global(.modal-candidate-name) {
+  .candidate-name {
     font-size: 12px;
     color: var(--text-soft);
     margin-top: 2px;
   }
 
-  :global(.modal-candidate-name.tbd) {
+  .candidate-name.tbd {
     color: var(--muted);
     font-style: italic;
   }

@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
+  import { selectedConstituency } from '../../stores/constituencyStore.js';
+  import { getHistoricalData } from '../../stores/historicalStore.js';
   import * as echarts from 'echarts';
-  
-  export let seriesData = [];
   
   const STORAGE_KEY = 'historicalViewMode';
   const COLORS = {
@@ -17,6 +17,9 @@
   let currentView = 'bars';
   let chartContainer;
   let chart = null;
+  
+  $: qid = $selectedConstituency?.qid;
+  $: seriesData = qid ? getHistoricalData(qid) : [];
   
   onMount(() => {
     currentView = localStorage.getItem(STORAGE_KEY) || 'bars';
