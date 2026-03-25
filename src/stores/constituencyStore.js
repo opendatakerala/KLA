@@ -122,3 +122,55 @@ export const districtList = computed([constituencies], ($constituencies) => {
   const districts = [...new Set($constituencies.map(c => c.District).filter(Boolean))];
   return districts.sort();
 });
+
+export const searchSuggestions = computed(
+  [constituencies, filters],
+  ($constituencies, $filters) => {
+    const q = ($filters.search || '').toLowerCase().trim();
+    if (q.length < 2) return [];
+    
+    const results = [];
+    const seen = new Set();
+    
+    // Search constituencies
+    $constituencies.forEach(row => {
+      if (row.constituency_Name?.toLowerCase().includes(q) && !seen.has(row.constituency_Name)) {
+        results.push({
+          type: 'constituency',
+          label: row.constituency_Name,
+          sublabel: row.District,
+          value: row.constituency_Name
+        });
+        seen.add(row.constituency_Name);
+      }
+    });
+    
+    // Search candidates
+    $constituencies.forEach(row => {
+      (row.candidates || []).forEach(c => {
+        const name = c.name?.toLowerCase();
+        if (name && name.includes(q) && !seen.has(c.name)) {
+          results.push({
+            type: 'candidate',
+            label: c.name,
+            sublabel: `${c.party} (${row.constituency_Name})`,
+            value: c.name
+          });
+          seen.add(c.name);
+        }
+        // Also match by party name
+        if (c.party?.toLowerCase().includes(q) && !seen.has(c.party)) {
+          results.push({
+            type: 'party',
+            label: c.party,
+            sublabel: `${row.constituency_Name}`,
+            value: c.party
+          });
+          seen.add(c.party);
+        }
+      });
+    });
+    
+    return results.slice(0, 10);
+  }
+);
