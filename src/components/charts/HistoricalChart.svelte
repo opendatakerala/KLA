@@ -21,6 +21,10 @@
   $: qid = $selectedConstituency?.qid;
   $: seriesData = qid ? getHistoricalData(qid) : [];
   
+  $: if (chartContainer && seriesData.length > 0 && (currentView === 'line' || currentView === 'stacked')) {
+    renderChart();
+  }
+  
   onMount(() => {
     currentView = localStorage.getItem(STORAGE_KEY) || 'bars';
     
@@ -32,10 +36,6 @@
   function setView(view) {
     currentView = view;
     localStorage.setItem(STORAGE_KEY, view);
-    
-    if ((view === 'line' || view === 'stacked') && chartContainer && seriesData.length > 0) {
-      setTimeout(renderChart, 0);
-    }
   }
   
   function renderChart() {

@@ -274,6 +274,7 @@
 
   .alliance-bar {
     width: 4px;
+    height: 60px;
     flex-shrink: 0;
   }
 
