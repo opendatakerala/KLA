@@ -1,9 +1,38 @@
+import partyData from '../data/candidates-by-party.json';
+
+const partyToAlliance = {};
+Object.entries(partyData).forEach(([alliance, parties]) => {
+  Object.keys(parties).forEach(party => {
+    partyToAlliance[party] = alliance;
+  });
+});
+
 export const ALLIANCE_COLORS = {
   LDF: '#EE0000',
   UDF: '#0078FF',
   NDA: '#FF9933',
   OTH: '#33AA00'
 };
+
+export function getPartyColor(partyOrAlliance) {
+  const key = partyOrAlliance?.toString().trim();
+  if (!key) return ALLIANCE_COLORS.OTH;
+
+  if (key === 'Others') {
+    return ALLIANCE_COLORS.OTH;
+  }
+
+  if (ALLIANCE_COLORS[key]) {
+    return ALLIANCE_COLORS[key];
+  }
+
+  const alliance = partyToAlliance[key];
+  if (alliance && ALLIANCE_COLORS[alliance]) {
+    return ALLIANCE_COLORS[alliance];
+  }
+
+  return ALLIANCE_COLORS.OTH;
+}
 
 export const ALLIANCE_BG = {
   LDF: '#FFDDDD',
