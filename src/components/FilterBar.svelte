@@ -75,7 +75,7 @@
       >
         <span data-i18n="filters.all">All</span>
       </button>
-      {#each parties.slice(0, 10) as party}
+      {#each parties as party}
         <button 
           class="filter-btn party-btn"
           class:active={activeParty === party.party}
@@ -140,6 +140,8 @@
     gap: 6px;
     flex-wrap: wrap;
     align-items: center;
+    max-height: 60px;
+    overflow-y: auto;
   }
 
   .district-row {
@@ -189,9 +191,5 @@
   }
 
   .filter-btn.party-btn {
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 </style>
