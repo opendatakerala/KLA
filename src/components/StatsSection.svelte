@@ -97,11 +97,11 @@
 
   .stats-tabs {
     display: flex;
+    flex-wrap: wrap;
     gap: 4px;
     padding: 12px 16px;
     border-bottom: 1px solid var(--border);
     background: var(--card2);
-    overflow-x: auto;
   }
 
   .stats-tab {
