@@ -1,6 +1,9 @@
 <script>
+    import { disclaimerDismissed } from '../stores/uiStore.js';
+
     const hideOverlay = () => {
         document.getElementById("disc-overlay")?.classList.remove("open");
+        disclaimerDismissed.set(true);
     };
     const PROD_HOSTNAME = "opendatakerala.org";
     if (typeof window !== "undefined" && location.hostname !== PROD_HOSTNAME) {

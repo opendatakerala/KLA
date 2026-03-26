@@ -43,8 +43,8 @@
     >
       <span data-i18n="stats.genderDistribution">Gender Distribution</span>
     </button>
-    <button class="stats-tab" data-stat="criminal-cases" disabled>
-      <span data-i18n="stats.criminalCases">Criminal Cases</span>
+    <button class="stats-tab" data-stat="age-distribution" disabled>
+      <span>Age Distribution</span>
       <span class="coming-soon">Coming Soon</span>
     </button>
     <button class="stats-tab" data-stat="education-distribution" disabled>
@@ -62,7 +62,7 @@
       <GenderDistribution isActive={activeTab === 'gender-distribution'} />
     </div>
 
-    <div class="stats-panel" class:active={activeTab === 'criminal-cases'}>
+    <div class="stats-panel" class:active={activeTab === 'age-distribution'}>
       <div class="placeholder">
         <div class="placeholder-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

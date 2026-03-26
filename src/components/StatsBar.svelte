@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { t } from '../lib/i18n.js';
+  import { disclaimerDismissed } from '../stores/uiStore.js';
 
   const statsData = [
     { key: 'constituencies', value: 140 },
@@ -14,9 +15,13 @@
     { key: 'contesting', value: '???' },
   ];
 
-  let displayedValues = statsData.map(() => 0);
+  let displayedValues = $state(statsData.map(() => 0));
+  let animationStarted = $state(false);
 
-  onMount(() => {
+  function startAnimation() {
+    if (animationStarted) return;
+    animationStarted = true;
+
     const duration = 1500;
     const startTime = performance.now();
 
@@ -43,6 +48,12 @@
     }
 
     requestAnimationFrame(animate);
+  }
+
+  $effect(() => {
+    if ($disclaimerDismissed) {
+      setTimeout(() => startAnimation(), 300);
+    }
   });
 </script>
 
