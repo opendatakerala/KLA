@@ -60,14 +60,13 @@
 <style>
   .stats-bar {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 28px;
-    overflow-x: auto;
-    padding-bottom: 4px;
   }
 
   .stat-cell {
-    flex: 1;
+    flex: 1 1 calc(11.11% - 8px);
     min-width: 90px;
     background: var(--card);
     border: 1px solid var(--border);
@@ -99,14 +98,15 @@
       gap: 6px;
     }
     .stat-cell {
-      min-width: 70px;
-      padding: 10px 6px 8px;
+      flex: 1 1 calc(25% - 6px);
+      min-width: 60px;
+      padding: 8px 4px 6px;
     }
     .stat-value {
-      font-size: 18px;
+      font-size: 16px;
     }
     .stat-label {
-      font-size: 7px;
+      font-size: 6px;
     }
   }
 </style>
