@@ -11,16 +11,30 @@
     setParty,
     setDistrict
   } from '../stores/constituencyStore.js';
+
+  let filtersOpen = $state(false);
 </script>
 
 <div class="data-explorer" id="data-explorer">
-  <div class="explorer-filters">
-    <FilterBar />
+  <div class="search-row">
+    <div class="search-section">
+      <SearchBar />
+    </div>
+    <button 
+      class="filters-toggle"
+      class:active={filtersOpen}
+      on:click={() => filtersOpen = !filtersOpen}
+    >
+      <span class="toggle-icon">{filtersOpen ? '▼' : '▶'}</span>
+      Filters
+    </button>
   </div>
 
-  <div class="search-section">
-    <SearchBar />
-  </div>
+  {#if filtersOpen}
+    <div class="explorer-filters">
+      <FilterBar />
+    </div>
+  {/if}
 
   <div class="active-filters">
     {#if $filters.search || $filters.reservation !== 'all' || $filters.women || $filters.party !== 'all' || $filters.district !== 'all'}
@@ -68,12 +82,61 @@
     margin-bottom: 40px;
   }
 
+  .filters-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filters-toggle:hover {
+    border-color: var(--gold-mid);
+    color: var(--text-soft);
+  }
+
+  .filters-toggle.active {
+    background: var(--gold-light);
+    border-color: var(--gold-mid);
+    color: var(--gold);
+  }
+
+  .toggle-icon {
+    font-size: 8px;
+  }
+
   .explorer-filters {
+    margin-bottom: 12px;
+    animation: slideDown 0.2s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .search-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
     margin-bottom: 12px;
   }
 
   .search-section {
-    margin-bottom: 16px;
+    flex: 1;
   }
 
   .active-filters {
