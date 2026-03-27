@@ -10,12 +10,12 @@
     Others: '#33AA55'
   };
 
-  $: currentModal = $selectedConstituency;
+  let currentModal = $derived($selectedConstituency);
 
-  $: ldfCandidates = currentModal?.candidates?.filter(c => c.alliance === 'LDF') || [];
-  $: udfCandidates = currentModal?.candidates?.filter(c => c.alliance === 'UDF') || [];
-  $: ndaCandidates = currentModal?.candidates?.filter(c => c.alliance === 'NDA') || [];
-  $: othersCandidates = currentModal?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || [];
+  let ldfCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'LDF') || []);
+  let udfCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'UDF') || []);
+  let ndaCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'NDA') || []);
+  let othersCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || []);
 
   function handleClose() { closeModal(); }
 

@@ -15,15 +15,17 @@
   const ALLIANCES = ['LDF', 'UDF', 'NDA', 'Others'];
 
   let currentView = $state('bars');
-  let chartContainer;
+  let chartContainer = $state(null);
   let chart = null;
 
-  $: qid = $selectedConstituency?.qid;
-  $: seriesData = qid ? getHistoricalData(qid) : [];
+  let qid = $derived($selectedConstituency?.qid);
+  let seriesData = $derived(qid ? getHistoricalData(qid) : []);
 
-  $: if (chartContainer && seriesData.length > 0 && (currentView === 'stacked')) {
-    renderChart();
-  }
+  $effect(() => {
+    if (chartContainer && seriesData.length > 0 && currentView === 'stacked') {
+      renderChart();
+    }
+  });
 
   onMount(() => {
     const saved = localStorage.getItem(STORAGE_KEY) || 'bars';
@@ -102,25 +104,13 @@
 {#if seriesData.length > 0}
   <div class="historical-chart-container">
     <div class="historical-switcher">
-      <button
-        class="hist-switch-btn"
-        class:active={currentView === 'bars'}
-        on:click={() => setView('bars')}
-      >Bars</button>
-      <button
-        class="hist-switch-btn"
-        class:active={currentView === 'stacked'}
-        on:click={() => setView('stacked')}
-      >Stacked</button>
-      <button
-        class="hist-switch-btn"
-        class:active={currentView === 'table'}
-        on:click={() => setView('table')}
-      >Table</button>
+      <button class="hist-switch-btn" class:active={currentView === 'bars'} on:click={() => setView('bars')}>Bars</button>
+      <button class="hist-switch-btn" class:active={currentView === 'stacked'} on:click={() => setView('stacked')}>Stacked</button>
+      <button class="hist-switch-btn" class:active={currentView === 'table'} on:click={() => setView('table')}>Table</button>
     </div>
 
     {#if currentView === 'bars'}
-      <div class="bars-view vertical-bars-view">
+      <div class="vertical-bars-view">
         {#each [...seriesData] as yearData}
           <div class="year-block">
             <div class="year-title">{yearData.year}</div>
@@ -131,10 +121,7 @@
                   <div class="vbar-col">
                     <div class="vbar-pct" style="color:{COLORS[alliance]}">{pct}%</div>
                     <div class="vbar-track">
-                      <div
-                        class="vbar-fill"
-                        style="height:{pct}%;background:{COLORS[alliance]}"
-                      ></div>
+                      <div class="vbar-fill" style="height:{pct}%;background:{COLORS[alliance]}"></div>
                     </div>
                     <div class="vbar-label" style="color:{COLORS[alliance]}">{alliance}</div>
                   </div>
@@ -185,9 +172,7 @@
 {/if}
 
 <style>
-  .historical-chart-container {
-    margin-top: 8px;
-  }
+  .historical-chart-container { margin-top: 8px; }
 
   .historical-switcher {
     display: flex;
@@ -208,18 +193,9 @@
     transition: all 0.18s;
   }
 
-  .hist-switch-btn:hover {
-    border-color: var(--text);
-    color: var(--text);
-  }
+  .hist-switch-btn:hover { border-color: var(--text); color: var(--text); }
+  .hist-switch-btn.active { background: var(--text); color: var(--card); border-color: var(--text); }
 
-  .hist-switch-btn.active {
-    background: var(--text);
-    color: var(--card);
-    border-color: var(--text);
-  }
-
-  /* Vertical bars */
   .vertical-bars-view {
     display: flex;
     gap: 20px;
@@ -239,7 +215,6 @@
     font-size: 10px;
     color: var(--muted);
     letter-spacing: 0.05em;
-    text-align: center;
   }
 
   .vertical-bars {
@@ -292,16 +267,9 @@
     letter-spacing: 0.04em;
   }
 
-  /* Stacked chart */
-  .chart-view {
-    width: 100%;
-    height: 260px;
-  }
+  .chart-view { width: 100%; height: 260px; }
 
-  /* Table */
-  .table-view {
-    overflow-x: auto;
-  }
+  .table-view { overflow-x: auto; }
 
   .hist-table {
     width: 100%;
@@ -327,22 +295,10 @@
     color: var(--text);
   }
 
-  .hist-table tbody tr:hover {
-    background: var(--bg2);
-  }
-
-  .year-cell {
-    font-weight: 700;
-    color: var(--muted) !important;
-  }
-
-  .pct-cell {
-    text-align: right;
-  }
-
-  .winner-cell {
-    font-weight: 700;
-  }
+  .hist-table tbody tr:hover { background: var(--bg2); }
+  .year-cell { font-weight: 700; color: var(--muted) !important; }
+  .pct-cell { text-align: right; }
+  .winner-cell { font-weight: 700; }
 
   .winner-badge {
     display: inline-block;

@@ -2,8 +2,7 @@
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
 
-  export let constituencyNumber = null;
-  export let constituencyQid = null;
+  let { constituencyNumber = null, constituencyQid = null } = $props();
 
   const COLORS = {
     LDF: '#D94040',
@@ -16,24 +15,24 @@
   const YEARS = ['2011', '2016', '2021'];
 
   let currentView = $state('bars');
-  let chartContainer;
+  let chartContainer = $state(null);
   let chart = null;
 
-  // Placeholder data structure — replace with actual data import once available.
-  // Expected shape: { [constituencyQid]: { [year]: { allianceVotes: {LDF,UDF,NDA,Others}, totalVotes, winner } } }
-  // For now returns empty so the "data pending" state renders.
+  // Placeholder — replace with real import once data/niyamasabha-historical.json exists
   function getNiyamasabhaData(qid) {
     if (!qid) return [];
-    // TODO: import from src/data/niyamasabha-historical.json once data is available
+    // TODO: import from src/data/niyamasabha-historical.json
     return [];
   }
 
-  $: seriesData = getNiyamasabhaData(constituencyQid);
-  $: hasData = seriesData.length > 0;
+  let seriesData = $derived(getNiyamasabhaData(constituencyQid));
+  let hasData = $derived(seriesData.length > 0);
 
-  $: if (chartContainer && hasData && currentView === 'stacked') {
-    renderChart();
-  }
+  $effect(() => {
+    if (chartContainer && hasData && currentView === 'stacked') {
+      renderChart();
+    }
+  });
 
   onMount(() => {
     return () => { if (chart) chart.dispose(); };
@@ -175,7 +174,6 @@
 {/if}
 
 <style>
-  /* Pending state */
   .pending-box {
     display: flex;
     flex-direction: column;
@@ -188,10 +186,7 @@
     text-align: center;
   }
 
-  .pending-years {
-    display: flex;
-    gap: 8px;
-  }
+  .pending-years { display: flex; gap: 8px; }
 
   .yr-pill {
     padding: 3px 10px;
@@ -222,14 +217,9 @@
     letter-spacing: 0.02em;
   }
 
-  /* Shared chart styles */
   .historical-chart-container { margin-top: 8px; }
 
-  .historical-switcher {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
+  .historical-switcher { display: flex; gap: 8px; margin-bottom: 16px; }
 
   .hist-switch-btn {
     font-family: 'DM Mono', monospace;
@@ -247,11 +237,7 @@
   .hist-switch-btn:hover { border-color: var(--text); color: var(--text); }
   .hist-switch-btn.active { background: var(--text); color: var(--card); border-color: var(--text); }
 
-  .vertical-bars-view {
-    display: flex;
-    gap: 20px;
-    align-items: flex-end;
-  }
+  .vertical-bars-view { display: flex; gap: 20px; align-items: flex-end; }
 
   .year-block {
     flex: 1;
