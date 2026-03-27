@@ -1,5 +1,37 @@
 <script>
-  export let totalCandidates = '—';
+  import { onMount } from 'svelte';
+  import SearchBar from './SearchBar.svelte';
+
+  let days = $state(0);
+  let hours = $state(0);
+  let minutes = $state(0);
+  let seconds = $state(0);
+  let pollingStarted = $state(false);
+
+  const POLLING_DAY = new Date('2026-04-09T06:00:00+05:30');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = POLLING_DAY - now;
+    if (diff <= 0) {
+      pollingStarted = true;
+      return;
+    }
+    days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  }
+
+  onMount(() => {
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  });
+
+  function pad(n) {
+    return String(n).padStart(2, '0');
+  }
 </script>
 
 <header>
@@ -17,21 +49,45 @@
       </div>
     </div>
     <div class="header-right">
-      <div class="header-stats">
-        <div class="hstat">
-          <div class="hstat-num">140</div>
-          <div class="hstat-label" data-i18n="header.seats">Seats</div>
+      {#if pollingStarted}
+        <div class="countdown-box polling-live">
+          <div class="countdown-label">🗳️ Polling Day</div>
+          <div class="countdown-live-text">Polling Underway</div>
         </div>
-        <div class="hstat">
-          <div class="hstat-num" id="total-candidates">{totalCandidates}</div>
-          <div class="hstat-label" data-i18n="header.announcedCandidates">Announced Candidates *</div>
+      {:else}
+        <div class="countdown-box">
+          <div class="countdown-label">⏳ Polling Day · 9 Apr 2026, 6 AM</div>
+          <div class="countdown-units">
+            <div class="cunit">
+              <span class="cnum">{days}</span>
+              <span class="clabel">Days</span>
+            </div>
+            <span class="csep">:</span>
+            <div class="cunit">
+              <span class="cnum">{pad(hours)}</span>
+              <span class="clabel">Hrs</span>
+            </div>
+            <span class="csep">:</span>
+            <div class="cunit">
+              <span class="cnum">{pad(minutes)}</span>
+              <span class="clabel">Min</span>
+            </div>
+            <span class="csep">:</span>
+            <div class="cunit">
+              <span class="cnum">{pad(seconds)}</span>
+              <span class="clabel">Sec</span>
+            </div>
+          </div>
         </div>
-      </div>
+      {/if}
       <div class="lang-switcher" id="lang-switcher">
         <button class="lang-btn active" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="ml">മല</button>
       </div>
     </div>
+  </div>
+  <div class="header-search">
+    <SearchBar />
   </div>
 </header>
 
@@ -50,11 +106,17 @@
   .header-inner {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 32px 18px;
+    padding: 20px 32px 14px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 20px;
+  }
+
+  .header-search {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px 16px;
   }
 
   .header-logo-wrap { display: flex; align-items: center; flex-shrink: 0; }
@@ -114,23 +176,71 @@
     flex-shrink: 0;
   }
 
-  .header-stats { display: flex; gap: 18px; align-items: flex-end; }
-  .hstat { text-align: right; }
-  .hstat-num {
-    font-family: 'Inter', sans-serif;
-    font-size: 26px;
-    font-weight: 900;
-    color: #000;
-    line-height: 1;
+  .countdown-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
   }
-  .hstat-label {
+
+  .countdown-label {
     font-family: 'DM Mono', monospace;
-    font-size: 8px;
-    color: #000;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-size: 9px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .countdown-units {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cunit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 32px;
+  }
+
+  .cnum {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .clabel {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
     margin-top: 2px;
+  }
+
+  .csep {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .polling-live {
+    border-color: #16a34a;
+    background: #f0fdf4;
+  }
+
+  .countdown-live-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #16a34a;
   }
 
   .lang-switcher {
@@ -139,9 +249,8 @@
     background: var(--bg2);
     border-radius: 6px;
     padding: 2px;
-    margin-left: 12px;
   }
-  
+
   .lang-btn {
     padding: 4px 8px;
     font-family: 'DM Mono', monospace;
@@ -155,12 +264,12 @@
     cursor: pointer;
     transition: all 0.15s;
   }
-  
+
   .lang-btn:hover {
     color: var(--text);
     background: var(--card);
   }
-  
+
   .lang-btn.active {
     background: var(--card);
     color: var(--gold);
@@ -173,6 +282,9 @@
       grid-template-columns: auto 1fr;
       padding: 12px 16px 10px;
       gap: 12px;
+    }
+    .header-search {
+      padding: 0 16px 12px;
     }
     .header-logo { width: 44px; height: 44px; }
     .header-right { display: none; }

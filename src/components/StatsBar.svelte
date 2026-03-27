@@ -5,14 +5,14 @@
 
   const statsData = [
     { key: 'constituencies', value: 140 },
-    { key: 'booths', value: 30471 },
-    { key: 'voters', value: '???????' },
-    { key: 'parties', value: '25' },
     { key: 'alliances', value: 3 },
+    { key: 'parties', value: 25 },
     { key: 'nominations', value: 2117 },
     { key: 'applications', value: 1252 },
     { key: 'afterScrutiny', value: '????' },
     { key: 'contesting', value: '???' },
+    { key: 'booths', value: 30471 },
+    { key: 'voters', value: '???????' },
   ];
 
   let displayedValues = $state(statsData.map(() => 0));
@@ -105,19 +105,13 @@
   }
 
   @media (max-width: 640px) {
-    .stats-bar {
-      gap: 6px;
-    }
+    .stats-bar { gap: 6px; }
     .stat-cell {
       flex: 1 1 calc(25% - 6px);
       min-width: 60px;
       padding: 8px 4px 6px;
     }
-    .stat-value {
-      font-size: 16px;
-    }
-    .stat-label {
-      font-size: 6px;
-    }
+    .stat-value { font-size: 16px; }
+    .stat-label { font-size: 6px; }
   }
 </style>

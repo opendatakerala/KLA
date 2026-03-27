@@ -1,10 +1,10 @@
 <script>
   import { onMount } from 'svelte';
-  import { selectedConstituency } from '../../stores/constituencyStore.js';
-  import { getHistoricalData } from '../../stores/historicalStore.js';
   import * as echarts from 'echarts';
 
-  const STORAGE_KEY = 'historicalViewMode';
+  export let constituencyNumber = null;
+  export let constituencyQid = null;
+
   const COLORS = {
     LDF: '#D94040',
     UDF: '#1565C0',
@@ -13,47 +13,50 @@
   };
 
   const ALLIANCES = ['LDF', 'UDF', 'NDA', 'Others'];
+  const YEARS = ['2011', '2016', '2021'];
 
   let currentView = $state('bars');
   let chartContainer;
   let chart = null;
 
-  $: qid = $selectedConstituency?.qid;
-  $: seriesData = qid ? getHistoricalData(qid) : [];
+  // Placeholder data structure — replace with actual data import once available.
+  // Expected shape: { [constituencyQid]: { [year]: { allianceVotes: {LDF,UDF,NDA,Others}, totalVotes, winner } } }
+  // For now returns empty so the "data pending" state renders.
+  function getNiyamasabhaData(qid) {
+    if (!qid) return [];
+    // TODO: import from src/data/niyamasabha-historical.json once data is available
+    return [];
+  }
 
-  $: if (chartContainer && seriesData.length > 0 && (currentView === 'stacked')) {
+  $: seriesData = getNiyamasabhaData(constituencyQid);
+  $: hasData = seriesData.length > 0;
+
+  $: if (chartContainer && hasData && currentView === 'stacked') {
     renderChart();
   }
 
   onMount(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) || 'bars';
-    currentView = saved === 'line' ? 'bars' : saved;
-    return () => {
-      if (chart) chart.dispose();
-    };
+    return () => { if (chart) chart.dispose(); };
   });
 
-  function setView(view) {
-    currentView = view;
-    localStorage.setItem(STORAGE_KEY, view);
-  }
+  function setView(v) { currentView = v; }
 
   function renderChart() {
-    if (!chartContainer || seriesData.length === 0) return;
+    if (!chartContainer || !hasData) return;
     if (chart) { chart.dispose(); chart = null; }
     chart = echarts.init(chartContainer, null, { renderer: 'svg' });
 
     const series = ALLIANCES
-      .filter(alliance => seriesData.some(d => d.allianceVotes[alliance] > 0))
-      .map(alliance => ({
-        name: alliance,
+      .filter(al => seriesData.some(d => d.allianceVotes[al] > 0))
+      .map(al => ({
+        name: al,
         type: 'bar',
         stack: 'total',
         data: seriesData.map(d => {
-          const pct = d.totalVotes > 0 ? (d.allianceVotes[alliance] / d.totalVotes) * 100 : 0;
+          const pct = d.totalVotes > 0 ? (d.allianceVotes[al] / d.totalVotes) * 100 : 0;
           return parseFloat(pct.toFixed(1));
         }),
-        itemStyle: { color: COLORS[alliance] },
+        itemStyle: { color: COLORS[al] },
         label: {
           show: true,
           formatter: (p) => p.value > 5 ? p.value + '%' : '',
@@ -64,16 +67,7 @@
       }));
 
     chart.setOption({
-      tooltip: {
-        trigger: 'axis',
-        formatter: (params) => {
-          let html = `<b>${params[0].axisValue}</b><br/>`;
-          params.forEach(p => {
-            html += `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${p.color};margin-right:4px"></span>${p.seriesName}: ${p.value}%<br/>`;
-          });
-          return html;
-        }
-      },
+      tooltip: { trigger: 'axis' },
       legend: { data: ALLIANCES, bottom: 0, textStyle: { fontSize: 10 } },
       grid: { left: 44, right: 16, top: 16, bottom: 44 },
       xAxis: { type: 'category', data: seriesData.map(d => d.year) },
@@ -87,8 +81,7 @@
   }
 
   function getWinner(yearData) {
-    let max = 0;
-    let winner = '';
+    let max = 0; let winner = '';
     for (const al of ALLIANCES) {
       if ((yearData.allianceVotes[al] || 0) > max) {
         max = yearData.allianceVotes[al];
@@ -99,29 +92,29 @@
   }
 </script>
 
-{#if seriesData.length > 0}
+{#if !hasData}
+  <div class="pending-box">
+    <div class="pending-years">
+      {#each YEARS as yr}
+        <span class="yr-pill">{yr}</span>
+      {/each}
+    </div>
+    <div class="pending-text">
+      Niyamasabha results data pending
+      <span class="pending-sub">Data for 2011, 2016 &amp; 2021 assembly elections will be added soon.</span>
+    </div>
+  </div>
+{:else}
   <div class="historical-chart-container">
     <div class="historical-switcher">
-      <button
-        class="hist-switch-btn"
-        class:active={currentView === 'bars'}
-        on:click={() => setView('bars')}
-      >Bars</button>
-      <button
-        class="hist-switch-btn"
-        class:active={currentView === 'stacked'}
-        on:click={() => setView('stacked')}
-      >Stacked</button>
-      <button
-        class="hist-switch-btn"
-        class:active={currentView === 'table'}
-        on:click={() => setView('table')}
-      >Table</button>
+      <button class="hist-switch-btn" class:active={currentView === 'bars'} on:click={() => setView('bars')}>Bars</button>
+      <button class="hist-switch-btn" class:active={currentView === 'stacked'} on:click={() => setView('stacked')}>Stacked</button>
+      <button class="hist-switch-btn" class:active={currentView === 'table'} on:click={() => setView('table')}>Table</button>
     </div>
 
     {#if currentView === 'bars'}
-      <div class="bars-view vertical-bars-view">
-        {#each [...seriesData] as yearData}
+      <div class="vertical-bars-view">
+        {#each seriesData as yearData}
           <div class="year-block">
             <div class="year-title">{yearData.year}</div>
             <div class="vertical-bars">
@@ -131,10 +124,7 @@
                   <div class="vbar-col">
                     <div class="vbar-pct" style="color:{COLORS[alliance]}">{pct}%</div>
                     <div class="vbar-track">
-                      <div
-                        class="vbar-fill"
-                        style="height:{pct}%;background:{COLORS[alliance]}"
-                      ></div>
+                      <div class="vbar-fill" style="height:{pct}%;background:{COLORS[alliance]}"></div>
                     </div>
                     <div class="vbar-label" style="color:{COLORS[alliance]}">{alliance}</div>
                   </div>
@@ -185,9 +175,55 @@
 {/if}
 
 <style>
-  .historical-chart-container {
-    margin-top: 8px;
+  /* Pending state */
+  .pending-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 24px 16px;
+    background: var(--card2);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    text-align: center;
   }
+
+  .pending-years {
+    display: flex;
+    gap: 8px;
+  }
+
+  .yr-pill {
+    padding: 3px 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .pending-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pending-sub {
+    font-size: 10px;
+    color: var(--faint);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* Shared chart styles */
+  .historical-chart-container { margin-top: 8px; }
 
   .historical-switcher {
     display: flex;
@@ -208,18 +244,9 @@
     transition: all 0.18s;
   }
 
-  .hist-switch-btn:hover {
-    border-color: var(--text);
-    color: var(--text);
-  }
+  .hist-switch-btn:hover { border-color: var(--text); color: var(--text); }
+  .hist-switch-btn.active { background: var(--text); color: var(--card); border-color: var(--text); }
 
-  .hist-switch-btn.active {
-    background: var(--text);
-    color: var(--card);
-    border-color: var(--text);
-  }
-
-  /* Vertical bars */
   .vertical-bars-view {
     display: flex;
     gap: 20px;
@@ -239,7 +266,6 @@
     font-size: 10px;
     color: var(--muted);
     letter-spacing: 0.05em;
-    text-align: center;
   }
 
   .vertical-bars {
@@ -292,16 +318,9 @@
     letter-spacing: 0.04em;
   }
 
-  /* Stacked chart */
-  .chart-view {
-    width: 100%;
-    height: 260px;
-  }
+  .chart-view { width: 100%; height: 260px; }
 
-  /* Table */
-  .table-view {
-    overflow-x: auto;
-  }
+  .table-view { overflow-x: auto; }
 
   .hist-table {
     width: 100%;
@@ -327,22 +346,10 @@
     color: var(--text);
   }
 
-  .hist-table tbody tr:hover {
-    background: var(--bg2);
-  }
-
-  .year-cell {
-    font-weight: 700;
-    color: var(--muted) !important;
-  }
-
-  .pct-cell {
-    text-align: right;
-  }
-
-  .winner-cell {
-    font-weight: 700;
-  }
+  .hist-table tbody tr:hover { background: var(--bg2); }
+  .year-cell { font-weight: 700; color: var(--muted) !important; }
+  .pct-cell { text-align: right; }
+  .winner-cell { font-weight: 700; }
 
   .winner-badge {
     display: inline-block;

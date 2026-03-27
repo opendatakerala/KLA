@@ -1,6 +1,7 @@
 <script>
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
   import HistoricalChart from './charts/HistoricalChart.svelte';
+  import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
 
   const ALLIANCE_COLORS = {
     LDF: '#D94040',
@@ -16,27 +17,23 @@
   $: ndaCandidates = currentModal?.candidates?.filter(c => c.alliance === 'NDA') || [];
   $: othersCandidates = currentModal?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || [];
 
-  function handleClose() {
-    closeModal();
-  }
+  function handleClose() { closeModal(); }
 
   function handleKeydown(e) {
-    if (e.key === 'Escape') {
-      handleClose();
-    }
+    if (e.key === 'Escape') handleClose();
   }
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
 {#if currentModal}
-  <div 
+  <div
     class="modal-overlay open"
     on:click={handleClose}
     role="button"
     tabindex="0"
   >
-    <div 
+    <div
       class="modal"
       on:click|stopPropagation
       role="dialog"
@@ -59,11 +56,12 @@
           <span data-i18n="modal.close">✕ Close</span>
         </button>
       </div>
+
       <div class="modal-body">
         <div class="modal-section-label" data-i18n="modal.contestingCandidates">
           Contesting Candidates
         </div>
-        
+
         {#if ldfCandidates.length > 0}
           <div class="candidate-group">
             {#each ldfCandidates as c}
@@ -124,6 +122,13 @@
           </div>
         {/if}
 
+        <!-- Niyamasabha Historical Results -->
+        <div class="modal-section-label">
+          Historical Results (Niyamasabha)
+        </div>
+        <NiyamasabhaChart constituencyNumber={currentModal.number} constituencyQid={currentModal.qid} />
+
+        <!-- Lok Sabha Historical Results -->
         {#if currentModal.qid}
           <div class="modal-section-label">
             Historical Results (Lok Sabha)
@@ -138,10 +143,7 @@
 <style>
   .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
@@ -150,9 +152,7 @@
     padding: 20px;
   }
 
-  .modal-overlay:not(.open) {
-    display: none;
-  }
+  .modal-overlay:not(.open) { display: none; }
 
   .modal {
     background: var(--card);
@@ -221,8 +221,7 @@
 
   .modal-close {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 16px; right: 16px;
     padding: 6px 12px;
     background: var(--card2);
     border: 1px solid var(--border);
@@ -239,9 +238,7 @@
     color: var(--text);
   }
 
-  .modal-body {
-    padding: 20px;
-  }
+  .modal-body { padding: 20px; }
 
   .modal-section-label {
     font-family: 'DM Mono', monospace;
@@ -250,12 +247,12 @@
     color: var(--muted);
     text-transform: uppercase;
     margin-bottom: 12px;
-    margin-top: 20px;
+    margin-top: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .modal-section-label:first-child {
-    margin-top: 0;
-  }
+  .modal-section-label:first-child { margin-top: 0; }
 
   .candidate-group {
     display: grid;

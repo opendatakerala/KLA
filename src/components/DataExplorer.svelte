@@ -1,6 +1,5 @@
 <script>
   import FilterBar from './FilterBar.svelte';
-  import SearchBar from './SearchBar.svelte';
   import DataDisplay from './DataDisplay.svelte';
   import { 
     filters, 
@@ -16,10 +15,7 @@
 </script>
 
 <div class="data-explorer" id="data-explorer">
-  <div class="search-row">
-    <div class="search-section">
-      <SearchBar />
-    </div>
+  <div class="explorer-toolbar">
     <button 
       class="filters-toggle"
       class:active={filtersOpen}
@@ -82,6 +78,12 @@
     margin-bottom: 40px;
   }
 
+  .explorer-toolbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
   .filters-toggle {
     display: inline-flex;
     align-items: center;
@@ -118,25 +120,8 @@
   }
 
   @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .search-row {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin-bottom: 12px;
-  }
-
-  .search-section {
-    flex: 1;
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .active-filters {

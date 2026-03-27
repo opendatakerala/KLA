@@ -13,7 +13,7 @@
   });
 </script>
 
-<Header totalCandidates="—" />
+<Header />
 
 <div class="container">
   <StatsSection />
