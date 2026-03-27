@@ -13,7 +13,7 @@
   const ALLIANCES = ['LDF', 'UDF', 'NDA'];
   const YEARS = ['2014', '2019', '2024'];
 
-  let currentView = $state('bars');
+  let currentView = $state('simple');
   let chartContainer = $state(null);
   let chart = null;
 
@@ -31,6 +31,18 @@
   });
 
   function setView(v) { currentView = v; }
+
+  function goBack() { currentView = 'simple'; }
+
+  function getSimpleText(yearData) {
+    const winner = yearData.winner;
+    if (!winner) return '';
+    const party = winner.party || '';
+    const alliance = winner.alliance || '';
+    const margin = yearData.margin;
+    const marginStr = margin.toLocaleString();
+    return `${party} (${alliance}) won by ${marginStr} votes`;
+  }
 
   function renderChart() {
     if (!chartContainer || !hasData) return;
@@ -107,8 +119,19 @@
       <span class="pending-sub">Data for {YEARS.join(', ')} lok sabha elections</span>
     </div>
   </div>
+{:else if currentView === 'simple'}
+  <div class="simple-view">
+    {#each seriesData as yearData}
+      <div class="simple-year-row">
+        <span class="simple-year">{yearData.year}</span>
+        <span class="simple-result">{getSimpleText(yearData)}</span>
+      </div>
+    {/each}
+    <button class="view-details-btn" onclick={() => setView('bars')}>View Details</button>
+  </div>
 {:else}
   <div class="historical-chart-container">
+    <button class="back-btn" onclick={goBack}>← Back</button>
     <div class="historical-switcher">
       <button class="hist-switch-btn" class:active={currentView === 'bars'} onclick={() => setView('bars')}>Bars</button>
       <button class="hist-switch-btn" class:active={currentView === 'stacked'} onclick={() => setView('stacked')}>Stacked</button>
@@ -184,41 +207,7 @@
 {/if}
 
 <style>
-  .loading-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    background: var(--card2);
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-    text-align: center;
-  }
-
-  .loading-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .error-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-    background: var(--card2);
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-    text-align: center;
-  }
-
-  .error-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--ldf);
-  }
-
-  .pending-box {
+  .loading-box, .error-box, .pending-box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -228,6 +217,25 @@
     border: 1px dashed var(--border);
     border-radius: 8px;
     text-align: center;
+  }
+
+  .loading-text, .error-text, .pending-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .error-text { color: var(--ldf); }
+
+  .pending-sub {
+    font-size: 10px;
+    color: var(--faint);
+    font-weight: 400;
+    letter-spacing: 0.02em;
   }
 
   .pending-years { display: flex; gap: 8px; }
@@ -244,24 +252,68 @@
     letter-spacing: 0.05em;
   }
 
-  .pending-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
+  .simple-view {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
   }
 
-  .pending-sub {
+  .simple-year-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--card2);
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .simple-year {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 40px;
+  }
+
+  .simple-result {
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  .view-details-btn {
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
-    color: var(--faint);
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.18s;
+    align-self: center;
+  }
+
+  .view-details-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
   }
 
   .historical-chart-container { margin-top: 8px; }
+
+  .back-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+
+  .back-btn:hover { color: var(--text); }
 
   .historical-switcher { display: flex; gap: 8px; margin-bottom: 16px; }
 
@@ -380,24 +432,9 @@
   .hist-table tbody tr:hover { background: var(--bg2); }
   .year-cell { font-weight: 700; color: var(--muted) !important; width: 60px; }
   
-  .winner-name {
-    font-weight: 600;
-    font-size: 12px;
-    display: block;
-  }
-
-  .runnerup-name {
-    font-size: 11px;
-    color: var(--muted);
-    display: block;
-    margin-top: 4px;
-  }
-
-  .party {
-    font-weight: 600;
-    font-size: 10px;
-  }
-
+  .winner-name { font-weight: 600; font-size: 12px; display: block; }
+  .runnerup-name { font-size: 11px; color: var(--muted); display: block; margin-top: 4px; }
+  .party { font-weight: 600; font-size: 10px; }
   .alliance-tag {
     display: inline-block;
     padding: 1px 5px;
@@ -414,14 +451,6 @@
     white-space: nowrap;
   }
 
-  .votes-cell div {
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  .margin-line {
-    font-weight: 700;
-    color: var(--text);
-    font-size: 10px;
-  }
+  .votes-cell div { display: block; margin-bottom: 2px; }
+  .margin-line { font-weight: 700; color: var(--text); font-size: 10px; }
 </style>

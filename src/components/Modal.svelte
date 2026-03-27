@@ -22,6 +22,7 @@
   let historicalError = $state(false);
   let niyamasabhaData = $state([]);
   let loksabhaData = $state([]);
+  let loksabhaVisible = $state(false);
 
   $effect(() => {
     // Svelte automatically tracks this as a dependency.
@@ -77,18 +78,18 @@
   }
 </script>
 
-<svelte:window on:keydown={handleKeydown} />
+<svelte:window onkeydown={handleKeydown} />
 
 {#if currentModal}
   <div
     class="modal-overlay open"
-    on:click={handleClose}
+    onclick={handleClose}
     role="button"
     tabindex="0"
   >
     <div
       class="modal"
-      on:click|stopPropagation
+      onclick={(e) => e.stopPropagation()}
       role="dialog"
     >
       <div class="modal-top"></div>
@@ -105,7 +106,7 @@
             </span>
           {/if}
         </div>
-        <button class="modal-close" on:click={handleClose}>
+        <button class="modal-close" onclick={handleClose}>
           <span data-i18n="modal.close">✕ Close</span>
         </button>
       </div>
@@ -183,10 +184,14 @@
 
         <!-- Lok Sabha Historical Results -->
         {#if currentModal.qid}
-          <div class="modal-section-label">
-            Historical Results (Lok Sabha)
+          <div class="modal-section-label loksabha-section">
+            <button class="toggle-loksabha-btn" onclick={() => loksabhaVisible = !loksabhaVisible}>
+              {loksabhaVisible ? '▼' : '▶'} Historical Results (Lok Sabha)
+            </button>
           </div>
-          <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} />
+          {#if loksabhaVisible}
+            <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} />
+          {/if}
         {/if}
       </div>
     </div>
@@ -306,6 +311,28 @@
   }
 
   .modal-section-label:first-child { margin-top: 0; }
+
+  .loksabha-section {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .toggle-loksabha-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+  }
+
+  .toggle-loksabha-btn:hover {
+    color: var(--text);
+  }
 
   .candidate-group {
     display: grid;
