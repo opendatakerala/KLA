@@ -189,9 +189,9 @@
               {loksabhaVisible ? '▼' : '▶'} Historical Results (Lok Sabha)
             </button>
           </div>
-          {#if loksabhaVisible}
+          <div class="loksabha-chart-wrapper" class:hidden={!loksabhaVisible}>
             <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} />
-          {/if}
+          </div>
         {/if}
       </div>
     </div>
@@ -315,6 +315,10 @@
   .loksabha-section {
     border-bottom: none;
     padding-bottom: 0;
+  }
+
+  .loksabha-chart-wrapper.hidden {
+    display: none;
   }
 
   .toggle-loksabha-btn {

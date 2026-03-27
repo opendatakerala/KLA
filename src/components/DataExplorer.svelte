@@ -12,6 +12,10 @@
   } from '../stores/constituencyStore.js';
 
   let filtersOpen = $state(false);
+
+  function toggleFilters() {
+    filtersOpen = !filtersOpen;
+  }
 </script>
 
 <div class="data-explorer" id="data-explorer">
@@ -19,52 +23,50 @@
     <button 
       class="filters-toggle"
       class:active={filtersOpen}
-      on:click={() => filtersOpen = !filtersOpen}
+      onclick={toggleFilters}
     >
       <span class="toggle-icon">{filtersOpen ? '▼' : '▶'}</span>
       Filters
     </button>
   </div>
 
-  {#if filtersOpen}
-    <div class="explorer-filters">
-      <FilterBar />
-    </div>
-  {/if}
+  <div class="explorer-filters" class:hidden={!filtersOpen}>
+    <FilterBar />
+  </div>
 
   <div class="active-filters">
     {#if $filters.search || $filters.reservation !== 'all' || $filters.women || $filters.party !== 'all' || $filters.district !== 'all'}
       {#if $filters.search}
         <span class="active-tag">
           Search: "{$filters.search}"
-          <button class="tag-remove" on:click={() => setSearch('')}>×</button>
+          <button class="tag-remove" onclick={() => setSearch('')}>×</button>
         </span>
       {/if}
       {#if $filters.reservation !== 'all'}
         <span class="active-tag reservation {$filters.reservation.toLowerCase()}">
           {$filters.reservation}
-          <button class="tag-remove" on:click={() => setReservation('all')}>×</button>
+          <button class="tag-remove" onclick={() => setReservation('all')}>×</button>
         </span>
       {/if}
       {#if $filters.women}
         <span class="active-tag women">
           Women
-          <button class="tag-remove" on:click={toggleWomen}>×</button>
+          <button class="tag-remove" onclick={toggleWomen}>×</button>
         </span>
       {/if}
       {#if $filters.party !== 'all'}
         <span class="active-tag party">
           {$filters.party}
-          <button class="tag-remove" on:click={() => setParty('all')}>×</button>
+          <button class="tag-remove" onclick={() => setParty('all')}>×</button>
         </span>
       {/if}
       {#if $filters.district !== 'all'}
         <span class="active-tag district">
           {$filters.district}
-          <button class="tag-remove" on:click={() => setDistrict('all')}>×</button>
+          <button class="tag-remove" onclick={() => setDistrict('all')}>×</button>
         </span>
       {/if}
-      <button class="clear-all-btn" on:click={clearFilters}>
+      <button class="clear-all-btn" onclick={clearFilters}>
         Clear All
       </button>
     {/if}
@@ -117,6 +119,10 @@
   .explorer-filters {
     margin-bottom: 12px;
     animation: slideDown 0.2s ease;
+  }
+
+  .explorer-filters.hidden {
+    display: none;
   }
 
   @keyframes slideDown {
