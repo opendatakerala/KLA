@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
 
-  let { constituencyNumber = null, data = [], loading = false, error = false } = $props();
+  let { constituencyQid = null, data = [], loading = false, error = false } = $props();
 
   const COLORS = {
     LDF: '#D94040',
@@ -11,7 +11,7 @@
   };
 
   const ALLIANCES = ['LDF', 'UDF', 'NDA'];
-  const YEARS = ['2011', '2016', '2021'];
+  const YEARS = ['2014', '2019', '2024'];
 
   let currentView = $state('bars');
   let chartContainer = $state(null);
@@ -104,7 +104,7 @@
     </div>
     <div class="pending-text">
       No historical data available
-      <span class="pending-sub">Data for {YEARS.join(', ')} assembly elections</span>
+      <span class="pending-sub">Data for {YEARS.join(', ')} lok sabha elections</span>
     </div>
   </div>
 {:else}

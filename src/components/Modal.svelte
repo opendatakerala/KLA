@@ -1,7 +1,7 @@
 <script>
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
-  import HistoricalChart from './charts/HistoricalChart.svelte';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
+  import LoksabhaChart from './charts/LoksabhaChart.svelte';
 
   const ALLIANCE_COLORS = {
     LDF: '#D94040',
@@ -10,12 +10,65 @@
     Others: '#33AA55'
   };
 
+  const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || '';
   let currentModal = $derived($selectedConstituency);
-
+  
   let ldfCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'LDF') || []);
   let udfCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'UDF') || []);
   let ndaCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'NDA') || []);
   let othersCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || []);
+
+  let historicalLoading = $state(true);
+  let historicalError = $state(false);
+  let niyamasabhaData = $state([]);
+  let loksabhaData = $state([]);
+
+  $effect(() => {
+    // Svelte automatically tracks this as a dependency.
+    // The effect will ONLY re-run when currentModal.qid changes.
+    const qid = currentModal?.qid;
+
+    if (!qid) {
+      niyamasabhaData = [];
+      loksabhaData = [];
+      historicalLoading = false;
+      return;
+    }
+
+    // Use an AbortController to cancel previous requests if the qid changes 
+    // before the previous fetch completes.
+    const controller = new AbortController();
+
+    async function fetchHistoricalData() {
+      historicalLoading = true;
+      historicalError = false;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/kla2026/${qid}.json`, {
+          signal: controller.signal
+        });
+        const data = await res.json();
+        niyamasabhaData = data.niyamasabha || [];
+        loksabhaData = data.loksabha || [];
+      } catch (e) {
+        // Ignore errors caused by our own abort cancellation
+        if (e.name === 'AbortError') return; 
+        
+        console.error('Failed to fetch historical data:', e);
+        historicalError = true;
+      } finally {
+        historicalLoading = false;
+      }
+    }
+
+    fetchHistoricalData();
+
+    // The cleanup function runs right before the effect re-runs, 
+    // or when the component unmounts.
+    return () => {
+      controller.abort();
+    };
+  });
 
   function handleClose() { closeModal(); }
 
@@ -126,14 +179,14 @@
         <div class="modal-section-label">
           Historical Results (Niyamasabha)
         </div>
-        <NiyamasabhaChart constituencyNumber={currentModal.number} constituencyQid={currentModal.qid} />
+        <NiyamasabhaChart constituencyNumber={currentModal.number} data={niyamasabhaData} loading={historicalLoading} error={historicalError} />
 
         <!-- Lok Sabha Historical Results -->
         {#if currentModal.qid}
           <div class="modal-section-label">
             Historical Results (Lok Sabha)
           </div>
-          <HistoricalChart />
+          <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} />
         {/if}
       </div>
     </div>
