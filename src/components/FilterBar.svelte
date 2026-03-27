@@ -10,12 +10,12 @@
     clearFilters
   } from '../stores/constituencyStore.js';
   
-  $: activeReservation = $filters.reservation;
-  $: activeWomen = $filters.women;
-  $: activeParty = $filters.party;
-  $: activeDistrict = $filters.district;
-  $: parties = $partyList;
-  $: districts = $districtList;
+  let activeReservation = $derived($filters.reservation);
+  let activeWomen = $derived($filters.women);
+  let activeParty = $derived($filters.party);
+  let activeDistrict = $derived($filters.district);
+  let parties = $derived($partyList);
+  let districts = $derived($districtList);
   
   function handleReservationClick(reservation) {
     setReservation(reservation === activeReservation ? 'all' : reservation);
@@ -37,28 +37,28 @@
       <button 
         class="filter-btn"
         class:active={activeReservation === 'all'}
-        on:click={() => setReservation('all')}
+        onclick={() => setReservation('all')}
       >
         <span data-i18n="filters.all">All</span>
       </button>
       <button 
         class="filter-btn sc"
         class:active={activeReservation === 'SC'}
-        on:click={() => handleReservationClick('SC')}
+        onclick={() => handleReservationClick('SC')}
       >
         <span data-i18n="filters.sc">SC</span>
       </button>
       <button 
         class="filter-btn st"
         class:active={activeReservation === 'ST'}
-        on:click={() => handleReservationClick('ST')}
+        onclick={() => handleReservationClick('ST')}
       >
         <span data-i18n="filters.st">ST</span>
       </button>
       <button 
         class="filter-btn female"
         class:active={activeWomen}
-        on:click={toggleWomen}
+        onclick={toggleWomen}
       >
         ♀ <span data-i18n="filters.women">Women</span>
       </button>
@@ -71,7 +71,7 @@
       <button 
         class="filter-btn"
         class:active={activeParty === 'all'}
-        on:click={() => setParty('all')}
+        onclick={() => setParty('all')}
       >
         <span data-i18n="filters.all">All</span>
       </button>
@@ -79,7 +79,7 @@
         <button 
           class="filter-btn party-btn"
           class:active={activeParty === party.party}
-          on:click={() => handlePartyClick(party.party)}
+          onclick={() => handlePartyClick(party.party)}
         >
           {party.party}
         </button>
@@ -93,7 +93,7 @@
       <button 
         class="filter-btn"
         class:active={activeDistrict === 'all'}
-        on:click={() => setDistrict('all')}
+        onclick={() => setDistrict('all')}
       >
         <span data-i18n="browse.allDistricts">All</span>
       </button>
@@ -101,7 +101,7 @@
         <button 
           class="filter-btn"
           class:active={activeDistrict === district}
-          on:click={() => handleDistrictClick(district)}
+          onclick={() => handleDistrictClick(district)}
         >
           {district}
         </button>
