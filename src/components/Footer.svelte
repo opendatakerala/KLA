@@ -14,6 +14,13 @@
 
   let appVersion = $derived(formatVersion(import.meta.env.APP_VERSION || ''));
   let dataVersion = $derived(formatVersion(import.meta.env.DATA_VERSION || ''));
+
+  const toggleDisclaimer = () => {
+    const overlay = document.getElementById('disc-overlay');
+    if (overlay) {
+      overlay.classList.toggle('open');
+    }
+  };
 </script>
 
 <footer>
@@ -25,7 +32,7 @@
       <span class="version-label">Data version:</span> {dataVersion}
     </span>
   </div>
-  <button class="footer-disc-link" id="footer-disc-link">{$_('footer.viewDisclaimer')}</button>
+  <button class="footer-disc-link" id="footer-disc-link" onclick={toggleDisclaimer}>{$_('footer.viewDisclaimer')}</button>
 </footer>
 
 <style>
