@@ -8,10 +8,12 @@
   const COLORS = {
     LDF: '#D94040',
     UDF: '#1565C0',
-    NDA: '#E07828'
+    NDA: '#E07828',
+    Others: '#33AA55'
   };
 
   const ALLIANCES = ['LDF', 'UDF', 'NDA'];
+  const ALLIANCES_WITH_OTHERS = ['LDF', 'UDF', 'NDA', 'Others'];
   const YEARS = ['2021', '2016', '2011'];
 
   let currentView = $state('simple');
@@ -54,8 +56,9 @@
     chart = echarts.init(chartContainer, null, { renderer: 'svg' });
 
     const isStacked = currentView === 'stacked';
+    const activeAlliances = isStacked ? ALLIANCES_WITH_OTHERS : ALLIANCES;
     
-    const series = ALLIANCES
+    const series = activeAlliances
       .filter(al => seriesData.some(d => d.allianceVotes[al] > 0))
       .map(al => ({
         name: al,
@@ -118,7 +121,7 @@
           return html;
         }
       },
-      legend: { data: ALLIANCES, bottom: 0 },
+      legend: { data: activeAlliances, bottom: 0 },
       grid: { left: 40, right: 20, top: 20, bottom: 40 },
       xAxis: {
         type: 'category',

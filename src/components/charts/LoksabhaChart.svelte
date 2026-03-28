@@ -8,10 +8,12 @@
   const COLORS = {
     LDF: '#D94040',
     UDF: '#1565C0',
-    NDA: '#E07828'
+    NDA: '#E07828',
+    Others: '#33AA55'
   };
 
   const ALLIANCES = ['LDF', 'UDF', 'NDA'];
+  const ALLIANCES_WITH_OTHERS = ['LDF', 'UDF', 'NDA', 'Others'];
   const YEARS = ['2024', '2019', '2014'];
 
   let currentView = $state('simple');
@@ -54,8 +56,9 @@
     chart = echarts.init(chartContainer, null, { renderer: 'svg' });
 
     const isStacked = currentView === 'stacked';
+    const activeAlliances = isStacked ? ALLIANCES_WITH_OTHERS : ALLIANCES;
     
-    const series = ALLIANCES
+    const series = activeAlliances
       .filter(al => seriesData.some(d => d.allianceVotes[al] > 0))
       .map(al => ({
         name: al,
@@ -119,10 +122,10 @@
           return html;
         }
       },
-      legend: { data: ALLIANCES, bottom: 0, textStyle: { fontSize: 10 } },
+      legend: { data: activeAlliances, bottom: 0, textStyle: { fontSize: 10 } },
       grid: { left: 44, right: 16, top: 16, bottom: 44 },
       xAxis: { type: 'category', data: seriesData.map(d => d.year) },
-      yAxis: { type: 'value', max: undefined, axisLabel: { formatter: '{value}%' } },
+      yAxis: { type: 'value', max: isStacked ? 100 : undefined, axisLabel: { formatter: (v) => v + (isStacked ? '%' : '') } },
       series
     }, { notMerge: true });
   }
