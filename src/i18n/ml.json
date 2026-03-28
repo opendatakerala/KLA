@@ -100,7 +100,10 @@
     "tbd": "വരാനിരിക്കുന്നു",
     "toBeAnnounced": "പ്രഖ്യാപിക്കാനുണ്ട്",
     "historicalResultsNiyamasabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (നിയമസഭ)",
-    "historicalResultsLoksabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (ലോകസഭ)"
+    "historicalResultsLoksabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (ലോകസഭ)",
+    "pollingBooths": "വോട്ടിങ് ബൂത്തുകൾ",
+    "voters": "വോട്ടര്‍മാര്‍",
+    "genderBreakup": "ലിംഗ വിതരണം"
   },
   "charts": {
     "loading": "ലോഡിംഗ്...",

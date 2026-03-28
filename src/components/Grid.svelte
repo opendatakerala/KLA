@@ -1,19 +1,17 @@
 <script>
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { filteredConstituencies, openModal } from '../stores/constituencyStore.js';
+  import { sortCandidatesByOthersWithParty, getCandidateName as getCandName } from '../stores/candidateStore.js';
   import Modal from './Modal.svelte';
 
   let filteredData = $derived($filteredConstituencies);
   let currentLangValue = $derived($currentLang);
+  let currentIsLoading = $derived($isLoading);
 
-  let t = (key) => $isLoading ? key : $_(key);
+  let t = (key) => currentIsLoading ? key : $_(key);
 
   function getCandidateName(candidate) {
-    if (!candidate?.name) return 'TBD';
-    if (currentLangValue === 'ml' && candidate.malayalam) {
-      return candidate.malayalam;
-    }
-    return candidate.name;
+    return getCandName(candidate, currentLangValue, currentIsLoading, t);
   }
 
   function getAllianceClass(alliance) {
@@ -82,7 +80,7 @@
             </div>
           </div>
         {/each}
-        {#each row.candidates.filter((c) => c.alliance === "Others") as c}
+        {#each sortCandidatesByOthersWithParty(row.candidates.filter((c) => c.alliance === "Others")) as c}
           <div class="candidate-row">
             <span class="alliance-tag {getAllianceClass('OTH')}">{getAllianceLabel('OTH')}</span>
             <div>

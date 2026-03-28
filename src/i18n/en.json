@@ -100,7 +100,10 @@
     "tbd": "TBD",
     "toBeAnnounced": "To Be Announced",
     "historicalResultsNiyamasabha": "Historical Results (Niyamasabha)",
-    "historicalResultsLoksabha": "Historical Results (Lok Sabha)"
+    "historicalResultsLoksabha": "Historical Results (Lok Sabha)",
+    "pollingBooths": "Polling Booths",
+    "voters": "Voters",
+    "genderBreakup": "Gender Breakup"
   },
   "charts": {
     "loading": "Loading...",

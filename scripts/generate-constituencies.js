@@ -42,7 +42,7 @@ function generate() {
         pollingBooths: cleanString(row['Polling Booths']),
         votersMale: cleanString(row['Voters Male']),
         votersFemale: cleanString(row['Voters Female']),
-        votersThirdGender: cleanString(row['Voters Third Gender']),
+        votersTransgender: cleanString(row['Voters Third Gender']),
         votersTotal: cleanString(row['Voters Total'])
       };
     }
@@ -68,7 +68,7 @@ function generate() {
         pollingBooths: constData.pollingBooths,
         votersMale: constData.votersMale,
         votersFemale: constData.votersFemale,
-        votersThirdGender: constData.votersThirdGender,
+        votersTransgender: constData.votersTransgender,
         votersTotal: constData.votersTotal,
         candidates: []
       };

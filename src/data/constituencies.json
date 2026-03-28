@@ -10,7 +10,7 @@
     "pollingBooths": "229",
     "votersMale": "115801",
     "votersFemale": "114312",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "230113",
     "candidates": [
       {
@@ -136,7 +136,7 @@
     "pollingBooths": "218",
     "votersMale": "105524",
     "votersFemale": "105399",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "210923",
     "candidates": [
       {
@@ -202,7 +202,7 @@
     "pollingBooths": "237",
     "votersMale": "112166",
     "votersFemale": "116342",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "228512",
     "candidates": [
       {
@@ -278,7 +278,7 @@
     "pollingBooths": "239",
     "votersMale": "109008",
     "votersFemale": "114966",
-    "votersThirdGender": "6",
+    "votersTransgender": "6",
     "votersTotal": "223980",
     "candidates": [
       {
@@ -334,7 +334,7 @@
     "pollingBooths": "218",
     "votersMale": "102044",
     "votersFemale": "108044",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "210090",
     "candidates": [
       {
@@ -410,7 +410,7 @@
     "pollingBooths": "192",
     "votersMale": "91006",
     "votersFemale": "97926",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "188935",
     "candidates": [
       {
@@ -466,7 +466,7 @@
     "pollingBooths": "184",
     "votersMale": "97648",
     "votersFemale": "106147",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "203796",
     "candidates": [
       {
@@ -532,7 +532,7 @@
     "pollingBooths": "233",
     "votersMale": "111926",
     "votersFemale": "120353",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "232280",
     "candidates": [
       {
@@ -648,7 +648,7 @@
     "pollingBooths": "214",
     "votersMale": "98862",
     "votersFemale": "100464",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "199326",
     "candidates": [
       {
@@ -724,7 +724,7 @@
     "pollingBooths": "185",
     "votersMale": "89967",
     "votersFemale": "98280",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "188250",
     "candidates": [
       {
@@ -820,7 +820,7 @@
     "pollingBooths": "179",
     "votersMale": "87817",
     "votersFemale": "94865",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "182682",
     "candidates": [
       {
@@ -906,7 +906,7 @@
     "pollingBooths": "198",
     "votersMale": "98049",
     "votersFemale": "107950",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "206000",
     "candidates": [
       {
@@ -972,7 +972,7 @@
     "pollingBooths": "189",
     "votersMale": "89133",
     "votersFemale": "96707",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "185841",
     "candidates": [
       {
@@ -1058,7 +1058,7 @@
     "pollingBooths": "215",
     "votersMale": "100327",
     "votersFemale": "105444",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "205771",
     "candidates": [
       {
@@ -1164,7 +1164,7 @@
     "pollingBooths": "205",
     "votersMale": "97553",
     "votersFemale": "104166",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "201719",
     "candidates": [
       {
@@ -1240,7 +1240,7 @@
     "pollingBooths": "183",
     "votersMale": "89726",
     "votersFemale": "92657",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "182384",
     "candidates": [
       {
@@ -1366,7 +1366,7 @@
     "pollingBooths": "237",
     "votersMale": "101260",
     "votersFemale": "104155",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "205415",
     "candidates": [
       {
@@ -1412,7 +1412,7 @@
     "pollingBooths": "251",
     "votersMale": "109540",
     "votersFemale": "115788",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "225329",
     "candidates": [
       {
@@ -1508,7 +1508,7 @@
     "pollingBooths": "227",
     "votersMale": "103784",
     "votersFemale": "109095",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "212881",
     "candidates": [
       {
@@ -1624,7 +1624,7 @@
     "pollingBooths": "186",
     "votersMale": "86097",
     "votersFemale": "90734",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "176832",
     "candidates": [
       {
@@ -1720,7 +1720,7 @@
     "pollingBooths": "222",
     "votersMale": "106343",
     "votersFemale": "109592",
-    "votersThirdGender": "5",
+    "votersTransgender": "5",
     "votersTotal": "215940",
     "candidates": [
       {
@@ -1786,7 +1786,7 @@
     "pollingBooths": "254",
     "votersMale": "116190",
     "votersFemale": "117498",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "233690",
     "candidates": [
       {
@@ -1872,7 +1872,7 @@
     "pollingBooths": "231",
     "votersMale": "103445",
     "votersFemale": "109806",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "213254",
     "candidates": [
       {
@@ -1958,7 +1958,7 @@
     "pollingBooths": "232",
     "votersMale": "100858",
     "votersFemale": "105112",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "205970",
     "candidates": [
       {
@@ -2074,7 +2074,7 @@
     "pollingBooths": "256",
     "votersMale": "111219",
     "votersFemale": "117466",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "228689",
     "candidates": [
       {
@@ -2140,7 +2140,7 @@
     "pollingBooths": "209",
     "votersMale": "101875",
     "votersFemale": "109228",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "211105",
     "candidates": [
       {
@@ -2236,7 +2236,7 @@
     "pollingBooths": "186",
     "votersMale": "82145",
     "votersFemale": "91056",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "173205",
     "candidates": [
       {
@@ -2352,7 +2352,7 @@
     "pollingBooths": "168",
     "votersMale": "76168",
     "votersFemale": "79802",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "155972",
     "candidates": [
       {
@@ -2398,7 +2398,7 @@
     "pollingBooths": "215",
     "votersMale": "107022",
     "votersFemale": "111532",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "218558",
     "candidates": [
       {
@@ -2494,7 +2494,7 @@
     "pollingBooths": "255",
     "votersMale": "118100",
     "votersFemale": "123879",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "241980",
     "candidates": [
       {
@@ -2600,7 +2600,7 @@
     "pollingBooths": "214",
     "votersMale": "100198",
     "votersFemale": "101470",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "201668",
     "candidates": [
       {
@@ -2746,7 +2746,7 @@
     "pollingBooths": "209",
     "votersMale": "94944",
     "votersFemale": "97007",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "191954",
     "candidates": [
       {
@@ -2832,7 +2832,7 @@
     "pollingBooths": "246",
     "votersMale": "116003",
     "votersFemale": "113366",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "229370",
     "candidates": [
       {
@@ -2898,7 +2898,7 @@
     "pollingBooths": "213",
     "votersMale": "100486",
     "votersFemale": "99070",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "199556",
     "candidates": [
       {
@@ -2974,7 +2974,7 @@
     "pollingBooths": "263",
     "votersMale": "115886",
     "votersFemale": "120683",
-    "votersThirdGender": "7",
+    "votersTransgender": "7",
     "votersTotal": "236576",
     "candidates": [
       {
@@ -3030,7 +3030,7 @@
     "pollingBooths": "257",
     "votersMale": "121473",
     "votersFemale": "125711",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "247184",
     "candidates": [
       {
@@ -3086,7 +3086,7 @@
     "pollingBooths": "237",
     "votersMale": "113604",
     "votersFemale": "114158",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "227762",
     "candidates": [
       {
@@ -3152,7 +3152,7 @@
     "pollingBooths": "244",
     "votersMale": "113431",
     "votersFemale": "116093",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "229525",
     "candidates": [
       {
@@ -3248,7 +3248,7 @@
     "pollingBooths": "232",
     "votersMale": "115245",
     "votersFemale": "115592",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "230838",
     "candidates": [
       {
@@ -3304,7 +3304,7 @@
     "pollingBooths": "239",
     "votersMale": "119984",
     "votersFemale": "118096",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "238080",
     "candidates": [
       {
@@ -3400,7 +3400,7 @@
     "pollingBooths": "192",
     "votersMale": "108365",
     "votersFemale": "103261",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "211630",
     "candidates": [
       {
@@ -3476,7 +3476,7 @@
     "pollingBooths": "225",
     "votersMale": "111338",
     "votersFemale": "109697",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "221036",
     "candidates": [
       {
@@ -3552,7 +3552,7 @@
     "pollingBooths": "204",
     "votersMale": "113015",
     "votersFemale": "109776",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "222792",
     "candidates": [
       {
@@ -3618,7 +3618,7 @@
     "pollingBooths": "211",
     "votersMale": "108077",
     "votersFemale": "106020",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "214101",
     "candidates": [
       {
@@ -3694,7 +3694,7 @@
     "pollingBooths": "243",
     "votersMale": "128200",
     "votersFemale": "127229",
-    "votersThirdGender": "12",
+    "votersTransgender": "12",
     "votersTotal": "255441",
     "candidates": [
       {
@@ -3800,7 +3800,7 @@
     "pollingBooths": "241",
     "votersMale": "122850",
     "votersFemale": "120161",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "243014",
     "candidates": [
       {
@@ -3876,7 +3876,7 @@
     "pollingBooths": "218",
     "votersMale": "103861",
     "votersFemale": "104915",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "208776",
     "candidates": [
       {
@@ -3942,7 +3942,7 @@
     "pollingBooths": "219",
     "votersMale": "107380",
     "votersFemale": "109146",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "216529",
     "candidates": [
       {
@@ -4038,7 +4038,7 @@
     "pollingBooths": "218",
     "votersMale": "100169",
     "votersFemale": "103529",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "203700",
     "candidates": [
       {
@@ -4144,7 +4144,7 @@
     "pollingBooths": "222",
     "votersMale": "104464",
     "votersFemale": "106326",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "210790",
     "candidates": [
       {
@@ -4230,7 +4230,7 @@
     "pollingBooths": "224",
     "votersMale": "97386",
     "votersFemale": "102232",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "199620",
     "candidates": [
       {
@@ -4286,7 +4286,7 @@
     "pollingBooths": "238",
     "votersMale": "101754",
     "votersFemale": "107871",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "209627",
     "candidates": [
       {
@@ -4362,7 +4362,7 @@
     "pollingBooths": "193",
     "votersMale": "89813",
     "votersFemale": "92790",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "182603",
     "candidates": [
       {
@@ -4418,7 +4418,7 @@
     "pollingBooths": "220",
     "votersMale": "101375",
     "votersFemale": "105060",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "206436",
     "candidates": [
       {
@@ -4504,7 +4504,7 @@
     "pollingBooths": "246",
     "votersMale": "95268",
     "votersFemale": "100156",
-    "votersThirdGender": "5",
+    "votersTransgender": "5",
     "votersTotal": "195429",
     "candidates": [
       {
@@ -4580,7 +4580,7 @@
     "pollingBooths": "219",
     "votersMale": "85649",
     "votersFemale": "90572",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "176224",
     "candidates": [
       {
@@ -4666,7 +4666,7 @@
     "pollingBooths": "177",
     "votersMale": "81127",
     "votersFemale": "83803",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "164930",
     "candidates": [
       {
@@ -4722,7 +4722,7 @@
     "pollingBooths": "202",
     "votersMale": "83908",
     "votersFemale": "88104",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "172015",
     "candidates": [
       {
@@ -4798,7 +4798,7 @@
     "pollingBooths": "207",
     "votersMale": "90054",
     "votersFemale": "91635",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "181690",
     "candidates": [
       {
@@ -4874,7 +4874,7 @@
     "pollingBooths": "174",
     "votersMale": "81649",
     "votersFemale": "84007",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "165657",
     "candidates": [
       {
@@ -4940,7 +4940,7 @@
     "pollingBooths": "218",
     "votersMale": "98768",
     "votersFemale": "105188",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "203956",
     "candidates": [
       {
@@ -5006,7 +5006,7 @@
     "pollingBooths": "206",
     "votersMale": "95639",
     "votersFemale": "101199",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "196839",
     "candidates": [
       {
@@ -5062,7 +5062,7 @@
     "pollingBooths": "232",
     "votersMale": "106573",
     "votersFemale": "112128",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "218704",
     "candidates": [
       {
@@ -5138,7 +5138,7 @@
     "pollingBooths": "235",
     "votersMale": "108724",
     "votersFemale": "113553",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "222278",
     "candidates": [
       {
@@ -5254,7 +5254,7 @@
     "pollingBooths": "231",
     "votersMale": "97422",
     "votersFemale": "104361",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "201786",
     "candidates": [
       {
@@ -5320,7 +5320,7 @@
     "pollingBooths": "215",
     "votersMale": "91397",
     "votersFemale": "96997",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "188395",
     "candidates": [
       {
@@ -5386,7 +5386,7 @@
     "pollingBooths": "209",
     "votersMale": "76635",
     "votersFemale": "84589",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "161225",
     "candidates": [
       {
@@ -5472,7 +5472,7 @@
     "pollingBooths": "225",
     "votersMale": "97846",
     "votersFemale": "105580",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "203427",
     "candidates": [
       {
@@ -5518,7 +5518,7 @@
     "pollingBooths": "191",
     "votersMale": "88067",
     "votersFemale": "94646",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "182716",
     "candidates": [
       {
@@ -5594,7 +5594,7 @@
     "pollingBooths": "223",
     "votersMale": "93943",
     "votersFemale": "100647",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "194592",
     "candidates": [
       {
@@ -5680,7 +5680,7 @@
     "pollingBooths": "225",
     "votersMale": "94385",
     "votersFemale": "97992",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "192377",
     "candidates": [
       {
@@ -5756,7 +5756,7 @@
     "pollingBooths": "219",
     "votersMale": "87562",
     "votersFemale": "91645",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "179208",
     "candidates": [
       {
@@ -5842,7 +5842,7 @@
     "pollingBooths": "208",
     "votersMale": "91157",
     "votersFemale": "96055",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "187212",
     "candidates": [
       {
@@ -5918,7 +5918,7 @@
     "pollingBooths": "202",
     "votersMale": "88529",
     "votersFemale": "91768",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "180299",
     "candidates": [
       {
@@ -5994,7 +5994,7 @@
     "pollingBooths": "217",
     "votersMale": "84010",
     "votersFemale": "86393",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "170404",
     "candidates": [
       {
@@ -6080,7 +6080,7 @@
     "pollingBooths": "248",
     "votersMale": "94500",
     "votersFemale": "99855",
-    "votersThirdGender": "5",
+    "votersTransgender": "5",
     "votersTotal": "194360",
     "candidates": [
       {
@@ -6136,7 +6136,7 @@
     "pollingBooths": "218",
     "votersMale": "95734",
     "votersFemale": "101976",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "197712",
     "candidates": [
       {
@@ -6232,7 +6232,7 @@
     "pollingBooths": "222",
     "votersMale": "93430",
     "votersFemale": "98216",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "191646",
     "candidates": [
       {
@@ -6318,7 +6318,7 @@
     "pollingBooths": "216",
     "votersMale": "78558",
     "votersFemale": "82726",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "161285",
     "candidates": [
       {
@@ -6394,7 +6394,7 @@
     "pollingBooths": "241",
     "votersMale": "80571",
     "votersFemale": "85104",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "165675",
     "candidates": [
       {
@@ -6460,7 +6460,7 @@
     "pollingBooths": "294",
     "votersMale": "90711",
     "votersFemale": "97210",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "187923",
     "candidates": [
       {
@@ -6566,7 +6566,7 @@
     "pollingBooths": "206",
     "votersMale": "65501",
     "votersFemale": "70720",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "136223",
     "candidates": [
       {
@@ -6632,7 +6632,7 @@
     "pollingBooths": "262",
     "votersMale": "84746",
     "votersFemale": "91640",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "176387",
     "candidates": [
       {
@@ -6698,7 +6698,7 @@
     "pollingBooths": "222",
     "votersMale": "91905",
     "votersFemale": "96384",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "188291",
     "candidates": [
       {
@@ -6764,7 +6764,7 @@
     "pollingBooths": "206",
     "votersMale": "94490",
     "votersFemale": "100927",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "195421",
     "candidates": [
       {
@@ -6850,7 +6850,7 @@
     "pollingBooths": "203",
     "votersMale": "91420",
     "votersFemale": "94829",
-    "votersThirdGender": "5",
+    "votersTransgender": "5",
     "votersTotal": "186254",
     "candidates": [
       {
@@ -6906,7 +6906,7 @@
     "pollingBooths": "191",
     "votersMale": "84604",
     "votersFemale": "87364",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "171968",
     "candidates": [
       {
@@ -6992,7 +6992,7 @@
     "pollingBooths": "215",
     "votersMale": "70071",
     "votersFemale": "72193",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "142265",
     "candidates": [
       {
@@ -7068,7 +7068,7 @@
     "pollingBooths": "201",
     "votersMale": "74219",
     "votersFemale": "76081",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "150303",
     "candidates": [
       {
@@ -7124,7 +7124,7 @@
     "pollingBooths": "229",
     "votersMale": "93010",
     "votersFemale": "95482",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "188495",
     "candidates": [
       {
@@ -7220,7 +7220,7 @@
     "pollingBooths": "207",
     "votersMale": "83076",
     "votersFemale": "84746",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "167822",
     "candidates": [
       {
@@ -7276,7 +7276,7 @@
     "pollingBooths": "224",
     "votersMale": "77210",
     "votersFemale": "79331",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "156542",
     "candidates": [
       {
@@ -7342,7 +7342,7 @@
     "pollingBooths": "217",
     "votersMale": "85980",
     "votersFemale": "90605",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "176585",
     "candidates": [
       {
@@ -7428,7 +7428,7 @@
     "pollingBooths": "205",
     "votersMale": "85756",
     "votersFemale": "90148",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "175905",
     "candidates": [
       {
@@ -7514,7 +7514,7 @@
     "pollingBooths": "180",
     "votersMale": "75948",
     "votersFemale": "80006",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "155957",
     "candidates": [
       {
@@ -7600,7 +7600,7 @@
     "pollingBooths": "177",
     "votersMale": "77347",
     "votersFemale": "80908",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "158256",
     "candidates": [
       {
@@ -7676,7 +7676,7 @@
     "pollingBooths": "188",
     "votersMale": "71989",
     "votersFemale": "77583",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "149573",
     "candidates": [
       {
@@ -7752,7 +7752,7 @@
     "pollingBooths": "201",
     "votersMale": "82904",
     "votersFemale": "87345",
-    "votersThirdGender": "5",
+    "votersTransgender": "5",
     "votersTotal": "170254",
     "candidates": [
       {
@@ -7828,7 +7828,7 @@
     "pollingBooths": "205",
     "votersMale": "78554",
     "votersFemale": "84329",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "162885",
     "candidates": [
       {
@@ -7944,7 +7944,7 @@
     "pollingBooths": "200",
     "votersMale": "86142",
     "votersFemale": "91358",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "177500",
     "candidates": [
       {
@@ -8000,7 +8000,7 @@
     "pollingBooths": "218",
     "votersMale": "91369",
     "votersFemale": "93296",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "184665",
     "candidates": [
       {
@@ -8086,7 +8086,7 @@
     "pollingBooths": "210",
     "votersMale": "93883",
     "votersFemale": "97582",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "191465",
     "candidates": [
       {
@@ -8162,7 +8162,7 @@
     "pollingBooths": "230",
     "votersMale": "99816",
     "votersFemale": "106198",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "206016",
     "candidates": [
       {
@@ -8248,7 +8248,7 @@
     "pollingBooths": "219",
     "votersMale": "93592",
     "votersFemale": "98288",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "191880",
     "candidates": [
       {
@@ -8324,7 +8324,7 @@
     "pollingBooths": "195",
     "votersMale": "83506",
     "votersFemale": "87695",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "171203",
     "candidates": [
       {
@@ -8380,7 +8380,7 @@
     "pollingBooths": "180",
     "votersMale": "75835",
     "votersFemale": "78146",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "153981",
     "candidates": [
       {
@@ -8476,7 +8476,7 @@
     "pollingBooths": "204",
     "votersMale": "87869",
     "votersFemale": "96584",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "184457",
     "candidates": [
       {
@@ -8552,7 +8552,7 @@
     "pollingBooths": "226",
     "votersMale": "96145",
     "votersFemale": "105248",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "201394",
     "candidates": [
       {
@@ -8598,7 +8598,7 @@
     "pollingBooths": "226",
     "votersMale": "90510",
     "votersFemale": "101922",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "192435",
     "candidates": [
       {
@@ -8654,7 +8654,7 @@
     "pollingBooths": "209",
     "votersMale": "90485",
     "votersFemale": "99378",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "189866",
     "candidates": [
       {
@@ -8710,7 +8710,7 @@
     "pollingBooths": "239",
     "votersMale": "95219",
     "votersFemale": "103176",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "198395",
     "candidates": [
       {
@@ -8796,7 +8796,7 @@
     "pollingBooths": "237",
     "votersMale": "85660",
     "votersFemale": "90354",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "176015",
     "candidates": [
       {
@@ -8852,7 +8852,7 @@
     "pollingBooths": "272",
     "votersMale": "103163",
     "votersFemale": "112005",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "215168",
     "candidates": [
       {
@@ -8928,7 +8928,7 @@
     "pollingBooths": "228",
     "votersMale": "90128",
     "votersFemale": "99237",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "189366",
     "candidates": [
       {
@@ -8984,7 +8984,7 @@
     "pollingBooths": "231",
     "votersMale": "95014",
     "votersFemale": "106183",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "201200",
     "candidates": [
       {
@@ -9040,7 +9040,7 @@
     "pollingBooths": "214",
     "votersMale": "104343",
     "votersFemale": "110168",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "214513",
     "candidates": [
       {
@@ -9106,7 +9106,7 @@
     "pollingBooths": "188",
     "votersMale": "87070",
     "votersFemale": "91726",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "178798",
     "candidates": [
       {
@@ -9152,7 +9152,7 @@
     "pollingBooths": "227",
     "votersMale": "98146",
     "votersFemale": "107546",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "205694",
     "candidates": [
       {
@@ -9218,7 +9218,7 @@
     "pollingBooths": "204",
     "votersMale": "91605",
     "votersFemale": "101667",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "193272",
     "candidates": [
       {
@@ -9294,7 +9294,7 @@
     "pollingBooths": "196",
     "votersMale": "85231",
     "votersFemale": "94551",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "179783",
     "candidates": [
       {
@@ -9380,7 +9380,7 @@
     "pollingBooths": "220",
     "votersMale": "93874",
     "votersFemale": "103470",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "197346",
     "candidates": [
       {
@@ -9456,7 +9456,7 @@
     "pollingBooths": "204",
     "votersMale": "95716",
     "votersFemale": "105999",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "201716",
     "candidates": [
       {
@@ -9532,7 +9532,7 @@
     "pollingBooths": "226",
     "votersMale": "98778",
     "votersFemale": "107682",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "206464",
     "candidates": [
       {
@@ -9608,7 +9608,7 @@
     "pollingBooths": "190",
     "votersMale": "79254",
     "votersFemale": "85285",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "164541",
     "candidates": [
       {
@@ -9674,7 +9674,7 @@
     "pollingBooths": "191",
     "votersMale": "81278",
     "votersFemale": "87584",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "168865",
     "candidates": [
       {
@@ -9740,7 +9740,7 @@
     "pollingBooths": "196",
     "votersMale": "82872",
     "votersFemale": "94126",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "177000",
     "candidates": [
       {
@@ -9806,7 +9806,7 @@
     "pollingBooths": "202",
     "votersMale": "86192",
     "votersFemale": "97085",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "183280",
     "candidates": [
       {
@@ -9912,7 +9912,7 @@
     "pollingBooths": "213",
     "votersMale": "91741",
     "votersFemale": "106201",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "197945",
     "candidates": [
       {
@@ -9988,7 +9988,7 @@
     "pollingBooths": "212",
     "votersMale": "90651",
     "votersFemale": "104637",
-    "votersThirdGender": "8",
+    "votersTransgender": "8",
     "votersTotal": "195296",
     "candidates": [
       {
@@ -10054,7 +10054,7 @@
     "pollingBooths": "252",
     "votersMale": "94214",
     "votersFemale": "103827",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "198042",
     "candidates": [
       {
@@ -10160,7 +10160,7 @@
     "pollingBooths": "231",
     "votersMale": "88274",
     "votersFemale": "99552",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "187828",
     "candidates": [
       {
@@ -10236,7 +10236,7 @@
     "pollingBooths": "216",
     "votersMale": "78687",
     "votersFemale": "85874",
-    "votersThirdGender": "0",
+    "votersTransgender": "0",
     "votersTotal": "164561",
     "candidates": [
       {
@@ -10322,7 +10322,7 @@
     "pollingBooths": "209",
     "votersMale": "78573",
     "votersFemale": "86696",
-    "votersThirdGender": "3",
+    "votersTransgender": "3",
     "votersTotal": "165272",
     "candidates": [
       {
@@ -10418,7 +10418,7 @@
     "pollingBooths": "230",
     "votersMale": "76234",
     "votersFemale": "82297",
-    "votersThirdGender": "14",
+    "votersTransgender": "14",
     "votersTotal": "158545",
     "candidates": [
       {
@@ -10544,7 +10544,7 @@
     "pollingBooths": "209",
     "votersMale": "82666",
     "votersFemale": "88504",
-    "votersThirdGender": "8",
+    "votersTransgender": "8",
     "votersTotal": "171178",
     "candidates": [
       {
@@ -10660,7 +10660,7 @@
     "pollingBooths": "237",
     "votersMale": "86096",
     "votersFemale": "95210",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "181308",
     "candidates": [
       {
@@ -10746,7 +10746,7 @@
     "pollingBooths": "257",
     "votersMale": "95004",
     "votersFemale": "100643",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "195648",
     "candidates": [
       {
@@ -10842,7 +10842,7 @@
     "pollingBooths": "222",
     "votersMale": "85026",
     "votersFemale": "92064",
-    "votersThirdGender": "4",
+    "votersTransgender": "4",
     "votersTotal": "177094",
     "candidates": [
       {
@@ -10908,7 +10908,7 @@
     "pollingBooths": "270",
     "votersMale": "98323",
     "votersFemale": "102875",
-    "votersThirdGender": "2",
+    "votersTransgender": "2",
     "votersTotal": "201200",
     "candidates": [
       {
@@ -11014,7 +11014,7 @@
     "pollingBooths": "214",
     "votersMale": "82177",
     "votersFemale": "85199",
-    "votersThirdGender": "1",
+    "votersTransgender": "1",
     "votersTotal": "167377",
     "candidates": [
       {

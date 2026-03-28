@@ -1,6 +1,7 @@
 <script>
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
+  import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
 
@@ -14,18 +15,15 @@
   const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || '';
   let currentModal = $derived($selectedConstituency);
   let currentLangValue = $derived($currentLang);
+  let currentIsLoading = $derived($isLoading);
   
-  let ldfCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'LDF') || []);
-  let udfCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'UDF') || []);
-  let ndaCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'NDA') || []);
-  let othersCandidates = $derived(currentModal?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || []);
+  let ldf = $derived($ldfCandidates);
+  let udf = $derived($udfCandidates);
+  let nda = $derived($ndaCandidates);
+  let others = $derived($othersCandidates);
 
-  function getCandidateName(candidate) {
-    if (!candidate?.name) return $isLoading ? 'To be announced' : $_('modal.toBeAnnounced');
-    if (currentLangValue === 'ml' && candidate.malayalam) {
-      return candidate.malayalam;
-    }
-    return candidate.name;
+  function t(key) {
+    return currentIsLoading ? key : $_(key);
   }
 
   let historicalLoading = $state(true);
@@ -107,7 +105,7 @@
         <div class="modal-eyebrow">
           {currentModal.district} · Constituency #{currentModal.number}
         </div>
-        <div class="modal-title">{currentModal.name}</div>
+        <div class="modal-title">{getConstituencyName(currentModal, currentLangValue)}</div>
         <div class="modal-badges">
           {#if currentModal.reservation}
             <span class="reservation-badge {currentModal.reservation.toLowerCase()}">
@@ -121,65 +119,92 @@
         </button>
       </div>
 
+      {#if currentModal.pollingBooths || currentModal.votersTotal}
+        <div class="constituency-stats">
+          {#if currentModal.pollingBooths}
+            <div class="stat-card">
+              <span class="stat-label">{$_('modal.pollingBooths')}</span>
+              <span class="stat-value">{currentModal.pollingBooths}</span>
+            </div>
+          {/if}
+          {#if currentModal.votersTotal}
+            <div class="stat-card">
+              <span class="stat-label">{$_('modal.voters')}</span>
+              <span class="stat-value">{currentModal.votersTotal}</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">{$_('modal.genderBreakup')}</span>
+              <div class="stat-breakdown">
+                <span>♂ {currentModal.votersMale || 0}</span>
+                <span>♀ {currentModal.votersFemale || 0}</span>
+                {#if currentModal.votersTransgender > 0}
+                  <span>⚥ {currentModal.votersTransgender}</span>
+                {/if}
+              </div>
+            </div>
+          {/if}
+        </div>
+      {/if}
+
       <div class="modal-body">
         <div class="modal-section-label">
           {$_('modal.contestingCandidates')}
         </div>
 
-        {#if ldfCandidates.length > 0}
+        {#if ldf.length > 0}
           <div class="candidate-group">
-            {#each ldfCandidates as c}
+            {#each ldf as c}
               <div class="candidate-row">
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">LDF</div>
                   <div class="candidate-party">{c.party || '—'}</div>
-                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c)}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                 </div>
               </div>
             {/each}
           </div>
         {/if}
 
-        {#if udfCandidates.length > 0}
+        {#if udf.length > 0}
           <div class="candidate-group">
-            {#each udfCandidates as c}
+            {#each udf as c}
               <div class="candidate-row">
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">UDF</div>
                   <div class="candidate-party">{c.party || '—'}</div>
-                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c)}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                 </div>
               </div>
             {/each}
           </div>
         {/if}
 
-        {#if ndaCandidates.length > 0}
+        {#if nda.length > 0}
           <div class="candidate-group">
-            {#each ndaCandidates as c}
+            {#each nda as c}
               <div class="candidate-row">
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">NDA</div>
                   <div class="candidate-party">{c.party || '—'}</div>
-                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c)}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                 </div>
               </div>
             {/each}
           </div>
         {/if}
 
-        {#if othersCandidates.length > 0}
+        {#if others.length > 0}
           <div class="candidate-group">
-            {#each othersCandidates as c}
+            {#each others as c}
               <div class="candidate-row">
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">Others</div>
                   <div class="candidate-party">{c.party || '—'}</div>
-                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c)}</div>
+                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                 </div>
               </div>
             {/each}
@@ -304,6 +329,50 @@
   .modal-close:hover {
     background: var(--bg2);
     color: var(--text);
+  }
+
+  .constituency-stats {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    min-width: 80px;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: var(--fs-base);
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stat-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: var(--fs-xs);
+    color: var(--muted);
   }
 
   .modal-body { padding: 20px; }
