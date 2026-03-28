@@ -8,7 +8,7 @@
   "header": {
     "seats": "സീറ്റുകൾ",
     "announcedCandidates": "പ്രഖ്യാപിച്ച സ്ഥാനാര്‍ത്ഥികൾ *",
-    "searchPlaceholder": "മണ്ഡലം, സ്ഥാനാര്‍ത്ഥി തിരയുക…",
+    "searchPlaceholder": "മണ്ഡലം, സ്ഥാനാര്‍ത്ഥി എന്നിവ തിരയുക…",
     "search": "തിരയുക",
     "table": "പട്ടിക",
     "map": "ഭൂപടം",
@@ -38,8 +38,8 @@
     "ldf": "എല്‍ഡിഎഫ് സ്ഥാനാര്‍ത്ഥികൾ",
     "udf": "യുഡിഎഫ് സ്ഥാനാര്‍ത്ഥികൾ",
     "nda": "എന്‍ഡിഎ സ്ഥാനാര്‍ത്ഥികൾ",
-    "sc": "എസ്‌സി സംരക്ഷിതം",
-    "st": "എസ്‌ടി സംരക്ഷിതം",
+    "sc": "എസ്‌സി സംവരണം",
+    "st": "എസ്‌ടി സംവരണം",
     "partyDistribution": "പാർട്ടി വിതരണം",
     "genderDistribution": "ലിംഗ വിതരണം",
     "criminalCases": "ക്രിമിനൽ കേസുകൾ",
@@ -83,20 +83,20 @@
   "map": {
     "all": "എല്ലാം",
     "alliance": "സഖ്യം",
-    "scReserved": "എസ്‌സി സംരക്ഷിതം",
-    "stReserved": "എസ്‌ടി സംരക്ഷിതം",
+    "scReserved": "എസ്‌സി സംവരണം",
+    "stReserved": "എസ്‌ടി സംവരണം",
     "women": "സ്ത്രീകൾ",
     "clear": "വൃത്തിയാക്കുക",
     "party": "പാർട്ടി",
     "district": "ജില്ല",
     "allParties": "എല്ലാ പാർട്ടികളും",
     "allKerala": "മുഴുവന്‍ കേരളവും",
-    "reservedSeats": "സംരക്ഷിത സീറ്റുകൾ"
+    "reservedSeats": "സംവരണ സീറ്റുകൾ"
   },
   "modal": {
     "contestingCandidates": "മത്സരിക്കുന്ന സ്ഥാനാര്‍ത്ഥികൾ",
     "close": "അടയ്ക്കുക",
-    "reserved": "സംരക്ഷിതം",
+    "reserved": "സംവരണം",
     "tbd": "വരാനിരിക്കുന്നു",
     "toBeAnnounced": "പ്രഖ്യാപിക്കാനുണ്ട്",
     "historicalResultsNiyamasabha": "ചരിത്രപരമായ ഫലങ്ങൾ (നിയമസഭ)",
@@ -118,8 +118,8 @@
     "women": "സ്ത്രീകൾ",
     "transgender": "ട്രാൻസ്‌ജൻഡർ",
     "men": "പുരുഷന്മാർ",
-    "wonBy": "{party} ({alliance}) {margin} വോട്ടുകള്‍ക്കിടയിലാണ് വിജയിച്ചത്",
-    "leadBy": "{party} ({alliance}) {margin} വോട്ടുകളുടെ മുന്‍തിരിപ്പിലാണ്"
+    "wonBy": "{party} ({alliance}) {margin} വോട്ടുകളുടെ ഭൂരിപക്ഷത്തില്‍ വിജയിച്ചു",
+    "leadBy": "{party} ({alliance}) {margin} വോട്ടുകള്‍ മുന്നിലായിരുന്നു"
   },
   "language": {
     "en": "EN",
