@@ -1,4 +1,13 @@
 :root {
+  --fs-xs: 0.6875rem;
+  --fs-sm: 0.75rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 1.875rem;
+  --fs-4xl: 2.25rem;
+
   --gold: #A0700A;
   --gold-light: #FDF3DC;
   --gold-mid: #C8860E;
@@ -14,15 +23,15 @@
   --others: #33CC00;
   --others-bg: #EEFFEE;
   --others-text: #1A7A00;
-  --muted: #6B7280;
-  --faint: #9CA3AF;
-  --border: #E5E7EB;
+  --muted: #4B5563;
+  --faint: #6B7280;
+  --border: #D1D5DB;
   --bg: #F7F6F3;
   --bg2: #EFEDE8;
   --card: #FFFFFF;
   --card2: #FAFAF8;
   --text: #111827;
-  --text-soft: #374151;
+  --text-soft: #1F2937;
   --sc-color: #7C3AED;
   --sc-bg: #F3F0FF;
   --sc-card: #FAF8FF;
@@ -34,13 +43,14 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 18px; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  font-size: var(--fs-base);
   min-height: 100vh;
   overflow-x: hidden;
 }

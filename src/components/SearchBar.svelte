@@ -85,7 +85,7 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: var(--fs-base);
     width: 100%;
   }
 

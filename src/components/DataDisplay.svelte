@@ -74,7 +74,7 @@
     border-radius: 4px;
     color: var(--muted);
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     cursor: pointer;
     transition: all 0.15s;
   }

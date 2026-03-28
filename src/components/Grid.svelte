@@ -144,7 +144,7 @@
 
   .card-num {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     color: var(--muted);
     letter-spacing: 0.05em;
   }
@@ -152,14 +152,14 @@
   .card-name {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 15px;
+    font-size: var(--fs-lg);
     color: var(--text);
     margin-top: 2px;
   }
 
   .card-district {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: var(--muted);
     margin-top: 2px;
   }
@@ -171,7 +171,7 @@
     padding: 3px 6px;
     border-radius: 4px;
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.05em;
     flex-shrink: 0;
   }
@@ -200,7 +200,7 @@
 
   .alliance-tag {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: var(--fs-xs);
     font-weight: 600;
     padding: 2px 5px;
     border-radius: 3px;
@@ -232,12 +232,12 @@
   .candidate-party {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 12px;
+    font-size: var(--fs-base);
     color: var(--text);
   }
 
   .candidate-name {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: var(--muted);
   }
 
@@ -247,6 +247,6 @@
     padding: 40px;
     color: var(--muted);
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
+    font-size: var(--fs-base);
   }
 </style>

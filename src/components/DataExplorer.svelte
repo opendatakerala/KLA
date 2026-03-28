@@ -95,7 +95,7 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: var(--muted);
     cursor: pointer;
     transition: all 0.15s;
@@ -113,7 +113,7 @@
   }
 
   .toggle-icon {
-    font-size: 8px;
+    font-size: var(--fs-xs);
   }
 
   .explorer-filters {

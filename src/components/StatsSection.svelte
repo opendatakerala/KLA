@@ -114,7 +114,7 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     letter-spacing: 0.04em;
     color: var(--muted);
     cursor: pointer;
@@ -139,7 +139,7 @@
   }
 
   .stats-tab .coming-soon {
-    font-size: 8px;
+    font-size: var(--fs-xs);
     padding: 2px 6px;
     background: var(--bg2);
     border-radius: 10px;
@@ -181,7 +181,7 @@
 
   .placeholder-text {
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
+    font-size: var(--fs-base);
     letter-spacing: 0.08em;
   }
 </style>

@@ -56,14 +56,14 @@
   }
   .footer-text {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--faint);
+    font-size: var(--fs-sm);
+    color: var(--text-soft);
     letter-spacing: 0.07em;
   }
   .footer-version {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--faint);
+    font-size: var(--fs-xs);
+    color: var(--text-soft);
     letter-spacing: 0.05em;
     opacity: 0.8;
   }
@@ -80,7 +80,7 @@
   }
   .footer-disc-link {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     color: var(--gold);
     letter-spacing: 0.07em;
     cursor: pointer;
@@ -94,7 +94,7 @@
 
   @media (max-width: 640px) {
     footer { padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 6px; }
-    .footer-text { font-size: 9px; }
-    .footer-version { font-size: 8px; }
+    .footer-text { font-size: var(--fs-xs); }
+    .footer-version { font-size: var(--fs-xs); }
   }
 </style>

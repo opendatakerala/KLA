@@ -144,7 +144,7 @@
 
   .header-eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     letter-spacing: 0.2em;
     color: #000;
     font-weight: 700;
@@ -173,14 +173,14 @@
   h1 em { font-style: italic; color: #000; }
 
   .header-tagline {
-    font-size: 12px;
+    font-size: var(--fs-base);
     color: #000;
     font-weight: 700;
     margin-top: 3px;
   }
 
   .header-tagline span {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: var(--gold);
     font-weight: 600;
     font-style: italic;
@@ -204,7 +204,7 @@
 
   .countdown-label {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
@@ -226,7 +226,7 @@
 
   .cnum {
     font-family: 'Inter', sans-serif;
-    font-size: 22px;
+    font-size: var(--fs-2xl);
     font-weight: 800;
     color: var(--text);
     line-height: 1;
@@ -235,7 +235,7 @@
 
   .clabel {
     font-family: 'DM Mono', monospace;
-    font-size: 7px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -243,7 +243,7 @@
   }
 
   .csep {
-    font-size: 18px;
+    font-size: var(--fs-lg);
     font-weight: 700;
     color: var(--muted);
     margin-bottom: 12px;
@@ -256,7 +256,7 @@
 
   .countdown-live-text {
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: var(--fs-base);
     font-weight: 700;
     color: #16a34a;
   }
@@ -272,7 +272,7 @@
   .lang-btn {
     padding: 4px 8px;
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     letter-spacing: 0.05em;
     border: none;
@@ -306,8 +306,8 @@
     }
     .header-logo { width: 44px; height: 44px; }
     .header-right { display: none; }
-    h1 { font-size: 22px; }
-    .header-eyebrow { font-size: 9px; }
-    .header-tagline { font-size: 11px; }
+    h1 { font-size: var(--fs-xl); }
+    .header-eyebrow { font-size: var(--fs-xs); }
+    .header-tagline { font-size: var(--fs-sm); }
   }
 </style>

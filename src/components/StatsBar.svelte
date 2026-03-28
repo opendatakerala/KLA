@@ -88,7 +88,7 @@
 
   .stat-value {
     font-family: 'Inter', sans-serif;
-    font-size: 26px;
+    font-size: var(--fs-2xl);
     font-weight: 700;
     line-height: 1.1;
     color: var(--text);
@@ -97,7 +97,7 @@
 
   .stat-label {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -111,7 +111,7 @@
       min-width: 60px;
       padding: 8px 4px 6px;
     }
-    .stat-value { font-size: 16px; }
-    .stat-label { font-size: 6px; }
+    .stat-value { font-size: var(--fs-base); }
+    .stat-label { font-size: var(--fs-xs); }
   }
 </style>

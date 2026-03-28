@@ -130,7 +130,7 @@
 
   .filter-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     letter-spacing: 0.08em;
     color: var(--muted);
     text-transform: uppercase;
@@ -157,7 +157,7 @@
     border-radius: 4px;
     color: var(--muted);
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     cursor: pointer;
     transition: all 0.15s;
   }
