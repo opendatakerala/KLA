@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import mapSvgText from '../data/kla-map.svg?raw';
+  import { _ } from '../lib/i18n.js';
   import { filteredConstituencies, openModal, constituencies, filters, districtBounds } from '../stores/constituencyStore.js';
   import Modal from './Modal.svelte';
 
@@ -129,9 +130,9 @@
   <div class="map-container" id="map-container">
     <div id="kerala-map"></div>
     <div class="map-legend" id="map-legend">
-      <div class="map-legend-title">Reserved Seats</div>
-      <div class="map-legend-item"><div class="map-legend-dot sc"></div><span data-i18n="map.scReserved">SC Reserved</span></div>
-      <div class="map-legend-item"><div class="map-legend-dot st"></div><span data-i18n="map.stReserved">ST Reserved</span></div>
+      <div class="map-legend-title">{$_('map.reservedSeats')}</div>
+      <div class="map-legend-item"><div class="map-legend-dot sc"></div><span>{$_('map.scReserved')}</span></div>
+      <div class="map-legend-item"><div class="map-legend-dot st"></div><span>{$_('map.stReserved')}</span></div>
     </div>
     <div class="map-tooltip" id="map-tooltip"></div>
   </div>

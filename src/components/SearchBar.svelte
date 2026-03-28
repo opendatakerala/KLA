@@ -1,4 +1,5 @@
 <script>
+  import { _ } from '../lib/i18n.js';
   import { filters, setSearch } from '../stores/constituencyStore.js';
   
   let searchValue = $derived($filters.search);
@@ -33,8 +34,7 @@
       type="text" 
       id="search" 
       class="search-input" 
-      placeholder="Search constituency, candidate, party…"
-      data-i18n-placeholder="header.searchPlaceholder"
+      placeholder={$_('header.searchPlaceholder')}
       value={searchValue}
       oninput={handleInput}
       onkeydown={handleKeydown}

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { _ } from '../lib/i18n.js';
   import StatsBar from './StatsBar.svelte';
   import PartyDistribution from './charts/PartyDistribution.svelte';
   import GenderDistribution from './charts/GenderDistribution.svelte';
@@ -31,25 +32,25 @@
       class="stats-tab" 
       class:active={activeTab === 'candidates-by-party'}
       data-stat="candidates-by-party"
-      on:click={() => handleTabClick('candidates-by-party')}
+      onclick={() => handleTabClick('candidates-by-party')}
     >
-      <span data-i18n="stats.partyDistribution">Party Distribution</span>
+      <span>{$_('stats.partyDistribution')}</span>
     </button>
     <button 
       class="stats-tab"
       class:active={activeTab === 'gender-distribution'}
       data-stat="gender-distribution"
-      on:click={() => handleTabClick('gender-distribution')}
+      onclick={() => handleTabClick('gender-distribution')}
     >
-      <span data-i18n="stats.genderDistribution">Gender Distribution</span>
+      <span>{$_('stats.genderDistribution')}</span>
     </button>
     <button class="stats-tab" data-stat="age-distribution" disabled>
-      <span>Age Distribution</span>
-      <span class="coming-soon">Coming Soon</span>
+      <span>{$_('stats.ageDistribution')}</span>
+      <span class="coming-soon">{$_('stats.comingSoon')}</span>
     </button>
     <button class="stats-tab" data-stat="education-distribution" disabled>
-      <span data-i18n="stats.educationDistribution">Education</span>
-      <span class="coming-soon">Coming Soon</span>
+      <span>{$_('stats.educationDistribution')}</span>
+      <span class="coming-soon">{$_('stats.comingSoon')}</span>
     </button>
   </div>
 
@@ -69,7 +70,7 @@
             <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
           </svg>
         </div>
-        <div class="placeholder-text" data-i18n="stats.comingSoon">Data coming soon</div>
+        <div class="placeholder-text">{$_('stats.comingSoon')}</div>
       </div>
     </div>
 
@@ -80,7 +81,7 @@
             <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
           </svg>
         </div>
-        <div class="placeholder-text" data-i18n="stats.comingSoon">Data coming soon</div>
+        <div class="placeholder-text">{$_('stats.comingSoon')}</div>
       </div>
     </div>
   </div>

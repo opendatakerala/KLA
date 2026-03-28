@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import SearchBar from './SearchBar.svelte';
+  import { locale, _, setLanguage } from '../lib/i18n.js';
 
   let days = $state(0);
   let hours = $state(0);
@@ -32,6 +33,13 @@
   function pad(n) {
     return String(n).padStart(2, '0');
   }
+
+  function handleLangSwitch(e) {
+    const lang = e.target.dataset.lang;
+    if (lang) setLanguage(lang);
+  }
+
+  let currentLang = $derived($locale);
 </script>
 
 <header>
@@ -41,48 +49,58 @@
       <img class="header-logo" src="https://opendatakerala.org/LSG2025/assets/logo-DnFodOdy.png" alt="OpenDataKerala Logo" />
     </div>
     <div class="header-title">
-      <div class="header-eyebrow" data-i18n="site.title">Kerala Legislative Assembly</div>
+      <div class="header-eyebrow">{$_('site.title')}</div>
       <h1>Election <em>2026</em></h1>
       <div class="header-tagline">
-        <span data-i18n="site.tagline">Candidate list across all 140 constituencies · 14 districts</span>
-        <span>&nbsp;&bull; <span data-i18n="site.initiative">an OpenDataKerala Community Initiative</span></span>
+        <span>{$_('site.tagline')}</span>
+        <span>&nbsp;&bull; <span>{$_('site.initiative')}</span></span>
       </div>
     </div>
     <div class="header-right">
       {#if pollingStarted}
         <div class="countdown-box polling-live">
           <div class="countdown-label">🗳️ Polling Day</div>
-          <div class="countdown-live-text">Polling Underway</div>
+          <div class="countdown-live-text">{$_('header.pollingUnderway')}</div>
         </div>
       {:else}
         <div class="countdown-box">
-          <div class="countdown-label">⏳ Polling Day · 9 Apr 2026, 6 AM</div>
+          <div class="countdown-label">{$_('header.pollingDay')}</div>
           <div class="countdown-units">
             <div class="cunit">
               <span class="cnum">{days}</span>
-              <span class="clabel">Days</span>
+              <span class="clabel">{$_('header.days')}</span>
             </div>
             <span class="csep">:</span>
             <div class="cunit">
               <span class="cnum">{pad(hours)}</span>
-              <span class="clabel">Hrs</span>
+              <span class="clabel">{$_('header.hours')}</span>
             </div>
             <span class="csep">:</span>
             <div class="cunit">
               <span class="cnum">{pad(minutes)}</span>
-              <span class="clabel">Min</span>
+              <span class="clabel">{$_('header.minutes')}</span>
             </div>
             <span class="csep">:</span>
             <div class="cunit">
               <span class="cnum">{pad(seconds)}</span>
-              <span class="clabel">Sec</span>
+              <span class="clabel">{$_('header.seconds')}</span>
             </div>
           </div>
         </div>
       {/if}
-      <div class="lang-switcher" id="lang-switcher">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="ml">മല</button>
+      <div class="lang-switcher" id="lang-switcher" role="group" aria-label="Language">
+        <button 
+          class="lang-btn" 
+          class:active={currentLang === 'en'} 
+          data-lang="en"
+          onclick={handleLangSwitch}
+        >{$_('language.en')}</button>
+        <button 
+          class="lang-btn" 
+          class:active={currentLang === 'ml'} 
+          data-lang="ml"
+          onclick={handleLangSwitch}
+        >{$_('language.ml')}</button>
       </div>
     </div>
   </div>

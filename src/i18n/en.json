@@ -13,7 +13,13 @@
     "table": "Table",
     "map": "Map",
     "clear": "Clear",
-    "disclaimer": "Disclaimer"
+    "disclaimer": "Disclaimer",
+    "pollingUnderway": "Polling Underway",
+    "pollingDay": "⏳ Polling Day · 9 Apr 2026, 6 AM",
+    "days": "Days",
+    "hours": "Hrs",
+    "minutes": "Min",
+    "seconds": "Sec"
   },
   "footer": {
     "credits": "Kerala Legislative Assembly Election 2026 · Data sourced from Various Media & CEC Kerala · an OpenDataKerala Initiative",
@@ -38,6 +44,7 @@
     "genderDistribution": "Gender Distribution",
     "criminalCases": "Criminal Cases",
     "educationDistribution": "Education",
+    "ageDistribution": "Age Distribution",
     "comingSoon": "Data coming soon"
   },
   "statsBar": {
@@ -58,7 +65,10 @@
     "nda": "NDA",
     "sc": "SC Reserved",
     "st": "ST Reserved",
-    "women": "Women"
+    "women": "Women",
+    "category": "Category",
+    "party": "Party",
+    "district": "District"
   },
   "browse": {
     "title": "Browse by District",
@@ -80,17 +90,37 @@
     "party": "Party",
     "district": "District",
     "allParties": "All Parties",
-    "allKerala": "All Kerala"
+    "allKerala": "All Kerala",
+    "reservedSeats": "Reserved Seats"
   },
   "modal": {
     "contestingCandidates": "Contesting Candidates",
     "close": "Close",
     "reserved": "Reserved",
     "tbd": "TBD",
-    "toBeAnnounced": "To Be Announced"
+    "toBeAnnounced": "To Be Announced",
+    "historicalResultsNiyamasabha": "Historical Results (Niyamasabha)",
+    "historicalResultsLoksabha": "Historical Results (Lok Sabha)"
+  },
+  "charts": {
+    "loading": "Loading...",
+    "loadingData": "Loading historical data...",
+    "failedToLoad": "Failed to load historical data",
+    "dataForYears": "Data for {years} assembly elections",
+    "loksabhaDataForYears": "Data for {years} lok sabha elections",
+    "viewDetails": "View Details",
+    "bars": "Bars",
+    "stacked": "Stacked",
+    "table": "Table",
+    "year": "Year",
+    "candidates": "Candidates",
+    "votes": "Votes",
+    "women": "Women",
+    "transgender": "Transgender",
+    "men": "Men"
   },
   "language": {
-    "en": "English",
-    "ml": "മലയാളം"
+    "en": "EN",
+    "ml": "മല"
   }
 }

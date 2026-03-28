@@ -1,25 +1,26 @@
 <script>
+  import { _ } from '../lib/i18n.js';
   import { filters, setDistrict, districtList } from '../stores/constituencyStore.js';
   
-  $: activeDistrict = $filters.district;
-  $: districts = $districtList;
+  let activeDistrict = $derived($filters.district);
+  let districts = $derived($districtList);
 </script>
 
 <div class="district-tabs">
-  <div class="section-title" data-i18n="browse.title">Browse by District</div>
+  <div class="section-title">{$_('browse.title')}</div>
   <div class="tabs" id="district-tabs">
     <button 
       class="tab" 
       class:active={activeDistrict === 'all'}
-      on:click={() => setDistrict('all')}
+      onclick={() => setDistrict('all')}
     >
-      <span data-i18n="browse.allDistricts">All Districts</span>
+      <span>{$_('browse.allDistricts')}</span>
     </button>
     {#each districts as district}
       <button 
         class="tab" 
         class:active={activeDistrict === district}
-        on:click={() => setDistrict(district)}
+        onclick={() => setDistrict(district)}
       >
         {district}
       </button>

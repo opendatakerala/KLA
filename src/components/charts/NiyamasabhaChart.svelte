@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
+  import { _ } from '../../lib/i18n.js';
 
   let { constituencyNumber = null, data = [], loading = false, error = false } = $props();
 
@@ -142,11 +143,11 @@
 
 {#if loading}
   <div class="loading-box">
-    <span class="loading-text">Loading historical data...</span>
+    <span class="loading-text">{$_('charts.loadingData')}</span>
   </div>
 {:else if error}
   <div class="error-box">
-    <span class="error-text">Failed to load historical data</span>
+    <span class="error-text">{$_('charts.failedToLoad')}</span>
   </div>
 {:else if !hasData}
   <div class="pending-box">
@@ -157,7 +158,7 @@
     </div>
     <div class="pending-text">
       No historical data available
-      <span class="pending-sub">Data for {YEARS.join(', ')} assembly elections</span>
+      <span class="pending-sub">{$_('charts.dataForYears', { values: { years: YEARS.join(', ') } })}</span>
     </div>
   </div>
 {:else if currentView === 'simple'}
@@ -168,15 +169,15 @@
         <span class="simple-result">{getSimpleText(yearData)}</span>
       </div>
     {/each}
-    <button class="view-details-btn" onclick={() => setView('bars')}>View Details</button>
+    <button class="view-details-btn" onclick={() => setView('bars')}>{$_('charts.viewDetails')}</button>
   </div>
 {:else}
   <div class="historical-chart-container">
     <button class="back-btn" onclick={goBack}>← Back</button>
     <div class="historical-switcher">
-      <button class="hist-switch-btn" class:active={currentView === 'bars'} onclick={() => setView('bars')}>Bars</button>
-      <button class="hist-switch-btn" class:active={currentView === 'stacked'} onclick={() => setView('stacked')}>Stacked</button>
-      <button class="hist-switch-btn" class:active={currentView === 'table'} onclick={() => setView('table')}>Table</button>
+      <button class="hist-switch-btn" class:active={currentView === 'bars'} onclick={() => setView('bars')}>{$_('charts.bars')}</button>
+      <button class="hist-switch-btn" class:active={currentView === 'stacked'} onclick={() => setView('stacked')}>{$_('charts.stacked')}</button>
+      <button class="hist-switch-btn" class:active={currentView === 'table'} onclick={() => setView('table')}>{$_('charts.table')}</button>
     </div>
 
     {#if currentView === 'bars'}
@@ -190,9 +191,9 @@
         <table class="hist-table">
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Candidates</th>
-              <th>Votes</th>
+              <th>{$_('charts.year')}</th>
+              <th>{$_('charts.candidates')}</th>
+              <th>{$_('charts.votes')}</th>
             </tr>
           </thead>
           <tbody>

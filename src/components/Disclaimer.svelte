@@ -1,14 +1,19 @@
 <script>
+    import { onMount } from 'svelte';
+    import { _ } from '../lib/i18n.js';
     import { disclaimerDismissed } from '../stores/uiStore.js';
 
     const hideOverlay = () => {
         document.getElementById("disc-overlay")?.classList.remove("open");
         disclaimerDismissed.set(true);
     };
-    const PROD_HOSTNAME = "opendatakerala.org";
-    if (typeof window !== "undefined" && location.hostname !== PROD_HOSTNAME) {
-        hideOverlay();
-    }
+
+    onMount(() => {
+        const PROD_HOSTNAME = "opendatakerala.org";
+        if (location.hostname !== PROD_HOSTNAME) {
+            hideOverlay();
+        }
+    });
 </script>
 
 <div class="disc-overlay open" id="disc-overlay">
@@ -17,38 +22,32 @@
         <div class="disc-header">
             <div class="disc-icon">⚠️</div>
             <div>
-                <div class="disc-title" data-i18n="disclaimer.title">
-                    Data Disclaimer
+                <div class="disc-title">
+                    {$_('disclaimer.title')}
                 </div>
-                <div class="disc-subtitle" data-i18n="disclaimer.subtitle">
-                    Please read before proceeding
+                <div class="disc-subtitle">
+                    {$_('disclaimer.subtitle')}
                 </div>
             </div>
         </div>
         <div class="disc-body">
-            <p data-i18n="disclaimer.body1">
-                The accuracy or completeness of the data presented on this page
-                cannot be guaranteed. The information has been sourced from
-                Various Medias, party social media handles and CEC Kerala
-                website.
+            <p>
+                {$_('disclaimer.body1')}
             </p>
-            <p data-i18n="disclaimer.body2">
-                There is a chance for change according to time. Candidate
-                announcements may be updated or revised by parties at any point.
+            <p>
+                {$_('disclaimer.body2')}
             </p>
         </div>
         <div class="disc-footer">
             <button
                 class="disc-remind"
                 id="disc-dismiss"
-                data-i18n="disclaimer.dismiss"
-                on:click={hideOverlay}>Dismiss</button
+                onclick={hideOverlay}>{$_('disclaimer.dismiss')}</button
             >
             <button
                 class="disc-ok-btn"
                 id="disc-ok"
-                data-i18n="disclaimer.ok"
-                on:click={hideOverlay}>I Understand</button
+                onclick={hideOverlay}>{$_('disclaimer.ok')}</button
             >
         </div>
     </div>

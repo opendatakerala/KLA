@@ -17,6 +17,7 @@
     "jsdom": "^29.0.1",
     "nanostores": "^1.2.0",
     "svelte": "^5.55.0",
+    "svelte-i18n": "^4.0.1",
     "topojson-client": "^3.1.0"
   }
 }

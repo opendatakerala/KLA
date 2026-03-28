@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { t } from '../lib/i18n.js';
+  import { _ } from '../lib/i18n.js';
   import { disclaimerDismissed } from '../stores/uiStore.js';
 
   const statsData = [
@@ -63,7 +63,7 @@
       <div class="stat-value">
         {typeof stat.value === 'number' ? displayedValues[index].toLocaleString() : stat.value}
       </div>
-      <div class="stat-label" data-i18n="statsBar.{stat.key}">{t('statsBar.' + stat.key)}</div>
+      <div class="stat-label">{$_(`statsBar.${stat.key}`)}</div>
     </div>
   {/each}
 </div>

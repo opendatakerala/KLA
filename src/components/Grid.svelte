@@ -1,8 +1,9 @@
 <script>
+  import { _ } from '../lib/i18n.js';
   import { filteredConstituencies, openModal } from '../stores/constituencyStore.js';
   import Modal from './Modal.svelte';
 
-  $: filteredData = $filteredConstituencies;
+  let filteredData = $derived($filteredConstituencies);
 
   function createCandidateRow(alliance, party, name) {
     const allianceClass = alliance === "LDF" ? "LDF" : alliance === "UDF" ? "UDF" : alliance === "NDA" ? "NDA" : "OTH";
@@ -27,8 +28,8 @@
   {#each filteredData as row (row.number)}
     <div
       class="card {row.reservation === 'SC' ? 'reserved-sc' : row.reservation === 'ST' ? 'reserved-st' : ''}"
-      on:click={() => handleCardClick(row)}
-      on:keydown={(e) => e.key === "Enter" && handleCardClick(row)}
+      onclick={() => handleCardClick(row)}
+      onkeydown={(e) => e.key === "Enter" && handleCardClick(row)}
       role="button"
       tabindex="0"
     >
@@ -41,7 +42,7 @@
         {#if row.reservation}
           <span class="reservation-badge {row.reservation.toLowerCase()}">
             {row.reservation}
-            <span data-i18n="modal.reserved">Reserved</span>
+            <span>{$_('modal.reserved')}</span>
           </span>
         {/if}
       </div>
@@ -64,7 +65,7 @@
 
   {#if filteredData.length === 0}
     <div class="empty-state">
-      <span data-i18n="results.empty">No constituencies match your search.</span>
+      <span>{$_('results.empty')}</span>
     </div>
   {/if}
 </div>

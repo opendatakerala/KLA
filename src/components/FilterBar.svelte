@@ -1,4 +1,5 @@
 <script>
+  import { _ } from '../lib/i18n.js';
   import { 
     filters, 
     setReservation, 
@@ -32,48 +33,48 @@
 
 <div class="filter-bar">
   <div class="filter-group">
-    <div class="filter-label">Category</div>
+    <div class="filter-label">{$_('filters.category')}</div>
     <div class="filter-row">
       <button 
         class="filter-btn"
         class:active={activeReservation === 'all'}
         onclick={() => setReservation('all')}
       >
-        <span data-i18n="filters.all">All</span>
+        <span>{$_('filters.all')}</span>
       </button>
       <button 
         class="filter-btn sc"
         class:active={activeReservation === 'SC'}
         onclick={() => handleReservationClick('SC')}
       >
-        <span data-i18n="filters.sc">SC</span>
+        <span>{$_('filters.sc')}</span>
       </button>
       <button 
         class="filter-btn st"
         class:active={activeReservation === 'ST'}
         onclick={() => handleReservationClick('ST')}
       >
-        <span data-i18n="filters.st">ST</span>
+        <span>{$_('filters.st')}</span>
       </button>
       <button 
         class="filter-btn female"
         class:active={activeWomen}
         onclick={toggleWomen}
       >
-        ♀ <span data-i18n="filters.women">Women</span>
+        ♀ <span>{$_('filters.women')}</span>
       </button>
     </div>
   </div>
 
   <div class="filter-group">
-    <div class="filter-label">Party</div>
+    <div class="filter-label">{$_('filters.party')}</div>
     <div class="filter-row">
       <button 
         class="filter-btn"
         class:active={activeParty === 'all'}
         onclick={() => setParty('all')}
       >
-        <span data-i18n="filters.all">All</span>
+        <span>{$_('filters.all')}</span>
       </button>
       {#each parties as party}
         <button 
@@ -88,14 +89,14 @@
   </div>
 
   <div class="filter-group">
-    <div class="filter-label">District</div>
+    <div class="filter-label">{$_('filters.district')}</div>
     <div class="filter-row district-row">
       <button 
         class="filter-btn"
         class:active={activeDistrict === 'all'}
         onclick={() => setDistrict('all')}
       >
-        <span data-i18n="browse.allDistricts">All</span>
+        <span>{$_('browse.allDistricts')}</span>
       </button>
       {#each districts as district}
         <button 

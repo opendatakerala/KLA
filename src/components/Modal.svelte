@@ -1,4 +1,5 @@
 <script>
+  import { _ } from '../lib/i18n.js';
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
@@ -102,18 +103,18 @@
           {#if currentModal.reservation}
             <span class="reservation-badge {currentModal.reservation.toLowerCase()}">
               {currentModal.reservation}
-              <span data-i18n="modal.reserved">Reserved</span>
+              <span>{$_('modal.reserved')}</span>
             </span>
           {/if}
         </div>
         <button class="modal-close" onclick={handleClose}>
-          <span data-i18n="modal.close">✕ Close</span>
+          <span>{$_('modal.close')}</span>
         </button>
       </div>
 
       <div class="modal-body">
-        <div class="modal-section-label" data-i18n="modal.contestingCandidates">
-          Contesting Candidates
+        <div class="modal-section-label">
+          {$_('modal.contestingCandidates')}
         </div>
 
         {#if ldfCandidates.length > 0}
@@ -178,7 +179,7 @@
 
         <!-- Niyamasabha Historical Results -->
         <div class="modal-section-label">
-          Historical Results (Niyamasabha)
+          {$_('modal.historicalResultsNiyamasabha')}
         </div>
         <NiyamasabhaChart constituencyNumber={currentModal.number} data={niyamasabhaData} loading={historicalLoading} error={historicalError} />
 
@@ -186,7 +187,7 @@
         {#if currentModal.qid}
           <div class="modal-section-label loksabha-section">
             <button class="toggle-loksabha-btn" onclick={() => loksabhaVisible = !loksabhaVisible}>
-              {loksabhaVisible ? '▼' : '▶'} Historical Results (Lok Sabha)
+              {loksabhaVisible ? '▼' : '▶'} {$_('modal.historicalResultsLoksabha')}
             </button>
           </div>
           <div class="loksabha-chart-wrapper" class:hidden={!loksabhaVisible}>

@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import * as echarts from 'echarts';
   import genderData from '../../data/gender-distribution.json';
+  import { _ } from '../../lib/i18n.js';
 
   const { isActive = false } = $props();
 
@@ -187,21 +188,21 @@
     <div class="gender-card female">
       <div class="card-icon">♀</div>
       <div class="card-count">{femaleCount}</div>
-      <div class="card-label">Women</div>
+      <div class="card-label">{$_('charts.women')}</div>
       <div class="card-pct">{femalePct}%</div>
     </div>
     {#if showTransgender}
       <div class="gender-card trans">
         <div class="card-icon">⚥</div>
         <div class="card-count">{transCount}</div>
-        <div class="card-label">Transgender</div>
+        <div class="card-label">{$_('charts.transgender')}</div>
         <div class="card-pct">{transPct}%</div>
       </div>
     {/if}
     <div class="gender-card male">
       <div class="card-icon">♂</div>
       <div class="card-count">{maleCount}</div>
-      <div class="card-label">Men</div>
+      <div class="card-label">{$_('charts.men')}</div>
       <div class="card-pct">{malePct}%</div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { _ } from '../lib/i18n.js';
   import Grid from './Grid.svelte';
   import MapView from './MapView.svelte';
 
@@ -27,18 +28,18 @@
     <button 
       class="view-tab" 
       class:active={viewMode === 'grid'}
-      on:click={() => setView('grid')}
+      onclick={() => setView('grid')}
     >
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="16" height="14" rx="2"/><line x1="2" y1="8" x2="18" y2="8"/><line x1="2" y1="13" x2="18" y2="13"/><line x1="7" y1="8" x2="7" y2="17"/></svg>
-      <span data-i18n="header.table">Table</span>
+      <span>{$_('header.table')}</span>
     </button>
     <button 
       class="view-tab" 
       class:active={viewMode === 'map'}
-      on:click={() => setView('map')}
+      onclick={() => setView('map')}
     >
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5l5-2 4 2 5-2v12l-5 2-4-2-5 2V5z"/><line x1="8" y1="3" x2="8" y2="17"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
-      <span data-i18n="header.map">Map</span>
+      <span>{$_('header.map')}</span>
     </button>
   </div>
 
