@@ -99,13 +99,13 @@
     "reserved": "സംവരണം",
     "tbd": "വരാനിരിക്കുന്നു",
     "toBeAnnounced": "പ്രഖ്യാപിക്കാനുണ്ട്",
-    "historicalResultsNiyamasabha": "ചരിത്രപരമായ ഫലങ്ങൾ (നിയമസഭ)",
-    "historicalResultsLoksabha": "ചരിത്രപരമായ ഫലങ്ങൾ (ലോക്‌സഭ)"
+    "historicalResultsNiyamasabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (നിയമസഭ)",
+    "historicalResultsLoksabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (ലോകസഭ)"
   },
   "charts": {
     "loading": "ലോഡിംഗ്...",
-    "loadingData": "ചരിത്രപരമായ ഡാറ്റ ലോഡ് ചെയ്യുന്നു...",
-    "failedToLoad": "ചരിത്രപരമായ ഡാറ്റ ലോഡ് ചെയ്യാനായില്ല",
+    "loadingData": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ ലോഡ് ചെയ്യുന്നു...",
+    "failedToLoad": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ ലോഡ് ചെയ്യാനായില്ല",
     "dataForYears": "{years} നിയമസഭ തിരഞ്ഞെടുപ്പുകളിലെ ഡാറ്റ",
     "loksabhaDataForYears": "{years} ലോക്‌സഭ തിരഞ്ഞെടുപ്പുകളിലെ ഡാറ്റ",
     "viewDetails": "വിശദാംശങ്ങൾ കാണുക",
@@ -118,8 +118,9 @@
     "women": "സ്ത്രീകൾ",
     "transgender": "ട്രാൻസ്‌ജൻഡർ",
     "men": "പുരുഷന്മാർ",
-    "wonBy": "{party} ({alliance}) {margin} വോട്ടുകളുടെ ഭൂരിപക്ഷത്തില്‍ വിജയിച്ചു",
-    "leadBy": "{party} ({alliance}) {margin} വോട്ടുകള്‍ മുന്നിലായിരുന്നു"
+    "wonBy": "{party} ({alliance}) {margin} വോട്ടുകൾക്ക് വിജയിച്ചു",
+    "leadBy": "{party} ({alliance}) {margin} വോട്ടുകളുടെ ഭൂരിപക്ഷമുണ്ട്",
+    "partOfParliamentaryConstituency": "ഈ മണ്ഡലം {parliamentaryConstituency} ലോകസഭ മണ്ഡലത്തിൻ്റെ ഭാഗമാണ്"
   },
   "language": {
     "en": "EN",

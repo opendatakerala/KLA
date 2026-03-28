@@ -119,7 +119,8 @@
     "transgender": "Transgender",
     "men": "Men",
     "wonBy": "{party} ({alliance}) won by {margin} votes",
-    "leadBy": "{party} ({alliance}) had a lead of {margin} votes"
+    "leadBy": "{party} ({alliance}) had a lead of {margin} votes",
+    "partOfParliamentaryConstituency": "Part of {parliamentaryConstituency} parliamentary constituency"
   },
   "language": {
     "en": "EN",

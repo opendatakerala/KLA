@@ -22,6 +22,7 @@
 
   let seriesData = $derived([...data].reverse());
   let hasData = $derived(seriesData.length > 0);
+  let parliamentaryConstituency = $derived(seriesData[0]?.parliamentaryConstituency || '');
 
   $effect(() => {
     if (chartContainer && hasData && (currentView === 'bars' || currentView === 'stacked')) {
@@ -161,9 +162,12 @@
   </div>
 {:else if currentView === 'simple'}
   <div class="simple-view">
+    {#if parliamentaryConstituency}
+      <div class="pc-label">{$_('charts.partOfParliamentaryConstituency', { values: { parliamentaryConstituency } })}</div>
+    {/if}
     {#each seriesData as yearData}
       <div class="simple-year-row">
-        <span class="simple-year">{yearData.year} ({yearData.parliamentaryConstituency})</span>
+        <span class="simple-year">{yearData.year}</span>
         <span class="simple-result">{getSimpleText(yearData)}</span>
       </div>
     {/each}
@@ -171,6 +175,9 @@
   </div>
 {:else}
   <div class="historical-chart-container">
+    {#if parliamentaryConstituency}
+      <div class="pc-label">{$_('charts.partOfParliamentaryConstituency', { values: { parliamentaryConstituency } })}</div>
+    {/if}
     <button class="back-btn" onclick={goBack}>← Back</button>
     <div class="historical-switcher">
       <button class="hist-switch-btn" class:active={currentView === 'bars'} onclick={() => setView('bars')}>{$_('charts.bars')}</button>
@@ -321,6 +328,14 @@
   }
 
   .historical-chart-container { margin-top: 8px; }
+
+  .pc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: var(--fs-sm);
+    color: var(--text-soft);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
 
   .back-btn {
     font-family: 'DM Mono', monospace;
