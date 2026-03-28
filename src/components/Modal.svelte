@@ -2,6 +2,7 @@
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
   import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
+  import { historicalDataStore } from '../stores/historicalStore.js';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
 
@@ -12,7 +13,6 @@
     Others: '#33AA55'
   };
 
-  const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || '';
   let currentModal = $derived($selectedConstituency);
   let currentLangValue = $derived($currentLang);
   let currentIsLoading = $derived($isLoading);
@@ -26,58 +26,13 @@
     return currentIsLoading ? key : $_(key);
   }
 
-  let historicalLoading = $state(true);
-  let historicalError = $state(false);
-  let niyamasabhaData = $state([]);
-  let loksabhaData = $state([]);
   let loksabhaVisible = $state(false);
 
-  $effect(() => {
-    // Svelte automatically tracks this as a dependency.
-    // The effect will ONLY re-run when currentModal.qid changes.
-    const qid = currentModal?.qid;
-
-    if (!qid) {
-      niyamasabhaData = [];
-      loksabhaData = [];
-      historicalLoading = false;
-      return;
-    }
-
-    // Use an AbortController to cancel previous requests if the qid changes 
-    // before the previous fetch completes.
-    const controller = new AbortController();
-
-    async function fetchHistoricalData() {
-      historicalLoading = true;
-      historicalError = false;
-
-      try {
-        const res = await fetch(`${API_BASE}/api/kla2026/${qid}.json`, {
-          signal: controller.signal
-        });
-        const data = await res.json();
-        niyamasabhaData = data.niyamasabha || [];
-        loksabhaData = data.loksabha || [];
-      } catch (e) {
-        // Ignore errors caused by our own abort cancellation
-        if (e.name === 'AbortError') return; 
-        
-        console.error('Failed to fetch historical data:', e);
-        historicalError = true;
-      } finally {
-        historicalLoading = false;
-      }
-    }
-
-    fetchHistoricalData();
-
-    // The cleanup function runs right before the effect re-runs, 
-    // or when the component unmounts.
-    return () => {
-      controller.abort();
-    };
-  });
+  let historicalData = $derived($historicalDataStore);
+  let niyamasabhaData = $derived(historicalData?.data?.niyamasabha || []);
+  let loksabhaData = $derived(historicalData?.data?.loksabha || []);
+  let historicalLoading = $derived(historicalData?.loading || false);
+  let historicalError = $derived(historicalData?.error ? true : false);
 
   function handleClose() { closeModal(); }
 
