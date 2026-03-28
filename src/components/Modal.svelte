@@ -39,6 +39,12 @@
   function handleKeydown(e) {
     if (e.key === 'Escape') handleClose();
   }
+
+  function formatIndian(num) {
+    if (!num) return '0';
+    const n = parseInt(num, 10);
+    return isNaN(n) ? '0' : n.toLocaleString('en-IN');
+  }
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
@@ -79,21 +85,21 @@
           {#if currentModal.pollingBooths}
             <div class="stat-card">
               <span class="stat-label">{$_('modal.pollingBooths')}</span>
-              <span class="stat-value">{currentModal.pollingBooths}</span>
+              <span class="stat-value">{formatIndian(currentModal.pollingBooths)}</span>
             </div>
           {/if}
           {#if currentModal.votersTotal}
             <div class="stat-card">
               <span class="stat-label">{$_('modal.voters')}</span>
-              <span class="stat-value">{currentModal.votersTotal}</span>
+              <span class="stat-value">{formatIndian(currentModal.votersTotal)}</span>
             </div>
             <div class="stat-card">
               <span class="stat-label">{$_('modal.genderBreakup')}</span>
               <div class="stat-breakdown">
-                <span>♂ {currentModal.votersMale || 0}</span>
-                <span>♀ {currentModal.votersFemale || 0}</span>
+                <span>♂ {formatIndian(currentModal.votersMale || 0)}</span>
+                <span>♀ {formatIndian(currentModal.votersFemale || 0)}</span>
                 {#if currentModal.votersTransgender > 0}
-                  <span>⚥ {currentModal.votersTransgender}</span>
+                  <span>⚥ {formatIndian(currentModal.votersTransgender)}</span>
                 {/if}
               </div>
             </div>
