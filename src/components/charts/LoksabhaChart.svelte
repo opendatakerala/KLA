@@ -122,7 +122,7 @@
       legend: { data: ALLIANCES, bottom: 0, textStyle: { fontSize: 10 } },
       grid: { left: 44, right: 16, top: 16, bottom: 44 },
       xAxis: { type: 'category', data: seriesData.map(d => d.year) },
-      yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+      yAxis: { type: 'value', max: undefined, axisLabel: { formatter: '{value}%' } },
       series
     }, { notMerge: true });
   }
