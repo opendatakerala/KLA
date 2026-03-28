@@ -117,7 +117,9 @@
     "votes": "Votes",
     "women": "Women",
     "transgender": "Transgender",
-    "men": "Men"
+    "men": "Men",
+    "wonBy": "{party} ({alliance}) won by {margin} votes",
+    "leadBy": "{party} ({alliance}) had a lead of {margin} votes"
   },
   "language": {
     "en": "EN",

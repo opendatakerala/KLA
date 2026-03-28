@@ -117,7 +117,9 @@
     "votes": "വോട്ടുകൾ",
     "women": "സ്ത്രീകൾ",
     "transgender": "ട്രാൻസ്‌ജൻഡർ",
-    "men": "പുരുഷന്മാർ"
+    "men": "പുരുഷന്മാർ",
+    "wonBy": "{party} ({alliance}) {margin} വോട്ടുകള്‍ക്കിടയിലാണ് വിജയിച്ചത്",
+    "leadBy": "{party} ({alliance}) {margin} വോട്ടുകളുടെ മുന്‍തിരിപ്പിലാണ്"
   },
   "language": {
     "en": "EN",

@@ -40,9 +40,8 @@
     if (!winner) return '';
     const party = winner.party || '';
     const alliance = winner.alliance || '';
-    const margin = yearData.margin;
-    const marginStr = margin.toLocaleString();
-    return `${party} (${alliance}) won by ${marginStr} votes`;
+    const margin = yearData.margin?.toLocaleString() || '0';
+    return $_('charts.wonBy', { values: { party, alliance, margin } });
   }
 
   function renderChart() {
