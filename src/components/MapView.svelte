@@ -57,10 +57,8 @@
         const udfCandidate = candidates.find(c => c.alliance === 'UDF' && c.name);
         const ndaCandidate = candidates.find(c => c.alliance === 'NDA' && c.name);
         
-        const al = ldfCandidate ? 'LDF' : udfCandidate ? 'UDF' : ndaCandidate ? 'NDA' : '';
-        
         if (tooltip) {
-          tooltip.textContent = (num ? '#' + num + ' ' : '') + name + (al ? ' · ' + al : '');
+          tooltip.textContent = (num ? '#' + num + ' ' : '') + name;
           tooltip.style.display = 'block';
         }
       })
