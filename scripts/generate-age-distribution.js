@@ -10,9 +10,7 @@ function getAlliance(allianceFromCSV) {
 function getAgeBin(age) {
   const a = parseInt(age, 10);
   if (isNaN(a)) return 'unknown';
-  if (a < 20) return 'under20';
-  if (a < 30) return '20-29';
-  if (a < 40) return '30-39';
+  if (a < 40) return '25-39';
   if (a < 50) return '40-49';
   if (a < 60) return '50-59';
   if (a < 70) return '60-69';
@@ -47,9 +45,7 @@ function generate() {
   const rawResult = {
     overall: {
       bins: {
-        under20: 0,
-        '20-29': 0,
-        '30-39': 0,
+        '25-39': 0,
         '40-49': 0,
         '50-59': 0,
         '60-69': 0,
@@ -62,22 +58,22 @@ function generate() {
     },
     byAlliance: {
       LDF: {
-        bins: { under20: 0, '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
+        bins: { '25-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
         ageSum: 0,
         count: 0
       },
       UDF: {
-        bins: { under20: 0, '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
+        bins: { '25-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
         ageSum: 0,
         count: 0
       },
       NDA: {
-        bins: { under20: 0, '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
+        bins: { '25-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
         ageSum: 0,
         count: 0
       },
       Others: {
-        bins: { under20: 0, '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
+        bins: { '25-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
         ageSum: 0,
         count: 0
       }
@@ -111,7 +107,7 @@ function generate() {
     
     if (!rawResult.byParty[party]) {
       rawResult.byParty[party] = {
-        bins: { under20: 0, '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
+        bins: { '25-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
         ageSum: 0,
         count: 0
       };
@@ -125,7 +121,7 @@ function generate() {
     if (district) {
       if (!rawResult.byDistrict[district]) {
         rawResult.byDistrict[district] = {
-          bins: { under20: 0, '20-29': 0, '30-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
+          bins: { '25-39': 0, '40-49': 0, '50-59': 0, '60-69': 0, '70-79': 0, '80+': 0, unknown: 0 },
           ageSum: 0,
           count: 0
         };
