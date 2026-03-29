@@ -4,8 +4,8 @@ This is Commnity Iniative to Explore the Kerala Legislative Assembly Election 20
 Cite our work Copyright to OpenDataKerala Community 
 
 * Website under GPL-3.0 license  
-* Data - Link with DOI (To be updated)
-* Paper - (To be updated)
+* Dataset - DOI (To be updated)
+* Consept Paper - (To be updated)
 
 # About the Portal
 The Kerala Legislative Assembly Election 2026 Data Portal is an initiative by the OpenDataKerala Community to track, curate, and present structured information related to election candidates and constituencies.
