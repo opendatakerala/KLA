@@ -6,13 +6,9 @@
     "initiative": "ഒരു ഓപ്പൺഡാറ്റകേരള കമ്മ്യൂണിറ്റി സംരംഭം"
   },
   "header": {
-    "seats": "സീറ്റുകൾ",
-    "announcedCandidates": "പ്രഖ്യാപിച്ച സ്ഥാനാര്‍ത്ഥികൾ *",
     "searchPlaceholder": "മണ്ഡലം, സ്ഥാനാര്‍ത്ഥി എന്നിവ തിരയുക…",
-    "search": "തിരയുക",
     "table": "പട്ടിക",
     "map": "ഭൂപടം",
-    "clear": "വൃത്തിയാക്കുക",
     "disclaimer": "അറിയിപ്പ്",
     "pollingUnderway": "വോട്ടിംഗ് നടക്കുന്നു",
     "pollingDay": "⏳ വോട്ടിംഗ് ദിനം · 2026 ഏപ്രിൽ 9, 6 AM",
@@ -44,18 +40,9 @@
     "ok": "ഞാൻ മനസിലാക്കി"
   },
   "stats": {
-    "overall": "ആകമാനം",
-    "ldf": "എല്‍ഡിഎഫ് സ്ഥാനാര്‍ത്ഥികൾ",
-    "udf": "യുഡിഎഫ് സ്ഥാനാര്‍ത്ഥികൾ",
-    "nda": "എന്‍ഡിഎ സ്ഥാനാര്‍ത്ഥികൾ",
-    "sc": "എസ്‌സി സംവരണം",
-    "st": "എസ്‌ടി സംവരണം",
     "partyDistribution": "പാർട്ടി വിതരണം",
     "genderDistribution": "ലിംഗ വിതരണം",
-    "criminalCases": "ക്രിമിനൽ കേസുകൾ",
-    "educationDistribution": "വിദ്യാഭ്യാസം",
-    "ageDistribution": "പ്രായ വിതരണം",
-    "comingSoon": "ഡാറ്റ ഉടന്‍ വരും"
+    "ageDistribution": "പ്രായ വിതരണം"
   },
   "statsBar": {
     "constituencies": "മണ്ഡലങ്ങൾ",
@@ -69,12 +56,8 @@
     "contesting": "മത്സര സ്ഥാനാർത്ഥികൾ"
   },
   "filters": {
+    "filters": "ഫിൽറ്ററുകൾ",
     "all": "എല്ലാം",
-    "ldf": "എല്‍ഡിഎഫ്",
-    "udf": "യുഡിഎഫ്",
-    "nda": "എന്‍ഡിഎ",
-    "sc": "എസ്‌സി സംരക്ഷിതം",
-    "st": "എസ്‌ടി സംരക്ഷിതം",
     "women": "സ്ത്രീകൾ",
     "category": "വിഭാഗം",
     "party": "പാർട്ടി",
@@ -85,22 +68,11 @@
     "allDistricts": "എല്ലാ ജില്ലകളും"
   },
   "results": {
-    "showingAll": "എല്ലാ {count} മണ്ഡലങ്ങളും കാണിക്കുന്നു",
-    "showingFiltered": "{total} ഇതിൽ {shown} മണ്ഡലങ്ങളാണ് കാണിക്കുന്നത്",
-    "search": "തിരച്ചിൽ",
     "empty": "നിങ്ങളുടെ തിരച്ചിലിന് അനുസരിച്ച മണ്ഡലങ്ങളില്ല."
   },
   "map": {
-    "all": "എല്ലാം",
-    "alliance": "സഖ്യം",
     "scReserved": "എസ്‌സി സംവരണം",
     "stReserved": "എസ്‌ടി സംവരണം",
-    "women": "സ്ത്രീകൾ",
-    "clear": "വൃത്തിയാക്കുക",
-    "party": "പാർട്ടി",
-    "district": "ജില്ല",
-    "allParties": "എല്ലാ പാർട്ടികളും",
-    "allKerala": "മുഴുവന്‍ കേരളവും",
     "reservedSeats": "സംവരണ സീറ്റുകൾ"
   },
   "modal": {
@@ -108,13 +80,9 @@
     "contestingCandidates": "മത്സരിക്കുന്ന സ്ഥാനാര്‍ത്ഥികൾ",
     "close": "അടയ്ക്കുക",
     "reserved": "സംവരണം",
-    "tbd": "വരാനിരിക്കുന്നു",
-    "toBeAnnounced": "പ്രഖ്യാപിക്കാനുണ്ട്",
     "historicalResultsNiyamasabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (നിയമസഭ)",
-    "historicalResultsLoksabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (ലോകസഭ)",
     "pollingBooths": "വോട്ടിങ് ബൂത്തുകൾ",
     "voters": "വോട്ടര്‍മാര്‍",
-    "genderBreakup": "ലിംഗ വിതരണം",
     "partOfParliamentaryConstituency": "{parliamentaryConstituency} ലോകസഭ മണ്ഡലത്തിന്റെ ഭാഗമായതില്‍ മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ"
   },
   "charts": {

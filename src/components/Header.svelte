@@ -50,7 +50,7 @@
     </div>
     <div class="header-title">
       <div class="header-eyebrow">{$_('site.title')}</div>
-      <h1>Election <em>2026</em></h1>
+      <h1>{$_('site.election')}</h1>
       <div class="header-tagline">
         <span>{$_('site.tagline')}</span>
         <span>&nbsp;&bull; <span>{$_('site.initiative')}</span></span>

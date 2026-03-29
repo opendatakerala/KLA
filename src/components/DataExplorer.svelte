@@ -1,4 +1,5 @@
 <script>
+  import { _ } from '../lib/i18n.js';
   import FilterBar from './FilterBar.svelte';
   import DataDisplay from './DataDisplay.svelte';
   import SearchBar from './SearchBar.svelte';
@@ -27,7 +28,7 @@
       onclick={toggleFilters}
     >
       <span class="toggle-icon">{filtersOpen ? '▼' : '▶'}</span>
-      Filters
+      {$_('filters.filters')}
     </button>
   </div>
 
@@ -42,7 +43,7 @@
       onclick={toggleFilters}
     >
       <span class="toggle-icon">{filtersOpen ? '▼' : '▶'}</span>
-      Filters
+      {$_('filters.filters')}
     </button>
   </div>
 

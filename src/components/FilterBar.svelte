@@ -47,14 +47,14 @@
         class:active={activeReservation === 'SC'}
         onclick={() => handleReservationClick('SC')}
       >
-        <span>{$_('filters.sc')}</span>
+        <span>{$_('map.scReserved')}</span>
       </button>
       <button 
         class="filter-btn st"
         class:active={activeReservation === 'ST'}
         onclick={() => handleReservationClick('ST')}
       >
-        <span>{$_('filters.st')}</span>
+        <span>{$_('map.stReserved')}</span>
       </button>
       <button 
         class="filter-btn female"

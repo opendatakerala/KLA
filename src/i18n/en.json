@@ -6,13 +6,9 @@
     "initiative": "an OpenDataKerala Community Initiative"
   },
   "header": {
-    "seats": "Seats",
-    "announcedCandidates": "Announced Candidates *",
     "searchPlaceholder": "Search constituency, candidate…",
-    "search": "Search",
     "table": "Table",
     "map": "Map",
-    "clear": "Clear",
     "disclaimer": "Disclaimer",
     "pollingUnderway": "Polling Underway",
     "pollingDay": "⏳ Polling Day · 9 Apr 2026, 6 AM",
@@ -44,18 +40,9 @@
     "ok": "I Understand"
   },
   "stats": {
-    "overall": "Overall",
-    "ldf": "LDF Candidates",
-    "udf": "UDF Candidates",
-    "nda": "NDA Candidates",
-    "sc": "SC Reserved",
-    "st": "ST Reserved",
     "partyDistribution": "Party Distribution",
     "genderDistribution": "Gender Distribution",
-    "criminalCases": "Criminal Cases",
-    "educationDistribution": "Education",
-    "ageDistribution": "Age Distribution",
-    "comingSoon": "Data coming soon"
+    "ageDistribution": "Age Distribution"
   },
   "statsBar": {
     "constituencies": "Constituencies",
@@ -69,12 +56,8 @@
     "contesting": "Contesting Candidates"
   },
   "filters": {
+    "filters": "Filters",
     "all": "All",
-    "ldf": "LDF",
-    "udf": "UDF",
-    "nda": "NDA",
-    "sc": "SC Reserved",
-    "st": "ST Reserved",
     "women": "Women",
     "category": "Category",
     "party": "Party",
@@ -85,22 +68,11 @@
     "allDistricts": "All Districts"
   },
   "results": {
-    "showingAll": "Showing all {count} constituencies",
-    "showingFiltered": "Showing {shown} of {total} constituencies",
-    "search": "search",
     "empty": "No constituencies match your search."
   },
   "map": {
-    "all": "All",
-    "alliance": "Alliance",
     "scReserved": "SC Reserved",
     "stReserved": "ST Reserved",
-    "women": "Women",
-    "clear": "Clear",
-    "party": "Party",
-    "district": "District",
-    "allParties": "All Parties",
-    "allKerala": "All Kerala",
     "reservedSeats": "Reserved Seats"
   },
   "modal": {
@@ -108,13 +80,9 @@
     "contestingCandidates": "Contesting Candidates",
     "close": "Close",
     "reserved": "Reserved",
-    "tbd": "TBD",
-    "toBeAnnounced": "To Be Announced",
     "historicalResultsNiyamasabha": "Historical Results (Niyamasabha)",
-    "historicalResultsLoksabha": "Historical Results (Lok Sabha)",
     "pollingBooths": "Polling Booths",
     "voters": "Voters",
-    "genderBreakup": "Gender Breakup",
     "partOfParliamentaryConstituency": "Historical Results as a part of {parliamentaryConstituency} Lok Sabha constituency"
   },
   "charts": {
