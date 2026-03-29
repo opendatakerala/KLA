@@ -10,7 +10,7 @@
     { key: 'nominations', value: 2125 },
     { key: 'applications', value: 1254 },
     { key: 'afterScrutiny', value: 985 },
-    { key: 'contesting', value: 890 },
+    { key: 'contesting', value: 883 },
     { key: 'booths', value: 30471 },
     { key: 'voters', value: 27142952 },
   ];
