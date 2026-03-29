@@ -329,18 +329,25 @@
       flex-direction: column; 
       gap: 4px; 
       height: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px;
+      position: relative;
     }
     .lang-btn { 
       flex: 1;
-      padding: 6px 14px; 
+      padding: 4px 12px; 
       font-size: 11px; 
-      background: var(--bg2);
-      border: 1px solid var(--border);
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      transition: color 0.4s ease;
     }
     .lang-btn.active {
-      background: var(--card);
       color: var(--gold);
-      border-color: var(--gold);
     }
     h1 { font-size: var(--fs-xl); }
     .header-eyebrow { font-size: var(--fs-xs); }
