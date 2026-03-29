@@ -117,11 +117,11 @@
             {#each ldf as c}
               <div class="candidate-row">
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
-                <div class="candidate-info">
-                  <div class="alliance-label">LDF</div>
-                  <div class="candidate-party">{c.party || '—'}</div>
-                  <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                </div>
+                  <div class="candidate-info">
+                    <div class="alliance-label">LDF</div>
+                    <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                    <div class="candidate-party">{c.party || '—'}</div>
+                  </div>
               </div>
             {/each}
           </div>
@@ -134,8 +134,8 @@
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">UDF</div>
-                  <div class="candidate-party">{c.party || '—'}</div>
                   <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
                 </div>
               </div>
             {/each}
@@ -149,8 +149,8 @@
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">NDA</div>
-                  <div class="candidate-party">{c.party || '—'}</div>
                   <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
                 </div>
               </div>
             {/each}
@@ -164,8 +164,8 @@
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
                 <div class="candidate-info">
                   <div class="alliance-label">Others</div>
-                  <div class="candidate-party">{c.party || '—'}</div>
                   <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                  <div class="candidate-party">{c.party || '—'}</div>
                 </div>
               </div>
             {/each}
@@ -233,14 +233,14 @@
 
   .modal-eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     color: var(--muted);
     letter-spacing: 0.05em;
   }
 
   .modal-title {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-2xl);
+    font-size: var(--fs-xl);
     font-weight: 700;
     color: var(--text);
     margin-top: 4px;
@@ -259,7 +259,7 @@
     padding: 4px 8px;
     border-radius: 4px;
     font-family: 'DM Mono', monospace;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     letter-spacing: 0.05em;
   }
 
@@ -282,7 +282,7 @@
     border-radius: 4px;
     color: var(--muted);
     font-family: 'DM Mono', monospace;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     cursor: pointer;
     transition: all 0.15s;
   }
@@ -314,7 +314,7 @@
 
   .stat-label {
     font-family: 'DM Mono', monospace;
-    font-size: 9px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     color: var(--muted);
     text-transform: uppercase;
@@ -322,7 +322,7 @@
 
   .stat-value {
     font-family: 'DM Mono', monospace;
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     font-weight: 700;
     color: var(--text);
   }
@@ -340,7 +340,7 @@
 
   .modal-section-label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     color: var(--muted);
     text-transform: uppercase;
@@ -363,7 +363,7 @@
 
   .toggle-loksabha-btn {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -407,22 +407,22 @@
 
   .alliance-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: var(--fs-xs);
     font-weight: 600;
     letter-spacing: 0.1em;
     opacity: 0.7;
   }
 
-  .candidate-party {
+  .candidate-name {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: var(--fs-base);
     margin-top: 2px;
     color: #000;
   }
 
-  .candidate-name {
-    font-size: 12px;
+  .candidate-party {
+    font-size: var(--fs-sm);
     color: var(--text-soft);
     margin-top: 2px;
   }

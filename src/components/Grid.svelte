@@ -1,7 +1,7 @@
 <script>
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { filteredConstituencies, openModal } from '../stores/constituencyStore.js';
-  import { sortCandidatesByOthersWithParty, getCandidateName as getCandName } from '../stores/candidateStore.js';
+  import { getCandidateName as getCandName } from '../stores/candidateStore.js';
   import Modal from './Modal.svelte';
 
   let filteredData = $derived($filteredConstituencies);
@@ -74,15 +74,6 @@
         {#each row.candidates.filter((c) => c.alliance === "NDA") as c}
           <div class="candidate-row">
             <span class="alliance-tag {getAllianceClass('NDA')}">{getAllianceLabel('NDA')}</span>
-            <div>
-              <span class="candidate-name">{getCandidateName(c)}</span>
-              <div class="candidate-party">{c.party || "—"}</div>
-            </div>
-          </div>
-        {/each}
-        {#each sortCandidatesByOthersWithParty(row.candidates.filter((c) => c.alliance === "Others")) as c}
-          <div class="candidate-row">
-            <span class="alliance-tag {getAllianceClass('OTH')}">{getAllianceLabel('OTH')}</span>
             <div>
               <span class="candidate-name">{getCandidateName(c)}</span>
               <div class="candidate-party">{c.party || "—"}</div>
@@ -229,12 +220,12 @@
 
   .candidate-party {
     font-family: 'Inter', sans-serif;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     color: var(--muted);
   }
 
   .candidate-name {
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: var(--text);
   }
@@ -245,6 +236,6 @@
     padding: 40px;
     color: var(--muted);
     font-family: 'DM Mono', monospace;
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
   }
 </style>
