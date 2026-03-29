@@ -3,6 +3,7 @@
   import * as echarts from 'echarts';
   import genderData from '../../data/gender-distribution.json';
   import { _ } from '../../lib/i18n.js';
+  import { KERALA_DISTRICTS } from '../../lib/constants.js';
 
   const { isActive = false } = $props();
 
@@ -55,7 +56,7 @@
     } else if (tab === 'party') {
       activeFilter = Object.keys(genderData.byParty)[0] || '';
     } else if (tab === 'district') {
-      activeFilter = Object.keys(genderData.byDistrict)[0] || '';
+      activeFilter = getFilterOptions('district')[0] || '';
     }
   }
 
@@ -111,7 +112,15 @@
     } else if (tab === 'party') {
       return Object.keys(genderData.byParty);
     } else if (tab === 'district') {
-      return Object.keys(genderData.byDistrict);
+      const districts = Object.keys(genderData.byDistrict);
+      return districts.sort((a, b) => {
+        const idxA = KERALA_DISTRICTS.indexOf(a);
+        const idxB = KERALA_DISTRICTS.indexOf(b);
+        if (idxA === -1 && idxB === -1) return a.localeCompare(b);
+        if (idxA === -1) return 1;
+        if (idxB === -1) return -1;
+        return idxA - idxB;
+      });
     }
     return [];
   }

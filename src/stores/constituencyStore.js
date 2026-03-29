@@ -1,6 +1,7 @@
 import { atom, computed } from 'nanostores';
 import constituencyData from '../data/constituencies.json';
 import districtBoundsData from '../data/district-bounds.json';
+import { KERALA_DISTRICTS } from '../lib/constants.js';
 
 export const districtBounds = districtBoundsData;
 
@@ -124,5 +125,12 @@ export const partyList = computed([constituencies], ($constituencies) => {
 
 export const districtList = computed([constituencies], ($constituencies) => {
   const districts = [...new Set($constituencies.map(c => c.district).filter(Boolean))];
-  return districts.sort();
+  return districts.sort((a, b) => {
+    const idxA = KERALA_DISTRICTS.indexOf(a);
+    const idxB = KERALA_DISTRICTS.indexOf(b);
+    if (idxA === -1 && idxB === -1) return a.localeCompare(b);
+    if (idxA === -1) return 1;
+    if (idxB === -1) return -1;
+    return idxA - idxB;
+  });
 });

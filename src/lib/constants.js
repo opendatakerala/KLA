@@ -40,3 +40,20 @@ export const ALLIANCE_BG = {
   NDA: '#FFF0D6',
   Others: '#EEFFEE'
 };
+
+export const KERALA_DISTRICTS = [
+  'Kasaragod',
+  'Kannur',
+  'Wayanad',
+  'Kozhikode',
+  'Malappuram',
+  'Palakkad',
+  'Thrissur',
+  'Ernakulam',
+  'Idukki',
+  'Kottayam',
+  'Alappuzha',
+  'Pathanamthitta',
+  'Kollam',
+  'Thiruvananthapuram'
+];
