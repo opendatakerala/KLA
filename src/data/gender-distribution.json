@@ -2,8 +2,8 @@
   "overall": {
     "male": 788,
     "female": 94,
-    "transgender": 0,
-    "unknown": 1
+    "transgender": 1,
+    "unknown": 0
   },
   "byAlliance": {
     "LDF": {
@@ -27,8 +27,8 @@
     "Others": {
       "male": 416,
       "female": 46,
-      "transgender": 0,
-      "unknown": 1
+      "transgender": 1,
+      "unknown": 0
     }
   },
   "byParty": {
@@ -65,8 +65,8 @@
     "AAP": {
       "male": 49,
       "female": 3,
-      "transgender": 0,
-      "unknown": 1
+      "transgender": 1,
+      "unknown": 0
     },
     "Independent (INC Support)": {
       "male": 3,
@@ -307,8 +307,8 @@
     "Wayanad": {
       "male": 18,
       "female": 2,
-      "transgender": 0,
-      "unknown": 1
+      "transgender": 1,
+      "unknown": 0
     },
     "Kasaragod": {
       "male": 30,
