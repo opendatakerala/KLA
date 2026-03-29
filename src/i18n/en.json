@@ -103,7 +103,8 @@
     "historicalResultsLoksabha": "Historical Results (Lok Sabha)",
     "pollingBooths": "Polling Booths",
     "voters": "Voters",
-    "genderBreakup": "Gender Breakup"
+    "genderBreakup": "Gender Breakup",
+    "partOfParliamentaryConstituency": "Historical Results as a part of {parliamentaryConstituency} Lok Sabha constituency"
   },
   "charts": {
     "loading": "Loading...",

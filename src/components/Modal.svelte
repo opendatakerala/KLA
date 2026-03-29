@@ -192,10 +192,10 @@
         <NiyamasabhaChart constituencyNumber={currentModal.number} data={niyamasabhaData} loading={historicalLoading} error={historicalError} />
 
         <!-- Lok Sabha Historical Results -->
-        {#if currentModal.qid}
+        {#if currentModal.qid && loksabhaData?.[0]?.parliamentaryConstituency}
           <div class="modal-section-label loksabha-section">
             <button class="toggle-loksabha-btn" onclick={() => loksabhaVisible = !loksabhaVisible}>
-              {loksabhaVisible ? '▼' : '▶'} {$_('modal.historicalResultsLoksabha')}
+              {loksabhaVisible ? '▼' : '▶'} {$_('modal.partOfParliamentaryConstituency', { values: { parliamentaryConstituency: loksabhaData[0].parliamentaryConstituency } })}
             </button>
           </div>
           <div class="loksabha-chart-wrapper" class:hidden={!loksabhaVisible}>

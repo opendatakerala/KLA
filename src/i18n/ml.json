@@ -103,7 +103,8 @@
     "historicalResultsLoksabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (ലോകസഭ)",
     "pollingBooths": "വോട്ടിങ് ബൂത്തുകൾ",
     "voters": "വോട്ടര്‍മാര്‍",
-    "genderBreakup": "ലിംഗ വിതരണം"
+    "genderBreakup": "ലിംഗ വിതരണം",
+    "partOfParliamentaryConstituency": "{parliamentaryConstituency} ലോകസഭ മണ്ഡലത്തിന്റെ ഭാഗമായതില്‍ മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ"
   },
   "charts": {
     "loading": "ലോഡിംഗ്...",

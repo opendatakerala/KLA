@@ -162,9 +162,6 @@
   </div>
 {:else if currentView === 'simple'}
   <div class="simple-view">
-    {#if parliamentaryConstituency}
-      <div class="pc-label">{$_('charts.partOfParliamentaryConstituency', { values: { parliamentaryConstituency } })}</div>
-    {/if}
     {#each seriesData as yearData}
       <div class="simple-year-row">
         <span class="simple-year">{yearData.year}</span>
