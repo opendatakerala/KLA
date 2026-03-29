@@ -1,5 +1,11 @@
 # KLA 2026
-Kerala Legislative Assembly Election 2026 Portal
+This is Commnity Iniative to Explore the Kerala Legislative Assembly Election 2026 Through Data. 
+
+Cite our work Copyright to OpenDataKerala Community 
+
+* Website under GPL-3.0 license  
+* Data - Link with DOI (To be updated)
+* Paper - (To be updated)
 
 # About the Portal
 The Kerala Legislative Assembly Election 2026 Data Portal is an initiative by the OpenDataKerala Community to track, curate, and present structured information related to election candidates and constituencies.
