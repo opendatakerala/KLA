@@ -202,6 +202,11 @@
             <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} />
           </div>
         {/if}
+        <div class="modal-footer">
+          <a href="/KLA2026/about" class="modal-report-link" title={$_('footer.reportIssues')}>
+            ⚠️ {$_('footer.reportIssues')}
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -508,5 +513,30 @@
   .candidate-name.tbd {
     color: var(--muted);
     font-style: italic;
+  }
+
+  .modal-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .modal-report-link {
+    font-family: 'DM Mono', monospace;
+    font-size: var(--fs-xs);
+    color: var(--gold);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .modal-report-link:hover {
+    color: var(--gold-mid);
+  }
+
+  .modal-report-link:hover {
+    opacity: 1;
   }
 </style>

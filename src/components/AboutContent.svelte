@@ -1,29 +1,23 @@
----
-layout: ../components/LayoutSimple.astro
-title: About - Kerala Legislative Assembly Election 2026
----
+<script>
+  import { _ } from '../lib/i18n.js';
+</script>
 
 <div class="about-container">
-  <a href="/KLA2026/" class="back-link">← Back to Home</a>
+  <a href="/KLA2026/" class="back-link">← {$_('about.back')}</a>
 
-  <h1>About</h1>
+  <h1>{$_('about.title')}</h1>
 
   <p>
-    This is an OpenDataKerala initiative to track and display candidate information for the Kerala Legislative Assembly Election 2026.
-    The data is sourced from various media outlets, party social media handles, and the CEC Kerala website.
+    {$_('about.description')}
   </p>
 
-  <h2>Team</h2>
-  <p>To be announced.</p>
+  <h2>{$_('about.team')}</h2>
+  <p>{$_('about.teamContent')}</p>
 
-  <h2>Report Issues</h2>
+  <h2>{$_('about.reportIssues')}</h2>
   <p>
-    If you find any errors or have suggestions, please report them:
+    {@html $_('about.reportIssuesIntro')}
   </p>
-  <ul>
-    <li><strong>GitHub:</strong> <a href="https://github.com/opendatakerala/KLA2026/issues" target="_blank" rel="noopener">https://github.com/opendatakerala/KLA2026/issues</a></li>
-    <li><strong>Email:</strong> <a href="mailto:opendatakerala@gmail.com">opendatakerala@gmail.com</a></li>
-  </ul>
 </div>
 
 <style>

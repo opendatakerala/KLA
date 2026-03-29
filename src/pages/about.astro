@@ -1,0 +1,10 @@
+---
+import LayoutSimple from '../components/LayoutSimple.astro';
+import AboutContent from '../components/AboutContent.svelte';
+
+const pageTitle = "About - Kerala Legislative Assembly Election 2026";
+---
+
+<LayoutSimple title={pageTitle}>
+  <AboutContent client:load />
+</LayoutSimple>

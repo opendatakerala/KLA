@@ -20,20 +20,20 @@
 <footer>
   <div class="footer-left">
     <span class="footer-text">{$_('footer.credits')}</span>
-    <span class="footer-version">
-      <span class="version-label">App version:</span> {appVersion}
+    <div class="footer-version">
+      <span class="version-item">
+        <span class="version-label">App version:</span><span class="version-value">&nbsp;{appVersion}</span>
+      </span>
       <span class="version-divider">|</span>
-      <span class="version-label">Data version:</span> {dataVersion}
-    </span>
-    <div class="disc-content">
-      <strong>{$_('disclaimer.title')}</strong>
-      <p>{@html $_('disclaimer.body1')}</p>
-      <p>{@html $_('disclaimer.body2')}</p>
+      <span class="version-item">
+        <span class="version-label">Data version:</span><span class="version-value">&nbsp;{dataVersion}</span>
+      </span>
     </div>
   </div>
   <div class="footer-right">
     <a class="footer-disc-link" href="/KLA2026/about">About</a>
     <button class="footer-disc-link" id="footer-disc-link" onclick={openDisclaimer}>{$_('footer.viewDisclaimer')}</button>
+    <a class="footer-disc-link" href="/KLA2026/about">{$_('footer.reportIssues')}</a>
   </div>
 </footer>
 
@@ -67,12 +67,18 @@
     color: var(--text-soft);
     letter-spacing: 0.05em;
     opacity: 0.8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .version-item {
+    display: inline-flex;
+    flex-wrap: wrap;
   }
   .version-label {
     color: var(--gold);
   }
   .version-divider {
-    margin: 0 6px;
     color: var(--border);
   }
   .footer-right {
