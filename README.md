@@ -10,8 +10,19 @@ Cite our work Copyright to OpenDataKerala Community
 # About the Portal
 The Kerala Legislative Assembly Election 2026 Data Portal is an initiative by the OpenDataKerala Community to track, curate, and present structured information related to election candidates and constituencies.
 
-The platform integrates data from multiple sources to provide a comprehensive and accessible public dataset, along with references to past election information.
+The platform integrates data from multiple sources to provide a comprehensive and accessible public dataset, along with references to past election information. 
 
+Our initiative aims to collect, curate, and present comprehensive election-related data with meaningful public-interest analysis, insights, and interpretations. We strive to make election data accessible, understandable, and useful for everyone. The primary objective is to ensure that reliable and structured information is available to a wide range of users, including the general public, political workers, researchers, and journalists.
+
+The OpenDataKerala Election Data Portal represents a collaborative effort to democratize election data by promoting transparency, enabling research, and supporting informed public participation. By integrating technology with community-driven efforts and open data principles, the project contributes significantly to strengthening the digital public infrastructure surrounding elections.
+
+The platform offers a range of features designed to enhance usability and insight. It provides general statistics related to the Kerala Legislative Assembly Election 2026, along with demographic analysis of party distribution, gender, and age. Users can explore the data using filters based on category, political party, and district, making it easier to navigate and analyze specific segments of information.
+
+The portal includes both table and map-based views for better accessibility. In the table view, detailed information for all 140 legislative assembly constituencies is presented through structured information cards. Each card includes the district, constituency number and name, number of polling booths, and voter demographics based on gender. It also lists contesting candidates along with their names, political parties, and alliances.
+
+In addition, the platform provides historical election data for comparative analysis. This includes Kerala Legislative Assembly (Niyamasabha) election results for the years 2011, 2016, and 2021, presented through bar charts, stacked visualizations, and tabular formats. Lok Sabha election results are also included as reference data, similarly visualized using multiple formats to support deeper analysis.
+
+To complement the tabular data, an interactive map interface is available, allowing users to explore the same datasets geographically. This combination of data visualization, filtering, and historical context enables users to gain deeper insights into electoral trends and patterns in a user-friendly manner.
 # Team
 ## Core Team
 1. Manoj Karingamadathil – Project Management & Data Modeling
