@@ -95,6 +95,14 @@
     >
       <div class="modal-top"></div>
       <div class="modal-header">
+        <div class="modal-actions">
+          <button class="modal-btn" onclick={handleDownload} disabled={isDownloading}>
+            <span>{isDownloading ? '...' : '📷'}</span>
+          </button>
+          <button class="modal-btn" onclick={handleClose}>
+            <span>{$_('modal.close')}</span>
+          </button>
+        </div>
         <div class="modal-eyebrow">
           {currentLangValue === 'ml' && currentModal.districtMalayalam ? currentModal.districtMalayalam : currentModal.district} · {$_('modal.constituency')} #{currentModal.number}
         </div>
@@ -106,14 +114,6 @@
               <span>{$_('modal.reserved')}</span>
             </span>
           {/if}
-        </div>
-        <div class="modal-actions">
-          <button class="modal-btn" onclick={handleDownload} disabled={isDownloading}>
-            <span>{isDownloading ? '...' : '💾'}</span>
-          </button>
-          <button class="modal-btn" onclick={handleClose}>
-            <span>{$_('modal.close')}</span>
-          </button>
         </div>
       </div>
 
@@ -288,6 +288,21 @@
     padding: 16px 20px;
     border-bottom: 1px solid var(--border);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media (min-width: 480px) {
+    .modal-header {
+      display: block;
+    }
+
+    .modal-actions {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
   }
 
   .modal-eyebrow {
@@ -333,11 +348,9 @@
   }
 
   .modal-actions {
-    position: absolute;
-    top: 16px;
-    right: 16px;
     display: flex;
     gap: 8px;
+    justify-content: flex-end;
   }
 
   .modal-btn {
