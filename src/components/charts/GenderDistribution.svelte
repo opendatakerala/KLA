@@ -109,7 +109,7 @@ echarts.use([
     });
 
     const option = {
-      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, confine: true },
       grid: { left: 0, right: 0, top: 0, bottom: 0, containLabel: false },
       xAxis: { type: 'value', show: false, min: 0, max: totalCount },
       yAxis: { type: 'category', show: false },

@@ -185,7 +185,8 @@ echarts.use([
       const option = {
         tooltip: {
           trigger: 'axis',
-          axisPointer: { type: 'shadow' }
+          axisPointer: { type: 'shadow' },
+          confine: true
         },
         legend: {
           data: ['LDF', 'UDF', 'NDA'],
@@ -244,6 +245,7 @@ echarts.use([
         tooltip: {
           trigger: 'axis',
           axisPointer: { type: 'shadow' },
+          confine: true,
           formatter: (params) => {
             const p = params[0];
             const pct = total > 0 ? ((p.value / total) * 100).toFixed(1) : 0;

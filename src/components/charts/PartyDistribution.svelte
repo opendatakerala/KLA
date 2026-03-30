@@ -49,6 +49,7 @@ echarts.use([
       tooltip: {
         trigger: 'axis',
         axisPointer: { type: 'shadow' },
+        confine: true,
         formatter: '{b}: {c} candidates'
       },
       grid: { left: 4, right: isMobile ? 60 : 120, top: 4, bottom: 4, containLabel: false },

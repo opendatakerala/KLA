@@ -125,6 +125,7 @@ echarts.use([
     chart.setOption({
       tooltip: {
         trigger: 'axis',
+        confine: true,
         formatter: (params) => {
           const yearData = seriesData[params[0].dataIndex];
           let html = `<b>${yearData.year}</b><br/>`;
