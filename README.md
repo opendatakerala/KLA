@@ -33,8 +33,8 @@ To complement the tabular data, an interactive map interface is available, allow
 5. Haniyah Olassery Usman – Data Curation, Analytics & Media Outreach
 6. Sruthi Mohandas – (Intern, Sahya Digital Conservation Foundation)
 7. Jameela P – Infographics & Icons
-8. Rajaneesh P –
-9. Arun Raj K M 
+8. Rajaneesh P – Map
+9. Arun Raj K M - Data
 
 ## Supporting Team
 OpenDataKerala (ODK) Election Data Working Group - Jinoy Tom Jacob, Naveen Francis, Ark Arjun, Jothish Babu, Jaisen Nedumpala, Ranjith Sajeev
