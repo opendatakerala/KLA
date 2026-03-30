@@ -94,10 +94,11 @@
     }
     try {
       const file = new File([generatedBlob], `KLA-${currentModal.number}-${currentModal.name || 'constituency'}.jpg`, { type: 'image/jpeg' });
+      const constituencyName = getConstituencyName(currentModal, currentLangValue);
       await navigator.share({
         files: [file],
-        title: `KLA 2026 - ${getConstituencyName(currentModal, currentLangValue)}`,
-        text: `Check out constituency ${currentModal.number} - ${getConstituencyName(currentModal, currentLangValue)}`
+        title: `KLA 2026 - ${constituencyName}`,
+        text: $_('modal.shareText', { values: { constituency: constituencyName } })
       });
     } catch (err) {
       if (err.name !== 'AbortError') {

@@ -83,7 +83,8 @@
     "historicalResultsNiyamasabha": "മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ (നിയമസഭ)",
     "pollingBooths": "വോട്ടിങ് ബൂത്തുകൾ",
     "voters": "വോട്ടര്‍മാര്‍",
-    "partOfParliamentaryConstituency": "{parliamentaryConstituency} ലോകസഭ മണ്ഡലത്തിന്റെ ഭാഗമായതില്‍ മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ"
+    "partOfParliamentaryConstituency": "{parliamentaryConstituency} ലോകസഭ മണ്ഡലത്തിന്റെ ഭാഗമായതില്‍ മുൻകാല തിരഞ്ഞെടുപ്പ് ഫലങ്ങൾ",
+    "shareText": "{constituency} തിരഞ്ഞെടുപ്പ് ഡാറ്റ വിശദാംശങ്ങൾ കാണാന്‍ https://opendatakerala.org/KLA2026/"
   },
   "charts": {
     "loading": "ലോഡിംഗ്...",
