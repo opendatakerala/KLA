@@ -131,7 +131,7 @@
       <div class="modal-top"></div>
       <div class="modal-header">
         <div class="modal-actions">
-          {#if canShare}
+          {#if canShareImage}
             <button class="modal-btn" onclick={handleShare} disabled={isDownloading}>
               <span>{isDownloading ? '...' : '📤'}</span>
             </button>
