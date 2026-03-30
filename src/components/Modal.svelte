@@ -107,12 +107,14 @@
             </span>
           {/if}
         </div>
-        <button class="modal-close" onclick={handleDownload} disabled={isDownloading}>
-          <span>{isDownloading ? '...' : '💾'}</span>
-        </button>
-        <button class="modal-close modal-close-btn" onclick={handleClose}>
-          <span>{$_('modal.close')}</span>
-        </button>
+        <div class="modal-actions">
+          <button class="modal-btn" onclick={handleDownload} disabled={isDownloading}>
+            <span>{isDownloading ? '...' : '💾'}</span>
+          </button>
+          <button class="modal-btn" onclick={handleClose}>
+            <span>{$_('modal.close')}</span>
+          </button>
+        </div>
       </div>
 
       {#if currentModal.pollingBooths || currentModal.votersTotal}
@@ -330,9 +332,15 @@
     color: var(--st-color);
   }
 
-  .modal-close {
+  .modal-actions {
     position: absolute;
-    top: 16px; right: 16px;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .modal-btn {
     padding: 6px 12px;
     background: var(--card2);
     border: 1px solid var(--border);
@@ -344,18 +352,14 @@
     transition: all 0.15s;
   }
 
-  .modal-close:hover {
+  .modal-btn:hover {
     background: var(--bg2);
     color: var(--text);
   }
 
-  .modal-close:disabled {
+  .modal-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  .modal-close-btn {
-    right: 80px;
   }
 
   .constituency-stats {
