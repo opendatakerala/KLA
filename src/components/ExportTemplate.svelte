@@ -205,12 +205,12 @@
             <div class="modal-section-label">
               {$_('modal.historicalResultsNiyamasabha')}
             </div>
-            <NiyamasabhaChart constituencyNumber={constituency.number} data={niyamasabhaData} loading={historicalLoading} error={historicalError} forceView="stacked" />
+            <NiyamasabhaChart constituencyNumber={constituency.number} data={niyamasabhaData} loading={historicalLoading} error={historicalError} forceView="bars" />
 
             <div class="modal-section-label loksabha-section">
               {$_('modal.partOfParliamentaryConstituency', { values: { parliamentaryConstituency: constituency.qid && loksabhaData?.[0]?.parliamentaryConstituency ? (currentLangValue === 'ml' && loksabhaData[0].parliamentaryConstituencyMalayalam ? loksabhaData[0].parliamentaryConstituencyMalayalam : loksabhaData[0].parliamentaryConstituency) : 'Lok Sabha' } })}
             </div>
-            <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} forceView="stacked" />
+            <LoksabhaChart data={loksabhaData} loading={historicalLoading} error={historicalError} forceView="bars" />
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ echarts.use([
 
   $effect(() => {
     if (alwaysShowSimple && internalView === 'simple') {
-      internalView = 'stacked';
+      internalView = 'bars';
     }
   });
 
