@@ -49,7 +49,8 @@
   }
 
   let exportTemplate = $state(null);
-  let isDownloading = $state(false);
+  let isGenerating = $state(false);
+  let generatedBlob = $state(null);
 
   let canShareImage = $state(false);
 
@@ -63,11 +64,14 @@
 
   function onExportRootReady(el) {
     exportTemplate = el;
+    if (currentModal?.number && !generatedBlob) {
+      generateImage();
+    }
   }
 
-  async function getCanvas() {
-    if (!exportTemplate || isDownloading) return null;
-    isDownloading = true;
+  async function generateImage() {
+    if (!exportTemplate || isGenerating || generatedBlob) return;
+    isGenerating = true;
     await new Promise(r => setTimeout(r, 0));
     try {
       const canvas = await html2canvas(exportTemplate, { 
@@ -75,21 +79,21 @@
         scale: 2,
         useCORS: true
       });
-      return canvas;
+      generatedBlob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
     } catch (err) {
       console.error('Failed to generate image:', err);
-      return null;
     } finally {
-      isDownloading = false;
+      isGenerating = false;
     }
   }
 
   async function handleShare() {
-    const canvas = await getCanvas();
-    if (!canvas) return;
+    if (!generatedBlob) {
+      await generateImage();
+      if (!generatedBlob) return;
+    }
     try {
-      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.9));
-      const file = new File([blob], `KLA-${currentModal.number}-${currentModal.name || 'constituency'}.jpg`, { type: 'image/jpeg' });
+      const file = new File([generatedBlob], `KLA-${currentModal.number}-${currentModal.name || 'constituency'}.jpg`, { type: 'image/jpeg' });
       await navigator.share({
         files: [file],
         title: `KLA 2026 - ${getConstituencyName(currentModal, currentLangValue)}`,
@@ -103,12 +107,15 @@
   }
 
   async function handleDownload() {
-    const canvas = await getCanvas();
-    if (!canvas) return;
+    if (!generatedBlob) {
+      await generateImage();
+      if (!generatedBlob) return;
+    }
     const link = document.createElement('a');
     link.download = `KLA-${currentModal.number}-${currentModal.name || 'constituency'}.jpg`;
-    link.href = canvas.toDataURL('image/jpeg', 0.9);
+    link.href = URL.createObjectURL(generatedBlob);
     link.click();
+    URL.revokeObjectURL(link.href);
   }
 </script>
 
@@ -132,12 +139,12 @@
       <div class="modal-header">
         <div class="modal-actions">
           {#if canShareImage}
-            <button class="modal-btn" onclick={handleShare} disabled={isDownloading}>
-              <span>{isDownloading ? '...' : '📤'}</span>
+            <button class="modal-btn" onclick={handleShare} disabled={isGenerating}>
+              <span>{isGenerating ? '...' : '📤'}</span>
             </button>
           {/if}
-          <button class="modal-btn" onclick={handleDownload} disabled={isDownloading}>
-            <span>{isDownloading ? '...' : '📷'}</span>
+          <button class="modal-btn" onclick={handleDownload} disabled={isGenerating}>
+            <span>{isGenerating ? '...' : '📷'}</span>
           </button>
           <button class="modal-btn" onclick={handleClose}>
             <span>{$_('modal.close')}</span>
