@@ -7,8 +7,8 @@ export function sortCandidatesByOthersWithParty(candidates) {
     const orderB = ['LDF', 'UDF', 'NDA', 'Others'].indexOf(b.alliance);
     if (orderA !== orderB) return orderA - orderB;
     if (a.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(a.alliance)) {
-      const aHasParty = a.party && a.party.length > 0;
-      const bHasParty = b.party && b.party.length > 0;
+      const aHasParty = a.party && a.party.length > 0 && a.party !== "Independent";
+      const bHasParty = b.party && b.party.length > 0 && b.party !== "Independent";
       if (aHasParty && !bHasParty) return -1;
       if (!aHasParty && bHasParty) return 1;
       return (a.party || '').localeCompare(b.party || '');
