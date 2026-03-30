@@ -180,12 +180,12 @@ echarts.use([
 {:else if currentView === 'simple'}
   <div class="simple-view">
     {#each seriesData as yearData}
-      <div class="simple-year-row">
+      <div class="simple-year-row" onclick={() => setView('stacked')}>
         <span class="simple-year">{yearData.year}</span>
         <span class="simple-result">{getSimpleText(yearData)}</span>
       </div>
     {/each}
-    <button class="view-details-btn" onclick={() => setView('bars')}>{$_('charts.viewDetails')}</button>
+    <button class="view-details-btn" onclick={() => setView('stacked')}>{$_('charts.viewDetails')}</button>
   </div>
 {:else}
   <div class="historical-chart-container">
