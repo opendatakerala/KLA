@@ -6,7 +6,7 @@ Cite our work
 
 * Website under GPL-3.0 license  
 * Dataset - 2026 Kerala Assembly Elections: Candidate Registry (Demographics & Alliances) [Data set]. OpenDataKerala Community. https://doi.org/10.5281/zenodo.19323710
-* Concept Paper - (To be updated)
+* Concept Paper - (Coming Soon)
 
 # About the Portal
 The Kerala Legislative Assembly Election 2026 Data Portal is an initiative by the OpenDataKerala Community to track, curate, and present structured information related to election candidates and constituencies.
@@ -46,7 +46,4 @@ Participants:-
 Manjusha P M, Athira M P, Noufal K K, Ayisha Raha E, Riza Raz, Muhammed Sahad M, Abhinand C P, Revathy Mahendran, Aruniga Babu, Safa Parvin, Afiya P A, Vishnu K, Rinsha M K, Haniyah Ollassery Usman, Navaneeth T M, Abhishek V T, Dr. Muhammadali N, Dr. Abdul Muneer V, Dr. Ashraf P
 
 # Technology 
-
-As a demonstration of the prowess of Open Data Kerala community and the unlimited possibilities of open data in general, this platform is built over the principles of linked open data drawing from Wikidata, Wikipedia, OpenStreetMap and similar open datasets for augmenting raw data obtained. Layering on top of that, there are free and open source software libraries for the web and visualization stack thus making the whole platform be an exercise in openness and freedom.
-
 The platform has evolved rapidly from a single HTML proof-of-concept to a full-fledged web platform powered by Svelte (for interactive frontend), d3 and Apache ECharts (for interactive graphs), Astro (for build), Github Pages (for frontend deployment), a bespoke NodeJS API (for backend) and a linked dataset as database. Details of the libraries used can be found in [package.json](https://github.com/opendatakerala/KLA2026/blob/main/package.json).
