@@ -57,13 +57,13 @@
       "unknown": 0
     },
     "CPI(M)": {
-      "male": 64,
+      "male": 65,
       "female": 12,
       "transgender": 0,
       "unknown": 0
     },
     "Independent": {
-      "male": 234,
+      "male": 236,
       "female": 22,
       "transgender": 0,
       "unknown": 0
@@ -81,7 +81,7 @@
       "unknown": 0
     },
     "SUCI": {
-      "male": 22,
+      "male": 21,
       "female": 9,
       "transgender": 0,
       "unknown": 0
@@ -117,7 +117,7 @@
       "unknown": 0
     },
     "SDPI": {
-      "male": 32,
+      "male": 33,
       "female": 1,
       "transgender": 0,
       "unknown": 0
@@ -159,7 +159,7 @@
       "unknown": 0
     },
     "Independent (CPI(M) support)": {
-      "male": 12,
+      "male": 11,
       "female": 0,
       "transgender": 0,
       "unknown": 0
@@ -195,7 +195,7 @@
       "unknown": 0
     },
     "RJD": {
-      "male": 4,
+      "male": 3,
       "female": 0,
       "transgender": 0,
       "unknown": 0
@@ -315,12 +315,6 @@
       "unknown": 0
     },
     "SP (I)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "CPI (M)": {
       "male": 1,
       "female": 0,
       "transgender": 0,

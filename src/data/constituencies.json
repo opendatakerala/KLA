@@ -1533,12 +1533,12 @@
       {
         "alliance": "LDF",
         "party": "RJD",
-        "name": "P. K. Anil Kumar",
-        "malayalam": "പി. കെ. അനിൽ കുമാർ",
+        "name": "Anil Kumar K.P.",
+        "malayalam": "അനിൽ കുമാർ കെ.പി.",
         "wikidata": "",
         "gender": "male",
-        "age": "52",
-        "candidateId": "3051"
+        "age": "53",
+        "candidateId": "3466"
       },
       {
         "alliance": "UDF",
@@ -1559,6 +1559,16 @@
         "gender": "male",
         "age": "42",
         "candidateId": "2194"
+      },
+      {
+        "alliance": "Others",
+        "party": "",
+        "name": "P. K. Anil Kumar",
+        "malayalam": "പി. കെ. അനിൽ കുമാർ",
+        "wikidata": "",
+        "gender": "male",
+        "age": "52",
+        "candidateId": "3051"
       },
       {
         "alliance": "Others",
@@ -1609,16 +1619,6 @@
         "gender": "male",
         "age": "55",
         "candidateId": "54"
-      },
-      {
-        "alliance": "Others",
-        "party": "RJD",
-        "name": "Anil Kumar K.P.",
-        "malayalam": "അനിൽ കുമാർ കെ.പി.",
-        "wikidata": "",
-        "gender": "male",
-        "age": "53",
-        "candidateId": "3466"
       },
       {
         "alliance": "Others",
@@ -3744,13 +3744,13 @@
     "candidates": [
       {
         "alliance": "LDF",
-        "party": "Independent (CPI(M) support)",
-        "name": "V. Abdurahman",
+        "party": "CPI(M)",
+        "name": "V. Abdurahiman",
         "malayalam": "വി. അബ്ദുറഹ്മാൻ",
         "wikidata": "",
         "gender": "male",
         "age": "63",
-        "candidateId": "2491"
+        "candidateId": "2717"
       },
       {
         "alliance": "UDF",
@@ -3771,6 +3771,16 @@
         "gender": "male",
         "age": "61",
         "candidateId": "3351"
+      },
+      {
+        "alliance": "Others",
+        "party": "",
+        "name": "V. Abdurahman",
+        "malayalam": "വി. അബ്ദുറഹ്മാൻ",
+        "wikidata": "",
+        "gender": "male",
+        "age": "63",
+        "candidateId": "2491"
       },
       {
         "alliance": "Others",
@@ -3801,16 +3811,6 @@
         "gender": "male",
         "age": "49",
         "candidateId": "3338"
-      },
-      {
-        "alliance": "Others",
-        "party": "CPI (M)",
-        "name": "V. Abdurahiman",
-        "malayalam": "വി. അബ്ദുറഹ്മാൻ",
-        "wikidata": "",
-        "gender": "male",
-        "age": "63",
-        "candidateId": "2717"
       },
       {
         "alliance": "Others",
@@ -9191,6 +9191,16 @@
       },
       {
         "alliance": "Others",
+        "party": "SDPI",
+        "name": "Latheef",
+        "malayalam": "ലത്തീഫ്",
+        "wikidata": "",
+        "gender": "male",
+        "age": "44",
+        "candidateId": "3616"
+      },
+      {
+        "alliance": "Others",
         "party": "SUCI",
         "name": "Twinkle Prabhakaran",
         "malayalam": "ട്വിങ്കിൾ പ്രഭാകരൻ",
@@ -9198,16 +9208,6 @@
         "gender": "female",
         "age": "49",
         "candidateId": "629"
-      },
-      {
-        "alliance": "Others",
-        "party": "SUCI",
-        "name": "Latheef",
-        "malayalam": "ലത്തീഫ്",
-        "wikidata": "",
-        "gender": "male",
-        "age": "44",
-        "candidateId": "3616"
       }
     ]
   },

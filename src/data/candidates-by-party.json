@@ -1,9 +1,9 @@
 {
   "LDF": {
-    "CPI(M)": 76,
+    "CPI(M)": 77,
     "CPI": 24,
     "Kerala Congress (M)": 12,
-    "Independent (CPI(M) support)": 12,
+    "Independent (CPI(M) support)": 11,
     "Indian Socialist Janata Dal": 3,
     "NCP(SP)": 3,
     "RJD": 3,
@@ -36,11 +36,11 @@
     "JRS": 1
   },
   "Others": {
-    "Independent": 256,
+    "Independent": 258,
     "BSP": 55,
     "AAP": 53,
-    "SDPI": 33,
-    "SUCI": 31,
+    "SDPI": 34,
+    "SUCI": 30,
     "Anna DHRM": 9,
     "CPIML Red Star": 5,
     "JRP": 3,
@@ -49,7 +49,6 @@
     "EPI": 2,
     "BDP": 1,
     "NCP": 1,
-    "RJD": 1,
     "BJKP": 1,
     "RPI (A)": 1,
     "RJP": 1,
@@ -57,7 +56,6 @@
     "AIHCP": 1,
     "IGP": 1,
     "TFIP": 1,
-    "SP (I)": 1,
-    "CPI (M)": 1
+    "SP (I)": 1
   }
 }
