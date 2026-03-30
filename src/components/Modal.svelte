@@ -58,7 +58,7 @@
   async function handleDownload() {
     if (!exportTemplate || isDownloading) return;
     isDownloading = true;
-    await Promise.resolve();
+    await new Promise(r => setTimeout(r, 0));
     try {
       const canvas = await html2canvas(exportTemplate, { 
         backgroundColor: '#1a1a1a',
