@@ -216,6 +216,11 @@
       </div>
     </div>
   {/if}
+
+  <div class="export-footer">
+    <span>Kerala legislative assembly election 2026 ODK portal. V1.0.0</span>
+    <span>&copy;OpenDataKerala Community, https://doi.org/10.5281/zenodo.19323427</span>
+  </div>
 </div>
 
 <style>
@@ -697,5 +702,17 @@
     font-size: 11px;
     color: var(--muted);
     font-family: 'Manjari', monospace;
+  }
+
+  .export-footer {
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 8px 24px;
+    font-size: 10px;
+    color: var(--muted);
+    font-family: 'Manjari', monospace;
+    border-top: 1px solid var(--border);
+    background: var(--card);
   }
 </style>
