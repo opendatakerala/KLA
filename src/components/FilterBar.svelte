@@ -129,7 +129,7 @@
   }
 
   .filter-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     letter-spacing: 0.08em;
     color: var(--muted);
@@ -156,7 +156,7 @@
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     cursor: pointer;
     transition: all 0.15s;

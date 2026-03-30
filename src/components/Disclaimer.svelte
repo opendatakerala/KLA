@@ -100,7 +100,7 @@
     }
 
     .disc-title {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Manjari', sans-serif;
         font-weight: 700;
         font-size: 22px;
         color: var(--text);
@@ -108,7 +108,7 @@
     }
 
     .disc-subtitle {
-        font-family: 'DM Mono', monospace;
+        font-family: 'Manjari', monospace;
         font-size: 10px;
         color: var(--muted);
         letter-spacing: 0.1em;
@@ -143,7 +143,7 @@
         color: #fff;
         border: none;
         border-radius: 7px;
-        font-family: 'DM Mono', monospace;
+        font-family: 'Manjari', monospace;
         font-size: 11px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
@@ -154,7 +154,7 @@
     .disc-ok-btn:hover { background: var(--gold); }
 
     .disc-remind {
-        font-family: 'DM Mono', monospace;
+        font-family: 'Manjari', monospace;
         font-size: 10px;
         color: var(--faint);
         cursor: pointer;

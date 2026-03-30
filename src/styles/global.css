@@ -48,7 +48,7 @@ html { scroll-behavior: smooth; font-size: 18px; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manjari', sans-serif;
   font-weight: 400;
   font-size: var(--fs-base);
   min-height: 100vh;

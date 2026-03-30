@@ -73,7 +73,7 @@
     border: none;
     border-radius: 4px;
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     cursor: pointer;
     transition: all 0.15s;

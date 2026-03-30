@@ -221,7 +221,7 @@
   }
 
   .map-legend-title {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 9px;
     color: var(--muted);
     letter-spacing: 0.08em;
@@ -260,7 +260,7 @@
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 6px 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     pointer-events: none;
     display: none;
@@ -278,7 +278,7 @@
     z-index: 5;
     background: var(--card);
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
   }
 

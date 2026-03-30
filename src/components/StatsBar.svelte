@@ -91,7 +91,7 @@
     }
     
     .stat-value {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Manjari', sans-serif;
       font-size: var(--fs-2xl);
       font-weight: 700;
       line-height: 1.1;
@@ -101,7 +101,7 @@
     }
     
     .stat-label {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Manjari', monospace;
       font-size: var(--fs-xs);
       letter-spacing: 0.08em;
       text-transform: uppercase;

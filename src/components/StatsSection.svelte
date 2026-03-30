@@ -94,7 +94,7 @@
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     letter-spacing: 0.04em;
     color: var(--muted);

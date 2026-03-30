@@ -3,6 +3,7 @@
   import Header from './Header.svelte';
   import Footer from './Footer.svelte';
   import Disclaimer from './Disclaimer.svelte';
+  import "@fontsource/manjari";
 
   const StatsSection = import('./StatsSection.svelte').then(m => m.default);
   const DataExplorer = import('./DataExplorer.svelte').then(m => m.default);
@@ -48,7 +49,7 @@
     align-items: center;
     justify-content: center;
     min-height: 50vh;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     color: var(--muted);
   }
 
@@ -70,7 +71,7 @@
     border-radius: 12px;
     margin-bottom: 24px;
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     position: relative;
     overflow: hidden;

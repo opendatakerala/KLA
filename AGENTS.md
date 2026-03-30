@@ -72,7 +72,7 @@ node scripts/index.js --all
 ### CSS Guidelines
 - Use CSS variables from `global.css` for colors (e.g., `var(--gold)`, `var(--border)`) and font size ( `var(--text-muted)`, etc)
 - Avoid hardcoding colors and size - use the defined variables
-- Use `DM Mono` for monospace text, `Inter` for sans-serif
+- Use Manjari as font
 - Keep styles scoped to components when possible
 
 ### Error Handling

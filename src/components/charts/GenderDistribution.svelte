@@ -297,7 +297,7 @@ echarts.use([
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--muted);
     cursor: pointer;
@@ -320,7 +320,7 @@ echarts.use([
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: 13px;
     color: var(--text);
     min-width: 150px;
@@ -338,7 +338,7 @@ echarts.use([
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 12px;
     color: var(--text-soft);
     cursor: pointer;
@@ -400,7 +400,7 @@ echarts.use([
   .gender-card.trans .card-icon { color: #8B5CF6; }
 
   .card-count {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: 36px;
     font-weight: 700;
     line-height: 1;
@@ -412,7 +412,7 @@ echarts.use([
   .gender-card.trans .card-count { color: #7C3AED; }
 
   .card-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -423,7 +423,7 @@ echarts.use([
   .gender-card.trans .card-label { color: #6D28D9; }
 
   .card-pct {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--muted);
   }
@@ -453,7 +453,7 @@ echarts.use([
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 10px;
     color: var(--muted);
   }

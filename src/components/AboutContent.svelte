@@ -25,12 +25,12 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 24px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     color: var(--text);
   }
   .back-link {
     display: inline-block;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 12px;
     color: var(--gold);
     text-decoration: none;

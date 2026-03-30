@@ -143,7 +143,7 @@
   .header-title { flex: 1; }
 
   .header-eyebrow {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     letter-spacing: 0.2em;
     color: #000;
@@ -162,7 +162,7 @@
   }
 
   h1 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: clamp(20px, 3vw, 44px);
     font-weight: 900;
     line-height: 1.05;
@@ -201,7 +201,7 @@
   }
 
   .countdown-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -224,7 +224,7 @@
   }
 
   .cnum {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: var(--fs-2xl);
     font-weight: 800;
     color: var(--text);
@@ -233,7 +233,7 @@
   }
 
   .clabel {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -254,7 +254,7 @@
   }
 
   .countdown-live-text {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: var(--fs-base);
     font-weight: 700;
     color: #16a34a;
@@ -270,7 +270,7 @@
 
   .lang-btn {
     padding: 4px 8px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     font-weight: 600;
     letter-spacing: 0.05em;

@@ -59,13 +59,13 @@
     min-width: 200px;
   }
   .footer-text {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     color: var(--text-soft);
     letter-spacing: 0.07em;
   }
   .footer-version {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     color: var(--text-soft);
     letter-spacing: 0.05em;
@@ -89,7 +89,7 @@
     gap: 16px;
   }
   .footer-disc-link {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     color: var(--gold);
     letter-spacing: 0.07em;
@@ -102,7 +102,7 @@
   }
   .footer-disc-link:hover { color: var(--gold-mid); }
   .hitcount {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     color: var(--text-soft);
     letter-spacing: 0.07em;

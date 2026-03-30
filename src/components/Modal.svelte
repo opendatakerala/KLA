@@ -250,14 +250,14 @@
   }
 
   .modal-eyebrow {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     color: var(--muted);
     letter-spacing: 0.05em;
   }
 
   .modal-title {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: var(--fs-xl);
     font-weight: 700;
     color: var(--text);
@@ -276,7 +276,7 @@
     gap: 4px;
     padding: 4px 8px;
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.05em;
   }
@@ -299,7 +299,7 @@
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     cursor: pointer;
     transition: all 0.15s;
@@ -331,7 +331,7 @@
   }
 
   .stat-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     color: var(--muted);
@@ -339,7 +339,7 @@
   }
 
   .stat-value {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xl);
     font-weight: 700;
     color: var(--text);
@@ -349,7 +349,7 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     color: var(--muted);
   }
@@ -372,7 +372,7 @@
   }
 
   .voters-count {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: var(--fs-xl);
     font-weight: 700;
     color: var(--text);
@@ -404,7 +404,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     color: var(--muted);
   }
@@ -422,7 +422,7 @@
   .modal-body { padding: 20px; }
 
   .modal-section-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     color: var(--muted);
@@ -445,7 +445,7 @@
   }
 
   .toggle-loksabha-btn {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -489,7 +489,7 @@
   }
 
   .alliance-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -497,7 +497,7 @@
   }
 
   .candidate-name {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-weight: 600;
     font-size: var(--fs-base);
     margin-top: 2px;
@@ -522,7 +522,7 @@
   }
 
   .modal-report-link {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     color: var(--gold);
     text-decoration: none;

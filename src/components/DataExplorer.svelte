@@ -111,7 +111,7 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     color: var(--muted);
     cursor: pointer;
@@ -164,7 +164,7 @@
     background: var(--card2);
     border: 1px solid var(--border);
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--text);
   }
@@ -227,7 +227,7 @@
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 10px;
     cursor: pointer;
     transition: all 0.15s;

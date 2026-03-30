@@ -190,7 +190,7 @@ echarts.use([
         legend: {
           data: ['LDF', 'UDF', 'NDA'],
           top: 0,
-          textStyle: { fontFamily: 'DM Mono', fontSize: 11 }
+          textStyle: { fontFamily: 'Manjari', fontSize: 11 }
         },
         grid: {
           left: '3%',
@@ -202,11 +202,11 @@ echarts.use([
         xAxis: {
           type: 'category',
           data: AGE_BINS,
-          axisLabel: { fontFamily: 'DM Mono', fontSize: 11 }
+          axisLabel: { fontFamily: 'Manjari', fontSize: 11 }
         },
         yAxis: {
           type: 'value',
-          axisLabel: { fontFamily: 'DM Mono', fontSize: 11 }
+          axisLabel: { fontFamily: 'Manjari', fontSize: 11 }
         },
         series: [
           {
@@ -260,11 +260,11 @@ echarts.use([
         xAxis: {
           type: 'category',
           data: AGE_BINS,
-          axisLabel: { fontFamily: 'DM Mono', fontSize: 11 }
+          axisLabel: { fontFamily: 'Manjari', fontSize: 11 }
         },
         yAxis: {
           type: 'value',
-          axisLabel: { fontFamily: 'DM Mono', fontSize: 11 }
+          axisLabel: { fontFamily: 'Manjari', fontSize: 11 }
         },
         series: [{
           type: 'bar',
@@ -416,7 +416,7 @@ echarts.use([
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--muted);
     cursor: pointer;
@@ -439,7 +439,7 @@ echarts.use([
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: 13px;
     color: var(--text);
     min-width: 150px;
@@ -457,7 +457,7 @@ echarts.use([
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 12px;
     color: var(--text-soft);
     cursor: pointer;
@@ -480,7 +480,7 @@ echarts.use([
   }
 
   .avg-label-row {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--muted);
     text-align: center;
@@ -519,7 +519,7 @@ echarts.use([
   }
 
   .avg-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 12px;
     font-weight: 600;
     color: var(--card-color);
@@ -531,7 +531,7 @@ echarts.use([
   }
 
   .avg-value {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: 28px;
     font-weight: 700;
     color: var(--card-color);
@@ -543,7 +543,7 @@ echarts.use([
   }
 
   .avg-unit {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--muted);
   }

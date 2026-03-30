@@ -73,7 +73,7 @@ echarts.use([
         label: {
           show: true,
           position: 'right',
-          fontFamily: 'Inter',
+          fontFamily: 'Manjari',
           fontSize: 10,
           color: '#111827',
           formatter: '{b} ({c})'
@@ -153,7 +153,7 @@ echarts.use([
   }
 
   .alliance-label {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.1em;

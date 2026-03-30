@@ -259,7 +259,7 @@ echarts.use([
   }
 
   .loading-text, .error-text, .pending-text {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.05em;
@@ -284,7 +284,7 @@ echarts.use([
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 12px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 10px;
     font-weight: 600;
     color: var(--muted);
@@ -304,7 +304,7 @@ echarts.use([
     padding: 8px 12px;
     background: var(--card2);
     border-radius: 6px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
   }
 
   .simple-year {
@@ -321,7 +321,7 @@ echarts.use([
 
   .view-details-btn {
     margin-top: 8px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 10px;
     letter-spacing: 0.08em;
     padding: 8px 16px;
@@ -342,7 +342,7 @@ echarts.use([
   .historical-chart-container { margin-top: 8px; }
 
   .back-btn {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 10px;
     padding: 4px 8px;
     background: transparent;
@@ -357,7 +357,7 @@ echarts.use([
   .historical-switcher { display: flex; gap: 8px; margin-bottom: 16px; }
 
   .hist-switch-btn {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 10px;
     letter-spacing: 0.08em;
     padding: 6px 12px;
@@ -379,7 +379,7 @@ echarts.use([
   .hist-table {
     width: 100%;
     border-collapse: collapse;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
   }
 
@@ -418,7 +418,7 @@ echarts.use([
   }
 
   .votes-cell {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: 11px;
     white-space: nowrap;
   }

@@ -84,7 +84,7 @@
     border-radius: 6px;
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: var(--fs-base);
     width: 100%;
   }

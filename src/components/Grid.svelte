@@ -132,14 +132,14 @@
   }
 
   .card-num {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     color: var(--muted);
     letter-spacing: 0.05em;
   }
 
   .card-name {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-weight: 600;
     font-size: var(--fs-lg);
     color: var(--text);
@@ -147,7 +147,7 @@
   }
 
   .card-district {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
     color: var(--muted);
     margin-top: 2px;
@@ -159,7 +159,7 @@
     gap: 4px;
     padding: 3px 6px;
     border-radius: 4px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     letter-spacing: 0.05em;
     flex-shrink: 0;
@@ -188,7 +188,7 @@
   }
 
   .alliance-tag {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-xs);
     font-weight: 600;
     padding: 2px 5px;
@@ -219,7 +219,7 @@
   }
 
   .candidate-party {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manjari', sans-serif;
     font-size: var(--fs-xs);
     color: var(--muted);
   }
@@ -235,7 +235,7 @@
     text-align: center;
     padding: 40px;
     color: var(--muted);
-    font-family: 'DM Mono', monospace;
+    font-family: 'Manjari', monospace;
     font-size: var(--fs-sm);
   }
 </style>
