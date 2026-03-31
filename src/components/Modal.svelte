@@ -198,6 +198,10 @@
             <button class="modal-btn" onclick={handleDownload}>
               <span>📷</span>
             </button>
+          {:else}
+            <button class="modal-btn" disabled>
+              <span class="loader"></span>
+            </button>
           {/if}
           <button class="modal-btn" onclick={handleClose}>
             <span>{$_('modal.close')}</span>
@@ -473,6 +477,20 @@
   .modal-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .loader {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   .constituency-stats {
