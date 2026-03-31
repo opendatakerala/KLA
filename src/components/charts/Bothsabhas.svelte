@@ -90,8 +90,8 @@
         name: al,
         type: 'line',
         smooth: false,
-        symbol: 'circle',
-        symbolSize: 8,
+        symbol: (value, params) => params.data?.type === 'N' ? 'rect' : 'circle',
+        symbolSize: 9,
         data: combinedData.map(d => {
           const allianceVotes = d.allianceVotes[al] || 0;
           const pct = d.totalVotes > 0 ? (allianceVotes / d.totalVotes) * 100 : 0;
@@ -177,13 +177,12 @@
     <div class="bothsabha-subtitle">{$_('charts.bothsabhaSubtitle')}</div>
   </div>
 
-  <div class="legend-row">
-    <span class="legend-item"><span class="legend-dot n">AC</span> Assembly (Niyamasabha)</span>
-    <span class="legend-item"><span class="legend-dot l">PC</span> Parliament (Lok Sabha)</span>
-  </div>
-
   {#if hasData}
     <div class="chart-view" bind:this={chartContainer}></div>
+    <div class="type-legend">
+      <span class="type-item"><span class="type-symbol rect"></span> Assembly (AC)</span>
+      <span class="type-item"><span class="type-symbol circle"></span> Parliament (PC)</span>
+    </div>
     {#if onUnmerge}
       <button class="unmerge-btn" onclick={onUnmerge}>{$_('charts.unmergeResults')}</button>
     {/if}
@@ -220,13 +219,14 @@
     margin-top: 2px;
   }
 
-  .legend-row {
+  .type-legend {
     display: flex;
-    gap: 16px;
-    margin-bottom: 12px;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 8px;
   }
 
-  .legend-item {
+  .type-item {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -235,20 +235,20 @@
     color: var(--muted);
   }
 
-  .legend-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    font-weight: 700;
-    color: #fff;
+  .type-symbol {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
   }
 
-  .legend-dot.n { background: var(--gold); }
-  .legend-dot.l { background: var(--udf); }
+  .type-symbol.rect {
+    background: #000;
+  }
+
+  .type-symbol.circle {
+    background: #000;
+    border-radius: 50%;
+  }
 
   .chart-view {
     width: 100%;
