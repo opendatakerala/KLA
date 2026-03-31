@@ -122,7 +122,7 @@ echarts.use([
         label: {
           show: true,
           formatter: (p) => p.value > 5 ? p.value + '%' : '',
-          color: '#fff',
+          color: '#000',
           fontSize: 10,
           fontWeight: 600
         }
