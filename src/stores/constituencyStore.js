@@ -79,14 +79,14 @@ export const filteredConstituencies = computed(
         if (row.reservation !== 'ST') return false;
       }
 
-      if ($filters.party !== 'all') {
-        const hasParty = candidates.some(c => c.party === $filters.party && c.name);
-        if (!hasParty) return false;
-      }
-
-      if ($filters.women) {
-        const hasWomen = candidates.some(c => c.gender === 'female');
-        if (!hasWomen) return false;
+      if ($filters.party !== 'all' || $filters.women) {
+        const hasMatch = candidates.some(c => {
+          if (!c.name) return false;
+          const matchesParty = $filters.party === 'all' || c.party === $filters.party;
+          const matchesWomen = !$filters.women || c.gender === 'female';
+          return matchesParty && matchesWomen;
+        });
+        if (!hasMatch) return false;
       }
 
       if ($filters.search) {
