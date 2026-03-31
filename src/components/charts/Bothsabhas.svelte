@@ -33,8 +33,8 @@
   let chart = null;
 
   let combinedData = $derived.by(() => {
-    const ns = [...niyamasabhaData].reverse();
-    const ls = [...loksabhaData].reverse();
+    const ns = [...niyamasabhaData];
+    const ls = [...loksabhaData];
     
     const merged = [];
     
@@ -92,6 +92,7 @@
         smooth: false,
         symbol: (value, params) => params.data?.type === 'N' ? 'rect' : 'circle',
         symbolSize: 9,
+        animationDuration: 2000,
         data: combinedData.map(d => {
           const allianceVotes = d.allianceVotes[al] || 0;
           const pct = d.totalVotes > 0 ? (allianceVotes / d.totalVotes) * 100 : 0;
@@ -159,6 +160,7 @@
       xAxis: { 
         type: 'category', 
         data: xLabels,
+        inverse: true,
         axisLabel: { fontWeight: 600, fontSize: 10 }
       },
       yAxis: { 
