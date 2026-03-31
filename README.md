@@ -8,7 +8,7 @@ Cite our work
 * Candidate Dataset - 2026 Kerala Assembly Elections: Candidate Registry (Demographics & Alliances) [Data set - ODbL license]. OpenDataKerala Community. https://doi.org/10.5281/zenodo.19323710
 * Concept Paper - (Coming Soon)
 
-# About the Portal
+## About the Portal
 The platform integrates data from multiple sources to provide a comprehensive and accessible public dataset, along with references to past election information. 
 
 Our initiative aims to collect, curate, and present comprehensive election-related data with meaningful public-interest analysis, insights, and interpretations. We strive to make election data accessible, understandable, and useful for everyone. The primary objective is to ensure that reliable and structured information is available to a wide range of users, including the general public, political workers, researchers, and journalists.
@@ -23,8 +23,8 @@ In addition, the platform provides historical election data for comparative anal
 
 To complement the tabular view, an interactive map allows users to explore the datasets geographically. By combining this spatial visualization with custom filtering and historical context, the platform empowers users to uncover deeper insights into electoral trends and patterns.
 
-# Team
-## Core Team
+## Team
+### Core Team
 1. Manoj Karingamadathil – Project Management & Data Modeling
 2. Akshay S Dinesh – Web Technology & Informatics
 3. Navaneeth T M – Infography & Data Curation
@@ -35,19 +35,43 @@ To complement the tabular view, an interactive map allows users to explore the d
 8. Rajaneesh P – Map
 9. Arun Raj K M - Data
 
-## Supporting Team
+### Supporting Team
 OpenDataKerala (ODK) Election Data Working Group - Jinoy Tom Jacob, Naveen Francis, Ark Arjun, Jothish Babu, Jaisen Nedumpala, Ranjith Sajeev
 
-## OpenData for Journalism Workshop at Calicut University
+### OpenData for Journalism Workshop at Calicut University
 This project also acknowledges the contributions of 19 participants from a collaborative workshop at Department Of Journalism And Mass Communication, University of Calicut as part of **Open Data Day 2026** supported by Wikimedians of Kerala User Group and Sahya Digital Conservation Foundation.
 
 Workshop Participants:-
 Manjusha P M, Athira M P, Noufal K K, Ayisha Raha E, Riza Raz, Muhammed Sahad M, Abhinand C P, Revathy Mahendran, Aruniga Babu, Safa Parvin, Afiya P A, Vishnu K, Rinsha M K, Haniyah Ollassery Usman, Navaneeth T M, Abhishek V T, Dr. Muhammadali N, Dr. Abdul Muneer V, Dr. Ashraf P
 
-# Technology 
+## Technology 
 The platform has evolved rapidly from a single HTML proof-of-concept to a full-fledged web platform powered by Svelte (for interactive frontend), d3 and Apache ECharts (for interactive graphs), Astro (for build), Github Pages (for frontend deployment), a bespoke NodeJS API (for backend) and a linked dataset as database. Details of the libraries used can be found in [package.json](https://github.com/opendatakerala/KLA2026/blob/main/package.json).
 
-# Report Issues
+## Report Issues
 Found a mistake? Help us improve by [filing an issue on GitHub](https://github.com/opendatakerala/KLA2026/issues) or [emailing opendatakerala@gmail.com](mailto:opendatakerala@gmail.com).
+
+## Similar Initiatives
+We have extensive experience and expertise in working with election data, gazette records, and legislative information systems. Our work focuses on transforming traditional formats—such as PDFs and scanned documents—into structured knowledge bases, linked data systems, and machine-readable, AI-friendly datasets. This approach enhances accessibility, usability, and interoperability of public data, enabling deeper analysis and broader public engagement.
+
+For Inquiries and Collaborations [mailto:opendatakerala@gmail.com](opendatakerala@gmail.com)
+
+### LSG Election 2025
+The **LSG Election 2025** initiative presents an interactive, data-driven overview of the changes in Kerala’s political landscape following the 2025 local self-government elections. Developed by the Open Data Kerala community, the web portal provides a comprehensive visualization of political shifts across the panchayaths of kerala. The platform covers all 14 districts, including 941 Grama Panchayats, 86 Municipalities, and 6 Corporations. It enables users to explore political changes through an intuitive interactive map, offering a clear, at-a-glance understanding of how electoral outcomes have reshaped local governance in Kerala. The portal serves as a valuable resource for the general public, researchers, journalists, and political analysts.
+
+- **Portal:** https://opendatakerala.org/LSG2025  
+- **Media Coverage:** https://www.asianetnews.com/kerala-news/kerala-political-map-change-after-local-body-election-data-collection-articleshow-0qqvpqq  
+
+### MLA Track
+Launched in March 2026, **MLA Track** (www.MLATrack.com) is an independent digital platform designed to monitor and analyze the legislative performance of the 140 Members of the Legislative Assembly (MLAs) in Kerala. Developed by Sahya Digital Conservation Foundation in collaboration with the Atyeti Research, the platform provides public access to verified and structured data from the 15th Kerala Legislative Assembly. It includes detailed insights into MLA attendance, participation in over 68,000 questions and debates, and the progress of constituency-level development projects under the LAC ADS scheme. By linking directly to official government documents, MLA Track ensures transparency and credibility while offering a data-driven dashboard for citizens to evaluate the performance and effectiveness of their elected representatives. The platform strengthens democratic engagement by making legislative data more accessible, understandable, and actionable.
+
+- **Portal:** www.MLATrack.com  
+- **Media Coverage:** https://www.thehindu.com/elections/kerala-assembly/website-to-track-interventions-made-by-mlas-in-kerala-assembly-launched/article70787779.ece  
+
+## Support
+We welcome individuals who are interested in contributing to our upcoming projects through volunteering or internship opportunities. If you would like to get involved, please reach out to us at **opendatakerala@gmail.com**.
+
+If you wish to support our work through donations, the **Sahya Digital Conservation Foundation**, which facilitates the OpenDataKerala Collective, manages contributions. You can contact them at **contact@sahya.org.in** or make a contribution directly through the following link:
+
+- **Donate:** https://sahyafoundation.github.io/payment/ 
 
 
