@@ -68,7 +68,8 @@
     "allDistricts": "All Districts"
   },
   "results": {
-    "empty": "No constituencies match your search."
+    "empty": "No constituencies match your search.",
+    "moreInfo": "More info"
   },
   "map": {
     "scReserved": "SC Reserved",

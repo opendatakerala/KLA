@@ -81,6 +81,10 @@
           </div>
         {/each}
       </div>
+      <div class="card-more">
+        <span>{t('results.moreInfo')}</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4l4 4-4 4"/></svg>
+      </div>
     </div>
   {/each}
 
@@ -228,6 +232,30 @@
     font-size: var(--fs-sm);
     font-weight: 500;
     color: var(--text);
+  }
+
+  .card-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-top: 10px;
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-xs);
+  }
+
+  .card-more svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .card-more {
+      display: none;
+    }
   }
 
   .empty-state {
