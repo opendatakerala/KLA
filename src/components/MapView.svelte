@@ -133,7 +133,9 @@
   }
 
   $effect(() => {
-    if (mapSvg && filteredData) {
+    const data = $filteredConstituencies;
+    const svg = mapSvg;
+    if (svg && data) {
       updateMap();
     }
   });
