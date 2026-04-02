@@ -24,6 +24,26 @@
   const viewHeight = 345;
   
   let selectedAlliance = $state('LDF');
+  let mapWidth = $state(600);
+  let isResizing = $state(false);
+
+  function startResize(e) {
+    isResizing = true;
+    document.addEventListener('mousemove', resize);
+    document.addEventListener('mouseup', stopResize);
+  }
+
+  function resize(e) {
+    if (!isResizing) return;
+    const newWidth = Math.max(300, Math.min(1600, e.clientX - document.getElementById('map-container').getBoundingClientRect().left));
+    mapWidth = newWidth;
+  }
+
+  function stopResize() {
+    isResizing = false;
+    document.removeEventListener('mousemove', resize);
+    document.removeEventListener('mouseup', stopResize);
+  }
 
   let allData = $derived($constituencies);
   let filteredData = $derived($filteredConstituencies);
@@ -187,7 +207,7 @@
 </script>
 
 <div class="map-view" id="map-view">
-  <div class="map-container" id="map-container">
+  <div class="map-container" id="map-container" style:max-width="{mapWidth}px">
     {#if mapLoading}
       <div class="map-loader">
         <div class="shimmer"></div>
@@ -195,6 +215,7 @@
       </div>
     {/if}
     <div id="kerala-map" style:visibility={mapLoading ? 'hidden' : 'visible'}></div>
+    <div class="resize-handle" onmousedown={startResize}></div>
     {#if noFilters}
       <div class="map-legend" id="map-legend">
         <div class="alliance-switcher">
@@ -373,5 +394,31 @@
     0% { transform: scale(0.95); opacity: 0.5; }
     50% { transform: scale(1.05); opacity: 0.8; }
     100% { transform: scale(0.95); opacity: 0.5; }
+  }
+
+  .resize-handle {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    cursor: ew-resize;
+    z-index: 20;
+  }
+
+  .resize-handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 40px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+
+  .resize-handle:hover::after {
+    background: var(--primary);
   }
 </style>
