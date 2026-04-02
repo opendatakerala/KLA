@@ -2,10 +2,10 @@
 | -------- | ---------------- | ------------------------------------------------ | ----------------------- | -------- | --------- |
 | ldf      | cpim             | Communist Party of India (Marxist)               | ചുറ്റിക അരിവാൾ നക്ഷത്രം | cpim.svg | Completed |
 | ldf      | cpi              | Communist Party of India                         | അരിവാളും നെൽകതിരും      | cpi.svg  | Completed |
-| ldf      | kcm              | Kerala Congress (Mani)                           | രണ്ടില                  |          |           |
-| ldf      | isjd             | Indian Socialist Janata Dal                      | മോതിരം                  |          |           |
-| ldf      | ncpsp            | Nationalist Congress Party (Sharadchandra Pawar) | ടർഹ ഊതുന്ന മനുഷ്യൻ      |          |           |
-| ldf      | rjd              | Rashtriya Janata Dal                             | റാന്തൽ വിളക്ക്          |          |           |
+| ldf      | kcm              | Kerala Congress (Mani)                           | രണ്ടില                  | kcm.svg  | Completed |
+| ldf      | isjd             | Indian Socialist Janata Dal                      | മോതിരം                  | isjd.svg  | Completed |
+| ldf      | ncpsp            | Nationalist Congress Party (Sharadchandra Pawar) | ടർഹ ഊതുന്ന മനുഷ്യൻ      | ncpsp.svg| Completed |
+| ldf      | rjd              | Rashtriya Janata Dal                             | റാന്തൽ വിളക്ക്          | rjd.svg     | Completed    |
 | ldf      | inl              | Indian National League                           |                         |          |           |
 | ldf      | congress-secular | Congress (Secular)                               |                         |          |           |
 | ldf      | kcb              | Kerala Congress (B)                              |                         |          |           |
@@ -24,10 +24,19 @@
 | udf      | jrs              | Janadhipathya Rashtriya Sabha                    |                         |          |           |
 | NDA      | bjp              | Bharatiya Janata Party                           | താമര                    | bjp.svg  | Completed |
 | NDA      | bdjs             | Bharath Dharma Jana Sena                         | തെങ്ങിൻ തോപ്പ്          |          |           |
-| NDA      | ttp              | Twenty20 Kizhakkambalam                          | ചക്ക                    |          |           |
-| NDA      |                  | Janathipathiya Samrakshana Samithy               |                         |          |           |
+| NDA      | ttp              | Twenty20 Kizhakkambalam                          | ചക്ക                    | ttp.svg  | Completed |
+| NDA      | jss              | Janathipathiya Samrakshana Samithy               |                         |          |           |
 | NDA      | kkc              | Kerala Kamaraj Congress                          |                         |          |           |
-| NDA      |                  | All India Anna Dravida Munnetra Kazhagam         |                         |          |           |
-| Others   | aap              | Aam Aadmi Party                                  | ചൂൽ                     | aap.svg  | Completed |
+| NDA      | aiadmk           | All India Anna Dravida Munnetra Kazhagam         |                         |          |           |
+| Others   | aap              | Aam Aadmi Party                                  | ചൂൽ                    | aap.svg  | Completed |
 | Others   | sdpi             | Social Democratic Party of India                 | കത്രിക                  |          |           |
-| Others   | bsp              | Bahujan Samaj Party                              | ആന                      | bsp.svg  | Completed |
+| Others   | bsp              | Bahujan Samaj Party                              | ആന                    | bsp.svg  | Completed |
+| Others   | indi01           | Independent                                      | മോതിരം                 | indi01.svg  | Completed |
+| Others   | indi02           | Independent                                      |                  | indi02.svg  | Completed |
+| Others   | indi03           | Independent                                      |                  | indi03.svg  | Completed |
+| Others   | indi04           | Independent                                      |                  | indi04.svg  | Completed |
+| Others   | indi05           | Independent                                      |                  | indi05.svg  | Completed |
+| Others   | indi06           | Independent                                      |                  | indi06.svg  | Completed |
+| Others   | indi07           | Independent                                      |                  | indi07.svg  | Completed |
+
+
