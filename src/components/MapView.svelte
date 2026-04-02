@@ -103,10 +103,14 @@
         const row = allData.find(x => x.qid === qid);
         
         if (row) {
+          const isSc = row.reservation === 'SC';
+          const isSt = row.reservation === 'ST';
           path
             .attr('id', 'c' + row.number)
             .attr('data-num', row.number)
-            .classed('const-path', true);
+            .classed('const-path', true)
+            .classed('reserved-sc', isSc)
+            .classed('reserved-st', isSt);
         } else {
           path.classed('const-path', true);
         }
@@ -163,6 +167,17 @@
       path.classed('highlighted', isMatch)
           .classed('dimmed', !isMatch);
 
+      const isSc = row.reservation === 'SC';
+      const isSt = row.reservation === 'ST';
+
+      if (isSc) {
+        path.style('stroke', '#7C3AED').style('stroke-width', '0.008');
+      } else if (isSt) {
+        path.style('stroke', '#0B7A56').style('stroke-width', '0.008');
+      } else {
+        path.style('stroke', '#232323').style('stroke-width', '0.003');
+      }
+
       if (noFilters) {
         const candidates = row.candidates || [];
         const candidate = candidates.find(c => c.alliance === selectedAlliance && c.name);
@@ -216,22 +231,39 @@
     {/if}
     <div id="kerala-map" style:visibility={mapLoading ? 'hidden' : 'visible'}></div>
     <div class="resize-handle" onmousedown={startResize}></div>
-    {#if noFilters}
-      <div class="map-legend" id="map-legend">
-        <div class="alliance-switcher">
-          <button class="alliance-btn" class:active={selectedAlliance === 'LDF'} style:--active-color=var(--ldf) onclick={() => selectedAlliance = 'LDF'}>LDF</button>
-          <button class="alliance-btn" class:active={selectedAlliance === 'UDF'} style:--active-color=var(--udf) onclick={() => selectedAlliance = 'UDF'}>UDF</button>
-          <button class="alliance-btn" class:active={selectedAlliance === 'NDA'} style:--active-color=var(--nda) onclick={() => selectedAlliance = 'NDA'}>NDA</button>
+    <div class="map-legend" id="map-legend">
+      <div class="map-legend-section">
+        <div class="map-legend-title">{$_('map.reservedSeats')}</div>
+        <div class="map-legend-item">
+          <div class="map-legend-dot general"></div>
+          <span>General</span>
         </div>
-        <div class="map-legend-title">{selectedAlliance} Parties</div>
-        {#each allianceParties() as p}
-          <div class="map-legend-item">
-            <div class="map-legend-dot" style:background={p.color}></div>
-            <span>{p.party} ({p.count})</span>
-          </div>
-        {/each}
+        <div class="map-legend-item">
+          <div class="map-legend-dot sc"></div>
+          <span>{$_('map.scReserved')}</span>
+        </div>
+        <div class="map-legend-item">
+          <div class="map-legend-dot st"></div>
+          <span>{$_('map.stReserved')}</span>
+        </div>
       </div>
-    {/if}
+      {#if noFilters}
+        <div class="map-legend-section">
+          <div class="alliance-switcher">
+            <button class="alliance-btn" class:active={selectedAlliance === 'LDF'} style:--active-color=var(--ldf) onclick={() => selectedAlliance = 'LDF'}>LDF</button>
+            <button class="alliance-btn" class:active={selectedAlliance === 'UDF'} style:--active-color=var(--udf) onclick={() => selectedAlliance = 'UDF'}>UDF</button>
+            <button class="alliance-btn" class:active={selectedAlliance === 'NDA'} style:--active-color=var(--nda) onclick={() => selectedAlliance = 'NDA'}>NDA</button>
+          </div>
+          <div class="map-legend-title">{selectedAlliance} Parties</div>
+          {#each allianceParties() as p}
+            <div class="map-legend-item">
+              <div class="map-legend-dot" style:background={p.color}></div>
+              <span>{p.party} ({p.count})</span>
+            </div>
+          {/each}
+        </div>
+      {/if}
+    </div>
     <div class="map-tooltip" id="map-tooltip"></div>
   </div>
 </div>
@@ -268,6 +300,16 @@
     fill: #9ca3af;
     stroke: #232323;
     stroke-width: 0.003;
+  }
+
+  #kerala-map :global(path.const-path.reserved-sc) {
+    stroke: #7C3AED;
+    stroke-width: 0.008;
+  }
+
+  #kerala-map :global(path.const-path.reserved-st) {
+    stroke: #0B7A56;
+    stroke-width: 0.008;
   }
 
   #kerala-map :global(path.dimmed) {
@@ -337,21 +379,35 @@
     font-size: 11px;
   }
 
+  .map-legend-section {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .map-legend-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
   .map-legend-dot {
     width: 12px;
     height: 12px;
     border-radius: 2px;
-    border: 1.5px solid;
+    border: 2px solid #232323;
+  }
+
+  .map-legend-dot.general {
+    border-color: #232323;
   }
 
   .map-legend-dot.sc {
-    background: var(--sc-bg);
-    border-color: var(--sc-color);
+    border-color: #7C3AED;
   }
 
   .map-legend-dot.st {
-    background: var(--st-bg);
-    border-color: var(--st-color);
+    border-color: #0B7A56;
   }
 
   .map-tooltip {
