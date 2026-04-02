@@ -17,9 +17,28 @@
   let activeDistrict = $derived($filters.district);
   let parties = $derived($partyList);
   let districts = $derived($districtList);
-  
-  function handleReservationClick(reservation) {
-    setReservation(reservation === activeReservation ? 'all' : reservation);
+
+  let currentCategory = $derived.by(() => {
+    if (activeWomen) return 'women';
+    if (activeReservation === 'SC') return 'SC';
+    if (activeReservation === 'ST') return 'ST';
+    return 'all';
+  });
+
+  function handleCategoryClick(category) {
+    if (category === 'all') {
+      setReservation('all');
+      if (activeWomen) toggleWomen();
+    } else if (category === 'SC') {
+      setReservation('SC');
+      if (activeWomen) toggleWomen();
+    } else if (category === 'ST') {
+      setReservation('ST');
+      if (activeWomen) toggleWomen();
+    } else if (category === 'women') {
+      setReservation('all');
+      if (!activeWomen) toggleWomen();
+    }
   }
   
   function handlePartyClick(party) {
@@ -37,29 +56,29 @@
     <div class="filter-row">
       <button 
         class="filter-btn"
-        class:active={activeReservation === 'all'}
-        onclick={() => setReservation('all')}
+        class:active={currentCategory === 'all'}
+        onclick={() => handleCategoryClick('all')}
       >
         <span>{$_('filters.all')}</span>
       </button>
       <button 
         class="filter-btn sc"
-        class:active={activeReservation === 'SC'}
-        onclick={() => handleReservationClick('SC')}
+        class:active={currentCategory === 'SC'}
+        onclick={() => handleCategoryClick('SC')}
       >
         <span>{$_('map.scReserved')}</span>
       </button>
       <button 
         class="filter-btn st"
-        class:active={activeReservation === 'ST'}
-        onclick={() => handleReservationClick('ST')}
+        class:active={currentCategory === 'ST'}
+        onclick={() => handleCategoryClick('ST')}
       >
         <span>{$_('map.stReserved')}</span>
       </button>
       <button 
         class="filter-btn female"
-        class:active={activeWomen}
-        onclick={toggleWomen}
+        class:active={currentCategory === 'women'}
+        onclick={() => handleCategoryClick('women')}
       >
         ♀ <span>{$_('filters.women')}</span>
       </button>
