@@ -2,6 +2,8 @@
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
   import { historicalDataStore } from '../stores/historicalStore.js';
+  import partyLookup from '../data/party-lookup.json';
+  import { getSymbolImage } from '../lib/symbols.js';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
 
@@ -37,6 +39,12 @@
     if (!num) return '0';
     const n = parseInt(num, 10);
     return isNaN(n) ? '0' : n.toLocaleString('en-IN');
+  }
+
+  function getPartySymbol(party) {
+    const entry = partyLookup[party];
+    if (!entry?.symbol) return null;
+    return getSymbolImage(entry.symbol);
   }
 
   const ALLIANCE_COLORS = {
@@ -146,9 +154,18 @@
                   <div class="candidate-row">
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
                       <div class="candidate-info">
-                        <div class="alliance-label">LDF</div>
-                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                        <div class="candidate-party">{c.party || '—'}</div>
+                        <div class="candidate-details">
+                          <div class="alliance-label">LDF</div>
+                          <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                          <div class="candidate-party">{c.party || '—'}</div>
+                        </div>
+                        <div class="candidate-symbol">
+                          {#if getPartySymbol(c.party)}
+                            <img src={getPartySymbol(c.party)} alt="" />
+                          {:else}
+                            <div class="symbol-placeholder"></div>
+                          {/if}
+                        </div>
                       </div>
                   </div>
                 {/each}
@@ -161,9 +178,18 @@
                   <div class="candidate-row">
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
                     <div class="candidate-info">
-                      <div class="alliance-label">UDF</div>
-                      <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                      <div class="candidate-party">{c.party || '—'}</div>
+                      <div class="candidate-details">
+                        <div class="alliance-label">UDF</div>
+                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                        <div class="candidate-party">{c.party || '—'}</div>
+                      </div>
+                        <div class="candidate-symbol">
+                          {#if getPartySymbol(c.party)}
+                            <img src={getPartySymbol(c.party)} alt="" />
+                          {:else}
+                          <div class="symbol-placeholder"></div>
+                        {/if}
+                      </div>
                     </div>
                   </div>
                 {/each}
@@ -176,9 +202,18 @@
                   <div class="candidate-row">
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
                     <div class="candidate-info">
-                      <div class="alliance-label">NDA</div>
-                      <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                      <div class="candidate-party">{c.party || '—'}</div>
+                      <div class="candidate-details">
+                        <div class="alliance-label">NDA</div>
+                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                        <div class="candidate-party">{c.party || '—'}</div>
+                      </div>
+                        <div class="candidate-symbol">
+                          {#if getPartySymbol(c.party)}
+                            <img src={getPartySymbol(c.party)} alt="" />
+                          {:else}
+                          <div class="symbol-placeholder"></div>
+                        {/if}
+                      </div>
                     </div>
                   </div>
                 {/each}
@@ -191,9 +226,18 @@
                   <div class="candidate-row">
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
                     <div class="candidate-info">
-                      <div class="alliance-label">Others</div>
-                      <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                      <div class="candidate-party">{c.party || '—'}</div>
+                      <div class="candidate-details">
+                        <div class="alliance-label">Others</div>
+                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
+                        <div class="candidate-party">{c.party || '—'}</div>
+                      </div>
+                        <div class="candidate-symbol">
+                          {#if getPartySymbol(c.party)}
+                            <img src={getPartySymbol(c.party)} alt="" />
+                          {:else}
+                          <div class="symbol-placeholder"></div>
+                        {/if}
+                      </div>
                     </div>
                   </div>
                 {/each}
@@ -656,6 +700,35 @@
     padding: 8px 10px;
     flex: 1;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .candidate-details {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .candidate-symbol {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .candidate-symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .symbol-placeholder {
+    width: 36px;
+    height: 36px;
   }
 
   .alliance-label {

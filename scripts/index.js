@@ -4,6 +4,7 @@ import generateAgeDistribution from './generate-age-distribution.js';
 import generateKlaMapSvg from './generate-kla-map-svg.js';
 import generateConstituencies from './generate-constituencies.js';
 import generateDistrictBounds from './generate-district-bounds.js';
+import generatePartyLookup from './generate-party-lookup.js';
 
 const scripts = {
   'candidates-by-party': generateCandidatesByParty,
@@ -11,7 +12,8 @@ const scripts = {
   'age-distribution': generateAgeDistribution,
   'kla-map-svg': generateKlaMapSvg,
   'constituencies': generateConstituencies,
-  'district-bounds': generateDistrictBounds
+  'district-bounds': generateDistrictBounds,
+  'party-lookup': generatePartyLookup
 };
 
 const args = process.argv.slice(2);

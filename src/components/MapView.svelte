@@ -4,17 +4,32 @@
   import { _ } from '../lib/i18n.js';
   import { filteredConstituencies, openModal, constituencies, filters, districtBounds } from '../stores/constituencyStore.js';
   import partyData from '../data/candidates-by-party.json';
+  import partyLookup from '../data/party-lookup.json';
 
-  const PARTY_COLORS = [
-    '#E63946', '#457B9D', '#F4A261', '#2A9D8F', '#9B5DE5', '#00F5D4',
-    '#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181', '#AA96DA'
-  ];
+  const ALLIANCE_COLORS = {
+    LDF: '#EE0000',
+    UDF: '#0078FF',
+    NDA: '#FF9933',
+    Others: '#33AA00'
+  };
+
+  function getAllianceParties(alliance) {
+    const parties = partyData[alliance] || {};
+    return Object.keys(parties);
+  }
 
   function getPartyColor(party) {
-    const parties = partyData[selectedAlliance] || {};
-    const sorted = Object.keys(parties).sort((a, b) => parties[b] - parties[a]);
-    const idx = sorted.indexOf(party);
-    return idx >= 0 ? PARTY_COLORS[idx % PARTY_COLORS.length] : '#9ca3af';
+    if (!party) return '#9ca3af';
+    
+    const entry = partyLookup[party];
+    if (!entry?.color) return '#9ca3af';
+    
+    return entry.color;
+  }
+
+  function getPartyAlliance(party) {
+    const entry = partyLookup[party];
+    return entry?.alliance || null;
   }
 
   let mapSvgText = $state('');
@@ -86,7 +101,7 @@
       .map(([party, count], idx) => ({
         party,
         count,
-        color: PARTY_COLORS[idx % PARTY_COLORS.length]
+        color: getPartyColor(party)
       }));
   });
 

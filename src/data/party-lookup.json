@@ -1,110 +1,209 @@
 {
   "CPI(M)": {
     "full": "Communist Party of India (Marxist)",
-    "alliance": "LDF"
+    "alliance": "LDF",
+    "color": "#cc0c0c",
+    "symbol": "cpim"
   },
   "CPI": {
     "full": "Communist Party of India",
-    "alliance": "LDF"
+    "alliance": "LDF",
+    "color": "#f50223",
+    "symbol": "cpi"
   },
-  "KC (M)": {
+  "Kerala Congress (M)": {
     "full": "Kerala Congress (Mani)",
-    "alliance": "LDF"
-  },
-  "NCP(SP)": {
-    "full": "Nationalist Congress Party (Sharadchandra Pawar)",
-    "alliance": "LDF"
-  },
-  "RJD": {
-    "full": "Rashtriya Janata Dal",
-    "alliance": "LDF"
-  },
-  "INL": {
-    "full": "Indian National League",
-    "alliance": "LDF"
-  },
-  "Congress (Secular)": {
-    "full": "Congress (Secular)",
-    "alliance": "LDF"
-  },
-  "KC (B)": {
-    "full": "Kerala Congress (B)",
-    "alliance": "LDF"
-  },
-  "INC": {
-    "full": "Indian National Congress",
-    "alliance": "UDF"
-  },
-  "IUML": {
-    "full": "Indian Union Muslim League",
-    "alliance": "UDF"
-  },
-  "KC": {
-    "full": "Kerala Congress",
-    "alliance": "UDF"
-  },
-  "RSP": {
-    "full": "Revolutionary Socialist Party",
-    "alliance": "UDF"
-  },
-  "KC(J)": {
-    "full": "Kerala Congress (Jacob)",
-    "alliance": "UDF"
-  },
-  "RMPI": {
-    "full": "Revolutionary Marxist Party of India",
-    "alliance": "UDF"
-  },
-  "CMP": {
-    "full": "Communist Marxist Party",
-    "alliance": "UDF"
-  },
-  "BJP": {
-    "full": "Bharatiya Janata Party",
-    "alliance": "NDA"
-  },
-  "BDJS": {
-    "full": "Bharath Dharma Jana Sena",
-    "alliance": "NDA"
-  },
-  "TTP": {
-    "full": "Twenty20 Kizhakkambalam",
-    "alliance": "NDA"
-  },
-  "AAP": {
-    "full": "Aam Aadmi Party",
-    "alliance": "Others"
-  },
-  "SDPI": {
-    "full": "Social Democratic Party of India",
-    "alliance": "Others"
-  },
-  "JRS": {
-    "full": "Janata Rajyam Sabha",
-    "alliance": "NDA"
-  },
-  "AITC": {
-    "full": "All India Trinamool Congress",
-    "alliance": "UDF"
-  },
-  "DCK": {
-    "full": "Democratic Congress Kerala",
-    "alliance": "UDF"
-  },
-  "RSP(L)": {
-    "full": "Revolutionary Socialist Party (Leninist)",
-    "alliance": "LDF"
+    "alliance": "LDF",
+    "color": "#f58486",
+    "symbol": "kcm"
   },
   "Indian Socialist Janata Dal": {
     "full": "Indian Socialist Janata Dal",
-    "alliance": "LDF"
+    "alliance": "LDF",
+    "color": "#33cc00",
+    "symbol": "isjd"
+  },
+  "NCP(SP)": {
+    "full": "Nationalist Congress Party (Sharadchandra Pawar)",
+    "alliance": "LDF",
+    "color": "#0029b0",
+    "symbol": "ncpsp"
+  },
+  "RJD": {
+    "full": "Rashtriya Janata Dal",
+    "alliance": "LDF",
+    "color": "#008200",
+    "symbol": "rjd"
+  },
+  "INL": {
+    "full": "Indian National League",
+    "alliance": "LDF",
+    "color": "#006600"
+  },
+  "Congress (Secular)": {
+    "full": "Congress (Secular)",
+    "alliance": "LDF",
+    "color": "#cc6600"
   },
   "Kerala Congress (B)": {
     "full": "Kerala Congress (B)",
-    "alliance": "LDF"
+    "alliance": "LDF",
+    "color": "#e6801a"
   },
-  "Kerala Congress (M)": {
-    "full": "Kerala Congress (M)",
-    "alliance": "LDF"
+  "Janadhipathya Kerala Congress": {
+    "full": "Janadhipathya Kerala Congress",
+    "alliance": "LDF",
+    "color": "#2d8a2d"
+  },
+  "Independent (CPI support)": {
+    "full": "Independent (CPI support)",
+    "alliance": "LDF",
+    "color": "#dbdbdb"
+  },
+  "Independent (CPI(M) support)": {
+    "full": "Independent (CPI(M) support)",
+    "alliance": "LDF",
+    "color": "#f5f5f5"
+  },
+  "Independent (INL Support)": {
+    "full": "Independent (INL Support)",
+    "alliance": "LDF",
+    "color": "#ffffff"
+  },
+  "RSP(L)": {
+    "full": "RSP(L)",
+    "alliance": "LDF",
+    "color": "#b35a00"
+  },
+  "INC": {
+    "full": "Indian National Congress",
+    "alliance": "UDF",
+    "color": "#00bfff",
+    "symbol": "inc"
+  },
+  "IUML": {
+    "full": "Indian Union Muslim League",
+    "alliance": "UDF",
+    "color": "#006600",
+    "symbol": "iuml"
+  },
+  "KEC": {
+    "full": "Kerala Congress",
+    "alliance": "UDF",
+    "color": "#8b4513",
+    "symbol": "kc"
+  },
+  "RSP": {
+    "full": "Revolutionary Socialist Party",
+    "alliance": "UDF",
+    "color": "#d94c4c"
+  },
+  "Kerala Democratic Party": {
+    "full": "Kerala Democratic Party",
+    "alliance": "UDF",
+    "color": "#6b4423"
+  },
+  "KC(J)": {
+    "full": "Kerala Congress (Jacob)",
+    "alliance": "UDF",
+    "color": "#8b0000"
+  },
+  "RMPI": {
+    "full": "Revolutionary Marxist Party of India",
+    "alliance": "UDF",
+    "color": "#c04040"
+  },
+  "CMP": {
+    "full": "Communist Marxist Party",
+    "alliance": "UDF",
+    "color": "#ff6347"
+  },
+  "All India Forward Bloc": {
+    "full": "All India Forward Bloc",
+    "alliance": "UDF",
+    "color": "#4682b4"
+  },
+  "AITC": {
+    "full": "Trinamool Congress",
+    "alliance": "UDF"
+  },
+  "Janathipathiya Samrakshana Samithy": {
+    "full": "Janathipathiya Samrakshana Samithy",
+    "alliance": "NDA",
+    "color": "#F97D09"
+  },
+  "Janadhipathya Rashtriya Sabha": {
+    "full": "Janadhipathya Rashtriya Sabha",
+    "alliance": "UDF"
+  },
+  "Independent (INC Support)": {
+    "full": "Independent (INC Support)",
+    "alliance": "UDF",
+    "color": "#dbdbdb"
+  },
+  "Independent (IUML Support)": {
+    "full": "Independent (IUML Support)",
+    "alliance": "UDF",
+    "color": "#f5f5f5"
+  },
+  "Independent (RSP support)": {
+    "full": "Independent (RSP support)",
+    "alliance": "UDF",
+    "color": "#ffffff"
+  },
+  "BJP": {
+    "full": "Bharatiya Janata Party",
+    "alliance": "NDA",
+    "color": "#f97d09",
+    "symbol": "bjp"
+  },
+  "BDJS": {
+    "full": "Bharath Dharma Jana Sena",
+    "alliance": "NDA",
+    "color": "#450000",
+    "symbol": "bdjs"
+  },
+  "TTP": {
+    "full": "Twenty20 Kizhakkambalam",
+    "alliance": "NDA",
+    "color": "#00bfff",
+    "symbol": "ttp"
+  },
+  "Kerala Kamaraj Congress": {
+    "full": "Kerala Kamaraj Congress",
+    "alliance": "NDA",
+    "color": "#008b8b"
+  },
+  "All India Anna Dravida Munnetra Kazhagam": {
+    "full": "All India Anna Dravida Munnetra Kazhagam",
+    "alliance": "NDA",
+    "color": "#dc143c"
+  },
+  "Independent": {
+    "full": "Independent",
+    "alliance": "NDA",
+    "color": "#dbdbdb"
+  },
+  "BJP (Independent)": {
+    "full": "BJP (Independent)",
+    "alliance": "NDA",
+    "color": "#228b22"
+  },
+  "AAP": {
+    "full": "Aam Aadmi Party",
+    "alliance": "Others",
+    "color": "#1e90ff",
+    "symbol": "aap"
+  },
+  "SDPI": {
+    "full": "Social Democratic Party of India",
+    "alliance": "Others",
+    "color": "#ff4500"
+  },
+  "BSP": {
+    "full": "Bahujan Samaj Party",
+    "alliance": "Others",
+    "color": "#9932cc",
+    "symbol": "bsp"
   }
 }
