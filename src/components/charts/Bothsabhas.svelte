@@ -160,7 +160,6 @@
       xAxis: { 
         type: 'category', 
         data: xLabels,
-        inverse: true,
         axisLabel: { fontWeight: 600, fontSize: 10 }
       },
       yAxis: { 

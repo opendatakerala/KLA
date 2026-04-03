@@ -43,7 +43,7 @@ echarts.use([
   let chartContainer = $state(null);
   let chart = null;
 
-  let seriesData = $derived([...data].reverse());
+  let seriesData = $derived([...data]);
   let hasData = $derived(seriesData.length > 0);
 
   $effect(() => {
