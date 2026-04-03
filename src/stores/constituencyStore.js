@@ -63,10 +63,36 @@ export function closeModal() {
   selectedConstituency.set(null);
 }
 
+function scoreRelevance(row, q) {
+  let score = 0;
+  const lowerQ = q.toLowerCase();
+  const candidates = row.candidates || [];
+
+  const nameScore = row.name?.toLowerCase().includes(lowerQ) ? 10 : 0;
+  const malayalamScore = row.malayalam?.toLowerCase().includes(lowerQ) ? 10 : 0;
+  const districtScore = row.district?.toLowerCase().includes(lowerQ) ? 1 : 0;
+  const candidateMatch = candidates.some(
+    c => (c.name || '').toLowerCase().includes(lowerQ) || 
+         (c.party || '').toLowerCase().includes(lowerQ) ||
+         (c.malayalam || '').toLowerCase().includes(lowerQ)
+  );
+
+  if (row.name?.toLowerCase().startsWith(lowerQ)) score += 15;
+  if (row.malayalam?.toLowerCase().startsWith(lowerQ)) score += 15;
+  if (row.district?.toLowerCase().startsWith(lowerQ)) score += 3;
+
+  score += nameScore;
+  score += malayalamScore;
+  score += districtScore;
+  if (candidateMatch) score += 4;
+
+  return score;
+}
+
 export const filteredConstituencies = computed(
   [constituencies, filters],
   ($constituencies, $filters) => {
-    return $constituencies.filter(row => {
+    const filtered = $constituencies.filter(row => {
       if ($filters.district !== 'all' && row.district !== $filters.district) {
         return false;
       }
@@ -104,6 +130,13 @@ export const filteredConstituencies = computed(
 
       return true;
     });
+
+    if ($filters.search) {
+      const q = $filters.search.toLowerCase().trim();
+      filtered.sort((a, b) => scoreRelevance(b, q) - scoreRelevance(a, q));
+    }
+
+    return filtered;
   }
 );
 
