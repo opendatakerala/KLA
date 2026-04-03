@@ -26,6 +26,16 @@
     return getSymbolImage(entry.symbol);
   }
 
+  function getCandidateImageUrl(photo) {
+    if (!photo) return null;
+    return `${import.meta.env.PUBLIC_KLA_API_URL}/api/kla2026/candidate-image/${photo}`;
+  }
+
+  function getAffidavitUrl(affidavitId) {
+    if (!affidavitId) return null;
+    return `https://affidavit.eci.gov.in/affidavit-pdf-download/${affidavitId}`;
+  }
+
   let currentModal = $derived($selectedConstituency);
   let currentLangValue = $derived($currentLang);
   let currentIsLoading = $derived($isLoading);
@@ -283,12 +293,20 @@
           <div class="candidate-group">
             {#each ldf as c}
               <div class="candidate-row">
+                {#if c.photo}
+                  <div class="candidate-photo">
+                    <img src={getCandidateImageUrl(c.photo)} alt="" />
+                  </div>
+                {/if}
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
                   <div class="candidate-info">
                     <div class="candidate-details">
                       <div class="alliance-label">LDF</div>
                       <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                       <div class="candidate-party">{c.party || '—'}</div>
+                      {#if c.affidavitId}
+                        <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                      {/if}
                     </div>
                     <div class="candidate-symbol">
                       {#if getPartySymbol(c.party)}
@@ -307,12 +325,20 @@
           <div class="candidate-group">
             {#each udf as c}
               <div class="candidate-row">
+                {#if c.photo}
+                  <div class="candidate-photo">
+                    <img src={getCandidateImageUrl(c.photo)} alt="" />
+                  </div>
+                {/if}
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
                 <div class="candidate-info">
                   <div class="candidate-details">
                     <div class="alliance-label">UDF</div>
                     <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                     <div class="candidate-party">{c.party || '—'}</div>
+                    {#if c.affidavitId}
+                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                    {/if}
                   </div>
                   <div class="candidate-symbol">
                     {#if getPartySymbol(c.party)}
@@ -331,12 +357,20 @@
           <div class="candidate-group">
             {#each nda as c}
               <div class="candidate-row">
+                {#if c.photo}
+                  <div class="candidate-photo">
+                    <img src={getCandidateImageUrl(c.photo)} alt="" />
+                  </div>
+                {/if}
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
                 <div class="candidate-info">
                   <div class="candidate-details">
                     <div class="alliance-label">NDA</div>
                     <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                     <div class="candidate-party">{c.party || '—'}</div>
+                    {#if c.affidavitId}
+                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                    {/if}
                   </div>
                   <div class="candidate-symbol">
                     {#if getPartySymbol(c.party)}
@@ -355,12 +389,20 @@
           <div class="candidate-group">
             {#each others as c}
               <div class="candidate-row">
+                {#if c.photo}
+                  <div class="candidate-photo">
+                    <img src={getCandidateImageUrl(c.photo)} alt="" />
+                  </div>
+                {/if}
                 <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
                 <div class="candidate-info">
                   <div class="candidate-details">
                     <div class="alliance-label">Others</div>
                     <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                     <div class="candidate-party">{c.party || '—'}</div>
+                    {#if c.affidavitId}
+                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                    {/if}
                   </div>
                   <div class="candidate-symbol">
                     {#if getPartySymbol(c.party)}
@@ -769,6 +811,43 @@
   .symbol-placeholder {
     width: 40px;
     height: 40px;
+  }
+
+  .candidate-photo {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .candidate-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .affidavit-btn {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 2px 6px;
+    font-family: 'Manjari', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    background: var(--bg2);
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .affidavit-btn:hover {
+    background: var(--gold);
+    color: var(--card);
   }
 
   .alliance-label {
