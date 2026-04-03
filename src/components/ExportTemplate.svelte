@@ -47,11 +47,6 @@
     return getSymbolImage(entry.symbol);
   }
 
-  function getCandidateImageUrl(photo) {
-    if (!photo) return null;
-    return `${import.meta.env.PUBLIC_KLA_API_URL}/api/kla2026/candidate-image/${photo}`;
-  }
-
   const ALLIANCE_COLORS = {
     LDF: '#D94040',
     UDF: '#1565C0',
@@ -157,11 +152,6 @@
               <div class="candidate-group">
                 {#each ldf as c}
                   <div class="candidate-row">
-                    {#if c.photo}
-                      <div class="candidate-photo">
-                        <img src={getCandidateImageUrl(c.photo)} alt="" />
-                      </div>
-                    {/if}
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
                       <div class="candidate-info">
                         <div class="candidate-details">
@@ -186,11 +176,6 @@
               <div class="candidate-group">
                 {#each udf as c}
                   <div class="candidate-row">
-                    {#if c.photo}
-                      <div class="candidate-photo">
-                        <img src={getCandidateImageUrl(c.photo)} alt="" />
-                      </div>
-                    {/if}
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
                     <div class="candidate-info">
                       <div class="candidate-details">
@@ -215,11 +200,6 @@
               <div class="candidate-group">
                 {#each nda as c}
                   <div class="candidate-row">
-                    {#if c.photo}
-                      <div class="candidate-photo">
-                        <img src={getCandidateImageUrl(c.photo)} alt="" />
-                      </div>
-                    {/if}
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
                     <div class="candidate-info">
                       <div class="candidate-details">
@@ -244,11 +224,6 @@
               <div class="candidate-group">
                 {#each others as c}
                   <div class="candidate-row">
-                    {#if c.photo}
-                      <div class="candidate-photo">
-                        <img src={getCandidateImageUrl(c.photo)} alt="" />
-                      </div>
-                    {/if}
                     <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
                     <div class="candidate-info">
                       <div class="candidate-details">
@@ -754,24 +729,6 @@
   .symbol-placeholder {
     width: 36px;
     height: 36px;
-  }
-
-  .candidate-photo {
-    width: 72px;
-    height: 72px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-
-  .candidate-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
   }
 
   .alliance-label {
