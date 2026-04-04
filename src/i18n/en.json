@@ -15,7 +15,8 @@
     "days": "Days",
     "hours": "Hrs",
     "minutes": "Min",
-    "seconds": "Sec"
+    "seconds": "Sec",
+    "alsoFromODK": "Also from ODK"
   },
   "footer": {
     "credits": "Kerala Legislative Assembly Election 2026 · Data sourced from Various Media & CEO Kerala · an OpenDataKerala Initiative",

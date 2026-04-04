@@ -56,6 +56,11 @@
         <span>&nbsp;&bull; <span>{$_('site.initiative')}</span></span>
       </div>
     </div>
+    <div class="header-external-links">
+      <span class="external-links-label">{$_('header.alsoFromODK')}</span>
+      <a href="https://mlatrack.com/" target="_blank" rel="noopener noreferrer">MLA Track</a>
+      <a href="https://opendatakerala.org/LSG2025/" target="_blank" rel="noopener noreferrer">LSG Election Portal</a>
+    </div>
     <div class="header-right">
       {#if pollingStarted}
         <div class="countdown-box polling-live">
@@ -126,7 +131,7 @@
     margin: 0 auto;
     padding: 20px 32px 14px;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     gap: 20px;
   }
@@ -140,7 +145,22 @@
   .header-logo-wrap { display: flex; align-items: center; flex-shrink: 0; }
   .header-logo { width: 60px; height: 60px; object-fit: contain; border-radius: 10px; }
 
-  .header-title { flex: 1; }
+  .header-title { flex: 1; display: flex; flex-direction: column; }
+
+  .header-external-links {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .external-links-label {
+    font-size: var(--fs-xs);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 4px;
+  }
 
   .header-eyebrow {
     font-family: 'Manjari', monospace;
@@ -293,6 +313,28 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
 
+  .header-external-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .header-external-links a {
+    font-size: var(--fs-sm);
+    color: var(--text);
+    text-decoration: none;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--card);
+    transition: all 0.15s;
+  }
+
+  .header-external-links a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
   @media (max-width: 640px) {
     .header-stripe { height: 3px; }
     .header-inner {
@@ -301,6 +343,9 @@
       gap: 12px;
     }
     .header-search {
+      display: none;
+    }
+    .header-external-links {
       display: none;
     }
     .header-logo { width: 44px; height: 44px; }
