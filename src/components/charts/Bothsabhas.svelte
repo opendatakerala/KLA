@@ -17,6 +17,7 @@
     SVGRenderer
   ]);
   import { _ } from '../../lib/i18n.js';
+  import { getAllianceData } from '../../lib/chartUtils.js';
 
   let { niyamasabhaData = [], loksabhaData = [], onUnmerge = null } = $props();
 
@@ -93,32 +94,7 @@
         symbol: (value, params) => params.data?.type === 'N' ? 'rect' : 'circle',
         symbolSize: 9,
         animationDuration: 2000,
-        data: combinedData.map(d => {
-          const allianceVotes = d.allianceVotes[al] || 0;
-          const pct = d.totalVotes > 0 ? (allianceVotes / d.totalVotes) * 100 : 0;
-          let candidateName = '';
-          let candidateParty = '';
-          let candidateVotes = allianceVotes;
-          
-          if (d.winner?.alliance === al) {
-            candidateName = d.winner.name || '';
-            candidateParty = d.winner.party || '';
-            candidateVotes = d.winner.votes || 0;
-          } else if (d.runnerUp?.alliance === al) {
-            candidateName = d.runnerUp.name || '';
-            candidateParty = d.runnerUp.party || '';
-            candidateVotes = d.runnerUp.votes || 0;
-          }
-          
-          return {
-            value: parseFloat(pct.toFixed(1)),
-            candidate: candidateName,
-            party: candidateParty,
-            votes: candidateVotes,
-            type: d.type,
-            year: d.year
-          };
-        }),
+        data: combinedData.map(d => getAllianceData(d, al)),
         itemStyle: { color: COLORS[al] },
         label: {
           show: true,
