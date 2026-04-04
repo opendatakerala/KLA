@@ -7,7 +7,7 @@
   import { getSymbolImage } from '../lib/symbols.js';
   import downloadIcon from '../images/download.svg';
   import shareIcon from '../images/share.svg';
-  import { toJpeg } from 'html-to-image';
+  import { toPng } from 'html-to-image';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
   import Bothsabhas from './charts/Bothsabhas.svelte';
@@ -136,14 +136,7 @@
                   }
         };
   
-        // 2. THE WARM-UP PASS (The Magic Fix)
-        // We run the generation once and throw away the result. 
-        // This forces the browser to load fonts, SVGs, and charts into the canvas cache.
-        await toJpeg(exportTemplate, configOptions).catch(() => {});
-        
-        // 3. THE REAL PASS
-        // Now that the browser engine is "warmed up", the second snapshot will capture everything perfectly.
-        const dataUrl = await toJpeg(exportTemplate, configOptions);
+        const dataUrl = await toPng(exportTemplate, configOptions);
         
         const response = await fetch(dataUrl);
         generatedBlob = await response.blob();
@@ -181,7 +174,7 @@
       if (!generatedBlob) return;
     }
     const link = document.createElement('a');
-    link.download = `KLA-${currentModal.number}-${currentModal.name || 'constituency'}.jpg`;
+    link.download = `KLA-${currentModal.number}-${currentModal.name || 'constituency'}.png`;
     link.href = URL.createObjectURL(generatedBlob);
     link.click();
     URL.revokeObjectURL(link.href);
