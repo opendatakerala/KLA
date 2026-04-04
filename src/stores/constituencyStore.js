@@ -59,6 +59,14 @@ export function openModal(constituency) {
   selectedConstituency.set(constituency);
 }
 
+export function setSelectedConstituencyById(id) {
+  const allConstituencies = constituencies.get();
+  const constituency = allConstituencies.find(c => c.number === id);
+  if (constituency) {
+    selectedConstituency.set(constituency);
+  }
+}
+
 export function closeModal() {
   selectedConstituency.set(null);
 }

@@ -2,6 +2,7 @@
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { filteredConstituencies, openModal } from '../stores/constituencyStore.js';
   import { getCandidateName as getCandName } from '../stores/candidateStore.js';
+  import { setConstituencyHash } from '../stores/routerStore.js';
   import Modal from './Modal.svelte';
 
   let filteredData = $derived($filteredConstituencies);
@@ -26,6 +27,7 @@
   }
 
   function handleCardClick(row) {
+    setConstituencyHash(row.number);
     openModal(row);
   }
 </script>

@@ -1,6 +1,7 @@
 <script>
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { selectedConstituency, closeModal } from '../stores/constituencyStore.js';
+  import { clearHash } from '../stores/routerStore.js';
   import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
   import { historicalDataStore } from '../stores/historicalStore.js';
   import { getCandidateSymbol } from '../lib/symbols.js';
@@ -46,7 +47,10 @@
   let historicalLoading = $derived(historicalData?.loading || false);
   let historicalError = $derived(historicalData?.error ? true : false);
 
-  function handleClose() { closeModal(); }
+  function handleClose() { 
+    clearHash();
+    closeModal(); 
+  }
 
   function handleKeydown(e) {
     if (e.key === 'Escape') handleClose();

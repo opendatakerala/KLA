@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from '../lib/i18n.js';
+  import { initRouter } from '../stores/routerStore.js';
+  import { disclaimerDismissed } from '../stores/uiStore.js';
   import Grid from './Grid.svelte';
   import MapView from './MapView.svelte';
 
@@ -19,6 +21,12 @@
       if (saved === 'grid' || saved === 'map') {
         viewMode = saved;
       }
+    }
+  });
+  
+  $effect(() => {
+    if ($disclaimerDismissed) {
+      setTimeout(() => initRouter(), 0);
     }
   });
 </script>

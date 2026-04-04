@@ -3,6 +3,7 @@
   import * as d3 from 'd3';
   import { _ } from '../lib/i18n.js';
   import { filteredConstituencies, openModal, constituencies, filters, districtBounds } from '../stores/constituencyStore.js';
+  import { setConstituencyHash } from '../stores/routerStore.js';
   import partyData from '../data/candidates-by-party.json';
   import partyLookup from '../data/party-lookup.json';
 
@@ -183,7 +184,10 @@
         const path = d3.select(this);
         const qid = path.attr('data-qid');
         const row = allData.find(x => x.qid === qid);
-        if (row) openModal(row);
+        if (row) {
+          setConstituencyHash(row.number);
+          openModal(row);
+        }
       });
     
     updateMap();
