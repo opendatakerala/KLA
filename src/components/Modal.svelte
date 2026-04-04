@@ -6,6 +6,7 @@
   import { getCandidateSymbol } from '../lib/symbols.js';
   import downloadIcon from '../images/download.svg';
   import shareIcon from '../images/share.svg';
+  import pdfIcon from '../images/pdf-download.jpg';
   import { toPng } from 'html-to-image';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
@@ -281,7 +282,7 @@
                       <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                       <div class="candidate-party">{c.party || '—'}</div>
                       {#if c.affidavitId}
-                        <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                        <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {$_('modal.affidavit')}</a>
                       {/if}
                     </div>
                     <div class="candidate-symbol">
@@ -309,7 +310,7 @@
                     <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                     <div class="candidate-party">{c.party || '—'}</div>
                     {#if c.affidavitId}
-                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {$_('modal.affidavit')}</a>
                     {/if}
                   </div>
                   <div class="candidate-symbol">
@@ -337,7 +338,7 @@
                     <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                     <div class="candidate-party">{c.party || '—'}</div>
                     {#if c.affidavitId}
-                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {$_('modal.affidavit')}</a>
                     {/if}
                   </div>
                   <div class="candidate-symbol">
@@ -365,7 +366,7 @@
                     <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
                     <div class="candidate-party">{c.party || '—'}</div>
                     {#if c.affidavitId}
-                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn">Affidavit</a>
+                      <a href={getAffidavitUrl(c.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {$_('modal.affidavit')}</a>
                     {/if}
                   </div>
                   <div class="candidate-symbol">
@@ -774,7 +775,9 @@
   }
 
   .affidavit-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     margin-top: 4px;
     padding: 2px 6px;
     font-family: 'Manjari', monospace;
@@ -785,6 +788,12 @@
     border-radius: 3px;
     text-decoration: none;
     transition: all 0.15s;
+  }
+
+  .affidavit-btn img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
   }
 
   .affidavit-btn:hover {

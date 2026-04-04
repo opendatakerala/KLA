@@ -86,7 +86,8 @@
     "pollingBooths": "Polling Booths",
     "voters": "Voters",
     "partOfParliamentaryConstituency": "Historical Results as a part of {parliamentaryConstituency} Lok Sabha constituency",
-    "shareText": "View {constituency} election data details from https://opendatakerala.org/KLA2026/"
+    "shareText": "View {constituency} election data details from https://opendatakerala.org/KLA2026/",
+    "affidavit": "Affidavit (PDF)"
   },
   "charts": {
     "loading": "Loading...",
