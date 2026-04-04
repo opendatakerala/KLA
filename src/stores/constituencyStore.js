@@ -71,6 +71,81 @@ export function closeModal() {
   selectedConstituency.set(null);
 }
 
+export function getSuggestions(query) {
+  if (!query || !query.trim()) return [];
+  
+  const lowerQ = query.toLowerCase().trim();
+  const suggestions = [];
+  
+  constituencies.get().forEach(row => {
+    if (row.name?.toLowerCase().includes(lowerQ)) {
+      suggestions.push({
+        text: row.name,
+        type: 'constituency',
+        score: getTermScore(row.name, lowerQ) + 10
+      });
+    }
+    if (row.malayalam?.toLowerCase().includes(lowerQ)) {
+      suggestions.push({
+        text: row.malayalam,
+        type: 'constituency-ml',
+        score: getTermScore(row.malayalam, lowerQ) + 10
+      });
+    }
+    if (row.district?.toLowerCase().includes(lowerQ)) {
+      suggestions.push({
+        text: row.district,
+        type: 'district',
+        score: getTermScore(row.district, lowerQ) + 5
+      });
+    }
+    
+    (row.candidates || []).forEach(cand => {
+      if (cand.name?.toLowerCase().includes(lowerQ)) {
+        suggestions.push({
+          text: cand.name,
+          type: 'candidate',
+          score: getTermScore(cand.name, lowerQ) + 2
+        });
+      }
+      if (cand.malayalam?.toLowerCase().includes(lowerQ)) {
+        suggestions.push({
+          text: cand.malayalam,
+          type: 'candidate-ml',
+          score: getTermScore(cand.malayalam, lowerQ) + 2
+        });
+      }
+      if (cand.party?.toLowerCase().includes(lowerQ)) {
+        suggestions.push({
+          text: cand.party,
+          type: 'party',
+          score: getTermScore(cand.party, lowerQ) + 1
+        });
+      }
+    });
+  });
+  
+  const unique = new Map();
+  suggestions.forEach(s => {
+    const existing = unique.get(s.text);
+    if (!existing || s.score > existing.score) {
+      unique.set(s.text, s);
+    }
+  });
+  
+  return Array.from(unique.values())
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
+}
+
+function getTermScore(term, q) {
+  const lowerTerm = term.toLowerCase();
+  let score = 0;
+  if (lowerTerm.startsWith(q)) score += 15;
+  if (lowerTerm.includes(q)) score += 10;
+  return score;
+}
+
 function scoreRelevance(row, q) {
   let score = 0;
   const lowerQ = q.toLowerCase();
