@@ -50,6 +50,8 @@ The platform has evolved rapidly from a single HTML proof-of-concept to a full-f
 ## Report Issues
 Found a mistake? Help us improve by [filing an issue on GitHub](https://github.com/opendatakerala/KLA2026/issues) or [emailing opendatakerala@gmail.com](mailto:opendatakerala@gmail.com).
 
+Become part of the conversation! [Join the ODK Public Group](https://t.me/opendatakerala) to ask questions or help us improve by reporting bugs.
+
 ## Similar Initiatives
 We have extensive experience and expertise in working with election data, gazette records, and legislative information systems. Our work focuses on transforming traditional formats—such as PDFs and scanned documents—into structured knowledge bases, linked data systems, and machine-readable, AI-friendly datasets. This approach enhances accessibility, usability, and interoperability of public data, enabling deeper analysis and broader public engagement.
 
