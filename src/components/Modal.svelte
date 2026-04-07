@@ -13,6 +13,7 @@
   import Bothsabhas from './charts/Bothsabhas.svelte';
   import ExportTemplate from './ExportTemplate.svelte';
   import CandidateRow from './CandidateRow.svelte';
+  import { MANIFESTO_URLS } from '../lib/constants.js';
 
   const ALLIANCE_COLORS = {
     LDF: '#D94040',
@@ -273,7 +274,7 @@
         {#if ldf.length > 0}
           <div class="candidate-group">
             {#each ldf as c}
-              <CandidateRow candidate={c} allianceLabel="LDF" allianceColor={ALLIANCE_COLORS.LDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} {pdfIcon} />
+              <CandidateRow candidate={c} allianceLabel="LDF" allianceColor={ALLIANCE_COLORS.LDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} {pdfIcon} manifestoUrl={MANIFESTO_URLS.LDF} />
             {/each}
           </div>
         {/if}
@@ -281,7 +282,7 @@
         {#if udf.length > 0}
           <div class="candidate-group">
             {#each udf as c}
-              <CandidateRow candidate={c} allianceLabel="UDF" allianceColor={ALLIANCE_COLORS.UDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} {pdfIcon} />
+              <CandidateRow candidate={c} allianceLabel="UDF" allianceColor={ALLIANCE_COLORS.UDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} {pdfIcon} manifestoUrl={MANIFESTO_URLS.UDF} />
             {/each}
           </div>
         {/if}
@@ -289,7 +290,7 @@
         {#if nda.length > 0}
           <div class="candidate-group">
             {#each nda as c}
-              <CandidateRow candidate={c} allianceLabel="NDA" allianceColor={ALLIANCE_COLORS.NDA} langValue={currentLangValue} isLoading={currentIsLoading} t={t} {pdfIcon} />
+              <CandidateRow candidate={c} allianceLabel="NDA" allianceColor={ALLIANCE_COLORS.NDA} langValue={currentLangValue} isLoading={currentIsLoading} t={t} {pdfIcon} manifestoUrl={MANIFESTO_URLS.NDA} />
             {/each}
           </div>
         {/if}

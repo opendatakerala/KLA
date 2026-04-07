@@ -4,7 +4,7 @@
 
   const candidatePhotos = import.meta.glob('../images/candidate_photos/*.jpg');
 
-  let { candidate, allianceLabel, allianceColor, langValue, isLoading, t, pdfIcon = null } = $props();
+  let { candidate, allianceLabel, allianceColor, langValue, isLoading, t, pdfIcon = null, manifestoUrl = null } = $props();
 
   function getAffidavitUrl(affidavitId) {
     if (!affidavitId) return null;
@@ -38,6 +38,9 @@
       <div class="candidate-party">{candidate.party || '—'}</div>
       {#if pdfIcon && candidate.affidavitId}
         <a href={getAffidavitUrl(candidate.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.affidavit')}</a>
+      {/if}
+      {#if pdfIcon && manifestoUrl}
+        <a href={manifestoUrl} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.manifesto')}</a>
       {/if}
     </div>
     <div class="candidate-symbol">

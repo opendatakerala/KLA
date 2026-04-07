@@ -57,3 +57,9 @@ export const KERALA_DISTRICTS = [
   'Kollam',
   'Thiruvananthapuram'
 ];
+
+export const MANIFESTO_URLS = {
+  LDF: 'https://archive.org/details/ldf-manifesto-2026-malayalam_202604',
+  UDF: 'https://archive.org/details/udf-manifesto-2026-malayalam_202604',
+  NDA: 'https://archive.org/details/nda-manifesto-2026-malayalam_202604'
+};
