@@ -82,8 +82,8 @@ function generate() {
     const name = cleanString(cand.candidate_Name);
     if (!name) return;
     
-    const affidavitUrl = cleanString(cand.affidavit_url);
-    const affidavitId = affidavitUrl?.replace('https://affidavit.eci.gov.in/affidavit-pdf-download/', '');
+    const affidavitProfileUrl = cleanString(cand.affidavit_profile_url);
+    const affidavitProfileId = affidavitProfileUrl?.replace('https://affidavit.eci.gov.in/show-profile/', '');
 
     grouped[qid].candidates.push({
       alliance,
@@ -94,7 +94,7 @@ function generate() {
       gender: cleanString(cand.candidate_Gender),
       age: cleanString(cand['age_x affidavit']),
       candidateId: cleanString(cand.candidate_id),
-      affidavitId,
+      affidavitProfileId,
       photo: cleanString(cand.photo_filename),
       reference: cleanString(cand.Reference),
       symbol: cleanString(cand.Symbol)

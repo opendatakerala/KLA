@@ -6,9 +6,9 @@
 
   let { candidate, allianceLabel, allianceColor, langValue, isLoading, t, pdfIcon = null, manifestoUrl = null } = $props();
 
-  function getAffidavitUrl(affidavitId) {
-    if (!affidavitId) return null;
-    return `https://affidavit.eci.gov.in/affidavit-pdf-download/${affidavitId}`;
+  function getAffidavitUrl(affidavitProfileId) {
+    if (!affidavitProfileId) return null;
+    return `https://affidavit.eci.gov.in/show-profile/${affidavitProfileId}`;
   }
 
   function getPhotoSrc(reference) {
@@ -36,8 +36,8 @@
       <div class="alliance-label">{allianceLabel}</div>
       <div class="candidate-name" class:tbd={!candidate.name}>{getCandidateName(candidate, langValue, isLoading, t)}</div>
       <div class="candidate-party">{candidate.party || '—'}</div>
-      {#if pdfIcon && candidate.affidavitId}
-        <a href={getAffidavitUrl(candidate.affidavitId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.affidavit')}</a>
+      {#if pdfIcon && candidate.affidavitProfileId}
+        <a href={getAffidavitUrl(candidate.affidavitProfileId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.affidavit')}</a>
       {/if}
       {#if pdfIcon && manifestoUrl}
         <a href={manifestoUrl} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.manifesto')}</a>
