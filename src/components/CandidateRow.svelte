@@ -2,17 +2,36 @@
   import { getCandidateSymbol } from '../lib/symbols.js';
   import { getCandidateName } from '../stores/candidateStore.js';
 
+  const candidatePhotos = import.meta.glob('../images/candidate_photos/*.jpg');
+
   let { candidate, allianceLabel, allianceColor, langValue, isLoading, t, pdfIcon = null } = $props();
 
   function getAffidavitUrl(affidavitId) {
     if (!affidavitId) return null;
     return `https://affidavit.eci.gov.in/affidavit-pdf-download/${affidavitId}`;
   }
+
+  function getPhotoSrc(reference) {
+    if (!reference) return null;
+    const key = `../images/candidate_photos/${reference}.jpg`;
+    const loader = candidatePhotos[key];
+    if (!loader) return null;
+    return loader().then(m => m.default?.src);
+  }
 </script>
 
 <div class="candidate-row">
   <div class="alliance-bar" style="background: {allianceColor}"></div>
   <div class="candidate-info">
+    {#if candidate.reference}
+      {#await getPhotoSrc(candidate.reference)}
+        <div class="candidate-photo-placeholder"></div>
+      {:then photoSrc}
+        {#if photoSrc}
+          <img src={photoSrc} alt="" class="candidate-photo" />
+        {/if}
+      {/await}
+    {/if}
     <div class="candidate-details">
       <div class="alliance-label">{allianceLabel}</div>
       <div class="candidate-name" class:tbd={!candidate.name}>{getCandidateName(candidate, langValue, isLoading, t)}</div>
@@ -26,7 +45,7 @@
         {#await getCandidateSymbol(candidate.symbol)}
         {:then symbolSrc}
           {#if symbolSrc}
-            <img src={symbolSrc} alt="" />
+            <img src={symbolSrc} alt="" title={candidate.symbol} />
           {/if}
         {/await}
       {/if}
@@ -57,6 +76,22 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+  }
+
+  .candidate-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .candidate-photo-placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg2);
+    flex-shrink: 0;
   }
 
   .candidate-details {

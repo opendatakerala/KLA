@@ -96,6 +96,7 @@ function generate() {
       candidateId: cleanString(cand.candidate_id),
       affidavitId,
       photo: cleanString(cand.photo_filename),
+      reference: cleanString(cand.Reference),
       symbol: cleanString(cand.Symbol)
     });
   });
