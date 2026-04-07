@@ -7,17 +7,17 @@ export const districtBounds = districtBoundsData;
 
 export const GEOGRAPHY_REGIONS = {
   north: {
-    name: 'North Kerala',
+    name: 'North Keralam',
     malayalam: 'വടക്കൻ കേരളം',
     districts: ['Kasaragod', 'Kannur', 'Wayanad', 'Kozhikode', 'Malappuram']
   },
   central: {
-    name: 'Central Kerala',
+    name: 'Central Keralam',
     malayalam: 'മധ്യകേരളം',
     districts: ['Palakkad', 'Thrissur', 'Ernakulam', 'Kottayam', 'Idukki']
   },
   south: {
-    name: 'South Kerala',
+    name: 'South Keralam',
     malayalam: 'തെക്കൻ കേരളം',
     districts: ['Alappuzha', 'Pathanamthitta', 'Kollam', 'Thiruvananthapuram']
   }
