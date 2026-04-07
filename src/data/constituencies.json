@@ -99,7 +99,7 @@
         "malayalam": "ജോൺ ഡിസൂസ",
         "wikidata": "",
         "gender": "male",
-        "age": "631",
+        "age": "63",
         "candidateId": "2064",
         "affidavitId": "eyJpdiI6IlZtK3BhUkpRd3NXTDlwVzlVd1FSZFE9PSIsInZhbHVlIjoiVjBRTTUrM1NBL1VVK0hFNlB1OWRYejdEd2RkVU5HSlBnamdzV2QwdllCMWFFUnVvRDc2RU1uS3dTUHRVb0FPeGVzSlhjZnEvSEJJeS9uUDRpRUlLYTJiR1p5R1NCNkN0WkpDNXBGaUJuTC9zb1ZoMW50ZEk3MHVyNDBBSmx4SVBILzRjcFE4TXBVVDdNcVVNY1I2SkFleHhGdmJoNW4wUW1jVzhhWTlIM2dzPSIsIm1hYyI6ImI4NDY1ZWJjYzUzNDQ3NjJhMDk5ZTZlYjk1NjAzYzhiZDQxODcwMjcxN2NjNjI2NDA1ZTM1ZDhhMTVjNzJjYzMiLCJ0YWciOiIifQ==",
         "photo": "JOHND-2026-20260324054042.jpg",
@@ -332,7 +332,7 @@
         "candidateId": "2517",
         "affidavitId": "eyJpdiI6IkxzMkk0Z3BncGR2ajhMM0hIRURmakE9PSIsInZhbHVlIjoiUTlLaW9TWnBoTVdHZTgzZmtTdWtObTQ5RTBRSXdESmpsWUszR0Nud2xxM1A5MlZBZ2d0YzRVS3crY0ZuUmFpejJNMlVzaFIxNkwxYjNLZHNpWmVKUHl5OXNndzRQcjdaQkZnOU5WU0VNWnhpamVKNDBweTl3V09Nc2hSdlRicEx1aGVrdnRNc2o5SlphbFFZYmdkbzI4Wkt5VWlDLzdFTSt5c3VJelk0VkZJPSIsIm1hYyI6IjM5NWQ2MmI5NmM5M2I2NjljYjUwMzM3MGJjNmIxZjFlYjQ5ZDc0ZmQ0OTViODM5NTNiZmQxZjAxN2U5YjAxNWUiLCJ0YWciOiIifQ==",
         "photo": "1774162897pic.jpg",
-        "symbol": "Drill Machine"
+        "symbol": "Drilling Machine"
       }
     ]
   },
@@ -755,7 +755,7 @@
         "candidateId": "3188",
         "affidavitId": "eyJpdiI6ImtTeE9RV3ArY3hNZGFhUGlZci8yTkE9PSIsInZhbHVlIjoiTjRNUFVJcVRGR1hTTVJzcVBSc1A4YVdKOTR6TXpoYS9pbzVIUWRiRUxkQVJsdGVhaWlGZE94bk9LdWY4NUNTZENGanVKNFQ4ZDk3NTQ5NzZiYzZwa3ZhTU5HS1FlS2FUZzhiVlJjeTBwM2hFK2llQW9Cejcrem5TRFErdzNNRWhadzJ0SDVicmRDb1hQZmhoTE5qd0h5Rk85dWJNR1ppU2F4TWlXWk9DKzg0PSIsIm1hYyI6ImI0ZDAwMjkyYjgxZTI0NDRkMTFmYjlkNzlmYzg2ZTllNTFmNTNkMjUyZWI3YjBmNDA3N2ZjZTNhODNlNDc5MjkiLCJ0YWciOiIifQ==",
         "photo": "BALAK-2026-20260321033207.jpg",
-        "symbol": "Football Player"
+        "symbol": "Football player"
       },
       {
         "alliance": "Others",
@@ -816,8 +816,8 @@
       {
         "alliance": "LDF",
         "party": "Kerala Congress (M)",
-        "name": "Mathew Kunnappally",
-        "malayalam": "മാത്യു കുന്നപ്പള്ളി",
+        "name": "Adv. Mathew Kunnappally",
+        "malayalam": "അഡ്വ. മാത്യു കുന്നപ്പള്ളി",
         "wikidata": "",
         "gender": "male",
         "age": "66",
@@ -829,8 +829,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Sajeev Joseph",
-        "malayalam": "സജീവ് ജോസഫ്",
+        "name": "Adv. Sajeev Joseph",
+        "malayalam": "അഡ്വ. സജീവ് ജോസഫ്",
         "wikidata": "Q106687786",
         "gender": "male",
         "age": "53",
@@ -924,8 +924,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "Kareem Cheleri",
-        "malayalam": "കരീം ചേലേരി",
+        "name": "Adv.  Kareem Cheleri",
+        "malayalam": "അഡ്വ. കരീം ചേലേരി",
         "wikidata": "",
         "gender": "male",
         "age": "63",
@@ -1153,8 +1153,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Abdul Rasheed V P",
-        "malayalam": "അബ്ദുൾ റഷീദ്",
+        "name": "Adv. V.P Abdul Rasheed",
+        "malayalam": "അഡ്വ. വി. പി. അബ്ദുൾ റഷീദ്",
         "wikidata": "",
         "gender": "male",
         "age": "36",
@@ -1295,7 +1295,7 @@
         "candidateId": "1979",
         "affidavitId": "eyJpdiI6InBwdjlIbloyL1JtdDBMRnlQYmJQeUE9PSIsInZhbHVlIjoiYit0MHdrN093cW04WXRnNlZieThVUDdOR1lNNTRLQ3pvenE2N2ZyOVpoSXZPNnJxQmY1VVUyckVMUnJOejVDREpYUW8zMjBjbkRoM3IwemxUSUEyaXN0OUcwNTNYNzU2dWQ1U0pMc0gzMVJrU0R6TWxPWVBPWjZXN25kYlhtQ0liQm5XWXArYktMTmZ0emM2eWMxN1lKVXBNTzlCUWJiZWZrTnFOWnBpODh3PSIsIm1hYyI6IjFlMWVhYmYwMDdkMjE0YTk5ZDFjY2U5MTcyM2EyNmUxMTE0ZTQ0NTcwMDI1YjQ0ODk2NGQ3MDZkNzdlNDhiYzUiLCJ0YWciOiIifQ==",
         "photo": "SAJUV-2026-20260326090013.jpg",
-        "symbol": "Cutting Plier"
+        "symbol": "Cutting plier"
       },
       {
         "alliance": "Others",
@@ -1572,8 +1572,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Sunny Joseph",
-        "malayalam": "സണ്ണി ജോസഫ്",
+        "name": "Adv. Sunny Joseph",
+        "malayalam": "അഡ്വ. സണ്ണി ജോസഫ്",
         "wikidata": "Q20564838",
         "gender": "male",
         "age": "73",
@@ -1697,7 +1697,7 @@
         "candidateId": "4647",
         "affidavitId": "eyJpdiI6IkpjczNrb3hpVStjeHZ5emUrRmNmU3c9PSIsInZhbHVlIjoiSzZwSG9CNGZabEpwYmxRVlRVYmZ4U0w1WWN5b2xzdGVOOERrS25WK0VvblZhTlhLQU92TlY5Y0d3WGVyZ3hZN0R6ekRSUG5WOEQ5VURYaWQwREt2eTA3T25MNW9taFZOWGNadGh3bnl2ckMvNGs1ZHFVSU5PTUE3aU1INlNudlNMMEtXeG0xbHFGdlNvdDV1Z3pMazJ5ZzRMbVkzN05tTnhGRjFoWExNWlhZPSIsIm1hYyI6ImY0ZjU4YTYwNmY3ZjQ1YjgxZWFjYjJhZGNlZGMzMGE2MjBjMzU0MTFmNDdhZjBiMjE0ZjMwMTBmMzhkMzM4NTIiLCJ0YWciOiIifQ==",
         "photo": "KRISH-2026-20260323044157.jpg",
-        "symbol": "Flag with Three Stars"
+        "symbol": "Flag with three Stars"
       }
     ]
   },
@@ -1732,8 +1732,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Usha Vijayan",
-        "malayalam": "ഉഷ വിജയൻ",
+        "name": "Usha M A",
+        "malayalam": "ഉഷ എം. എ",
         "wikidata": "",
         "gender": "female",
         "age": "46",
@@ -2069,8 +2069,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "K. Dileep",
-        "malayalam": "കെ. ദിലീപ്",
+        "name": "Adv. K. Dileep",
+        "malayalam": "ആഡ്വ.കെ. ദിലീപ്",
         "wikidata": "",
         "gender": "male",
         "age": "50",
@@ -2246,8 +2246,8 @@
       {
         "alliance": "LDF",
         "party": "CPI",
-        "name": "P. Vasantham",
-        "malayalam": "പി. വസന്തം",
+        "name": "Adv. P. Vasantham",
+        "malayalam": "ആഡ്വ. പി. വസന്തം",
         "wikidata": "",
         "gender": "female",
         "age": "67",
@@ -2293,7 +2293,7 @@
         "candidateId": "2559",
         "affidavitId": "eyJpdiI6IlJWZmFzeXU0WGNKY3JndEpvY2gxRmc9PSIsInZhbHVlIjoiNFY5c1JQc1RZSUFaMFVYS1k4ZXliWi81Q0JtRU5JdmpFdlhIRmc5clZhNU94ak5lTzhPOGd1YTlCdWV2UWFxTUJ1dmV5ck5VcGFFUlV3NEtsbjdZeWZvVVJOc3pSNU85QW8zT0taYmVXcFVDRjl3bEVBVzNCVDJsR3JCSUFzNk9ib2hFMXFpVnQvaUYrcUI3N1BiK3d1bGJGTzRRbmhLekRndGU0dDE5YXlZPSIsIm1hYyI6ImVmYjZkOTUwNDliNmM0ZDRjN2JhMTkyMzJlNjFiYTc2MzFjNzk5ZWU1Yjk2NTg1NGIxMDA3ZGRhMTQzMTUzMzYiLCJ0YWciOiIifQ==",
         "photo": "VASAN-2026-20260323063433.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",
@@ -2332,7 +2332,7 @@
         "candidateId": "3801",
         "affidavitId": "eyJpdiI6ImtSK3BlejY5UDVYUHdVT202S3NUTkE9PSIsInZhbHVlIjoiZjZLMmxBWnNDMG8wRlYvaWJ2OG5yMU42RU1zS2NSUXRPN3FZWUpIeFVJRTRUZGlwa01MWUc5YmkvVG1DMlRsUjZaT0k5SWk1c0FpTmFhK3JrNjA0OThXUjF4YUtuck1OMVNXSGM0UEdKc1Q5czhEcnFGZWlGZzJVL1R5ZlBBT1ZRajRoTGlPelVKN2gwVkZ2eTJJZU91RVhlcnY0TjlMMjJuTFRRbnFCWjRRPSIsIm1hYyI6IjRkNjkyYmEyN2VjNDkwNjI0NWY3YjRjNjA2N2U5ZGVmMmZhNmE1MTk0MTM3MmRhYTYxOWQ1MjNkOWFjZTlkZDYiLCJ0YWciOiIifQ==",
         "photo": "PADMA-2026-20260323090742.jpg",
-        "symbol": "Football Player"
+        "symbol": "Football player"
       }
     ]
   },
@@ -2414,7 +2414,7 @@
         "candidateId": "1201",
         "affidavitId": "eyJpdiI6ImVuWlZSNGVZM1ZLNlRSclBOZWljNmc9PSIsInZhbHVlIjoieHJBeit2K1l4NlBObVRSUnA1WUhxbEhaUks2ZTh5bUJoeGNJSTBGclpvUnFYc1R5QkhDYjd2YVUzM1J0VTY0NUhSaHpadk5PL2ZnVzhDVXM1Z2x1ZENxeFg5dEtOUWptb1RQcXhmNDhCVnhYN3EwWW55TTZEQTVYeTRuU2Z1VHNUR2t6anFtcjRSV1BYS1JuS3JrdGhIcHFCcUhHWW01d3d3cHpvNy9VWjBJPSIsIm1hYyI6IjZkNjZmZjAyYzU1N2JjNjJkODJmZTFlMDIwN2ZjNDI4ZWVkZWE4ZGZhYzM4MjFhYzRmMTdmZmEyZTBhOWRkMTciLCJ0YWciOiIifQ==",
         "photo": "PRAVE-2026-20260326012911.jpg",
-        "symbol": "Room Cooler"
+        "symbol": "Room cooler"
       },
       {
         "alliance": "Others",
@@ -2475,8 +2475,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "Fathima Thahiliya",
-        "malayalam": "ഫാത്തിമ തഹ്‌ലിയ",
+        "name": "Adv. Fathima Thahiliya",
+        "malayalam": "അഡ്വ. ഫാത്തിമ തഹ്‌ലിയ",
         "wikidata": "",
         "gender": "female",
         "age": "34",
@@ -2609,8 +2609,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "K. M. Sachindev",
-        "malayalam": "കെ. എം. സച്ചിൻദേവ്",
+        "name": "Adv. K.M. Sachindev",
+        "malayalam": "ആഡ്വ. കെ. എം. സച്ചിൻദേവ്",
         "wikidata": "Q106687784",
         "gender": "male",
         "age": "32",
@@ -2704,8 +2704,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Vidya Balakrishnan",
-        "malayalam": "വിദ്യ ബാലകൃഷ്ണൻ",
+        "name": "Adv. Vidya Balakrishnan",
+        "malayalam": "അഡ്വ. വിദ്യ ബാലകൃഷ്ണൻ",
         "wikidata": "",
         "gender": "female",
         "age": "40",
@@ -2730,7 +2730,7 @@
       {
         "alliance": "Others",
         "party": "",
-        "name": "V.K.Saseendran",
+        "name": "V.K. Saseendran",
         "malayalam": "വി.കെ. ശശീന്ദ്രൻ",
         "wikidata": "",
         "gender": "male",
@@ -2738,7 +2738,7 @@
         "candidateId": "3076",
         "affidavitId": "eyJpdiI6InBFVlhtOTY4WXRiWG41ZkZicWVRY2c9PSIsInZhbHVlIjoiUXVPUDJIRDk0OWkyaElBRkpxNDRJWkdPKzU3QitvaVpTd3F1N2cxZzNicWVoMVVWbGRoQTMybmhFWWFWVVMzK2FTUWFVVWJQSFJzRmUwdnlTL2xqcWphRXNxTWpMZzJFK2tRMjNzc1d2eUFnK1UzbURJMTFmdThrYTljUVI1RGVsWWcrc1YwbG1VV0cydmNLVW55TXkwY3ZpT0VhOVRWK2lrVzI0bGQzM0VNPSIsIm1hYyI6IjRmMjFiOTg4NDVlMTBjMjJjOTQ2ZDRhNWYxYmMwN2FkZWUyODA5YTM2NmI5YmE4Y2IxZjI4OTUxNzFhOGU4NjIiLCJ0YWciOiIifQ==",
         "photo": "SASEE-2026-20260323073918.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",
@@ -2825,8 +2825,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "K. Jayanth",
-        "malayalam": "കെ. ജയന്ത്",
+        "name": "Adv. K Jayanth",
+        "malayalam": "അഡ്വ. കെ. ജയന്ത്",
         "wikidata": "",
         "gender": "male",
         "age": "53",
@@ -2972,8 +2972,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "Faisal Babu",
-        "malayalam": "ഫൈസൽ ബാബു",
+        "name": "Adv. Fyzal Babu",
+        "malayalam": "അഡ്വ. ഫൈസൽ ബാബു",
         "wikidata": "",
         "gender": "male",
         "age": "47",
@@ -3041,8 +3041,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "K. P. Prakash Babu",
-        "malayalam": "കെ. പി. പ്രകാശ് ബാബു",
+        "name": "Adv. K. P. Prakash Babu",
+        "malayalam": "ആഡ്വ.കെ. പി. പ്രകാശ് ബാബു",
         "wikidata": "",
         "gender": "male",
         "age": "47",
@@ -3114,7 +3114,7 @@
         "candidateId": "1986",
         "affidavitId": "eyJpdiI6IndqeU5rcmp6QlZXdHpDb0lmemRHNEE9PSIsInZhbHVlIjoiRmZndEJyR1J4eTh1dmw1am9WUGprdnhKclUrRzF1dmVTQVRScy9XOGhpcTFTTU9uYW5QYnJwK1NQOUhMNXlGYTNwSTR0M0NwcFI4emJ3Z2FKRjV1Tm50ZXpJNjZQUk90bEVJdVlabENWZXlGWHRDRHY0V09PNVMzcERPUm9WWWtiazVXdjAza25MdUlzVHJIN0tCakpTb3IyUld1TWNyYzY0YXZwUm9zbUE4PSIsIm1hYyI6ImFlY2NjYjQwMGNlOGQ0YTkzYjMxZmQwZDNiYTE5N2M3ZDMxNzk5YTQ2MjRiYzMzNDIyYTgyOGMzYzM4ZjVkNzgiLCJ0YWciOiIifQ==",
         "photo": "MUHAM-2026-20260324033857.jpg",
-        "symbol": "Ice Cream"
+        "symbol": "Ice cream"
       }
     ]
   },
@@ -3136,8 +3136,8 @@
       {
         "alliance": "LDF",
         "party": "Independent (CPI(M) support)",
-        "name": "P. T. A. Rahim",
-        "malayalam": "പി. ടി. എ. റഹീം",
+        "name": "Adv. P.T.A Rahim",
+        "malayalam": "ആഡ്വ. പി. ടി. എ. റഹീം",
         "wikidata": "Q16143039",
         "gender": "male",
         "age": "76",
@@ -3162,8 +3162,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "V. K. Sajeevan",
-        "malayalam": "വി. കെ. സജീവൻ",
+        "name": "Adv. V. K. Sajeevan",
+        "malayalam": "അഡ്വ. വി. കെ. സജീവൻ",
         "wikidata": "",
         "gender": "male",
         "age": "50",
@@ -3434,7 +3434,7 @@
         "candidateId": "3085",
         "affidavitId": "eyJpdiI6ImxacGo2eE80ZzFiTTRpVlpoSER1Snc9PSIsInZhbHVlIjoiWFlJWFhKMmZLV1JSd3lvaTZJQ0lPbmFtaFFrcElBdlk5c2hQd3Nlb2lBY1FwS0ZVZTdLN2lNWXduM3BRcWcwbjBSYjNYZTluVERES21UdnZKTUplcGNZclFBWkFIcVZUd0tObHM1ODhERmpDYmI3cjJPSUFWYVp4SDBXeHhtcUhIVzdBbk92WmJwUzk3VWdIUWxicVRzUzhQZkZ0d0MrS0VMQTE4QnR1YXhnPSIsIm1hYyI6Ijg3YzNiNzBiYjJmMTExZGRjODIzZDg1ZWY2Yjk1NDIxYmViNjcyYTZjMTUyNTczMWU5YzJjZjQxNmJhYzY0YmIiLCJ0YWciOiIifQ==",
         "photo": "SUNIL-2026-20260323073611.jpg",
-        "symbol": "Ganna Kissan (കരിമ്പു കർഷകൻ)"
+        "symbol": "Ganna Kisan"
       }
     ]
   },
@@ -3503,7 +3503,7 @@
         "candidateId": "4612",
         "affidavitId": "eyJpdiI6IkpBYTFQVGs0TjZxU29JbzcyQVhwRnc9PSIsInZhbHVlIjoiVmQrZmN4Vk9PQkpSYmJBeVQvUkU4QWk0UDBqRm1lQ0xVMlg4bS9YSTFIQ01PV2gwWVZXNGFLRElLNFkzVzhBRU9yMHEwYnBzUHczbzVsV2NaNEh2c1ZCMDNYd2g1NFpZRVE3V1FGRkJ2SGpkM3dHbU05RUZYWmlsUlY5RmprRmE0NW9VRTlidk1wQ1RENTZDV2dxYmQ5MFk3eGE5bTBodWhlSzQvRkloRzVBPSIsIm1hYyI6Ijg0MzAwMzYyMDBlYWQ5ZmFmMWU3Mzk3ZDFmNDI5ZmRkZDE1YjIzNzRmZGVkZTE5N2U2MjZmYWNlNmRkNzk4ZTgiLCJ0YWciOiIifQ==",
         "photo": "WILSO-2026-20260323042336.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",
@@ -3646,8 +3646,8 @@
       {
         "alliance": "LDF",
         "party": "CPI",
-        "name": "Shafeer Kizhisseri",
-        "malayalam": "ഷഫീർ കിഴിശ്ശേരി",
+        "name": "Adv. Shafeer Kizhisseri",
+        "malayalam": "ആഡ്വ. ഷഫീർ കിഴിശ്ശേരി",
         "wikidata": "",
         "gender": "male",
         "age": "36",
@@ -3810,8 +3810,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "K. K. Damodaran",
-        "malayalam": "കെ. കെ. ദാമോദരൻ",
+        "name": "Dr. K.K Damodaran",
+        "malayalam": "ഡോ. കെ. കെ. ദാമോദരൻ",
         "wikidata": "",
         "gender": "male",
         "age": "58",
@@ -3892,8 +3892,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "M. Rahmathulla",
-        "malayalam": "എം. റഹ്മത്തുള്ള",
+        "name": "Adv. M. Rahmathulla",
+        "malayalam": "അഡ്വ. എം. റഹ്മത്തുള്ള",
         "wikidata": "Q138701481",
         "gender": "male",
         "age": "65",
@@ -4034,7 +4034,7 @@
         "candidateId": "3204",
         "affidavitId": "eyJpdiI6IlNQSFlXZE1XTFg0ejdBd2pzZTgrdHc9PSIsInZhbHVlIjoiNGwwWWlWVEpBSU5kTU1vY3RZWDBuM0xWdUZkM09NRTd0OE16a0NTR0ZSZmMrdUVGRVFqVkhablJJM1dDUlpJWTlKa0kwdlo5U25CTGk3emtRUVZkcUNnV3R6QXhQRUVTUnhkV3hrN2F3RktsM1FEdW92Mmt5VGR0M01obXJqbDZreGhZTVZOU1VGTWxPT1FVeFdBTE03SHRpNXN5ZGM3dHo3dkFVY1FjMzFjPSIsIm1hYyI6ImRhOGQ3MTk4OGE0NzE0NTJmZTlhZTQ0OWJkNWU3ZGI2YTUxNjY1NzIyZGRiYmU5NTQwYjM0ODhkNjUxYmU4NmQiLCJ0YWciOiIifQ==",
         "photo": "HANEE-2026-20260323075242.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",
@@ -4332,7 +4332,7 @@
         "candidateId": "4011",
         "affidavitId": "eyJpdiI6Im5HWW45MGt2a3BGVUt1bzVZQ2V0amc9PSIsInZhbHVlIjoiRUY2dDNEU2NKaWtVeXRia1pxUlpkWmV0bTQ0MkJvQzRxSGZyZXJqTjJheTBVQ1crRkVKbnVWL3cxVlpjQndzdDd1OXZ3ZGVLMTdpT3k4VzVDMjBsd3k5RWpqUkZMOGliS0dYMWVFMkxybWc2WGtpYldBV0F1ZW9zdUNmd1NoanhJeWtkcnFMeEJxVHI5OVorbjhzWll3VmlkSUg4Y25JRWJsZi8rKzZjaEJzPSIsIm1hYyI6IjNhNzIyOWFkYzlkMDQxMWNkODc5ZDUxNWZiN2Y2YzU5YWUxYTk5MWFhZWI2NDU4YzEyMDljMGU3MWU1NWIwNWEiLCJ0YWciOiIifQ==",
         "photo": "ABDUL-2026-20260325025723.jpg",
-        "symbol": "Football Player"
+        "symbol": "Football player"
       },
       {
         "alliance": "Others",
@@ -4786,8 +4786,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "K. K. Abid Hussain Thangal",
-        "malayalam": "കെ. കെ. ആബിദ് ഹുസൈൻ തങ്ങൾ",
+        "name": "Prof. K. K. Abid Hussain Thangal",
+        "malayalam": "പ്രൊ. കെ. കെ. ആബിദ് ഹുസൈൻ തങ്ങൾ",
         "wikidata": "Q24952533",
         "gender": "male",
         "age": "65",
@@ -4868,8 +4868,8 @@
       {
         "alliance": "LDF",
         "party": "Independent (CPI(M) support)",
-        "name": "K. T. Jaleel",
-        "malayalam": "കെ. ടി. ജലീൽ",
+        "name": "Dr. K. T. Jaleel",
+        "malayalam": "ഡോ. കെ. ടി. ജലീൽ",
         "wikidata": "Q15035529",
         "gender": "male",
         "age": "58",
@@ -4881,8 +4881,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "V. S. Joy",
-        "malayalam": "വി. എസ്. ജോയ്",
+        "name": "Adv. V S Joy",
+        "malayalam": "അഡ്വ. വി. എസ്. ജോയ്",
         "wikidata": "",
         "gender": "male",
         "age": "40",
@@ -4950,8 +4950,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "M. K. Sakeer",
-        "malayalam": "എം. കെ. സക്കീർ",
+        "name": "Adv. M. K. Sakeer",
+        "malayalam": "ആഡ്വ.എം. കെ. സക്കീർ",
         "wikidata": "Q138681975",
         "gender": "male",
         "age": "61",
@@ -5010,7 +5010,7 @@
         "candidateId": "2248",
         "affidavitId": "eyJpdiI6Ik5OM2ZsTHdmbUdpNVgwSkxsQU5wekE9PSIsInZhbHVlIjoidGFOcWZTc01KUVlybkhIM3BaalVhenEvaWJWWmI4TTZCa2hQYUt5ejllOXpnVUw4dGdoeU9uYThLK1R5d1lGTmtaa0d0cGRhSVRMNVZnVTgxYXdOSGpRbUMxNGxodHZid0JBOTVRWjV0YWdZN0RwcnNZZEFhS1J3SG4rV1c3REVNNDBZZTlwWWRsUm50c1F0MnBHeU51dDNoZy9xTXFkNUxJUW9wYW5QaWowPSIsIm1hYyI6IjdmYTY0ZWQ0MTY4ZGNhZTM5NTM1MzA2Njg5YjJhMDAzYTM3MDQyYmY2NmU4OTNkYzI1M2Y1ZWIyM2Q3NjZkYzkiLCJ0YWciOiIifQ==",
         "photo": "SAGEE-2026-20260326061725.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",
@@ -5036,7 +5036,7 @@
         "candidateId": "2060",
         "affidavitId": "eyJpdiI6IkZaWGdwdmVxTHZkZ24zT1MzeVIvVmc9PSIsInZhbHVlIjoiaWNkOTRuMDAzNXp4ZEFRTGxQY3RIQllFSnpZOW4yUWFlQWtkcWordUErS1dDNTdIclkrbDRSa0NEekxKUmF6Ykg0dm1Rc3lyR1dtVDRSSXhFayttWXZqYk12ZjhXTmNYUXhSVjFQWmVZNmhhZjk0K1V6YW9vU2s5Y2pIblVER2pRcGpva2ZRM2ZDdEhDV0xNbHdLQzNESlNBajlwaUUyUjFxbmMyQjRldEVvPSIsIm1hYyI6IjIxOTQ2YjNiNDVkYTY0ZGU2MzMzYTJlMzI0OTFlYWJhMTk0Mzc2YmM4NDVkOTg0ZmVmN2NkZjhlNzBlMGJhOTgiLCJ0YWciOiIifQ==",
         "photo": "SAKKE-2026-20260326061304.jpg",
-        "symbol": "Cutting Plier"
+        "symbol": "Cutting plier"
       },
       {
         "alliance": "Others",
@@ -5339,8 +5339,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "Sanku T. Das",
-        "malayalam": "ശങ്കു ടി. ദാസ്",
+        "name": "Adv. Sanku T. Das",
+        "malayalam": "ആഡ്വ. ശങ്കു ടി. ദാസ്",
         "wikidata": "",
         "gender": "male",
         "age": "36",
@@ -5382,8 +5382,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "K. Premkumar",
-        "malayalam": "കെ. പ്രേംകുമാർ",
+        "name": "Adv. K. Premkumar",
+        "malayalam": "ആഡ്വ.കെ. പ്രേംകുമാർ",
         "wikidata": "Q106679757",
         "gender": "male",
         "age": "46",
@@ -5559,8 +5559,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "N. Samsudheen",
-        "malayalam": "എൻ. ഷംസുദ്ദീൻ",
+        "name": "Adv. N. Samsudheen",
+        "malayalam": "അഡ്വ. എൻ. ഷംസുദ്ദീൻ",
         "wikidata": "Q24055597",
         "gender": "male",
         "age": "56",
@@ -5606,7 +5606,7 @@
         "candidateId": "1852",
         "affidavitId": "eyJpdiI6InNCcVFmZXpvcHFiTmRoS3pZT25wU0E9PSIsInZhbHVlIjoiV2ZTakFIZE9qUnlHYjEyV3F4SzArVWV2Y2tvNW9HUXdGS1BTWnkyeUFhYTYwWVd0MkZHUzRMSFc1QitvQzdlWmRhWTZ6bVlaS09nblZYczBteENPWGdKSHkzMkhHY1pHbCs5a3ArcGFFTVdiSzhrMDNVSnBIOXgvU3FuOEtpQ201ZVg5dWIvSTZsWExLZlRCRmtYSE9Zd2pLd0xJN3NPeWl0L3E2SHE0Mi9jPSIsIm1hYyI6IjUxZmIwYjBhZTRlYWQzZmQ0NmY3ZjM5NDVkZjM3NzVhZDE2MzU5NTQ3YmUxOTkyZTI2MmJjOTIwNDhmMzlmZGIiLCJ0YWciOiIifQ==",
         "photo": "SHAMS-2026-20260323044020.jpg",
-        "symbol": "Hand Cart"
+        "symbol": "Hand cart"
       },
       {
         "alliance": "Others",
@@ -5939,8 +5939,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Sumesh Achuthan",
-        "malayalam": "സുമേഷ് അച്യുതൻ",
+        "name": "Adv. Sumesh Achuthan",
+        "malayalam": "അഡ്വ. സുമേഷ് അച്യുതൻ",
         "wikidata": "",
         "gender": "male",
         "age": "50",
@@ -6375,8 +6375,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "Adv. B. Gopalakrishnan",
-        "malayalam": "അഡ്വ. ബി. ഗോപാലകൃഷ്ണൻ",
+        "name": "B. Gopalakrishnan",
+        "malayalam": "ബി. ഗോപാലകൃഷ്ണൻ",
         "wikidata": "",
         "gender": "male",
         "age": "64",
@@ -6686,8 +6686,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Shaji Kodankandath",
-        "malayalam": "ഷാജി കോടങ്കണ്ടത്ത്",
+        "name": "Adv. Shaji J Kodankandath",
+        "malayalam": "അഡ്വ. ഷാജി കോടങ്കണ്ടത്ത്",
         "wikidata": "",
         "gender": "male",
         "age": "55",
@@ -6841,7 +6841,7 @@
         "candidateId": "2180",
         "affidavitId": "eyJpdiI6IlF6OHdHMGtaaTBYOGtyRHpOTTRjSnc9PSIsInZhbHVlIjoiUksyTXZPd21JZTdqOGRPMFphR29PS0dxWHFUWTNxYkRiUXFhUWZJUTM4ZkFKNE0zSVpsb3ZncWczdjhnU2k2ZUFmZUlMVUhuVkhVdWk0c0tqRE9mdXRoZ3dSOXFjRWI3T2NIRkxFZVJTUmdKOE5vUktLc1Z3UmFlNE5ER2FpS3FEOGlYV2V1U2FxbG5vSGtvYWEvNXkwblQ5bU9qZzJNQWNQZHpPcjEwY0NjPSIsIm1hYyI6IjkyMzI2M2NjOTg2MmQ4ODNmOWEwNWRmMjM1NzVmOTlhZDY3MTIzNDUyYjVhYjA3Yzk3ZDdkMDMzZmFmYzdkYzQiLCJ0YWciOiIifQ==",
         "photo": "ARSHE-2026-20260323044639.jpg",
-        "symbol": "Flag with Three Stars"
+        "symbol": "Flag with three Stars"
       }
     ]
   },
@@ -6876,8 +6876,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Sunil Lalur",
-        "malayalam": "സുനിൽ ലാലൂർ",
+        "name": "Adv. Sunil Lalur",
+        "malayalam": "ആഡ്വ.സുനിൽ ലാലൂർ",
         "wikidata": "",
         "gender": "male",
         "age": "45",
@@ -7014,8 +7014,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "R. Bindu",
-        "malayalam": "ആർ. ബിന്ദു",
+        "name": "Dr. R. Bindu",
+        "malayalam": "ഡോ. ആർ. ബിന്ദു",
         "wikidata": "Q7273492",
         "gender": "female",
         "age": "58",
@@ -7027,8 +7027,8 @@
       {
         "alliance": "UDF",
         "party": "KEC",
-        "name": "Thomas Unniyadan",
-        "malayalam": "തോമസ് ഉണ്ണിയാടൻ",
+        "name": "Adv. Thomas Unniyadan",
+        "malayalam": "അഡ്വ. തോമസ് ഉണ്ണിയാടൻ",
         "wikidata": "Q7794631",
         "gender": "male",
         "age": "67",
@@ -7243,8 +7243,8 @@
       {
         "alliance": "NDA",
         "party": "TTP",
-        "name": "Charly Paul",
-        "malayalam": "ചാർളി പോൾ",
+        "name": "Adv. Charlypaul",
+        "malayalam": "അഡ്വ. ചാർളി പോൾ",
         "wikidata": "",
         "gender": "male",
         "age": "62",
@@ -7325,8 +7325,8 @@
       {
         "alliance": "LDF",
         "party": "CPI",
-        "name": "V. R. Sunil Kumar",
-        "malayalam": "വി. ആർ. സുനിൽ കുമാർ",
+        "name": "Adv. V R Sunil Kumar",
+        "malayalam": "അഡ്വ. വി. ആർ. സുനിൽ കുമാർ",
         "wikidata": "Q25589441",
         "gender": "male",
         "age": "56",
@@ -7338,8 +7338,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "O. J. Janeesh",
-        "malayalam": "ഒ. ജെ. ജനീഷ്",
+        "name": "Adv. O J Janeesh",
+        "malayalam": "അഡ്വ. ഒ. ജെ. ജനീഷ്",
         "wikidata": "",
         "gender": "male",
         "age": "37",
@@ -7351,8 +7351,8 @@
       {
         "alliance": "NDA",
         "party": "TTP",
-        "name": "Varghese George",
-        "malayalam": "വർഗീസ് ജോർജ്",
+        "name": "Dr. Varghese George",
+        "malayalam": "ഡോ. വർഗീസ് ജോർജ്",
         "wikidata": "",
         "gender": "male",
         "age": "50",
@@ -7623,8 +7623,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "A. M. Ariff",
-        "malayalam": "എ. എം. ആരിഫ്",
+        "name": "Adv. A. M. Ariff",
+        "malayalam": "ആഡ്വ. എ. എം. ആരിഫ്",
         "wikidata": "Q4647242",
         "gender": "male",
         "age": "61",
@@ -7705,8 +7705,8 @@
       {
         "alliance": "UDF",
         "party": "IUML",
-        "name": "V. E. Abdul Gafoor",
-        "malayalam": "വി. ഇ. അബ്ദുൾ ഗഫൂർ",
+        "name": "Adv. V. E. Abdul Gafoor",
+        "malayalam": "അഡ്വ. വി. ഇ. അബ്ദുൾ ഗഫൂർ",
         "wikidata": "",
         "gender": "male",
         "age": "49",
@@ -7813,8 +7813,8 @@
       {
         "alliance": "LDF",
         "party": "CPI",
-        "name": "E. T. Taison",
-        "malayalam": "ഇ. ടി. ടൈസൺ",
+        "name": "E. T. Taison Master",
+        "malayalam": "ഇ. ടി. ടൈസൺ മാസ്റ്റർ",
         "wikidata": "Q47493011",
         "gender": "male",
         "age": "61",
@@ -7826,8 +7826,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "V. D. Satheesan",
-        "malayalam": "വി. ഡി. സതീശൻ",
+        "name": "Adv. V. D. Satheesan",
+        "malayalam": "അഡ്വ. വി. ഡി. സതീശൻ",
         "wikidata": "Q6956446",
         "gender": "male",
         "age": "61",
@@ -7921,8 +7921,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "M. B. Shyni",
-        "malayalam": "എം. ബി. ഷൈനി",
+        "name": "Adv. M. B. Shyni",
+        "malayalam": "അഡ്വ. എം. ബി. ഷൈനി",
         "wikidata": "",
         "gender": "female",
         "age": "44",
@@ -7968,7 +7968,7 @@
         "candidateId": "4104",
         "affidavitId": "eyJpdiI6Ik5BVUROb1ZTLzRGWExKeDlhVlNHNGc9PSIsInZhbHVlIjoiVllyUko5N3Z0TENGZlNOd2o1N3NEd2hjdHhYNVJZRDFHanN5TVdxNUlicnhkbjk2OUxOeS9NUnFibG1ycHZvUThPTkRNcEVVSDJOQytGTEZDdlVUVWhlc3VxcWhmQjc0aUc5QUVLWFVpVXloWjRVZnlkeXFtcU5wVzdYUFRaTnBnY1hVblF4dnVOd0dPeHA4cFA0SHlzMy9WU2c4T0xmcE05TTFpYWlCcmRJPSIsIm1hYyI6ImQ1NjY2MTZmMDJiOWU1MjhlY2FjNDk4NjAxNGE3NTU3NjBmNWQ3NjI0YmM3YTAwMWQxYmRiNzA3ODlkZjhjNTIiLCJ0YWciOiIifQ==",
         "photo": "SADAS-2026-20260323052250.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",
@@ -8124,8 +8124,8 @@
       {
         "alliance": "NDA",
         "party": "TTP",
-        "name": "Anjali Nair",
-        "malayalam": "അഞ്ജലി നായർ",
+        "name": "Anjali .P. V",
+        "malayalam": "അഞ്ജലി പി. വി.",
         "wikidata": "Q28810218",
         "gender": "female",
         "age": "37",
@@ -8171,7 +8171,7 @@
         "candidateId": "2521",
         "affidavitId": "eyJpdiI6InFteXdEVDNCMkIwR2cyY3VCaGFjTGc9PSIsInZhbHVlIjoic1REcTRJc0ZQekM1Y050blBtMVRIR3lLN3lRVDBDOFF3ZEhGUVdsRlZybzNkd1dLRmwvYXVFMkVkY3pPSnZDNXUwYld4YXlKeVJjVHNNOFBjR1RJOC9BNkEycnV4WFhlaFBraHQ2VEVkdllJb2JYU090T1VWZE9VWVNHQVFxUmlUVy8vQWNXL3VYSlpQVUlSRC8venp5ZEU4b3RPTGdMWElVL2lMditmVks0PSIsIm1hYyI6IjI1Y2M0NWMyMGJlMjczZjI5ZWRmYTBlZjU5YmQ4MTBiNWNkODM2ZTExZTZlMTNlYzliNjNlNDUyNzkxNWEwMzUiLCJ0YWciOiIifQ==",
         "photo": "SANDE-2026-20260323062140.jpg",
-        "symbol": "Water Melon"
+        "symbol": "Water melon"
       },
       {
         "alliance": "Others",
@@ -8314,8 +8314,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "Pushpa das",
-        "malayalam": "പുഷ്പ ദാസ്",
+        "name": "Adv. Pushpa das",
+        "malayalam": "ആഡ്വ.പുഷ്പ ദാസ്",
         "wikidata": "",
         "gender": "female",
         "age": "55",
@@ -8340,8 +8340,8 @@
       {
         "alliance": "NDA",
         "party": "TTP",
-        "name": "Akhil Marar",
-        "malayalam": "അഖിൽ മാരാർ",
+        "name": "Akhil Raj (Akhil Marar)",
+        "malayalam": "അഖിൽ രാജ് (അഖിൽ മാരാർ)",
         "wikidata": "",
         "gender": "male",
         "age": "38",
@@ -8396,8 +8396,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "P. V. Sreenijin",
-        "malayalam": "പി. വി. ശ്രീനിജിൻ",
+        "name": "Adv. P. V. Sreenijin",
+        "malayalam": "ആഡ്വ.പി. വി. ശ്രീനിജിൻ",
         "wikidata": "Q106690857",
         "gender": "male",
         "age": "50",
@@ -8599,8 +8599,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Mathew Kuzhalnadan",
-        "malayalam": "മാത്യു കുഴൽനാടൻ",
+        "name": "Dr. Mathew Kuzhalnadan",
+        "malayalam": "ഡോ. മാത്യു കുഴൽനാടൻ",
         "wikidata": "Q106685292",
         "gender": "male",
         "age": "48",
@@ -8763,8 +8763,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "A. Raj",
-        "malayalam": "എ. രാജ്",
+        "name": "Adv. A. Raj",
+        "malayalam": "ആഡ്വ.എ. രാജ്",
         "wikidata": "",
         "gender": "male",
         "age": "41",
@@ -8884,8 +8884,8 @@
       {
         "alliance": "NDA",
         "party": "BDJS",
-        "name": "Sangeetha Viswanathan",
-        "malayalam": "സംഗീത വിശ്വനാഥൻ",
+        "name": "Adv. Sangeetha Viswanadhan",
+        "malayalam": "അഡ്വ. സംഗീത വിശ്വനാഥൻ",
         "wikidata": "",
         "gender": "female",
         "age": "49",
@@ -8941,7 +8941,7 @@
         "alliance": "UDF",
         "party": "KEC",
         "name": "Apu John Joseph",
-        "malayalam": "അപ്പു ജോൺ ജോസഫ്",
+        "malayalam": "അപു ജോൺ ജോസഫ്",
         "wikidata": "",
         "gender": "male",
         "age": "53",
@@ -8953,8 +8953,8 @@
       {
         "alliance": "NDA",
         "party": "TTP",
-        "name": "Roy A. Varikkad",
-        "malayalam": "റോയ് എ. വരിക്കാട്",
+        "name": "Adv. Roy A. Varikkad",
+        "malayalam": "അഡ്വ. റോയ് എ. വരിക്കാട്",
         "wikidata": "",
         "gender": "male",
         "age": "69",
@@ -9074,8 +9074,8 @@
       {
         "alliance": "NDA",
         "party": "BDJS",
-        "name": "Pradeesh Prabha",
-        "malayalam": "പ്രദീഷ് പ്രഭ",
+        "name": "Adv. Pradeesh Prabha",
+        "malayalam": "അഡ്വ. പ്രദീഷ് പ്രഭ",
         "wikidata": "",
         "gender": "male",
         "age": "49",
@@ -9264,8 +9264,8 @@
       {
         "alliance": "Others",
         "party": "AAP",
-        "name": "Rony Jose Nedumpallil",
-        "malayalam": "റോണി ജോസ് നെടുമ്പള്ളിൽ",
+        "name": "Adv. Rony Jose Nedumpallil",
+        "malayalam": "അഡ്വ. റോണി ജോസ് നെടുമ്പള്ളിൽ",
         "wikidata": "",
         "gender": "male",
         "age": "31",
@@ -9320,8 +9320,8 @@
       {
         "alliance": "UDF",
         "party": "KEC",
-        "name": "Mons Joseph",
-        "malayalam": "മോൻസ് ജോസഫ്",
+        "name": "Adv. Mons Joseph",
+        "malayalam": "അഡ്വ. മോൻസ് ജോസഫ്",
         "wikidata": "Q6898473",
         "gender": "male",
         "age": "61",
@@ -9618,8 +9618,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "K. Anilkumar",
-        "malayalam": "കെ. അനിൽകുമാർ",
+        "name": "Adv. K. Anilkumar",
+        "malayalam": "അഡ്വ. കെ. അനിൽകുമാർ",
         "wikidata": "",
         "gender": "male",
         "age": "62",
@@ -9726,8 +9726,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Chandy Oommen",
-        "malayalam": "ചാണ്ടി ഉമ്മൻ",
+        "name": "Adv. Chandy Oommen",
+        "malayalam": "അഡ്വ. ചാണ്ടി ഉമ്മൻ",
         "wikidata": "Q122212026",
         "gender": "male",
         "age": "40",
@@ -9808,8 +9808,8 @@
       {
         "alliance": "LDF",
         "party": "Kerala Congress (M)",
-        "name": "Job Maichil",
-        "malayalam": "ജോബ് മൈക്കിൾ",
+        "name": "Adv. Job Maichil",
+        "malayalam": "അഡ്വ. ജോബ് മൈക്കിൾ",
         "wikidata": "Q106713127",
         "gender": "male",
         "age": "60",
@@ -9873,8 +9873,8 @@
       {
         "alliance": "Others",
         "party": "AAP",
-        "name": "Prof. (Dr.) Saju Kannanthara",
-        "malayalam": "പ്രൊഫ. (ഡോ.) സാജു കണ്ണന്തറ",
+        "name": "Prof. Dr. Saju Kannanthara",
+        "malayalam": "പ്രൊഫ. ഡോ. സാജു കണ്ണന്തറ",
         "wikidata": "",
         "gender": "male",
         "age": "59",
@@ -9955,8 +9955,8 @@
       {
         "alliance": "LDF",
         "party": "Kerala Congress (M)",
-        "name": "N. Jayaraj",
-        "malayalam": "എൻ. ജയരാജ്",
+        "name": "Dr. N. Jayaraj",
+        "malayalam": "ഡോ. എൻ. ജയരാജ്",
         "wikidata": "Q23908915",
         "gender": "male",
         "age": "70",
@@ -9981,8 +9981,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "George Kurian",
-        "malayalam": "ജോർജ് കുര്യൻ",
+        "name": "Adv. George Kurian",
+        "malayalam": "അഡ്വ. ജോർജ് കുര്യൻ",
         "wikidata": "Q126469351",
         "gender": "male",
         "age": "65",
@@ -10024,8 +10024,8 @@
       {
         "alliance": "LDF",
         "party": "Kerala Congress (M)",
-        "name": "Sebastian Kulathunkal",
-        "malayalam": "സെബാസ്റ്റ്യൻ കുളത്തുങ്കൽ",
+        "name": "Adv. Sebastian Kulathunkal",
+        "malayalam": "അഡ്വ. സെബാസ്റ്റ്യൻ കുളത്തുങ്കൽ",
         "wikidata": "Q106681984",
         "gender": "male",
         "age": "60",
@@ -10037,8 +10037,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Sebastian M J",
-        "malayalam": "സെബാസ്റ്റ്യൻ എം. ജെ.",
+        "name": "Adv. Sebastian M.J",
+        "malayalam": "അഡ്വ. സെബാസ്റ്റ്യൻ എം. ജെ.",
         "wikidata": "",
         "gender": "male",
         "age": "57",
@@ -10132,8 +10132,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "Daleema",
-        "malayalam": "ദലീമ",
+        "name": "Daleema Jojo",
+        "malayalam": "ദലീമ ജോജൊ",
         "wikidata": "Q96361400",
         "gender": "female",
         "age": "60",
@@ -10145,8 +10145,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Shanimol Usman",
-        "malayalam": "ഷാനിമോൾ ഉസ്മാൻ",
+        "name": "Adv. Shanimol Osman",
+        "malayalam": "അഡ്വ. ഷാനിമോൾ ഉസ്മാൻ",
         "wikidata": "Q25589499",
         "gender": "female",
         "age": "59",
@@ -10158,8 +10158,8 @@
       {
         "alliance": "NDA",
         "party": "BDJS",
-        "name": "P. S. Jyothis",
-        "malayalam": "പി. എസ്. ജ്യോതിസ്",
+        "name": "Adv. P.S. Jyothis",
+        "malayalam": "അഡ്വ. പി. എസ്. ജ്യോതിസ്",
         "wikidata": "",
         "gender": "male",
         "age": "59",
@@ -10287,7 +10287,7 @@
         "candidateId": "4040",
         "affidavitId": "eyJpdiI6ImtwUzYxcmZJcHNPNEJWK3ZwdTlSVFE9PSIsInZhbHVlIjoiUkFMV1pMblYwZUxOaHp3TGxnL2wrWTRtRGc2V3pEZlVoVXJHbjFrTGREVVREVmV3K3JodTF1cEduVTc4QmVveURiNFNyUHRlblRSL1FmWG1GZEJUZnJPNTVyK3NoWDc5THlBQ25BeTQ2L0dtRHRsTkVsZ04rb1RWMm1jRkk5RFYvK0lsVGpueXQ0R0FZMzRkZkI2NDRYcWZWZWdvaXR0K0MyOFVGTDZtZ1JFPSIsIm1hYyI6IjM4OWZjMzk3Yzk1ODk1YjAxMTEyM2VhNjg5ODUzNmYzZGZiZDVmZDE0MDNmZjk3YzFjNThiYTc5MzUwMzE1MzUiLCJ0YWciOiIifQ==",
         "photo": "PRASA-2026-20260323094318.jpg",
-        "symbol": "Football Player"
+        "symbol": "Football player"
       },
       {
         "alliance": "Others",
@@ -10395,7 +10395,7 @@
         "candidateId": "3061",
         "affidavitId": "eyJpdiI6ImFSRWFrMWdzeEE3YWJqQ0JQeFBrdUE9PSIsInZhbHVlIjoiUlNZU1Yra0luQnF1RlZiUUtrOXNPZEpsR04wb2VVNjZqaDFqc0Uxa3hiRkV4Ri9kUE0xNkRlZEsyUTBTRy8xY2ppdUh6aFd4eDZSdllkRE5iN1k1UFZnbXJWVTk3cHhYTmE5NEpic3hGb0dmaXpQSkxuWUpZaEdlYkJSZC9ITnZYWHlobitRYWRkRnhtTGpDWTZCVmRhcWNLVFpYSlRWMDM5RmZpUnIxMFFFPSIsIm1hYyI6IjRmOTJlMDQxNzEzMTUyZDExYmVhY2Q4ZWVkMzU5YjQyOTE5ZmRkOWIwMzQ3MGQ2ZGYyZDgwMGQwNDNmZmI3M2UiLCJ0YWciOiIifQ==",
         "photo": "JOSEP-2026-20260323073521.jpg",
-        "symbol": "Cauliflower"
+        "symbol": "Cauli Flower"
       },
       {
         "alliance": "Others",
@@ -10715,8 +10715,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "U. Prathibha",
-        "malayalam": "യു. പ്രതിഭ",
+        "name": "Adv. U. Prathibha",
+        "malayalam": "ആഡ്വ.യു. പ്രതിഭ",
         "wikidata": "Q24565100",
         "gender": "female",
         "age": "48",
@@ -10728,8 +10728,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "M. Liju",
-        "malayalam": "എം. ലിജു",
+        "name": "Adv. M. Liju",
+        "malayalam": "അഡ്വ. എം. ലിജു",
         "wikidata": "",
         "gender": "male",
         "age": "46",
@@ -10784,8 +10784,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Muthara Raj",
-        "malayalam": "മുത്തര രാജ്",
+        "name": "Adv. Muthara Raj",
+        "malayalam": "അഡ്വ. മുത്തര രാജ്",
         "wikidata": "",
         "gender": "female",
         "age": "28",
@@ -10853,8 +10853,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Eby Kuriakose",
-        "malayalam": "എബി കുര്യാക്കോസ്",
+        "name": "Adv. Abi Kuriakose",
+        "malayalam": "അഡ്വ. എബി കുര്യാക്കോസ്",
         "wikidata": "",
         "gender": "male",
         "age": "64",
@@ -10922,8 +10922,8 @@
       {
         "alliance": "UDF",
         "party": "KEC",
-        "name": "Varghese Mammen",
-        "malayalam": "വർഗീസ് മാമ്മൻ",
+        "name": "Adv. Varghese Mammen",
+        "malayalam": "അഡ്വ. വർഗീസ് മാമ്മൻ",
         "wikidata": "",
         "gender": "male",
         "age": "59",
@@ -10956,7 +10956,7 @@
         "candidateId": "2471",
         "affidavitId": "eyJpdiI6InN5Q1R3UVZwcGNDQ1Z4VHZpMkx1K0E9PSIsInZhbHVlIjoib0liczBjNURzUWVPUlNFUTgrV1EzMkVFdjV1dzJtVlE4RTBZZW5qZEw1MFhuWG12eHZKaWVYT2p6dDl4OVpQQmk0K01RdU5qTndIKzUzRGlZZkI5OFFvY3EyZlB0QWpkOGhqMXVTOUs2TGt1Ylcyc0U4VE5ObXFmdWJhUEJvbEczejhOZFo0SlBZaTQ2TUpmRUtFZGxCM0Y5K1R6cUJxMis3NHo3ZHZLU2pFPSIsIm1hYyI6IjY3YzNhOTMwMjczM2M2MjNiYjYwNWQ4ZjQ3ODMzZGRkOTRmMmJhODRhMmM5M2Y5MWU2MDE2NDFlNmI5ZjFhMzMiLCJ0YWciOiIifQ==",
         "photo": "THOMA-2026-20260326053825.jpg",
-        "symbol": "Road Roller"
+        "symbol": "Road roller"
       },
       {
         "alliance": "Others",
@@ -11017,8 +11017,8 @@
       {
         "alliance": "LDF",
         "party": "Kerala Congress (M)",
-        "name": "Pramod Narayan",
-        "malayalam": "പ്രമോദ് നാരായൺ",
+        "name": "Adv. Pramod Narayan",
+        "malayalam": "അഡ്വ. പ്രമോദ് നാരായൺ",
         "wikidata": "Q106708733",
         "gender": "male",
         "age": "49",
@@ -11030,8 +11030,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Pazhakulam Madhu",
-        "malayalam": "പഴകുളം മധു",
+        "name": "Adv. Pazhakulam Madhu",
+        "malayalam": "അഡ്വ. പഴകുളം മധു",
         "wikidata": "",
         "gender": "male",
         "age": "59",
@@ -11181,8 +11181,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "K. U. Jenish Kumar",
-        "malayalam": "കെ. യു. ജനീഷ് കുമാർ",
+        "name": "Adv. K. U. Jenish Kumar",
+        "malayalam": "ആഡ്വ.കെ. യു. ജനീഷ് കുമാർ",
         "wikidata": "Q72429201",
         "gender": "male",
         "age": "42",
@@ -11194,8 +11194,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Satheesh Kochuparambil",
-        "malayalam": "സതീഷ് കൊച്ചുപറമ്പിൽ",
+        "name": "Prof Satheesh Kochuparambil",
+        "malayalam": "പ്രൊഫ. സതീഷ് കൊച്ചുപറമ്പിൽ",
         "wikidata": "",
         "gender": "male",
         "age": "65",
@@ -11263,7 +11263,7 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Advocate C V  Santhakumar",
+        "name": "Adv. C V  Santhakumar",
         "malayalam": "അഡ്വ. സി.വി. ശാന്തകുമാർ",
         "wikidata": "",
         "gender": "male",
@@ -11276,8 +11276,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "Pandalam Prathapan",
-        "malayalam": "പന്തളം പ്രതാപൻ",
+        "name": "Adv. Pandalam Prathapan",
+        "malayalam": "അഡ്വ. പന്തളം പ്രതാപൻ",
         "wikidata": "",
         "gender": "male",
         "age": "62",
@@ -11319,8 +11319,8 @@
       {
         "alliance": "LDF",
         "party": "CPI",
-        "name": "M. S. Thara",
-        "malayalam": "എം. എസ്. താര",
+        "name": "Adv.M.S. Thara",
+        "malayalam": "അഡ്വ. എം. എസ്. താര",
         "wikidata": "",
         "gender": "female",
         "age": "51",
@@ -11401,8 +11401,8 @@
       {
         "alliance": "LDF",
         "party": "Independent (CPI(M) support)",
-        "name": "Sujith Vijayanpillai",
-        "malayalam": "സുജിത്ത് വിജയൻപിള്ള",
+        "name": "Dr. Sujith Vijayanpillai",
+        "malayalam": "ഡോ. സുജിത്ത് വിജയൻപിള്ള",
         "wikidata": "Q106730415",
         "gender": "male",
         "age": "48",
@@ -11552,8 +11552,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "P. Aisha Potty",
-        "malayalam": "പി. ആയിഷ പോറ്റി",
+        "name": "Adv. P. Aisha Potty",
+        "malayalam": "അഡ്വ. പി. ആയിഷ പോറ്റി",
         "wikidata": "Q23908917",
         "gender": "female",
         "age": "67",
@@ -11768,8 +11768,8 @@
       {
         "alliance": "NDA",
         "party": "TTP",
-        "name": "B. Raghunathan Pillai",
-        "malayalam": "ബി. രഘുനാഥൻ പിള്ള",
+        "name": "Adv. B. Raghunathan Pillai",
+        "malayalam": "ആഡ്വ.ബി. രഘുനാഥൻ പിള്ള",
         "wikidata": "",
         "gender": "male",
         "age": "55",
@@ -12040,8 +12040,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "Bindhu Krishna",
-        "malayalam": "ബിന്ദു കൃഷ്ണ",
+        "name": "Adv. Bindhu Krishna",
+        "malayalam": "അഡ്വ. ബിന്ദു കൃഷ്ണ",
         "wikidata": "Q4914054",
         "gender": "female",
         "age": "53",
@@ -12053,8 +12053,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "N. Prathap Kumar",
-        "malayalam": "എൻ. പ്രതാപ് കുമാർ",
+        "name": "Dr. N. Prathap Kumar",
+        "malayalam": "ഡോ. എൻ. പ്രതാപ് കുമാർ",
         "wikidata": "",
         "gender": "male",
         "age": "61",
@@ -12122,8 +12122,8 @@
       {
         "alliance": "UDF",
         "party": "RSP",
-        "name": "Vishnu Mohan",
-        "malayalam": "വിഷ്ണു മോഹൻ",
+        "name": "Adv. Vishnu Mohan",
+        "malayalam": "അഡ്വ. വിഷ്ണു മോഹൻ",
         "wikidata": "",
         "gender": "male",
         "age": "39",
@@ -12191,8 +12191,8 @@
       {
         "alliance": "LDF",
         "party": "CPI",
-        "name": "R. Rajendran",
-        "malayalam": "ആർ. രാജേന്ദ്രൻ",
+        "name": "Adv. R.Rajendran",
+        "malayalam": "അഡ്വ. ആർ. രാജേന്ദ്രൻ",
         "wikidata": "Q120190547",
         "gender": "male",
         "age": "68",
@@ -12273,8 +12273,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "V. Joy",
-        "malayalam": "വി. ജോയ്",
+        "name": "Adv. V Joy",
+        "malayalam": "അഡ്വ. വി. ജോയ്",
         "wikidata": "Q25589478",
         "gender": "male",
         "age": "60",
@@ -12719,7 +12719,7 @@
         "alliance": "LDF",
         "party": "CPI(M)",
         "name": "D. K. Murali",
-        "malayalam": "ഡി. കെ. മുരളി",
+        "malayalam": "ഡി. കെ. മുരളിധരൻ നായർ",
         "wikidata": "Q25589463",
         "gender": "male",
         "age": "64",
@@ -12826,8 +12826,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "T. Sarath Chandra Prasad",
-        "malayalam": "ടി. ശരത് ചന്ദ്ര പ്രസാദ്",
+        "name": "Adv.  T. Sarathchandra Prasad",
+        "malayalam": "അഡ്വ. ടി. ശരത് ചന്ദ്ര പ്രസാദ്",
         "wikidata": "",
         "gender": "male",
         "age": "68",
@@ -12921,8 +12921,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "V. K. Prasanth",
-        "malayalam": "വി. കെ. പ്രശാന്ത്",
+        "name": "Adv. V.K Prasanth",
+        "malayalam": "അഡ്വ. വി. കെ. പ്രശാന്ത്",
         "wikidata": "Q55759704",
         "gender": "male",
         "age": "44",
@@ -12994,7 +12994,7 @@
         "candidateId": "1724",
         "affidavitId": "eyJpdiI6Imp2dVBRYTQyQjhxVVRnQTMxRTF0RUE9PSIsInZhbHVlIjoiTkM2VVlHc1BOMWl0Q1M5UXV6YnNqMjJEOVhPUitqZnE1SFBnRk8vbXBtN2l1emp2R3RQY0JJV3RZbElGS2lDZEdwZVJxZG03N2JwY1p4TzU1ZGhwanN2K1NKb2wxcUZVUTVpRU14WkhyRllhZVM3S2hqbzQ0UFZaSk1RUzg5MVhxN1VCZHJjT2paWHR6cWZ1ckdmZFZuaHZFdXp4UmRTUmRkZVNQWEVUVG5NPSIsIm1hYyI6IjNmYWFmYmMwYTY1MzI5NjlmMzc1ZjAxODBmN2E2MGQyMzRhZDc3ZGNlMjcyZDYwNzY1M2U2MzNkN2M0OTcyYjEiLCJ0YWciOiIifQ==",
         "photo": "PRASA-2026-20260323040656.jpg",
-        "symbol": "Head Phone"
+        "symbol": "Headphone"
       },
       {
         "alliance": "Others",
@@ -13215,8 +13215,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "KS Sabarinathan",
-        "malayalam": "കെ. എസ്. ശബരിനാഥൻ",
+        "name": "Adv. KS Sabarinathan",
+        "malayalam": "ആഡ്വ.കെ. എസ്. ശബരിനാഥൻ",
         "wikidata": "Q20716260",
         "gender": "male",
         "age": "42",
@@ -13275,7 +13275,7 @@
         "candidateId": "2645",
         "affidavitId": "eyJpdiI6IklaUFVGOWNEa3hlNm5ZRTlHOWlrM1E9PSIsInZhbHVlIjoia0dTbjd1NGhGT2l2NFBEcVhpc0NkS01MNHpZaFBtbWJxVkl4MFViUG1HQVJ4QjgyNzh0OVRBVkcwMVYyeC9KdzZlVXB2VnJXL3J5eVJuMEUvS281ZXRMMWl6dDJKS201c1lKNUEvMHVheDNjcUhKWTZTaTBxQmllN3ErUTYzWlVWZ0J4elNPNi9TZ1hRWUV0ZEl4dnZhZHpIMlpaUlVDcXdYMXNQZjVKQUhnPSIsIm1hYyI6IjY2OGE2ZGFlODZmMGM5NjNkZDE0MmNjYzYyMTI2MTQ1N2UxYzBlNDNjODYzZWU0MmFhNWQ1YzA0MWY0YWM4NDAiLCJ0YWciOiIifQ==",
         "photo": "RAJEE-2026-20260323064412.jpg",
-        "symbol": "Watertank"
+        "symbol": "Water Tank"
       },
       {
         "alliance": "Others",
@@ -13349,8 +13349,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "G. Steephen",
-        "malayalam": "ജി. സ്റ്റീഫൻ",
+        "name": "Adv. G. Steephen",
+        "malayalam": "അഡ്വ. ജി. സ്റ്റീഫൻ",
         "wikidata": "Q106706208",
         "gender": "male",
         "age": "56",
@@ -13483,8 +13483,8 @@
       {
         "alliance": "NDA",
         "party": "BJP",
-        "name": "Gireesh Neyyar",
-        "malayalam": "ഗിരീഷ് നെയ്യാർ",
+        "name": "Adv. Gireesh Neyyar",
+        "malayalam": "അഡ്വ. ഗിരീഷ് നെയ്യാർ",
         "wikidata": "",
         "gender": "male",
         "age": "46",
@@ -13578,8 +13578,8 @@
       {
         "alliance": "LDF",
         "party": "CPI(M)",
-        "name": "I. B. Satheesh",
-        "malayalam": "ഐ. ബി. സതീഷ്",
+        "name": "Adv. I. B. Satheesh",
+        "malayalam": "അഡ്വ. ഐ. ബി. സതീഷ്",
         "wikidata": "Q25589447",
         "gender": "male",
         "age": "55",
@@ -13638,7 +13638,7 @@
         "candidateId": "779",
         "affidavitId": "eyJpdiI6IkQ5NEtOMkJ1Q0RpakRNOE9jWExGclE9PSIsInZhbHVlIjoiUmpzcXVIVU1zQ2hOclREdjQzaTA0dTZ0SVYwM0JsZ2ZRVTRTT1c2NUlCSUhjYUlDa0VPUzkxV3NBcFhZMGRrMS9qU0lMYXFId00xMlprUzNXZGNaS1BSTGNKaDNsYjRPS1VPSklpWVp1VXZ6QlEyWHM4UmNVdUJad2JKNDFSd1JjaHpEcXFsYzZtajN3UGNZMlBlSmlNdjdKUkIzQUE5U1lyOGhsZllTTXQ4PSIsIm1hYyI6IjQzMjM3NGJmZTA4ZDNhNzc0ZTkzNmUzYmUzM2I2NjliODczM2JmNjdmMTI0MGU5NTRjZGJjNzJmNjRlODczNzQiLCJ0YWciOiIifQ==",
         "photo": "ADVJ-2026-20260326034612.jpg",
-        "symbol": "Flag with Three Stars"
+        "symbol": "Flag with three Stars"
       }
     ]
   },
@@ -13673,8 +13673,8 @@
       {
         "alliance": "UDF",
         "party": "INC",
-        "name": "M. Vincent",
-        "malayalam": "എം. വിൻസെന്റ്",
+        "name": "Adv. M. Vincent",
+        "malayalam": "അഡ്വ. എം. വിൻസെന്റ്",
         "wikidata": "Q6713246",
         "gender": "male",
         "age": "57",
@@ -13712,7 +13712,7 @@
       {
         "alliance": "Others",
         "party": "",
-        "name": "Adv.Sabu.S.Philip",
+        "name": "Adv. Sabu.S.Philip",
         "malayalam": "അഡ്വ.സാബു.എസ്.ഫിലിപ്പ്",
         "wikidata": "",
         "gender": "male",
@@ -13746,7 +13746,7 @@
         "candidateId": "1790",
         "affidavitId": "eyJpdiI6IkZ6bWpPSjdvTVFNREI5RFh5M2c4c1E9PSIsInZhbHVlIjoiWTB1V0JBSERlWDl5Y05IT3JMLzUyK2VFbDlGY2tDVUw5bHVQVnphOUtOL01HUjVWTFMvNjVZREUxS2xlVTZkcUNMdnpOZTlMcnRlbUxMMTBhM09zeEJtVGhsZlFQSXg1T3Y5U3pYRlRxV2NOTTdlS3hTWDJncUlhOGdvZFlveHdtR0ZXK3NYMlRxWEpYMHBPcHVZZWFzbzZTSUZJcVFNVnR2dXNxM1dVa2VJPSIsIm1hYyI6IjJiZjQ3OTdlMGQxM2Y1OTA2MTM2MzJjN2E1YTAyZGVkMWEwMGNhM2FkZTM0OTk4MzllMWU1MDM0NGMwMjhiNDIiLCJ0YWciOiIifQ==",
         "photo": "NJAYA-2026-20260323042407.jpg",
-        "symbol": "Boat with Man and Sail"
+        "symbol": "Boat with man and Sail"
       },
       {
         "alliance": "Others",

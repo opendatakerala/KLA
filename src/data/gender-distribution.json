@@ -32,73 +32,13 @@
     }
   },
   "byParty": {
-    "Independent": {
-      "male": 236,
-      "female": 22,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "SUCI": {
-      "male": 21,
-      "female": 9,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "IUML": {
-      "male": 24,
-      "female": 2,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "BSP": {
-      "male": 48,
-      "female": 7,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "INC": {
-      "male": 83,
-      "female": 9,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "CPIML Red Star": {
-      "male": 5,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Independent (CPI(M) support)": {
-      "male": 11,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
     "CPI(M)": {
       "male": 65,
       "female": 12,
       "transgender": 0,
       "unknown": 0
     },
-    "BJP": {
-      "male": 83,
-      "female": 14,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Indian Socialist Janata Dal": {
-      "male": 3,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "TTP": {
-      "male": 16,
-      "female": 3,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "CMP": {
+    "Independent (INL Support)": {
       "male": 1,
       "female": 0,
       "transgender": 0,
@@ -110,127 +50,13 @@
       "transgender": 0,
       "unknown": 0
     },
-    "AAP": {
-      "male": 49,
-      "female": 3,
-      "transgender": 1,
-      "unknown": 0
-    },
     "Kerala Congress (M)": {
       "male": 11,
       "female": 1,
       "transgender": 0,
       "unknown": 0
     },
-    "BDJS": {
-      "male": 22,
-      "female": 1,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Independent (INC Support)": {
-      "male": 3,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "DCK": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "RSP(L)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "CPIML Liberation": {
-      "male": 2,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Anna DHRM": {
-      "male": 6,
-      "female": 3,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "KC(J)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Kerala Congress (B)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
     "Congress (Secular)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "NCP(SP)": {
-      "male": 3,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "KEC": {
-      "male": 8,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "INL": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "AITC": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "SDPI": {
-      "male": 33,
-      "female": 1,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Independent (INL support)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "RSP": {
-      "male": 4,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Independent (RSP support)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Independent (INL Support)": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "TFIP": {
       "male": 1,
       "female": 0,
       "transgender": 0,
@@ -242,38 +68,26 @@
       "transgender": 0,
       "unknown": 0
     },
-    "EPI": {
-      "male": 2,
+    "Independent": {
+      "male": 236,
+      "female": 22,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "NCP(SP)": {
+      "male": 3,
       "female": 0,
       "transgender": 0,
       "unknown": 0
     },
-    "RMPI": {
-      "male": 0,
-      "female": 1,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "BDP": {
+    "INL": {
       "male": 1,
       "female": 0,
       "transgender": 0,
       "unknown": 0
     },
-    "API": {
-      "male": 2,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "JRP": {
-      "male": 2,
-      "female": 1,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "AIHCP": {
-      "male": 1,
+    "Independent (CPI(M) support)": {
+      "male": 11,
       "female": 0,
       "transgender": 0,
       "unknown": 0
@@ -284,31 +98,31 @@
       "transgender": 0,
       "unknown": 0
     },
-    "RPI (A)": {
+    "Independent (INL support)": {
       "male": 1,
       "female": 0,
       "transgender": 0,
       "unknown": 0
     },
-    "SRP": {
-      "male": 1,
+    "Indian Socialist Janata Dal": {
+      "male": 3,
       "female": 0,
       "transgender": 0,
       "unknown": 0
     },
-    "Independent (IUML Support)": {
-      "male": 1,
-      "female": 0,
+    "Anna DHRM": {
+      "male": 6,
+      "female": 3,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "BSP": {
+      "male": 48,
+      "female": 7,
       "transgender": 0,
       "unknown": 0
     },
     "IGP": {
-      "male": 1,
-      "female": 0,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "NCP": {
       "male": 1,
       "female": 0,
       "transgender": 0,
@@ -320,8 +134,20 @@
       "transgender": 0,
       "unknown": 0
     },
-    "RJP": {
+    "TFIP": {
       "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "RPI (A)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "EPI": {
+      "male": 2,
       "female": 0,
       "transgender": 0,
       "unknown": 0
@@ -332,7 +158,181 @@
       "transgender": 0,
       "unknown": 0
     },
+    "API": {
+      "male": 2,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "SUCI": {
+      "male": 21,
+      "female": 9,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "CPIML Red Star": {
+      "male": 5,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Independent (INC Support)": {
+      "male": 3,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "BDP": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "RSP(L)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Kerala Congress (B)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "IUML": {
+      "male": 24,
+      "female": 2,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "INC": {
+      "male": 83,
+      "female": 9,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "KEC": {
+      "male": 8,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Independent (RSP support)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "RMPI": {
+      "male": 0,
+      "female": 1,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "AITC": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Independent (IUML Support)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "KC(J)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "DCK": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "RSP": {
+      "male": 4,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "CMP": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "BJP": {
+      "male": 83,
+      "female": 14,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "TTP": {
+      "male": 16,
+      "female": 3,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "BDJS": {
+      "male": 22,
+      "female": 1,
+      "transgender": 0,
+      "unknown": 0
+    },
     "BJP (Independent)": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "AAP": {
+      "male": 49,
+      "female": 3,
+      "transgender": 1,
+      "unknown": 0
+    },
+    "SDPI": {
+      "male": 33,
+      "female": 1,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "CPIML Liberation": {
+      "male": 2,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "RJP": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "JRP": {
+      "male": 2,
+      "female": 1,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "SRP": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "NCP": {
+      "male": 1,
+      "female": 0,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "AIHCP": {
       "male": 1,
       "female": 0,
       "transgender": 0,
@@ -340,20 +340,32 @@
     }
   },
   "byDistrict": {
-    "Kottayam": {
-      "male": 50,
+    "Kasaragod": {
+      "male": 30,
+      "female": 2,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Kannur": {
+      "male": 68,
       "female": 10,
       "transgender": 0,
       "unknown": 0
     },
-    "Thiruvananthapuram": {
-      "male": 94,
-      "female": 11,
+    "Wayanad": {
+      "male": 18,
+      "female": 2,
+      "transgender": 1,
+      "unknown": 0
+    },
+    "Kozhikode": {
+      "male": 87,
+      "female": 13,
       "transgender": 0,
       "unknown": 0
     },
-    "Ernakulam": {
-      "male": 78,
+    "Malappuram": {
+      "male": 88,
       "female": 7,
       "transgender": 0,
       "unknown": 0
@@ -370,32 +382,8 @@
       "transgender": 0,
       "unknown": 0
     },
-    "Wayanad": {
-      "male": 18,
-      "female": 2,
-      "transgender": 1,
-      "unknown": 0
-    },
-    "Kollam": {
-      "male": 50,
-      "female": 9,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Kannur": {
-      "male": 68,
-      "female": 10,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Kozhikode": {
-      "male": 87,
-      "female": 13,
-      "transgender": 0,
-      "unknown": 0
-    },
-    "Malappuram": {
-      "male": 88,
+    "Ernakulam": {
+      "male": 78,
       "female": 7,
       "transgender": 0,
       "unknown": 0
@@ -406,21 +394,33 @@
       "transgender": 0,
       "unknown": 0
     },
-    "Kasaragod": {
-      "male": 30,
-      "female": 2,
+    "Kottayam": {
+      "male": 50,
+      "female": 10,
       "transgender": 0,
       "unknown": 0
     },
-    "Alappuzha": {
-      "male": 41,
-      "female": 7,
+    "Thiruvananthapuram": {
+      "male": 94,
+      "female": 11,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Kollam": {
+      "male": 50,
+      "female": 9,
       "transgender": 0,
       "unknown": 0
     },
     "Pathanamthitta": {
       "male": 22,
       "female": 3,
+      "transgender": 0,
+      "unknown": 0
+    },
+    "Alappuzha": {
+      "male": 41,
+      "female": 7,
       "transgender": 0,
       "unknown": 0
     }

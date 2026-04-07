@@ -4,16 +4,16 @@
     "CPI": 24,
     "Kerala Congress (M)": 12,
     "Independent (CPI(M) support)": 11,
-    "Indian Socialist Janata Dal": 3,
-    "NCP(SP)": 3,
     "RJD": 3,
-    "RSP(L)": 1,
-    "Kerala Congress (B)": 1,
+    "NCP(SP)": 3,
+    "Indian Socialist Janata Dal": 3,
+    "Independent (INL Support)": 1,
     "Congress (Secular)": 1,
     "INL": 1,
+    "Independent (CPI support)": 1,
     "Independent (INL support)": 1,
-    "Independent (INL Support)": 1,
-    "Independent (CPI support)": 1
+    "RSP(L)": 1,
+    "Kerala Congress (B)": 1
   },
   "UDF": {
     "INC": 92,
@@ -21,13 +21,13 @@
     "KEC": 8,
     "RSP": 4,
     "Independent (INC Support)": 3,
-    "CMP": 1,
-    "DCK": 1,
-    "KC(J)": 1,
-    "AITC": 1,
     "Independent (RSP support)": 1,
     "RMPI": 1,
-    "Independent (IUML Support)": 1
+    "AITC": 1,
+    "Independent (IUML Support)": 1,
+    "KC(J)": 1,
+    "DCK": 1,
+    "CMP": 1
   },
   "NDA": {
     "BJP": 97,
@@ -44,18 +44,18 @@
     "Anna DHRM": 9,
     "CPIML Red Star": 5,
     "JRP": 3,
-    "CPIML Liberation": 2,
     "EPI": 2,
     "API": 2,
-    "TFIP": 1,
-    "BDP": 1,
-    "AIHCP": 1,
-    "RPI (A)": 1,
-    "SRP": 1,
+    "CPIML Liberation": 2,
     "IGP": 1,
-    "NCP": 1,
     "SP (I)": 1,
+    "TFIP": 1,
+    "RPI (A)": 1,
+    "BJKP": 1,
+    "BDP": 1,
     "RJP": 1,
-    "BJKP": 1
+    "SRP": 1,
+    "NCP": 1,
+    "AIHCP": 1
   }
 }
