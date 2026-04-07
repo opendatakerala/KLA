@@ -2,9 +2,9 @@
   import { _, currentLang, isLoading } from '../lib/i18n.js';
   import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
   import { historicalDataStore } from '../stores/historicalStore.js';
-  import { getCandidateSymbol } from '../lib/symbols.js';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
+  import CandidateRow from './CandidateRow.svelte';
 
   let { constituency = null, loksabhaVisible = false, onRootReady = null } = $props();
 
@@ -144,24 +144,7 @@
             {#if ldf.length > 0}
               <div class="candidate-group">
                 {#each ldf as c}
-                  <div class="candidate-row">
-                    <div class="alliance-bar" style="background: {ALLIANCE_COLORS.LDF}"></div>
-                      <div class="candidate-info">
-                        <div class="candidate-details">
-                          <div class="alliance-label">LDF</div>
-                          <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                          <div class="candidate-party">{c.party || '—'}</div>
-                        </div>
-                        <div class="candidate-symbol">
-                          {#if c.symbol}
-                            {@const symbolSrc = getCandidateSymbol(c.symbol)}
-                            {#if symbolSrc}
-                              <img src={symbolSrc} alt="" />
-                            {/if}
-                          {/if}
-                        </div>
-                      </div>
-                  </div>
+                  <CandidateRow candidate={c} allianceLabel="LDF" allianceColor={ALLIANCE_COLORS.LDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
                 {/each}
               </div>
             {/if}
@@ -169,24 +152,7 @@
             {#if udf.length > 0}
               <div class="candidate-group">
                 {#each udf as c}
-                  <div class="candidate-row">
-                    <div class="alliance-bar" style="background: {ALLIANCE_COLORS.UDF}"></div>
-                    <div class="candidate-info">
-                      <div class="candidate-details">
-                        <div class="alliance-label">UDF</div>
-                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                        <div class="candidate-party">{c.party || '—'}</div>
-                      </div>
-                        <div class="candidate-symbol">
-                          {#if c.symbol}
-                            {@const symbolSrc = getCandidateSymbol(c.symbol)}
-                            {#if symbolSrc}
-                              <img src={symbolSrc} alt="" />
-                            {/if}
-                          {/if}
-                        </div>
-                      </div>
-                  </div>
+                  <CandidateRow candidate={c} allianceLabel="UDF" allianceColor={ALLIANCE_COLORS.UDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
                 {/each}
               </div>
             {/if}
@@ -194,24 +160,7 @@
             {#if nda.length > 0}
               <div class="candidate-group">
                 {#each nda as c}
-                  <div class="candidate-row">
-                    <div class="alliance-bar" style="background: {ALLIANCE_COLORS.NDA}"></div>
-                    <div class="candidate-info">
-                      <div class="candidate-details">
-                        <div class="alliance-label">NDA</div>
-                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                        <div class="candidate-party">{c.party || '—'}</div>
-                      </div>
-                        <div class="candidate-symbol">
-                          {#if c.symbol}
-                            {@const symbolSrc = getCandidateSymbol(c.symbol)}
-                            {#if symbolSrc}
-                              <img src={symbolSrc} alt="" />
-                            {/if}
-                          {/if}
-                        </div>
-                      </div>
-                  </div>
+                  <CandidateRow candidate={c} allianceLabel="NDA" allianceColor={ALLIANCE_COLORS.NDA} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
                 {/each}
               </div>
             {/if}
@@ -219,24 +168,7 @@
             {#if others.length > 0}
               <div class="candidate-group">
                 {#each others as c}
-                  <div class="candidate-row">
-                    <div class="alliance-bar" style="background: {ALLIANCE_COLORS.Others}"></div>
-                    <div class="candidate-info">
-                      <div class="candidate-details">
-                        <div class="alliance-label">Others</div>
-                        <div class="candidate-name" class:tbd={!c.name}>{getCandidateName(c, currentLangValue, currentIsLoading, t)}</div>
-                        <div class="candidate-party">{c.party || '—'}</div>
-                      </div>
-                        <div class="candidate-symbol">
-                          {#if c.symbol}
-                            {@const symbolSrc = getCandidateSymbol(c.symbol)}
-                            {#if symbolSrc}
-                              <img src={symbolSrc} alt="" />
-                            {/if}
-                          {/if}
-                        </div>
-                      </div>
-                  </div>
+                  <CandidateRow candidate={c} allianceLabel="Others" allianceColor={ALLIANCE_COLORS.Others} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
                 {/each}
               </div>
             {/if}
@@ -677,77 +609,6 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
     margin-bottom: 12px;
-  }
-
-  .candidate-row {
-    display: flex;
-    background: var(--card2);
-    border-radius: 8px;
-    overflow: hidden;
-    min-height: 60px;
-  }
-
-  .alliance-bar {
-    width: 4px;
-    height: 50px;
-    flex-shrink: 0;
-  }
-
-  .candidate-info {
-    padding: 8px 10px;
-    flex: 1;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .candidate-details {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .candidate-symbol {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .candidate-symbol img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .alliance-label {
-    font-family: 'Manjari', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    opacity: 0.7;
-  }
-
-  .candidate-name {
-    font-family: 'Manjari', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    margin-top: 2px;
-    color: #000;
-  }
-
-  .candidate-party {
-    font-size: 13px;
-    color: var(--text-soft);
-    margin-top: 2px;
-  }
-
-  .candidate-name.tbd {
-    color: var(--muted);
-    font-style: italic;
   }
 
   .qr-placeholder {
