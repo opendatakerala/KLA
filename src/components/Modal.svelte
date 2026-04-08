@@ -80,8 +80,22 @@
     tryStartGeneration();
   }
 
-  function tryStartGeneration() {
+  function waitForNetworkIdle() {
+    return new Promise(resolve => {
+      const checkIdle = () => {
+        if (document.readyState === 'complete') {
+          resolve();
+        } else {
+          setTimeout(checkIdle, 100);
+        }
+      };
+      checkIdle();
+    });
+  }
+
+  async function tryStartGeneration() {
     if (currentModal?.number && !generatedBlob && exportTemplate && !historicalLoading) {
+      await waitForNetworkIdle();
       setTimeout(generateImage, 500);
     }
   }
