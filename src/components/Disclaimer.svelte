@@ -10,7 +10,17 @@
         disclaimerDismissed.set(true);
     };
 
+    const acceptDisclaimer = () => {
+        localStorage.setItem('kla2026disclaimeraccepted', new Date().toISOString());
+        hideOverlay();
+    };
+
     onMount(() => {
+        const stored = localStorage.getItem('kla2026disclaimeraccepted');
+        if (stored) {
+            hideOverlay();
+            return;
+        }
         const PROD_HOSTNAME = "opendatakerala.org";
         if (location.hostname !== PROD_HOSTNAME) {
             hideOverlay();
@@ -49,7 +59,7 @@
             <button
                 class="disc-ok-btn"
                 id="disc-ok"
-                onclick={hideOverlay}>{$_('disclaimer.ok')}</button
+                onclick={acceptDisclaimer}>{$_('disclaimer.ok')}</button
             >
         </div>
     </div>
