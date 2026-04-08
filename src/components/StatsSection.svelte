@@ -6,6 +6,7 @@
   import GenderDistribution from './charts/GenderDistribution.svelte';
   import AgeDistribution from './charts/AgeDistribution.svelte';
   import DummyDistribution from './charts/DummyDistribution.svelte';
+  import EducationDistribution from './charts/EducationDistribution.svelte';
 
   let collapsed = true;
   let activeTab = '';
@@ -60,6 +61,15 @@
     >
       <span>{$_('stats.dummyDistribution')}</span>
     </button>
+    <button 
+      class="stats-tab"
+      class:active={activeTab === 'education-distribution'}
+      data-stat="education-distribution"
+      onclick={() => handleTabClick('education-distribution')}
+    >
+      <span>{$_('stats.educationDistribution')}</span>
+      <span class="experimental-badge">{$_('stats.experimental')}</span>
+    </button>
   </div>
 
   <div class="stats-content">
@@ -77,6 +87,10 @@
 
     <div class="stats-panel" class:active={activeTab === 'dummy-distribution'}>
       <DummyDistribution isActive={activeTab === 'dummy-distribution'} />
+    </div>
+
+    <div class="stats-panel" class:active={activeTab === 'education-distribution'}>
+      <EducationDistribution isActive={activeTab === 'education-distribution'} />
     </div>
   </div>
 </div>
@@ -125,6 +139,16 @@
     background: var(--gold-light);
     border-color: var(--gold-mid);
     color: var(--gold);
+  }
+
+  .experimental-badge {
+    font-size: 9px;
+    padding: 2px 6px;
+    background: #FEF3C7;
+    color: #B45309;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .stats-content {

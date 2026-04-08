@@ -44,7 +44,9 @@
     "partyDistribution": "പാർട്ടി വിതരണം",
     "genderDistribution": "ലിംഗ വിതരണം",
     "ageDistribution": "പ്രായ വിതരണം",
-    "dummyDistribution": "അപരൻ വിതരണം"
+    "dummyDistribution": "അപരൻ വിതരണം",
+    "educationDistribution": "വിദ്യാഭ്യാസ വിതരണം",
+    "experimental": "പരീക്ഷണം"
   },
   "statsBar": {
     "constituencies": "മണ്ഡലങ്ങൾ",

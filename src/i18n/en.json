@@ -44,7 +44,9 @@
     "partyDistribution": "Party Distribution",
     "genderDistribution": "Gender Distribution",
     "ageDistribution": "Age Distribution",
-    "dummyDistribution": "Dummy Distribution"
+    "dummyDistribution": "Dummy Distribution",
+    "educationDistribution": "Education Distribution",
+    "experimental": "experimental"
   },
   "statsBar": {
     "constituencies": "Constituencies",
