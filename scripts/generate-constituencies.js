@@ -82,23 +82,41 @@ function generate() {
     const name = cleanString(cand.candidate_Name);
     if (!name) return;
     
-    const affidavitProfileUrl = cleanString(cand.affidavit_profile_url);
-    const affidavitProfileId = affidavitProfileUrl?.replace('https://affidavit.eci.gov.in/show-profile/', '');
+    const archiveUrl = cleanString(cand.archive_url);
+    const archiveId = archiveUrl?.replace('https://archive.org/details/', '');
 
-    grouped[qid].candidates.push({
-      alliance,
-      party,
-      name,
-      malayalam: cleanString(cand.Malayalam),
-      wikidata: cleanString(cand.candidate_Wikidata),
-      gender: cleanString(cand.candidate_Gender),
-      age: cleanString(cand['age_x affidavit']),
-      candidateId: cleanString(cand.candidate_id),
-      affidavitProfileId,
-      photo: cleanString(cand.photo_filename),
-      reference: cleanString(cand.Reference),
-      symbol: cleanString(cand.Symbol)
-    });
+    const candidateObj = {};
+
+    if (alliance) candidateObj.alliance = alliance;
+    if (party) candidateObj.party = party;
+    if (name) candidateObj.name = name;
+    const malayalam = cleanString(cand.Malayalam);
+    if (malayalam) candidateObj.malayalam = malayalam;
+    const wikidata = cleanString(cand.candidate_Wikidata);
+    if (wikidata) candidateObj.wikidata = wikidata;
+    const gender = cleanString(cand.candidate_Gender);
+    if (gender) candidateObj.gender = gender;
+    const age = cleanString(cand['age_x affidavit']);
+    if (age) candidateObj.age = age;
+    const candidateId = cleanString(cand.candidate_id);
+    if (candidateId) candidateObj.candidateId = candidateId;
+    const photo = cleanString(cand.photo_filename);
+    if (photo) candidateObj.photo = photo;
+    const reference = cleanString(cand.Reference);
+    if (reference) candidateObj.reference = reference;
+    const symbol = cleanString(cand.Symbol);
+    if (symbol) candidateObj.symbol = symbol;
+    if (archiveId) candidateObj.archiveUrl = archiveId;
+    const aparanTag = cleanString(cand['Aparan Tag']);
+    if (aparanTag) candidateObj.aparanTag = aparanTag;
+    const sittingMLA = cleanString(cand['Sitting MLA']);
+    if (sittingMLA) candidateObj.sittingMLA = sittingMLA;
+    const mlaTrack = cleanString(cand['MLA Track']);
+    if (mlaTrack) candidateObj.mlaTrack = mlaTrack;
+    const eduTag = cleanString(cand['edu tag']);
+    if (eduTag) candidateObj.eduTag = eduTag;
+
+    grouped[qid].candidates.push(candidateObj);
   });
 
   const allianceOrder = { LDF: 0, UDF: 1, NDA: 2, Others: 3 };
