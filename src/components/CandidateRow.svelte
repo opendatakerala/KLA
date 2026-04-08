@@ -6,9 +6,17 @@
 
   let { candidate, allianceLabel, allianceColor, langValue, isLoading, t, pdfIcon = null, manifestoUrl = null } = $props();
 
-  function getAffidavitUrl(affidavitProfileId) {
-    if (!affidavitProfileId) return null;
-    return `https://affidavit.eci.gov.in/show-profile/${affidavitProfileId}`;
+  let showPdf = $state(false);
+
+  function getArchiveEmbedUrl(archiveUrl) {
+    if (!archiveUrl) return null;
+    return `https://archive.org/embed/${archiveUrl}`;
+  }
+
+  function getArchivePdfUrl(archiveUrl) {
+    if (!archiveUrl) return null;
+    const pdfPart = archiveUrl.replace('mlat.', '');
+    return `https://archive.org/download/${archiveUrl}/kl-elec-2026.${pdfPart}.pdf`;
   }
 
   function getPhotoSrc(reference) {
@@ -19,6 +27,15 @@
     return loader().then(m => m.default?.src);
   }
 </script>
+
+{#if showPdf && candidate.archiveUrl}
+  <div class="pdf-overlay" onclick={() => showPdf = false}>
+    <div class="pdf-popup" onclick={(e) => e.stopPropagation()}>
+      <button class="pdf-close" onclick={() => showPdf = false}>&times;</button>
+      <iframe src={getArchiveEmbedUrl(candidate.archiveUrl)} width="560" height="70vh" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+{/if}
 
 <div class="candidate-row">
   <div class="alliance-bar" style="background: {allianceColor}"></div>
@@ -36,8 +53,8 @@
       <div class="alliance-label">{allianceLabel}</div>
       <div class="candidate-name" class:tbd={!candidate.name}>{getCandidateName(candidate, langValue, isLoading, t)}</div>
       <div class="candidate-party">{candidate.party || '—'}</div>
-      {#if pdfIcon && candidate.affidavitProfileId}
-        <a href={getAffidavitUrl(candidate.affidavitProfileId)} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.affidavit')}</a>
+      {#if pdfIcon && candidate.archiveUrl}
+        <button class="affidavit-btn" onclick={() => showPdf = true}><img src={pdfIcon.src} alt="" /> {t('modal.affidavit')}</button>
       {/if}
       {#if pdfIcon && manifestoUrl}
         <a href={manifestoUrl} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.manifesto')}</a>
@@ -169,5 +186,55 @@
   .candidate-name.tbd {
     color: var(--muted);
     font-style: italic;
+  }
+
+  .pdf-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .pdf-popup {
+    position: relative;
+    background: var(--card);
+    border-radius: 8px;
+    padding: 8px;
+    width: 90%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .pdf-popup iframe {
+    width: 100%;
+    max-width: 560px;
+    min-width: 300px;
+    height: 70vh;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .pdf-close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--card);
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
