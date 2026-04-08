@@ -71,7 +71,7 @@
         {#if pdfIcon && manifestoUrl}
           <a href={manifestoUrl} target="_blank" rel="noopener" class="affidavit-btn"><img src={pdfIcon.src} alt="" /> {t('modal.manifesto')}</a>
         {/if}
-        {#if candidate.mlaTrack}
+        {#if pdfIcon && candidate.mlaTrack}
           <a href={candidate.mlaTrack} target="_blank" rel="noopener" class="affidavit-btn mla-track-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> 
             {t('modal.mlaTrack')}
@@ -103,7 +103,7 @@
 
   .alliance-bar {
     width: 4px;
-    height: 60px;
+    height: auto;
     flex-shrink: 0;
   }
 
@@ -193,7 +193,7 @@
   .sitting-mla-badge {
     background: var(--gold);
     color: var(--card);
-    font-size: 8px;
+    font-size: 10px;
     padding: 0px 4px;
     border-radius: 2px;
     margin-left: 6px;
