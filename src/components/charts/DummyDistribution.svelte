@@ -71,11 +71,6 @@
                 <span class="cand-name">{getCandidateName(item.candidate, lang)}</span>
                 <span class="cand-party">({item.candidate.party})</span>
               </div>
-              <div class="aparan-tags">
-                {#each item.aparans as aparan (aparan.reference)}
-                  <span class="aparan-tag">{getCandidateName(aparan, lang)}</span>
-                {/each}
-              </div>
             </button>
           {/each}
         </div>
