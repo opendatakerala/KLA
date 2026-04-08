@@ -96,7 +96,7 @@
   async function tryStartGeneration() {
     if (currentModal?.number && !generatedBlob && exportTemplate && !historicalLoading) {
       await waitForNetworkIdle();
-      setTimeout(generateImage, 500);
+      setTimeout(generateImage, 1200);
     }
   }
 
