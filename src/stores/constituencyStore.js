@@ -62,7 +62,7 @@ const processedData = constituencyData.map(c => ({
 
 export const constituencies = atom(processedData);
 
-export const filters = atom({
+export const DEFAULT_FILTERS = {
   search: '',
   geography: 'all',
   party: 'all',
@@ -72,7 +72,9 @@ export const filters = atom({
     field: 'number',
     direction: 'asc'
   }
-});
+};
+
+export const filters = atom({ ...DEFAULT_FILTERS });
 
 export const SORT_FIELDS = {
   number: { labelKey: 'sort.number', defaultDirection: 'asc' },
@@ -117,14 +119,7 @@ export function toggleWomen() {
 }
 
 export function clearFilters() {
-  filters.set({
-    search: '',
-    geography: 'all',
-    party: 'all',
-    reservation: 'all',
-    women: false,
-    sort: { field: 'number', direction: 'asc' }
-  });
+  filters.set({ ...DEFAULT_FILTERS });
 }
 
 export function openModal(constituency) {
@@ -216,6 +211,76 @@ function getTermScore(term, q) {
   if (lowerTerm.startsWith(q)) score += 15;
   if (lowerTerm.includes(q)) score += 10;
   return score;
+}
+
+export function setFiltersFromQuery(queryString) {
+  const params = new URLSearchParams(queryString || '');
+  const next = { ...DEFAULT_FILTERS, sort: { ...DEFAULT_FILTERS.sort } };
+
+  const geography = params.get('geo');
+  if (geography && (geography === 'all' || GEOGRAPHY_REGIONS[geography] || KERALA_DISTRICTS.includes(geography))) {
+    next.geography = geography;
+  }
+
+  const party = params.get('party');
+  if (party && party !== 'all') {
+    next.party = party;
+  }
+
+  const reservation = params.get('res');
+  if (reservation && (reservation === 'all' || reservation === 'SC' || reservation === 'ST')) {
+    next.reservation = reservation;
+  }
+
+  const women = params.get('w');
+  if (women !== null) {
+    next.women = women === '1' || women === 'true';
+  }
+
+  const sortField = params.get('sort');
+  if (sortField && SORT_FIELDS[sortField]) {
+    next.sort.field = sortField;
+  }
+
+  const direction = params.get('dir');
+  if (direction === 'asc' || direction === 'desc') {
+    next.sort.direction = direction;
+  }
+
+  filters.set(next);
+}
+
+export function getFiltersQuery(filtersState) {
+  const params = new URLSearchParams();
+  if (filtersState.geography && filtersState.geography !== 'all') {
+    params.set('geo', filtersState.geography);
+  }
+
+  if (filtersState.party && filtersState.party !== 'all') {
+    params.set('party', filtersState.party);
+  }
+
+  if (filtersState.reservation && filtersState.reservation !== 'all') {
+    params.set('res', filtersState.reservation);
+  }
+
+  if (filtersState.women) {
+    params.set('w', '1');
+  }
+
+  const sortField = filtersState.sort?.field || DEFAULT_FILTERS.sort.field;
+  const sortDirection = filtersState.sort?.direction || DEFAULT_FILTERS.sort.direction;
+  const defaultDirection = SORT_FIELDS[sortField]?.defaultDirection || DEFAULT_FILTERS.sort.direction;
+
+  if (sortField !== DEFAULT_FILTERS.sort.field) {
+    params.set('sort', sortField);
+  }
+
+  if (sortDirection !== defaultDirection) {
+    params.set('dir', sortDirection);
+  }
+
+  return params.toString();
 }
 
 function scoreRelevance(row, q) {
