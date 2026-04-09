@@ -2,15 +2,22 @@
 This is a community initiative to explore the 2026 Kerala Legislative Assembly Election through data. The platform integrates information from various media outlets, social media handles of political parties, the Chief Electoral Officer Kerala website, gazette notifications, Wikipedia, Wikidata, and OpenStreetMap.
 
 Cite our work 
-```javascript
+```JavaScript
 Kerala legislative assembly election 2026 ODK portal. 1.0.0, OpenDataKerala Community, 29 Mar. 2026, https://doi.org/10.5281/zenodo.19323427.
 ```
  
 * Website under GPL-3.0 license  
 * Candidate Dataset - 2026 Kerala Assembly Elections: Candidate Registry (Demographics & Alliances) [Data set - ODbL license]. OpenDataKerala Community. https://doi.org/10.5281/zenodo.19323710
-* Concept Paper - (Coming Soon)
 
 ## Download data
+We encourage the reuse of our datasets. Please ensure proper attribution according to the specified licenses.
+
+* [2026 Kerala Assembly Elections: Candidate Registry (Demographics & Alliances): DOI: 10.5281/zenodo.19323710](https://doi.org/10.5281/zenodo.19323710) | License: ODbL
+  ```javascript
+  Karingamadathil, M., et al. 2026 kerala assembly elections: candidate registry (demographics & alliances). OpenDataKerala Community, 30 Mar. 2026, https://doi.org/10.5281/zenodo.19323710.
+  ```
+* Kerala Assembly GeoJSON/Maps: GitHub: [kerala-assembly-map](https://github.com/opendatakerala/kerala-assembly-map)
+* Historical Election Data: Currently in development as part of a parallel project. For specific requirements or future collaboration, please contact us via email.
 
 ## About the Portal
 The platform integrates data from multiple sources to provide a comprehensive and accessible public dataset, along with references to past election information. 
@@ -48,6 +55,7 @@ The platform has evolved rapidly from a single HTML proof-of-concept to a full-f
 7. Jameela P – Infographics & Icons
 8. Rajaneesh P – Map
 9. Arun Raj K M - Data
+10. [Others](https://github.com/opendatakerala/KLA2026/graphs/contributors)
 
 ### Supporting Team
 OpenDataKerala (ODK) Election Data Working Group - Jinoy Tom Jacob, Naveen Francis, Ark Arjun, Jothish Babu, Jaisen Nedumpala, Ranjith Sajeev
