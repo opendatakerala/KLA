@@ -3,8 +3,7 @@ This is a community initiative to explore the 2026 Kerala Legislative Assembly E
 
 Cite our work 
 ```javascript
-var s = "Kerala legislative assembly election 2026 ODK portal. 1.0.0, OpenDataKerala Community, 29 Mar. 2026, https://doi.org/10.5281/zenodo.19323427.";
-alert(s);
+Kerala legislative assembly election 2026 ODK portal. 1.0.0, OpenDataKerala Community, 29 Mar. 2026, https://doi.org/10.5281/zenodo.19323427.
 ```
  
 * Website under GPL-3.0 license  
