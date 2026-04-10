@@ -1,6 +1,6 @@
 <script>
   import { _, currentLang, isLoading } from '../lib/i18n.js';
-  import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
+  import { sortedCandidates, getCandidateName, getConstituencyName, ALLIANCE_COLORS } from '../stores/candidateStore.js';
   import { historicalDataStore } from '../stores/historicalStore.js';
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
@@ -19,10 +19,7 @@
   let currentLangValue = $derived($currentLang);
   let currentIsLoading = $derived($isLoading);
   
-  let ldf = $derived($ldfCandidates);
-  let udf = $derived($udfCandidates);
-  let nda = $derived($ndaCandidates);
-  let others = $derived($othersCandidates);
+  let candidates = $derived($sortedCandidates);
 
   function t(key) {
     return currentIsLoading ? key : $_(key);
@@ -39,13 +36,6 @@
     const n = parseInt(num, 10);
     return isNaN(n) ? '0' : n.toLocaleString('en-IN');
   }
-
-  const ALLIANCE_COLORS = {
-    LDF: '#D94040',
-    UDF: '#1565C0',
-    NDA: '#E07828',
-    Others: '#33AA55'
-  };
 </script>
 
 <div class="export-container" bind:this={rootEl}>
@@ -141,37 +131,11 @@
               {$_('modal.contestingCandidates')}
             </div>
 
-            {#if ldf.length > 0}
-              <div class="candidate-group">
-                {#each ldf as c}
-                  <CandidateRow candidate={c} allianceLabel="LDF" allianceColor={ALLIANCE_COLORS.LDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
-                {/each}
-              </div>
-            {/if}
-
-            {#if udf.length > 0}
-              <div class="candidate-group">
-                {#each udf as c}
-                  <CandidateRow candidate={c} allianceLabel="UDF" allianceColor={ALLIANCE_COLORS.UDF} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
-                {/each}
-              </div>
-            {/if}
-
-            {#if nda.length > 0}
-              <div class="candidate-group">
-                {#each nda as c}
-                  <CandidateRow candidate={c} allianceLabel="NDA" allianceColor={ALLIANCE_COLORS.NDA} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
-                {/each}
-              </div>
-            {/if}
-
-            {#if others.length > 0}
-              <div class="candidate-group">
-                {#each others as c}
-                  <CandidateRow candidate={c} allianceLabel="Others" allianceColor={ALLIANCE_COLORS.Others} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
-                {/each}
-              </div>
-            {/if}
+            <div class="candidate-group">
+              {#each candidates as c}
+                <CandidateRow candidate={c} allianceLabel={c.alliance} allianceColor={ALLIANCE_COLORS[c.alliance] || ALLIANCE_COLORS.Others} langValue={currentLangValue} isLoading={currentIsLoading} t={t} />
+              {/each}
+            </div>
           </div>
 
           <div class="export-charts">

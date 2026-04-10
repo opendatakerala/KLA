@@ -115,25 +115,18 @@ function generate() {
     if (mlaTrack) candidateObj.mlaTrack = mlaTrack;
     const eduTag = cleanString(cand['edu tag']);
     if (eduTag) candidateObj.eduTag = eduTag;
+    const ballotOrder = cleanString(cand.ballotOrder);
+    if (ballotOrder) candidateObj.ballotOrder = ballotOrder;
 
     grouped[qid].candidates.push(candidateObj);
   });
 
-  const allianceOrder = { LDF: 0, UDF: 1, NDA: 2, Others: 3 };
   const sorted = Object.values(grouped).sort((a, b) => 
     parseInt(a.number) - parseInt(b.number)
   );
 
   sorted.forEach(row => {
-    row.candidates.sort((a, b) => {
-      const orderA = allianceOrder[a.alliance] ?? 4;
-      const orderB = allianceOrder[b.alliance] ?? 4;
-      if (orderA !== orderB) return orderA - orderB;
-      if (a.alliance === 'Others' && b.alliance === 'Others') {
-        return (a.party || '').localeCompare(b.party || '');
-      }
-      return 0;
-    });
+    row.candidates.sort((a, b) => parseInt(a.ballotOrder || 999) - parseInt(b.ballotOrder || 999));
   });
 
   writeJSON('constituencies.json', sorted);

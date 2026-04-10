@@ -1,20 +1,15 @@
 import { computed } from 'nanostores';
 import { selectedConstituency } from './constituencyStore.js';
 
-export function sortCandidatesByOthersWithParty(candidates) {
-  return [...candidates].sort((a, b) => {
-    const orderA = ['LDF', 'UDF', 'NDA', 'Others'].indexOf(a.alliance);
-    const orderB = ['LDF', 'UDF', 'NDA', 'Others'].indexOf(b.alliance);
-    if (orderA !== orderB) return orderA - orderB;
-    if (a.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(a.alliance)) {
-      const aHasParty = a.party && a.party.length > 0 && a.party !== "Independent";
-      const bHasParty = b.party && b.party.length > 0 && b.party !== "Independent";
-      if (aHasParty && !bHasParty) return -1;
-      if (!aHasParty && bHasParty) return 1;
-      return (a.party || '').localeCompare(b.party || '');
-    }
-    return 0;
-  });
+export const ALLIANCE_COLORS = {
+  LDF: '#D94040',
+  UDF: '#1565C0',
+  NDA: '#E07828',
+  Others: '#33AA55'
+};
+
+export function sortByBallotOrder(candidates) {
+  return [...candidates].sort((a, b) => parseInt(a.ballotOrder || 999) - parseInt(b.ballotOrder || 999));
 }
 
 export function getCandidateName(candidate, lang = 'en', isLoading = false, t = (key) => key) {
@@ -41,26 +36,9 @@ export function getDistrictName(constituency, lang = 'en') {
   return constituency.district;
 }
 
-export const ldfCandidates = computed(
+export const sortedCandidates = computed(
   [selectedConstituency],
-  ($selectedConstituency) => $selectedConstituency?.candidates?.filter(c => c.alliance === 'LDF') || []
-);
-
-export const udfCandidates = computed(
-  [selectedConstituency],
-  ($selectedConstituency) => $selectedConstituency?.candidates?.filter(c => c.alliance === 'UDF') || []
-);
-
-export const ndaCandidates = computed(
-  [selectedConstituency],
-  ($selectedConstituency) => $selectedConstituency?.candidates?.filter(c => c.alliance === 'NDA') || []
-);
-
-export const othersCandidates = computed(
-  [selectedConstituency],
-  ($selectedConstituency) => sortCandidatesByOthersWithParty(
-    $selectedConstituency?.candidates?.filter(c => c.alliance === 'Others' || !['LDF', 'UDF', 'NDA'].includes(c.alliance)) || []
-  )
+  ($selectedConstituency) => sortByBallotOrder($selectedConstituency?.candidates || [])
 );
 
 export const currentModal = selectedConstituency;
