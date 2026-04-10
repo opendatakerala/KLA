@@ -7,15 +7,15 @@
   let hours = $state(0);
   let minutes = $state(0);
   let seconds = $state(0);
-  let pollingStarted = $state(false);
+  let resultsStarted = $state(false);
 
-  const POLLING_DAY = new Date('2026-04-09T06:00:00+05:30');
+  const RESULTS_DAY = new Date('2026-05-04T08:00:00+05:30');
 
   function updateCountdown() {
     const now = new Date();
-    const diff = POLLING_DAY - now;
+    const diff = RESULTS_DAY - now;
     if (diff <= 0) {
-      pollingStarted = true;
+      resultsStarted = true;
       return;
     }
     days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -62,14 +62,14 @@
       <a href="https://opendatakerala.org/LSG2025/" target="_blank" rel="noopener noreferrer">LSG Election Portal</a>
     </div>
     <div class="header-right">
-      {#if pollingStarted}
+      {#if resultsStarted}
         <div class="countdown-box polling-live">
-          <div class="countdown-label">🗳️ Polling Day</div>
-          <div class="countdown-live-text">{$_('header.pollingUnderway')}</div>
+          <div class="countdown-label">🗳️ Vote Counting Day</div>
+          <div class="countdown-live-text">{$_('header.voteCountingUnderway')}</div>
         </div>
       {:else}
         <div class="countdown-box">
-          <div class="countdown-label">{$_('header.pollingDay')}</div>
+          <div class="countdown-label">{$_('header.voteCountingDay')}</div>
           <div class="countdown-units">
             <div class="cunit">
               <span class="cnum">{days}</span>
