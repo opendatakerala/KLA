@@ -3,18 +3,18 @@
   import Header from './Header.svelte';
   import Footer from './Footer.svelte';
   import Disclaimer from './Disclaimer.svelte';
-  import TurnoutLineChart from './charts/TurnoutLineChart.svelte';
-  import { overallTurnoutStore } from '../stores/turnoutStore.js';
+  // import TurnoutLineChart from './charts/TurnoutLineChart.svelte';
+  // import { overallTurnoutStore } from '../stores/turnoutStore.js';
   import "@fontsource/manjari";
 
   const StatsSection = import('./StatsSection.svelte').then(m => m.default);
   const DataExplorer = import('./DataExplorer.svelte').then(m => m.default);
   const Modal = import('./Modal.svelte').then(m => m.default);
 
-  let overallTurnoutData = $derived($overallTurnoutStore);
-  let overallTurnoutLoading = $derived(overallTurnoutData?.loading || false);
-  let overallTurnoutError = $derived(overallTurnoutData?.error ? true : false);
-  let overallTurnoutValues = $derived(overallTurnoutData?.data?.data?.['voter-turnout'] || null);
+  // let overallTurnoutData = $derived($overallTurnoutStore);
+  // let overallTurnoutLoading = $derived(overallTurnoutData?.loading || false);
+  // let overallTurnoutError = $derived(overallTurnoutData?.error ? true : false);
+  // let overallTurnoutValues = $derived(overallTurnoutData?.data?.data?.['voter-turnout'] || null);
 </script>
 
 {#if $isLoading}
@@ -29,11 +29,11 @@
         <span>{$_('charts.loading')}</span>
       </div>
     {:then Component}
-      <TurnoutLineChart 
+      <!-- <TurnoutLineChart 
         data={overallTurnoutValues} 
         loading={overallTurnoutLoading} 
         error={overallTurnoutError} 
-      />
+      /> -->
       <Component />
     {/await}
 

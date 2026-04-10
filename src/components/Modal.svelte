@@ -4,7 +4,7 @@
   import { clearHash } from '../stores/routerStore.js';
   import { ldfCandidates, udfCandidates, ndaCandidates, othersCandidates, getCandidateName, getConstituencyName } from '../stores/candidateStore.js';
   import { historicalDataStore } from '../stores/historicalStore.js';
-  import { turnoutStore } from '../stores/turnoutStore.js';
+  // import { turnoutStore } from '../stores/turnoutStore.js';
   import downloadIcon from '../images/download.svg';
   import shareIcon from '../images/share.svg';
   import pdfIcon from '../images/pdf-download.jpg';
@@ -12,7 +12,7 @@
   import NiyamasabhaChart from './charts/NiyamasabhaChart.svelte';
   import LoksabhaChart from './charts/LoksabhaChart.svelte';
   import Bothsabhas from './charts/Bothsabhas.svelte';
-  import TurnoutLineChart from './charts/TurnoutLineChart.svelte';
+  // import TurnoutLineChart from './charts/TurnoutLineChart.svelte';
   import ExportTemplate from './ExportTemplate.svelte';
   import CandidateRow from './CandidateRow.svelte';
   import { MANIFESTO_URLS } from '../lib/constants.js';
@@ -45,10 +45,10 @@
   let historicalLoading = $derived(historicalData?.loading || false);
   let historicalError = $derived(historicalData?.error ? true : false);
 
-  let turnoutData = $derived($turnoutStore);
-  let turnoutLoading = $derived(turnoutData?.loading || false);
-  let turnoutError = $derived(turnoutData?.error ? true : false);
-  let turnoutValues = $derived(turnoutData?.data?.data?.['voter-turnout'] || null);
+  // let turnoutData = $derived($turnoutStore);
+  // let turnoutLoading = $derived(turnoutData?.loading || false);
+  // let turnoutError = $derived(turnoutData?.error ? true : false);
+  // let turnoutValues = $derived(turnoutData?.data?.data?.['voter-turnout'] || null);
 
   function handleClose() { 
     clearHash();
@@ -288,11 +288,11 @@
       {/if}
 
       <div class="modal-body">
-        <TurnoutLineChart 
+        <!-- <TurnoutLineChart 
           data={turnoutValues} 
           loading={turnoutLoading} 
           error={turnoutError} 
-        />
+        /> -->
 
         <div class="modal-section-label">
           {$_('modal.contestingCandidates')}
