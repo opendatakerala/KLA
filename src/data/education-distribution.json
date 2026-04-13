@@ -1,6 +1,6 @@
 {
   "overall": {
-    "UP": 2,
+    "UP": 0,
     "High School": 66,
     "Higher Secondary": 50,
     "Diploma": 22,
@@ -23,7 +23,7 @@
       "Post Doctorate": 0
     },
     "UDF": {
-      "UP": 1,
+      "UP": 0,
       "High School": 16,
       "Higher Secondary": 22,
       "Diploma": 6,
@@ -34,7 +34,7 @@
       "Post Doctorate": 0
     },
     "NDA": {
-      "UP": 1,
+      "UP": 0,
       "High School": 25,
       "Higher Secondary": 11,
       "Diploma": 9,
@@ -91,7 +91,7 @@
       "Post Doctorate": 0
     },
     "IUML": {
-      "UP": 1,
+      "UP": 0,
       "High School": 5,
       "Higher Secondary": 6,
       "Diploma": 0,
@@ -113,7 +113,7 @@
       "Post Doctorate": 0
     },
     "BDJS": {
-      "UP": 1,
+      "UP": 0,
       "High School": 7,
       "Higher Secondary": 5,
       "Diploma": 1,
@@ -422,17 +422,6 @@
       "Doctorate Degree": 0,
       "Post Doctorate": 0
     },
-    "Kozhikode": {
-      "UP": 1,
-      "High School": 5,
-      "Higher Secondary": 7,
-      "Diploma": 3,
-      "Degree": 4,
-      "Professional Degree": 14,
-      "Master Degree": 5,
-      "Doctorate Degree": 0,
-      "Post Doctorate": 0
-    },
     "Thrissur": {
       "UP": 0,
       "High School": 9,
@@ -442,6 +431,17 @@
       "Professional Degree": 10,
       "Master Degree": 2,
       "Doctorate Degree": 2,
+      "Post Doctorate": 0
+    },
+    "Kozhikode": {
+      "UP": 0,
+      "High School": 5,
+      "Higher Secondary": 7,
+      "Diploma": 3,
+      "Degree": 4,
+      "Professional Degree": 14,
+      "Master Degree": 5,
+      "Doctorate Degree": 0,
       "Post Doctorate": 0
     },
     "Palakkad": {
@@ -467,7 +467,7 @@
       "Post Doctorate": 1
     },
     "Kannur": {
-      "UP": 1,
+      "UP": 0,
       "High School": 4,
       "Higher Secondary": 2,
       "Diploma": 1,

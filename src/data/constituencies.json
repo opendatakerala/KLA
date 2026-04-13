@@ -1367,7 +1367,7 @@
         "reference": "26kla013",
         "symbol": "Hammer, Sickle and Star",
         "archiveUrl": "mlat.26kla013_vengara.karayirajan",
-        "eduTag": "LP",
+        "eduTag": "Lower Primary",
         "ballotOrder": "1"
       },
       {
@@ -1800,7 +1800,7 @@
         "reference": "26kla296",
         "symbol": "Coconut Farm",
         "archiveUrl": "mlat.26kla296_nattika.pailyvathiyattu",
-        "eduTag": "UP",
+        "eduTag": "Upper Primary",
         "ballotOrder": "5"
       },
       {
@@ -2415,7 +2415,7 @@
         "reference": "26kla161",
         "symbol": "Ladder",
         "archiveUrl": "mlat.26kla161_taliparamba.parakkalabdulla",
-        "eduTag": "UP",
+        "eduTag": "Upper Primary",
         "ballotOrder": "1"
       },
       {
@@ -9655,8 +9655,8 @@
       {
         "alliance": "Others",
         "party": "SDPI",
-        "name": "Roy Arakkal",
-        "malayalam": "റോയ് അറയ്ക്കൽ",
+        "name": "Babu Mathew",
+        "malayalam": "ബാബു മാത്യു",
         "gender": "male",
         "age": "66",
         "candidateId": "2889",
