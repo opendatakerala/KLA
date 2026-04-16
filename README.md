@@ -9,7 +9,8 @@ Kerala legislative assembly election 2026 ODK portal. 1.0.0, OpenDataKerala Comm
 * Website under GPL-3.0 license  
 * Candidate Dataset - 2026 Kerala Assembly Elections: Candidate Registry (Demographics & Alliances) [Data set - ODbL license]. OpenDataKerala Community. https://doi.org/10.5281/zenodo.19323710
 
-![OpenDataKerala KLA Election 2026 Logo](src/images/logo-kla2026b.svg "Logo by Jameela P. CC BY-SA 4.0")
+<img src="src/images/logo-kla2026b.svg" width="100%" alt="OpenDataKerala KLA Election 2026 Logo by Jameela P. CC BY-SA 4.0" />
+
 Logo by [Jameela P.](https://meta.wikimedia.org/wiki/User:Jameela_P.) CC BY-SA 4.0
 ## Download data
 We encourage the reuse of our datasets. Please ensure proper attribution according to the specified licenses.
