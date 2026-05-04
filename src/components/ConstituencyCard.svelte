@@ -349,6 +349,7 @@
     border-radius: 8px;
     transition: width 0.3s ease;
     min-width: 0;
+    margin-left: 2px;
   }
 
   .detail-section {
@@ -489,29 +490,82 @@
   }
 
   @media (max-width: 768px) {
+    .constituency-card.expanded {
+      padding: 12px;
+    }
+
+    .detail-info {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .candidates-table {
+      border: none;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .table-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 0 12px;
+      border-bottom: 1px solid var(--border);
+      border-left: none !important;
+      gap: 4px;
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    .col-rank {
+      display: none;
+    }
+
+    .col-candidate {
+      width: 100%;
+      flex: unset;
+    }
+
+    .candidate-name-group {
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .candidate-name-group .table-photo,
+    .candidate-name-group .table-photo-placeholder {
+      width: 28px;
+      height: 28px;
+    }
+
+    .col-party-alliance {
+      width: 100%;
+      flex-direction: row;
+      gap: 8px;
+    }
+
     .col-votes {
       width: 100%;
       text-align: left;
       font-size: var(--fs-xl);
       font-weight: 700;
       color: var(--gold);
-      padding-top: 4px;
       flex-direction: row;
       align-items: baseline;
       gap: 8px;
     }
 
+    .col-votes .votes-count {
+      font-size: var(--fs-lg);
+    }
+
     .col-votes .votes-margin {
       font-size: var(--fs-base);
       color: var(--muted);
-    }
-
-    .col-party-alliance {
-      width: 100%;
-      flex-direction: row;
-      align-items: center;
-      gap: 8px;
-      margin-left: 0;
     }
   }
 </style>
