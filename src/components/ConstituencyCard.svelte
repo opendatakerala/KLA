@@ -11,6 +11,7 @@
   let sortedCandidates = $derived([...candidates].sort((a, b) => b.votes - a.votes));
   let leadingCandidate = $derived(sortedCandidates[0]);
   let countingInProgress = $derived(leadingCandidate?.votes === 0);
+  let overallMargin = $derived(sortedCandidates.length > 1 ? sortedCandidates[0].votes - sortedCandidates[1].votes : 0);
 
   let constituencyName = $derived(isMalayalam
     ? constituency.constituency['constituency_Name_ (Malayalam)'] || constituency.constituency.constituency_Name
@@ -82,7 +83,10 @@
                 {leadingCandidate.alliance}
               </span>
             </div>
-            <div class="candidate-votes">{formatVotes(leadingCandidate.votes)} votes</div>
+            <div class="candidate-votes">
+              <span class="votes-count">{formatVotes(leadingCandidate.votes)} votes</span>
+              <span class="votes-margin">+{formatVotes(overallMargin)}</span>
+            </div>
           </div>
         </div>
       {/if}
@@ -137,7 +141,12 @@
                 {candidate.alliance}
               </span>
             </span>
-            <span class="col-votes">{formatVotes(candidate.votes)}</span>
+            <span class="col-votes">
+              <span class="votes-count">{formatVotes(candidate.votes)}</span>
+              {#if index === 0 && sortedCandidates.length > 1}
+                <span class="votes-margin">+{formatVotes(overallMargin)}</span>
+              {/if}
+            </span>
           </div>
         {/each}
       </div>
@@ -291,6 +300,21 @@
     font-size: var(--fs-sm);
     font-weight: 600;
     color: var(--gold);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-end;
+  }
+
+  .votes-count {
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .votes-margin {
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--muted);
   }
 
   .detail-section {
@@ -417,6 +441,10 @@
     font-size: var(--fs-sm);
     font-weight: 600;
     color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
   }
 
   @media (max-width: 768px) {
@@ -435,6 +463,16 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .candidate-votes {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .candidate-votes .votes-margin {
+      font-size: var(--fs-sm);
     }
 
     .table-row {
@@ -497,6 +535,14 @@
       font-weight: 700;
       color: var(--gold);
       padding-top: 4px;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .col-votes .votes-margin {
+      font-size: var(--fs-base);
+      color: var(--muted);
     }
 
     .col-party-alliance {

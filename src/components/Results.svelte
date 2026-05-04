@@ -14,6 +14,9 @@
   let allConstituencies = $state([]);
   let searchTerm = $state('');
 
+  let sortMode = $state('number');
+  let sortOrder = $state('asc');
+
   let expandedMap = $state({});
 
   let summary = $derived(() => {
@@ -48,8 +51,9 @@
 
   let sortedConstituencies = $derived(() => {
     if (!constituencies().length) return [];
+    const dir = getSortDirection(sortMode);
     return [...constituencies()].sort((a, b) => {
-      return Number(a.constituency.constituency_Number) - Number(b.constituency.constituency_Number);
+      return (getSortValue(a, sortMode) - getSortValue(b, sortMode)) * dir;
     });
   });
 
@@ -96,6 +100,55 @@
   function getAllianceBg(alliance) {
     return ALLIANCE_BG[alliance] || ALLIANCE_BG.Others;
   }
+
+  function getOverallMargin(c) {
+    const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
+    if (sorted.length < 2) return 0;
+    return sorted[0].votes - sorted[1].votes;
+  }
+
+  function getAllianceMargin(c, alliance) {
+    const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
+    if (sorted.length === 0) return 0;
+    const allianceCandidate = sorted.find(c => c.alliance === alliance);
+    if (!allianceCandidate) {
+      return -sorted[0].votes;
+    }
+    if (sorted[0].alliance === alliance) {
+      return sorted.length > 1 ? sorted[0].votes - sorted[1].votes : sorted[0].votes;
+    }
+    return -(sorted[0].votes - allianceCandidate.votes);
+  }
+
+  function getSortValue(c, mode) {
+    if (mode === 'number') return Number(c.constituency.constituency_Number);
+    if (mode === 'lead') return getOverallMargin(c);
+    if (mode === 'tight') return getOverallMargin(c);
+    if (mode === 'lead-ldf' || mode === 'trail-ldf') return getAllianceMargin(c, 'LDF');
+    if (mode === 'lead-udf' || mode === 'trail-udf') return getAllianceMargin(c, 'UDF');
+    if (mode === 'lead-nda' || mode === 'trail-nda') return getAllianceMargin(c, 'NDA');
+    return 0;
+  }
+
+  function getSortDirection(mode) {
+    if (mode === 'number') return 1;
+    if (mode.startsWith('lead')) return -1;
+    if (mode.startsWith('trail')) return 1;
+    if (mode === 'tight') return 1;
+    return 1;
+  }
+
+  const sortOptions = [
+    { value: 'number', label: 'Constituency #' },
+    { value: 'lead', label: 'Clear Lead (Overall)' },
+    { value: 'lead-ldf', label: 'Clear Lead (LDF)' },
+    { value: 'lead-udf', label: 'Clear Lead (UDF)' },
+    { value: 'lead-nda', label: 'Clear Lead (NDA)' },
+    { value: 'trail-ldf', label: 'Clear Trail (LDF)' },
+    { value: 'trail-udf', label: 'Clear Trail (UDF)' },
+    { value: 'trail-nda', label: 'Clear Trail (NDA)' },
+    { value: 'tight', label: 'Tight Fight' },
+  ];
 </script>
 
 <div class="results-section" id="results-section">
@@ -117,9 +170,6 @@
     </div>
   {:else if allConstituencies.length > 0}
     <div class="results-content">
-      <div class="results-toolbar">
-        <ResultsSearchBar onSearch={handleSearch} value={searchTerm} />
-      </div>
       <div class="summary-section">
         <div class="summary-cards">
           <div class="summary-card total">
@@ -136,6 +186,15 @@
       </div>
 
       <ResultsMap constituencies={allConstituencies} />
+
+      <div class="results-toolbar">
+        <ResultsSearchBar onSearch={handleSearch} value={searchTerm} />
+        <select class="sort-select" value={sortMode} onchange={(e) => sortMode = e.target.value}>
+          {#each sortOptions as opt}
+            <option value={opt.value}>{opt.label}</option>
+          {/each}
+        </select>
+      </div>
 
       <div class="constituency-grid">
         {#each sortedConstituencies() as constituency}
@@ -252,6 +311,19 @@
     margin-bottom: 16px;
   }
 
+  .sort-select {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-sm);
+    color: var(--text);
+    flex-shrink: 0;
+    min-width: 180px;
+  }
+
   .results-empty {
     text-align: center;
     padding: 20px;
@@ -301,6 +373,16 @@
   }
 
   @media (max-width: 768px) {
+    .results-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sort-select {
+      min-width: auto;
+      width: 100%;
+    }
+
     .summary-cards {
       flex-direction: column;
     }
