@@ -182,7 +182,7 @@
             <span class="card-label">Total</span>
             <span class="card-value">{summary().total}</span>
           </div>
-          {#each Object.entries(summary().byAlliance) as [alliance, count]}
+          {#each Object.entries(summary().byAlliance).sort((a, b) => b[1] - a[1]) as [alliance, count]}
             <div class="summary-card alliance-card" style="background: {getAllianceBg(alliance)}">
               <span class="card-label">{alliance}</span>
               <span class="card-value" style="color: {getAllianceColor(alliance)}">{count}</span>
