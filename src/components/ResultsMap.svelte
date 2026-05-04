@@ -203,7 +203,7 @@
   {#if mapSvgText && constituencies.length > 0}
     <div class="results-map-container">
       <div id="results-map"></div>
-      <div class="map-legend" class:open={legendOpen}>
+      <div class="map-legend" class:open={legendOpen} class:mode-alliance={mapMode === 'alliance'} class:mode-party={mapMode === 'party'}>
         <button class="legend-toggle" onclick={() => legendOpen = !legendOpen}>
           <svg class="legend-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
           <span class="legend-toggle-text">Legend</span>
@@ -214,7 +214,7 @@
             <button class="mode-btn" class:active={mapMode === 'alliance'} onclick={() => { mapMode = 'alliance'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Alliance</button>
             <button class="mode-btn" class:active={mapMode === 'party'} onclick={() => { mapMode = 'party'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Party</button>
           </div>
-          {#if mapMode === 'alliance'}
+          <div class="legend-alliance-view">
             <div class="legend-title">Leading Alliance</div>
             {#each Object.entries(ALLIANCE_COLORS) as [alliance, color]}
               <div class="legend-item">
@@ -226,7 +226,8 @@
               <span class="legend-dot" style="background: #d1d5db"></span>
               <span>Pending</span>
             </div>
-          {:else}
+          </div>
+          <div class="legend-party-view">
             <div class="legend-title">Leading Party</div>
             {#each getAllianceParties() as allianceGroup}
               <div class="legend-party-group">{allianceGroup.alliance}</div>
@@ -241,7 +242,7 @@
               <span class="legend-dot" style="background: #d1d5db"></span>
               <span>Pending</span>
             </div>
-          {/if}
+          </div>
         </div>
       </div>
       <div class="map-tooltip" id="results-map-tooltip"></div>
@@ -313,6 +314,119 @@
 
   .legend-toggle {
     display: none;
+  }
+
+  .legend-toggle-text {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .legend-chevron {
+    transition: transform 0.2s;
+  }
+
+  .map-legend.open .legend-chevron {
+    transform: rotate(180deg);
+  }
+
+  .map-legend.open .legend-content {
+    display: block;
+  }
+
+  .map-legend.open {
+    border-radius: 6px;
+  }
+
+  .legend-content {
+    padding: 8px 12px 10px;
+  }
+
+  .legend-mode-switcher {
+    display: flex;
+    gap: 2px;
+    background: var(--border);
+    border-radius: 4px;
+    padding: 2px;
+    margin-bottom: 10px;
+  }
+
+  .mode-btn {
+    flex: 1;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    font-family: 'Manjari', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .mode-btn.active {
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .legend-party-group {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .map-legend.mode-alliance :global(.legend-party-view) {
+    display: none;
+  }
+
+  .map-legend.mode-party :global(.legend-alliance-view) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .map-legend {
+      top: 20px;
+      right: 20px;
+      padding: 0;
+    }
+
+    .legend-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Manjari', monospace;
+      font-size: 11px;
+      color: var(--text);
+    }
+
+    .map-legend.open .legend-content {
+      display: block;
+    }
+
+    .map-legend.open {
+      border-radius: 6px;
+    }
+
+    .legend-content {
+      padding: 0 10px 10px;
+      border-top: 0;
+      margin-top: 0;
+    }
   }
 
   .legend-title {
@@ -470,28 +584,47 @@
       color: var(--text);
     }
 
-    .legend-toggle-text {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .legend-content {
+      padding: 0 10px 10px;
+      border-top: 0;
     }
 
-    .legend-chevron {
-      transition: transform 0.2s;
+    .map-legend.open .legend-content {
+      display: block;
     }
 
-    .map-legend.open .legend-chevron {
-      transform: rotate(180deg);
+    .map-legend.open {
+      border-radius: 6px;
     }
+
+    .detail-popup {
+      width: 95%;
+      padding: 12px;
+    }
+  }
+
+  .legend-toggle {
+    display: none;
+  }
+
+  .legend-toggle-text {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .legend-chevron {
+    transition: transform 0.2s;
+  }
+
+  .map-legend.open .legend-chevron {
+    transform: rotate(180deg);
+  }
 
   .legend-content {
-    display: none;
     padding: 8px 12px 10px;
-    border-top: 1px solid var(--border);
-    margin-top: 0;
-    border-radius: 0 0 6px 6px;
   }
 
   .legend-mode-switcher {
@@ -535,17 +668,11 @@
     border-bottom: 1px solid var(--border);
   }
 
-    .map-legend.open .legend-content {
-      display: block;
-    }
+  .map-legend.mode-alliance :global(.legend-party-view) {
+    display: none;
+  }
 
-    .map-legend.open {
-      border-radius: 6px;
-    }
-
-    .detail-popup {
-      width: 95%;
-      padding: 12px;
-    }
+  .map-legend.mode-party :global(.legend-alliance-view) {
+    display: none;
   }
 </style>
