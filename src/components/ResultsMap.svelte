@@ -14,6 +14,33 @@
   let lang = $derived($locale);
 
   let legendOpen = $state(false);
+  let mapMode = $state('alliance');
+
+  const PARTY_COLORS = {
+    LDF: {
+      'Communist Party of India (Marxist)': '#CC0000',
+      'Communist Party of India': '#E63946',
+      'Rashtriya Janata Dal': '#FF6B6B',
+    },
+    UDF: {
+      'Indian National Congress': '#00509E',
+      'Indian Union Muslim League': '#0078FF',
+      'Kerala Congress': '#0096D6',
+      'Independent': '#29B6F6',
+      'Revolutionary Socialist Party': '#4FC3F7',
+      'Revolutionary Marxist Party of India': '#00A3E0',
+      'Kerala Congress (Jacob)': '#00B0FF',
+      'Communist Marxist Party Kerala State Committee': '#0066CC',
+    },
+    NDA: {
+      'Bharatiya Janata Party': '#E68A00',
+    },
+  };
+
+  function getPartyColor(party, alliance) {
+    const allianceColors = PARTY_COLORS[alliance] || {};
+    return allianceColors[party] || ALLIANCE_COLORS[alliance] || '#999';
+  }
 
   let allConstituencies = $derived(() => {
     const map = {};
@@ -33,6 +60,7 @@
 
   $effect(() => {
     if (mapSvgText && constituencies.length > 0) {
+      mapMode;
       initMap();
     }
   });
@@ -75,8 +103,12 @@
             .classed('result-path', true)
             .attr('data-alliance', alliance || 'pending');
 
-          if (alliance) {
-            path.style('fill', ALLIANCE_COLORS[alliance]);
+          if (alliance && leader) {
+            if (mapMode === 'party') {
+              path.style('fill', getPartyColor(leader.party, alliance));
+            } else {
+              path.style('fill', ALLIANCE_COLORS[alliance]);
+            }
           } else {
             path.style('fill', '#d1d5db');
           }
@@ -100,10 +132,10 @@
 
         let html = `<strong>#${num} ${name}</strong>`;
         if (alliance) {
-          const color = ALLIANCE_COLORS[alliance];
           const candidateName = lang === 'ml' ? (leader.name_ml || leader.name) : leader.name;
-          html += `<br/><span style="color:${color};font-weight:600">${candidateName}</span> (${alliance})`;
-          html += `<br/>${leader.party}`;
+          const color = mapMode === 'party' ? getPartyColor(leader.party, alliance) : ALLIANCE_COLORS[alliance];
+          html += `<br/><span style="color:${color};font-weight:600">${candidateName}</span>`;
+          html += `<br/>${leader.party} (${alliance})`;
           html += `<br/>${Number(leader.votes).toLocaleString('en-IN')} votes`;
         } else {
           html += `<br/><span style="color:var(--gold)">Counting in progress</span>`;
@@ -139,6 +171,32 @@
   function closeDetail() {
     selectedConstituency = null;
   }
+
+  function getAllianceParties() {
+    const partiesByAlliance = { LDF: new Set(), UDF: new Set(), NDA: new Set(), Others: new Set() };
+    for (const c of constituencies) {
+      const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
+      if (sorted.length > 0 && sorted[0].votes > 0) {
+        const leader = sorted[0];
+        const alliance = ['LDF', 'UDF', 'NDA'].includes(leader.alliance) ? leader.alliance : 'Others';
+        partiesByAlliance[alliance].add(leader.party);
+      }
+    }
+    const result = [];
+    for (const alliance of ['LDF', 'UDF', 'NDA', 'Others']) {
+      const parties = Array.from(partiesByAlliance[alliance]);
+      if (parties.length > 0) {
+        result.push({
+          alliance,
+          parties: parties.map(name => ({
+            name,
+            color: getPartyColor(name, alliance),
+          })),
+        });
+      }
+    }
+    return result;
+  }
 </script>
 
 <div class="results-map-section">
@@ -152,17 +210,38 @@
           <svg class="legend-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
         </button>
         <div class="legend-content">
-          <div class="legend-title">Leading Alliance</div>
-          {#each Object.entries(ALLIANCE_COLORS) as [alliance, color]}
-            <div class="legend-item">
-              <span class="legend-dot" style="background: {color}"></span>
-              <span>{alliance}</span>
-            </div>
-          {/each}
-          <div class="legend-item">
-            <span class="legend-dot" style="background: #d1d5db"></span>
-            <span>Pending</span>
+          <div class="legend-mode-switcher">
+            <button class="mode-btn" class:active={mapMode === 'alliance'} onclick={() => { mapMode = 'alliance'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Alliance</button>
+            <button class="mode-btn" class:active={mapMode === 'party'} onclick={() => { mapMode = 'party'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Party</button>
           </div>
+          {#if mapMode === 'alliance'}
+            <div class="legend-title">Leading Alliance</div>
+            {#each Object.entries(ALLIANCE_COLORS) as [alliance, color]}
+              <div class="legend-item">
+                <span class="legend-dot" style="background: {color}"></span>
+                <span>{alliance}</span>
+              </div>
+            {/each}
+            <div class="legend-item">
+              <span class="legend-dot" style="background: #d1d5db"></span>
+              <span>Pending</span>
+            </div>
+          {:else}
+            <div class="legend-title">Leading Party</div>
+            {#each getAllianceParties() as allianceGroup}
+              <div class="legend-party-group">{allianceGroup.alliance}</div>
+              {#each allianceGroup.parties as party}
+                <div class="legend-item">
+                  <span class="legend-dot" style="background: {party.color}"></span>
+                  <span>{party.name}</span>
+                </div>
+              {/each}
+            {/each}
+            <div class="legend-item">
+              <span class="legend-dot" style="background: #d1d5db"></span>
+              <span>Pending</span>
+            </div>
+          {/if}
         </div>
       </div>
       <div class="map-tooltip" id="results-map-tooltip"></div>
@@ -407,13 +486,54 @@
       transform: rotate(180deg);
     }
 
-    .legend-content {
-      display: none;
-      padding: 8px 12px 10px;
-      border-top: 1px solid var(--border);
-      margin-top: 0;
-      border-radius: 0 0 6px 6px;
-    }
+  .legend-content {
+    display: none;
+    padding: 8px 12px 10px;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .legend-mode-switcher {
+    display: flex;
+    gap: 2px;
+    background: var(--border);
+    border-radius: 4px;
+    padding: 2px;
+    margin-bottom: 10px;
+  }
+
+  .mode-btn {
+    flex: 1;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    font-family: 'Manjari', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .mode-btn.active {
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .legend-party-group {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--border);
+  }
 
     .map-legend.open .legend-content {
       display: block;
