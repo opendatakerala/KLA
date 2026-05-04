@@ -14,7 +14,7 @@
   let allConstituencies = $state([]);
   let searchTerm = $state('');
 
-  let sortMode = $state('number');
+  let sortMode = $state('count-high');
   let sortOrder = $state('asc');
 
   let expandedMap = $state({});
@@ -114,6 +114,13 @@
     return (votes / totalPolled) * 100;
   }
 
+  function getCountedPct(c) {
+    const totalPolled = (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100;
+    if (!totalPolled) return 0;
+    const countedVotes = c.candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
+    return (countedVotes / totalPolled) * 100;
+  }
+
   function getOverallMargin(c) {
     const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
     if (sorted.length < 2) return 0;
@@ -140,6 +147,7 @@
     if (mode === 'lead-ldf' || mode === 'trail-ldf') return getAllianceMargin(c, 'LDF');
     if (mode === 'lead-udf' || mode === 'trail-udf') return getAllianceMargin(c, 'UDF');
     if (mode === 'lead-nda' || mode === 'trail-nda') return getAllianceMargin(c, 'NDA');
+    if (mode === 'count-high' || mode === 'count-low') return getCountedPct(c);
     return 0;
   }
 
@@ -148,6 +156,8 @@
     if (mode.startsWith('lead')) return -1;
     if (mode.startsWith('trail')) return 1;
     if (mode === 'tight') return 1;
+    if (mode === 'count-high') return -1;
+    if (mode === 'count-low') return 1;
     return 1;
   }
 
@@ -161,6 +171,8 @@
     { value: 'trail-udf', label: 'Worst Performance (UDF)' },
     { value: 'trail-nda', label: 'Worst Performance (NDA)' },
     { value: 'tight', label: 'Tight Fight' },
+    { value: 'count-high', label: 'Count - High' },
+    { value: 'count-low', label: 'Count - Low' },
   ];
 </script>
 
