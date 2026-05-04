@@ -86,9 +86,6 @@
       <span class="rounds-info">AC No. {constituency.constituency.constituency_Number} &middot; Rounds {roundsCompleted}/{roundsTotal}</span>
     </div>
     <span class="expand-icon">{expanded ? '−' : '+'}</span>
-    {#if resultDeclared}
-      <span class="declared-badge">Declared</span>
-    {/if}
   </div>
 
   {#if !expanded}
@@ -111,11 +108,7 @@
             {/await}
           {/if}
           <div class="leading-candidate-info">
-            <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}
-              {#if resultDeclared}
-                <span class="won-badge">WON</span>
-              {/if}
-            </div>
+            <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}</div>
             {#if !isMalayalam && leadingCandidate.name_ml}
               <div class="candidate-name-ml">{leadingCandidate.name_ml}</div>
             {/if}
@@ -273,23 +266,6 @@
     font-size: var(--fs-xs);
     color: var(--muted);
     font-weight: 500;
-  }
-
-  .declared-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    font-size: 9px;
-    font-weight: 700;
-    padding: 2px 6px;
-    background: linear-gradient(135deg, #DAA520, #B8860B);
-    color: #fff;
-    border: 1.5px dashed #8B6914;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transform: rotate(4deg);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
   .won-badge {
@@ -685,19 +661,6 @@
     .col-votes .votes-margin {
       font-size: var(--fs-base);
       color: var(--muted);
-    }
-
-    .declared-badge {
-      font-size: 7px;
-      padding: 1px 4px;
-      border-width: 1px;
-    }
-
-    .won-badge {
-      font-size: 7px;
-      padding: 0px 4px;
-      border-width: 1px;
-      margin-left: 4px;
     }
   }
 </style>
