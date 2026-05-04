@@ -20,9 +20,10 @@
   let expandedMap = $state({});
 
   let summary = $derived(() => {
-    if (!allConstituencies.length) return { total: 0, byAlliance: {}, votesAlliance: {}, totalVotes: 0 };
+    if (!allConstituencies.length) return { total: 0, byAlliance: {}, byParty: {}, votesAlliance: {}, totalVotes: 0 };
     const byAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
     const votesAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
+    const byParty = { LDF: {}, UDF: {}, NDA: {}, Others: {} };
     let totalPolled = 0;
     for (const c of allConstituencies) {
       totalPolled += (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100 + (c.constituency.total_postal_votes || 0);
@@ -31,13 +32,14 @@
         const winner = sorted[0];
         const alliance = ['LDF', 'UDF', 'NDA'].includes(winner.alliance) ? winner.alliance : 'Others';
         byAlliance[alliance]++;
+        byParty[alliance][winner.party] = (byParty[alliance][winner.party] || 0) + 1;
       }
       for (const candidate of c.candidates) {
         const alliance = ['LDF', 'UDF', 'NDA'].includes(candidate.alliance) ? candidate.alliance : 'Others';
         votesAlliance[alliance] += candidate.votes;
       }
     }
-    return { total: allConstituencies.length, byAlliance, votesAlliance, totalVotes: totalPolled };
+    return { total: allConstituencies.length, byAlliance, byParty, votesAlliance, totalVotes: totalPolled };
   });
 
   let constituencies = $derived(() => {
@@ -212,6 +214,12 @@
               <span class="card-label">{alliance}</span>
               <span class="card-value" style="color: {getAllianceColor(alliance)}">{count}</span>
               <span class="card-votes">{Number(summary().votesAlliance[alliance]).toLocaleString('en-IN')} ({pct}%)</span>
+              <span class="card-separator"></span>
+              {#each Object.entries(summary().byParty[alliance] || {}).sort((a, b) => b[1] - a[1]) as [party, partyCount]}
+                {#if partyCount > 0}
+                  <span class="card-party">{partyCount} - {party}</span>
+                {/if}
+              {/each}
             </div>
           {/each}
         </div>
@@ -402,6 +410,20 @@
     font-size: var(--fs-sm);
     color: var(--muted);
     font-weight: 500;
+  }
+
+  .card-party {
+    font-size: var(--fs-xs);
+    color: var(--text-soft);
+    font-weight: 500;
+  }
+
+  .card-separator {
+    display: block;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.15);
+    margin: 6px 0;
+    width: 100%;
   }
 
   .constituency-grid {
