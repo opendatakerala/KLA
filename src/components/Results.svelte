@@ -229,7 +229,7 @@
       </div>
 
       <div class="constituency-grid">
-        {#each sortedConstituencies() as constituency}
+        {#each sortedConstituencies() as constituency (constituency.constituency.constituency_Number)}
           {@const key = constituency.constituency.constituency_Number}
           <ConstituencyCard
             constituency={constituency}
