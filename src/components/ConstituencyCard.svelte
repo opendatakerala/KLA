@@ -186,6 +186,12 @@
                 {#if candidate.sitting === 'YES'}
                   <span class="sitting-mla-badge">SITTING MLA</span>
                 {/if}
+                {#if candidate.sitting === 'YES (Party Change)'}
+                  <span class="sitting-mla-badge">SITTING MLA (DIFFERENT PARTY)</span>
+                {/if}
+                {#if candidate.sitting === 'YES (Seat Change)'}
+                  <span class="sitting-mla-badge">SITTING MLA (DIFFERENT SEAT)</span>
+                {/if}
               </span>
                   {#if secondaryName}
                     <span class="candidate-name-ml">{secondaryName}</span>

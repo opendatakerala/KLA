@@ -84,24 +84,38 @@
       });
     }
 
-    if (sittingFilter) {
+    if (sittingFilter && selectedParties.length > 0) {
       data = data.filter(c => {
         const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
         const leader = sorted[0];
         if (sittingFilter === 'won') {
-          return leader?.sitting === 'YES';
+          return leader?.sitting === 'YES' && selectedParties.includes(leader.party);
         }
         if (sittingFilter === 'lost') {
-          return c.candidates.some(candidate => candidate.sitting === 'YES' && candidate !== leader);
+          return c.candidates.some(candidate => candidate.sitting === 'YES' && candidate !== leader && selectedParties.includes(candidate.party));
         }
         return true;
       });
-    }
+    } else {
+      if (sittingFilter) {
+        data = data.filter(c => {
+          const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
+          const leader = sorted[0];
+          if (sittingFilter === 'won') {
+            return leader?.sitting === 'YES';
+          }
+          if (sittingFilter === 'lost') {
+            return c.candidates.some(candidate => candidate.sitting === 'YES' && candidate !== leader);
+          }
+          return true;
+        });
+      }
 
-    if (selectedParties.length > 0) {
-      data = data.filter(c => {
-        return c.candidates.some(candidate => selectedParties.includes(candidate.party));
-      });
+      if (selectedParties.length > 0) {
+        data = data.filter(c => {
+          return c.candidates.some(candidate => selectedParties.includes(candidate.party));
+        });
+      }
     }
 
     if (selectedDistricts.length > 0) {
