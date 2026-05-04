@@ -22,6 +22,9 @@
     : constituency.constituency.constituency_Name
   );
 
+  let roundsCompleted = $derived(constituency.constituency.roundlist?.completed_rounds ?? 0);
+  let roundsTotal = $derived(constituency.constituency.roundlist?.total_rounds ?? 0);
+
   function getPhotoSrc(reference) {
     if (!reference) return null;
     const key = `../images/candidate_photos/${reference}`;
@@ -56,7 +59,7 @@
   <div class="card-header">
     <span class="constituency-number">{constituency.constituency.constituency_Number}</span>
     <div class="constituency-info">
-      <h3 class="constituency-name">{constituencyName}</h3>
+      <h3 class="constituency-name">{constituencyName} <span class="rounds-info">Rounds {roundsCompleted}/{roundsTotal}</span></h3>
       <span class="constituency-district">{constituency.constituency.district}</span>
     </div>
     <span class="expand-icon">{expanded ? '−' : '+'}</span>
@@ -132,7 +135,7 @@
         </div>
         <div class="info-item">
           <span class="info-label">Counted Votes</span>
-          <span class="info-value">{formatVotes(countedVotes)} ({countedPct}%)</span>
+          <span class="info-value">{formatVotes(countedVotes)} ({countedPct}%) - Rounds {roundsCompleted}/{roundsTotal}</span>
         </div>
       </div>
 
@@ -236,6 +239,13 @@
   .constituency-district {
     font-size: var(--fs-xs);
     color: var(--muted);
+  }
+
+  .rounds-info {
+    font-size: var(--fs-xs);
+    color: var(--muted);
+    font-weight: 500;
+    margin-left: 8px;
   }
 
   .expand-icon {
