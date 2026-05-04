@@ -12,6 +12,7 @@
   let leadingCandidate = $derived(sortedCandidates[0]);
   let countingInProgress = $derived(leadingCandidate?.votes === 0);
   let overallMargin = $derived(sortedCandidates.length > 1 ? sortedCandidates[0].votes - sortedCandidates[1].votes : 0);
+  let totalPolled = $derived((constituency.constituency['Voters Total'] || 0) * (constituency.constituency['Polling % (2026)'] || 0) / 100);
 
   let constituencyName = $derived(isMalayalam
     ? constituency.constituency['constituency_Name_ (Malayalam)'] || constituency.constituency.constituency_Name
@@ -36,6 +37,11 @@
 
   function formatVotes(votes) {
     return Number(votes).toLocaleString('en-IN');
+  }
+
+  function getVoteShare(votes) {
+    if (!totalPolled || !votes) return 0;
+    return (votes / totalPolled) * 100;
   }
 
   function handleClick() {
@@ -86,6 +92,9 @@
             <div class="candidate-votes">
               <span class="votes-count">{formatVotes(leadingCandidate.votes)} votes</span>
               <span class="votes-margin">+{formatVotes(overallMargin)}</span>
+            </div>
+            <div class="vote-share-bar-container">
+              <div class="vote-share-bar" style="width: {getVoteShare(leadingCandidate.votes)}%; background: {getAllianceColor(leadingCandidate.alliance)}"></div>
             </div>
           </div>
         </div>
@@ -140,6 +149,12 @@
               <span class="alliance-badge" style="background: {getAllianceBg(candidate.alliance)}; color: {getAllianceColor(candidate.alliance)}">
                 {candidate.alliance}
               </span>
+            </span>
+            <span class="col-vote-share">
+              <div class="vote-share-bar-container">
+                <div class="vote-share-bar" style="width: {getVoteShare(candidate.votes)}%; background: {getAllianceColor(candidate.alliance)}"></div>
+              </div>
+              <span class="vote-share-pct">{getVoteShare(candidate.votes).toFixed(1)}%</span>
             </span>
             <span class="col-votes">
               <span class="votes-count">{formatVotes(candidate.votes)}</span>
@@ -317,6 +332,22 @@
     color: var(--muted);
   }
 
+  .vote-share-bar-container {
+    width: 100%;
+    height: 16px;
+    background: var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .vote-share-bar {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.3s ease;
+    min-width: 0;
+  }
+
   .detail-section {
     margin-top: 16px;
     padding-top: 16px;
@@ -447,6 +478,19 @@
     gap: 2px;
   }
 
+  .col-vote-share {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .vote-share-pct {
+    font-size: var(--fs-xs);
+    color: var(--muted);
+    font-weight: 600;
+  }
+
   @media (max-width: 768px) {
     .constituency-card.expanded {
       padding: 12px;
@@ -543,6 +587,30 @@
     .col-votes .votes-margin {
       font-size: var(--fs-base);
       color: var(--muted);
+    }
+
+    .col-vote-share {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .col-vote-share .vote-share-bar-container {
+      flex: 1;
+      margin-top: 0;
+      height: 20px;
+      border-radius: 10px;
+    }
+
+    .col-vote-share .vote-share-bar {
+      border-radius: 10px;
+    }
+
+    .col-vote-share .vote-share-pct {
+      width: 45px;
+      text-align: right;
+      font-size: var(--fs-sm);
     }
 
     .col-party-alliance {
