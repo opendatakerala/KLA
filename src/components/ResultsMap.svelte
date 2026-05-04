@@ -215,7 +215,7 @@
             <button class="mode-btn" class:active={mapMode === 'party'} onclick={() => { mapMode = 'party'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Party</button>
           </div>
           <div class="legend-alliance-view">
-            <div class="legend-title">Leading Alliance</div>
+            <div class="legend-title">Alliance</div>
             {#each Object.entries(ALLIANCE_COLORS) as [alliance, color]}
               <div class="legend-item">
                 <span class="legend-dot" style="background: {color}"></span>
@@ -228,7 +228,7 @@
             </div>
           </div>
           <div class="legend-party-view">
-            <div class="legend-title">Leading Party</div>
+            <div class="legend-title">Party</div>
             {#each getAllianceParties() as allianceGroup}
               <div class="legend-party-group">{allianceGroup.alliance}</div>
               {#each allianceGroup.parties as party}
