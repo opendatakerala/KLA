@@ -25,7 +25,7 @@
     const votesAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
     let totalPolled = 0;
     for (const c of allConstituencies) {
-      totalPolled += c.constituency['Voters Total'] || 0;
+      totalPolled += (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100;
       const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
       if (sorted.length > 0 && sorted[0].votes > 0) {
         const winner = sorted[0];
@@ -109,13 +109,13 @@
   }
 
   function getVoteShare(c, votes) {
-    const totalPolled = c.constituency['Voters Total'] || 0;
+    const totalPolled = (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100;
     if (!totalPolled || !votes) return 0;
     return (votes / totalPolled) * 100;
   }
 
   function getCountedPct(c) {
-    const totalPolled = c.constituency['Voters Total'] || 0;
+    const totalPolled = (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100;
     if (!totalPolled) return 0;
     const countedVotes = c.candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
     return (countedVotes / totalPolled) * 100;
