@@ -24,6 +24,7 @@
 
   let roundsCompleted = $derived(constituency.constituency.roundlist?.completed_rounds ?? 0);
   let roundsTotal = $derived(constituency.constituency.roundlist?.total_rounds ?? 0);
+  let resultDeclared = $derived(constituency.constituency.resultDeclared !== 'NO');
 
   function getPhotoSrc(reference) {
     if (!reference) return null;
@@ -63,6 +64,9 @@
       <span class="constituency-district">{constituency.constituency.district}</span>
     </div>
     <span class="expand-icon">{expanded ? '−' : '+'}</span>
+    {#if resultDeclared}
+      <span class="declared-badge">Declared</span>
+    {/if}
   </div>
 
   {#if !expanded}
@@ -85,7 +89,11 @@
             {/await}
           {/if}
           <div class="leading-candidate-info">
-            <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}</div>
+            <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}
+              {#if resultDeclared}
+                <span class="won-badge">WON</span>
+              {/if}
+            </div>
             {#if !isMalayalam && leadingCandidate.name_ml}
               <div class="candidate-name-ml">{leadingCandidate.name_ml}</div>
             {/if}
@@ -117,10 +125,6 @@
   {:else}
     <div class="detail-section">
       <div class="detail-info">
-        <div class="info-item">
-          <span class="info-label">Region</span>
-          <span class="info-value">{constituency.constituency.region}</span>
-        </div>
         <div class="info-item">
           <span class="info-label">Total Voters</span>
           <span class="info-value">{formatVotes(constituency.constituency['Voters Total'])}</span>
@@ -159,7 +163,7 @@
                   {/await}
                 {/if}
                 <div class="candidate-text">
-                  <span class="candidate-name">{displayName}</span>
+                  <span class="candidate-name">{displayName}{#if index === 0 && resultDeclared} <span class="won-badge">WON</span>{/if}</span>
                   {#if secondaryName}
                     <span class="candidate-name-ml">{secondaryName}</span>
                   {/if}
@@ -213,6 +217,7 @@
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 12px;
+    position: relative;
   }
 
   .constituency-number {
@@ -246,6 +251,38 @@
     color: var(--muted);
     font-weight: 500;
     margin-left: 8px;
+  }
+
+  .declared-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    padding: 3px 10px;
+    background: linear-gradient(135deg, #DAA520, #B8860B);
+    color: #fff;
+    border: 2.5px dashed #8B6914;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transform: rotate(4deg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .won-badge {
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    padding: 2px 8px;
+    background: linear-gradient(135deg, #DAA520, #B8860B);
+    color: #fff;
+    border: 2px dashed #8B6914;
+    border-radius: 2px;
+    text-transform: uppercase;
+    margin-left: 8px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
   .expand-icon {
