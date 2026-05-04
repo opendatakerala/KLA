@@ -224,7 +224,7 @@
   {#if mapSvgText && constituencies.length > 0}
     <div class="results-map-container">
       <div id="results-map"></div>
-      <div class="map-legend" class:open={legendOpen} class:mode-alliance={mapMode === 'alliance'} class:mode-party={mapMode === 'party'}>
+      <div class="map-legend" class:open={legendOpen}>
         <button class="legend-toggle" onclick={() => legendOpen = !legendOpen}>
           <svg class="legend-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
           <span class="legend-toggle-text">Legend</span>
@@ -235,7 +235,7 @@
             <button class="mode-btn" class:active={mapMode === 'alliance'} onclick={() => { mapMode = 'alliance'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Alliance</button>
             <button class="mode-btn" class:active={mapMode === 'party'} onclick={() => { mapMode = 'party'; if (mapSvgText && constituencies.length > 0) initMap(); }}>Party</button>
           </div>
-          <div class="legend-alliance-view">
+          {#if mapMode === 'alliance'}
             <div class="legend-title">Alliance</div>
             {#each getLeadingAlliances() as alliance}
               <div class="legend-item">
@@ -243,8 +243,7 @@
                 <span>{alliance.name} ({alliance.count})</span>
               </div>
             {/each}
-          </div>
-          <div class="legend-party-view">
+          {:else}
             <div class="legend-title">Party</div>
             {#each getAllianceParties() as allianceGroup}
               <div class="legend-party-group">{allianceGroup.alliance} ({allianceGroup.totalCount})</div>
@@ -255,7 +254,7 @@
                 </div>
               {/each}
             {/each}
-          </div>
+          {/if}
         </div>
       </div>
       <div class="map-tooltip" id="results-map-tooltip"></div>
@@ -576,46 +575,6 @@
     100% { transform: scale(0.95); opacity: 0.5; }
   }
 
-  @media (max-width: 768px) {
-    .map-legend {
-      top: 20px;
-      right: 20px;
-      padding: 0;
-    }
-
-    .legend-toggle {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      cursor: pointer;
-      font-family: 'Manjari', monospace;
-      font-size: 11px;
-      color: var(--text);
-    }
-
-    .legend-content {
-      padding: 0 10px 10px;
-      border-top: 0;
-    }
-
-    .map-legend.open .legend-content {
-      display: block;
-    }
-
-    .map-legend.open {
-      border-radius: 6px;
-    }
-
-    .detail-popup {
-      width: 95%;
-      padding: 12px;
-    }
-  }
-
   .legend-toggle {
     display: none;
   }
@@ -681,11 +640,46 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .map-legend.mode-alliance :global(.legend-party-view) {
-    display: none;
-  }
+  @media (max-width: 768px) {
+    .map-legend {
+      top: 20px;
+      right: 20px;
+      padding: 0;
+    }
 
-  .map-legend.mode-party :global(.legend-alliance-view) {
-    display: none;
+    .legend-toggle {
+      display: flex !important;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Manjari', monospace;
+      font-size: 11px;
+      color: var(--text);
+    }
+
+    .legend-content {
+      display: none;
+      padding: 0 10px 10px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .map-legend.open .legend-content {
+      display: block;
+    }
+
+    .map-legend.open {
+      border-radius: 6px;
+    }
+
+    .detail-popup {
+      width: 95%;
+      padding: 12px;
+    }
   }
 </style>
