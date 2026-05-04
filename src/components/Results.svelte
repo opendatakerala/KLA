@@ -19,6 +19,11 @@
 
   let expandedMap = $state({});
 
+  let filterOpen = $state(false);
+  let sittingFilter = $state('');
+  let selectedParties = $state([]);
+  let selectedDistricts = $state([]);
+
   let summary = $derived(() => {
     if (!allConstituencies.length) return { total: 0, byAlliance: {}, byParty: {}, votesAlliance: {}, votesPartyByAlliance: {}, totalVotes: 0 };
     const byAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
@@ -44,20 +49,68 @@
     return { total: allConstituencies.length, byAlliance, byParty, votesAlliance, votesPartyByAlliance, totalVotes: totalPolled };
   });
 
+  let allParties = $derived(() => {
+    const parties = new Set();
+    for (const c of allConstituencies) {
+      for (const candidate of c.candidates) {
+        if (candidate.party) parties.add(candidate.party);
+      }
+    }
+    return [...parties].sort();
+  });
+
+  let allDistricts = $derived(() => {
+    const districts = new Set();
+    for (const c of allConstituencies) {
+      if (c.constituency.district) districts.add(c.constituency.district);
+    }
+    return [...districts].sort();
+  });
+
   let constituencies = $derived(() => {
-    const data = allConstituencies;
-    if (!searchTerm) return data;
-    const term = searchTerm.toLowerCase();
-    return data.filter(c => {
-      const enName = c.constituency.constituency_Name.toLowerCase();
-      const mlName = (c.constituency['constituency_Name_ (Malayalam)'] || '').toLowerCase();
-      if (enName.includes(term) || mlName.includes(term)) return true;
-      return c.candidates.some(candidate => {
-        const enCandidate = (candidate.name || '').toLowerCase();
-        const mlCandidate = (candidate.name_ml || '').toLowerCase();
-        return enCandidate.includes(term) || mlCandidate.includes(term);
+    let data = allConstituencies;
+
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      data = data.filter(c => {
+        const enName = c.constituency.constituency_Name.toLowerCase();
+        const mlName = (c.constituency['constituency_Name_ (Malayalam)'] || '').toLowerCase();
+        if (enName.includes(term) || mlName.includes(term)) return true;
+        return c.candidates.some(candidate => {
+          const enCandidate = (candidate.name || '').toLowerCase();
+          const mlCandidate = (candidate.name_ml || '').toLowerCase();
+          return enCandidate.includes(term) || mlCandidate.includes(term);
+        });
       });
-    });
+    }
+
+    if (sittingFilter) {
+      data = data.filter(c => {
+        const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
+        const leader = sorted[0];
+        if (sittingFilter === 'won') {
+          return leader?.sitting === 'YES';
+        }
+        if (sittingFilter === 'lost') {
+          return c.candidates.some(candidate => candidate.sitting === 'YES' && candidate !== leader);
+        }
+        return true;
+      });
+    }
+
+    if (selectedParties.length > 0) {
+      data = data.filter(c => {
+        return c.candidates.some(candidate => selectedParties.includes(candidate.party));
+      });
+    }
+
+    if (selectedDistricts.length > 0) {
+      data = data.filter(c => {
+        return selectedDistricts.includes(c.constituency.district);
+      });
+    }
+
+    return data;
   });
 
   let sortedConstituencies = $derived(() => {
@@ -92,6 +145,41 @@
 
   function handleSearch(value) {
     searchTerm = value;
+  }
+
+  function toggleFilter(type, value) {
+    if (type === 'sitting') {
+      sittingFilter = sittingFilter === value ? '' : value;
+    } else if (type === 'party') {
+      if (selectedParties.includes(value)) {
+        selectedParties = selectedParties.filter(p => p !== value);
+      } else {
+        selectedParties = [...selectedParties, value];
+      }
+    } else if (type === 'district') {
+      if (selectedDistricts.includes(value)) {
+        selectedDistricts = selectedDistricts.filter(d => d !== value);
+      } else {
+        selectedDistricts = [...selectedDistricts, value];
+      }
+    }
+  }
+
+  function removeFilter(type, value) {
+    if (type === 'sitting') {
+      sittingFilter = '';
+    } else if (type === 'party') {
+      selectedParties = selectedParties.filter(p => p !== value);
+    } else if (type === 'district') {
+      selectedDistricts = selectedDistricts.filter(d => d !== value);
+    }
+  }
+
+  function clearAllFilters() {
+    sittingFilter = '';
+    selectedParties = [];
+    selectedDistricts = [];
+    searchTerm = '';
   }
 
   function toggleConstituency(constituency) {
@@ -233,12 +321,95 @@
 
       <div class="results-toolbar">
         <ResultsSearchBar onSearch={handleSearch} value={searchTerm} />
-        <select class="sort-select" value={sortMode} onchange={(e) => sortMode = e.target.value}>
-          {#each sortOptions as opt}
-            <option value={opt.value}>{opt.label}</option>
-          {/each}
-        </select>
+        <div class="toolbar-actions">
+          <button class="filter-toggle" onclick={() => filterOpen = !filterOpen} class:active={filterOpen}>
+            Filters
+            {#if sittingFilter || selectedParties.length > 0 || selectedDistricts.length > 0}
+              <span class="filter-count">{[sittingFilter ? 1 : 0, selectedParties.length, selectedDistricts.length].reduce((a, b) => a + b, 0)}</span>
+            {/if}
+          </button>
+          <select class="sort-select" value={sortMode} onchange={(e) => sortMode = e.target.value}>
+            {#each sortOptions as opt}
+              <option value={opt.value}>{opt.label}</option>
+            {/each}
+          </select>
+        </div>
       </div>
+
+      {#if filterOpen}
+        <div class="filter-panel">
+          <div class="filter-section">
+            <h4 class="filter-heading">Sitting MLA</h4>
+            <div class="filter-options">
+              <button class="filter-btn" class:active={sittingFilter === 'won'} onclick={() => toggleFilter('sitting', 'won')}>
+                Won
+              </button>
+              <button class="filter-btn" class:active={sittingFilter === 'lost'} onclick={() => toggleFilter('sitting', 'lost')}>
+                Lost
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h4 class="filter-heading">Party</h4>
+            <div class="filter-options">
+              {#each allParties() as party}
+                <button class="filter-btn" class:active={selectedParties.includes(party)} onclick={() => toggleFilter('party', party)}>
+                  {party}
+                </button>
+              {/each}
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h4 class="filter-heading">District</h4>
+            <div class="filter-options">
+              {#each allDistricts() as district}
+                <button class="filter-btn" class:active={selectedDistricts.includes(district)} onclick={() => toggleFilter('district', district)}>
+                  {district}
+                </button>
+              {/each}
+            </div>
+          </div>
+        </div>
+      {/if}
+
+      {#if sittingFilter || selectedParties.length > 0 || selectedDistricts.length > 0 || searchTerm}
+        <div class="active-filters">
+          <span class="filter-label">Active filters:</span>
+          {#if searchTerm}
+            <span class="filter-tag">
+              Search: "{searchTerm}"
+              <button class="filter-remove" onclick={() => searchTerm = ''}>×</button>
+            </span>
+          {/if}
+          {#if sittingFilter === 'won'}
+            <span class="filter-tag">
+              Sitting MLA Won
+              <button class="filter-remove" onclick={() => removeFilter('sitting')}>×</button>
+            </span>
+          {/if}
+          {#if sittingFilter === 'lost'}
+            <span class="filter-tag">
+              Sitting MLA Lost
+              <button class="filter-remove" onclick={() => removeFilter('sitting')}>×</button>
+            </span>
+          {/if}
+          {#each selectedParties as party}
+            <span class="filter-tag">
+              {party}
+              <button class="filter-remove" onclick={() => removeFilter('party', party)}>×</button>
+            </span>
+          {/each}
+          {#each selectedDistricts as district}
+            <span class="filter-tag">
+              {district}
+              <button class="filter-remove" onclick={() => removeFilter('district', district)}>×</button>
+            </span>
+          {/each}
+          <button class="clear-filters" onclick={clearAllFilters}>Clear All</button>
+        </div>
+      {/if}
 
       <div class="constituency-grid">
         {#each sortedConstituencies() as constituency (constituency.constituency.constituency_Number)}
@@ -353,6 +524,155 @@
     align-items: center;
     gap: 16px;
     margin-bottom: 16px;
+  }
+
+  .toolbar-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .filter-toggle {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-sm);
+    color: var(--text);
+    transition: background 0.15s;
+    position: relative;
+  }
+
+  .filter-toggle:hover {
+    background: var(--border);
+  }
+
+  .filter-toggle.active {
+    background: var(--gold);
+    color: var(--card);
+    border-color: var(--gold);
+  }
+
+  .filter-count {
+    background: var(--text);
+    color: var(--card);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+    margin-left: 4px;
+  }
+
+  .filter-panel {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filter-heading {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filter-btn {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-xs);
+    color: var(--text);
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover {
+    background: var(--border);
+  }
+
+  .filter-btn.active {
+    background: var(--gold);
+    color: var(--card);
+    border-color: var(--gold);
+  }
+
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: var(--card2);
+    border-radius: 8px;
+  }
+
+  .filter-label {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: var(--fs-xs);
+    color: var(--text);
+  }
+
+  .filter-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--muted);
+    padding: 0 2px;
+    line-height: 1;
+  }
+
+  .filter-remove:hover {
+    color: var(--text);
+  }
+
+  .clear-filters {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-xs);
+    color: var(--text);
+    margin-left: auto;
+  }
+
+  .clear-filters:hover {
+    background: var(--border);
   }
 
   .sort-select {
