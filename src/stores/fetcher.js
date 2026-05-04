@@ -1,6 +1,6 @@
 import { nanoquery } from "@nanostores/query";
 
-const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || "";
+export const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || "";
 
 async function fetcher(constituency) {
   const qid = constituency?.qid;
@@ -33,10 +33,3 @@ export const createTurnoutFetcherStore = turnoutStore[0];
 export const createOverallTurnoutFetcherStore = nanoquery({
   fetcher: () => turnoutFetcher({ number: "all" }),
 })[0];
-
-export const [createResultsFetcherStore] = nanoquery({
-  fetcher: async () => {
-    const res = await fetch(`${API_BASE}/api/kla2026/results/all.json`);
-    return res.json();
-  },
-});

@@ -1,14 +1,13 @@
 <script>
   import { _ } from '../lib/i18n.js';
   import { ALLIANCE_COLORS, ALLIANCE_BG } from '../lib/constants.js';
-  import { resultStore } from '../stores/resultStore.js';
   import ConstituencyCard from './ConstituencyCard.svelte';
 
-  let results = $derived($resultStore);
-  let loading = $derived(results?.loading || false);
-  let error = $derived(results?.error ? true : false);
-  let data = $derived(results?.data || null);
-  let constituencies = $derived(data?.data || []);
+  const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || '';
+
+  let loading = $state(false);
+  let error = $state(false);
+  let constituencies = $state([]);
 
   let expandedMap = $state({});
 
@@ -33,6 +32,28 @@
     });
   });
 
+  async function fetchResults() {
+    loading = true;
+    error = false;
+    try {
+      const res = await fetch(`${API_BASE}/api/kla2026/results/all.json`);
+      if (!res.ok) throw new Error('Failed to fetch');
+      const json = await res.json();
+      constituencies = json.data || [];
+    } catch {
+      error = true;
+      constituencies = [];
+    } finally {
+      loading = false;
+    }
+  }
+
+  $effect(() => {
+    fetchResults();
+    const interval = setInterval(fetchResults, 60000);
+    return () => clearInterval(interval);
+  });
+
   function toggleConstituency(constituency) {
     const key = constituency.constituency.constituency_Number;
     if (expandedMap[key]) {
@@ -53,9 +74,14 @@
 </script>
 
 <div class="results-section" id="results-section">
-  <h2 class="results-title">{$_('results.title')}</h2>
+  <div class="results-header">
+    <h2 class="results-title">{$_('results.title')}</h2>
+    <button class="reload-btn" onclick={fetchResults} disabled={loading}>
+      {loading ? 'Updating...' : 'Reload'}
+    </button>
+  </div>
 
-  {#if loading}
+  {#if loading && constituencies.length === 0}
     <div class="component-loading">
       <div class="shimmer"></div>
       <span>{$_('charts.loading')}</span>
@@ -109,11 +135,39 @@
     padding: 20px;
   }
 
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
   .results-title {
     font-size: var(--fs-xl);
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 16px;
+    margin-bottom: 0;
+  }
+
+  .reload-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-sm);
+    color: var(--text);
+    transition: background 0.15s;
+  }
+
+  .reload-btn:hover:not(:disabled) {
+    background: var(--border);
+  }
+
+  .reload-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   .component-loading {
