@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import SearchBar from './SearchBar.svelte';
+  // import SearchBar from './SearchBar.svelte';
   import { locale, _, setLanguage } from '../lib/i18n.js';
   
   import logo from "../images/logo-kla2026b.svg"
@@ -111,9 +111,9 @@
       </div>
     </div>
   </div>
-  <div class="header-search">
+  <!-- <div class="header-search">
     <SearchBar />
-  </div>
+  </div> -->
 </header>
 
 <style>
