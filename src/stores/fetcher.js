@@ -30,4 +30,13 @@ const turnoutFetcher = async (constituency) => {
 
 const turnoutStore = nanoquery({ fetcher: turnoutFetcher });
 export const createTurnoutFetcherStore = turnoutStore[0];
-export const createOverallTurnoutFetcherStore = nanoquery({ fetcher: () => turnoutFetcher({number: "all"}) })[0];
+export const createOverallTurnoutFetcherStore = nanoquery({
+  fetcher: () => turnoutFetcher({ number: "all" }),
+})[0];
+
+export const [createResultsFetcherStore] = nanoquery({
+  fetcher: async () => {
+    const res = await fetch(`${API_BASE}/api/kla2026/results/all.json`);
+    return res.json();
+  },
+});

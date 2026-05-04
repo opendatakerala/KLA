@@ -93,6 +93,7 @@
     "allDistricts": "All Districts"
   },
   "results": {
+    "title": "Election Results",
     "empty": "No constituencies match your search.",
     "moreInfo": "More info",
     "gridLabel": "List of electoral constituencies",

@@ -3,6 +3,7 @@
   import Header from './Header.svelte';
   import Footer from './Footer.svelte';
   import Disclaimer from './Disclaimer.svelte';
+  import Results from './Results.svelte';
   // import TurnoutLineChart from './charts/TurnoutLineChart.svelte';
   // import { overallTurnoutStore } from '../stores/turnoutStore.js';
   import "@fontsource/manjari";
@@ -29,6 +30,8 @@
   <Header />
 
   <div class="container">
+    <Results />
+
     {#if !StatsSection}
       <button class="toggle-btn" onclick={loadComponents}>{$_('home.showVotingDetails')}</button>
     {:else}
