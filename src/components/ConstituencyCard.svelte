@@ -104,16 +104,7 @@
         </div>
       </div>
 
-      <h4 class="candidates-title">Candidates</h4>
-
       <div class="candidates-table">
-        <div class="table-header">
-          <span class="col-rank">#</span>
-          <span class="col-candidate">Candidate</span>
-          <span class="col-party">Party</span>
-          <span class="col-alliance">Alliance</span>
-          <span class="col-votes">Votes</span>
-        </div>
         {#each sortedCandidates as candidate, index}
           {@const displayName = isMalayalam && candidate.name_ml ? candidate.name_ml : candidate.name}
           {@const secondaryName = !isMalayalam && candidate.name_ml ? candidate.name_ml : null}
@@ -140,8 +131,8 @@
                 </div>
               </div>
             </span>
-            <span class="col-party">{candidate.party}</span>
-            <span class="col-alliance">
+            <span class="col-party-alliance">
+              <span class="party-name">{candidate.party}</span>
               <span class="alliance-badge" style="background: {getAllianceBg(candidate.alliance)}; color: {getAllianceColor(candidate.alliance)}">
                 {candidate.alliance}
               </span>
@@ -334,29 +325,10 @@
     color: var(--text);
   }
 
-  .candidates-title {
-    font-size: var(--fs-md);
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
   .candidates-table {
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-  }
-
-  .table-header {
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    background: var(--card2);
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
 
   .table-row {
@@ -417,14 +389,16 @@
     flex-shrink: 0;
   }
 
-  .col-party {
+  .col-party-alliance {
     width: 180px;
-    font-size: var(--fs-sm);
-    color: var(--text-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
-  .col-alliance {
-    width: 80px;
+  .party-name {
+    font-size: var(--fs-sm);
+    color: var(--text-soft);
   }
 
   .alliance-badge {
@@ -434,6 +408,7 @@
     font-size: var(--fs-xs);
     font-weight: 600;
     text-transform: uppercase;
+    width: fit-content;
   }
 
   .col-votes {
@@ -454,16 +429,82 @@
       gap: 12px;
     }
 
-    .col-party {
-      display: none;
+    .candidates-table {
+      border: none;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .col-alliance {
-      width: auto;
+    .table-row {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 14px 14px 48px;
+      border-bottom: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card2);
+      gap: 6px;
+      position: relative;
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    .table-row:hover {
+      background: var(--card2);
+    }
+
+    .col-rank {
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      font-weight: 700;
+      background: var(--border);
+      border-radius: 50%;
+    }
+
+    .col-candidate {
+      width: 100%;
+    }
+
+    .candidate-name-group {
+      gap: 10px;
+    }
+
+    .table-photo,
+    .table-photo-placeholder {
+      width: 40px;
+      height: 40px;
+    }
+
+    .candidate-name {
+      font-size: var(--fs-base);
     }
 
     .col-votes {
-      width: 70px;
+      width: 100%;
+      text-align: left;
+      font-size: var(--fs-xl);
+      font-weight: 700;
+      color: var(--gold);
+      padding-top: 4px;
+    }
+
+    .col-party-alliance {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      margin-left: 0;
     }
   }
 </style>

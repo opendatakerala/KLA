@@ -97,7 +97,10 @@
     "empty": "No constituencies match your search.",
     "moreInfo": "More info",
     "gridLabel": "List of electoral constituencies",
-    "viewConstituency": "View details for {name} constituency, number {number}"
+    "viewConstituency": "View details for {name} constituency, number {number}",
+    "region": "Region",
+    "totalVoters": "Total Voters",
+    "pollingPercent": "Polling %"
   },
   "map": {
     "scReserved": "SC Reserved",

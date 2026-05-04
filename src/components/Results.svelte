@@ -3,6 +3,7 @@
   import { ALLIANCE_COLORS, ALLIANCE_BG } from '../lib/constants.js';
   import ConstituencyCard from './ConstituencyCard.svelte';
   import ResultsSearchBar from './ResultsSearchBar.svelte';
+  import ResultsMap from './ResultsMap.svelte';
 
   const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || '';
 
@@ -133,6 +134,8 @@
           {/each}
         </div>
       </div>
+
+      <ResultsMap constituencies={allConstituencies} />
 
       <div class="constituency-grid">
         {#each sortedConstituencies() as constituency}
