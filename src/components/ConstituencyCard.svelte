@@ -80,10 +80,10 @@
 
 <div class="constituency-card" class:expanded onclick={handleClick}>
   <div class="card-header">
-    <span class="constituency-number">{constituency.constituency.constituency_Number}</span>
     <div class="constituency-info">
-      <h3 class="constituency-name">{constituencyName} <span class="rounds-info">Rounds {roundsCompleted}/{roundsTotal}</span></h3>
       <span class="constituency-district">{constituency.constituency.district}</span>
+      <h3 class="constituency-name">{constituencyName}</h3>
+      <span class="rounds-info">AC No. {constituency.constituency.constituency_Number} &middot; Rounds {roundsCompleted}/{roundsTotal}</span>
     </div>
     <span class="expand-icon">{expanded ? '−' : '+'}</span>
     {#if resultDeclared}
@@ -239,18 +239,12 @@
     position: relative;
   }
 
-  .constituency-number {
-    font-size: var(--fs-lg);
-    font-weight: 700;
-    color: var(--muted);
-    min-width: 32px;
-    text-align: center;
-    line-height: 1;
-  }
-
   .constituency-info {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
 
   .constituency-name {
@@ -269,36 +263,35 @@
     font-size: var(--fs-xs);
     color: var(--muted);
     font-weight: 500;
-    margin-left: 8px;
   }
 
   .declared-badge {
     position: absolute;
-    top: -4px;
-    right: -4px;
-    font-size: var(--fs-xs);
+    top: -2px;
+    right: -2px;
+    font-size: 9px;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 2px 6px;
     background: linear-gradient(135deg, #DAA520, #B8860B);
     color: #fff;
-    border: 2.5px dashed #8B6914;
-    border-radius: 3px;
+    border: 1.5px dashed #8B6914;
+    border-radius: 2px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transform: rotate(4deg);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 
   .won-badge {
-    font-size: var(--fs-xs);
+    font-size: 9px;
     font-weight: 700;
-    padding: 2px 8px;
+    padding: 1px 5px;
     background: linear-gradient(135deg, #DAA520, #B8860B);
     color: #fff;
-    border: 2px dashed #8B6914;
+    border: 1.5px dashed #8B6914;
     border-radius: 2px;
     text-transform: uppercase;
-    margin-left: 8px;
+    margin-left: 6px;
     letter-spacing: 0.5px;
     vertical-align: middle;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -669,6 +662,19 @@
     .col-votes .votes-margin {
       font-size: var(--fs-base);
       color: var(--muted);
+    }
+
+    .declared-badge {
+      font-size: 7px;
+      padding: 1px 4px;
+      border-width: 1px;
+    }
+
+    .won-badge {
+      font-size: 7px;
+      padding: 0px 4px;
+      border-width: 1px;
+      margin-left: 4px;
     }
   }
 </style>
