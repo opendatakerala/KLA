@@ -10,6 +10,7 @@
   let candidates = $derived(constituency.candidates);
   let sortedCandidates = $derived([...candidates].sort((a, b) => b.votes - a.votes));
   let leadingCandidate = $derived(sortedCandidates[0]);
+  let secondCandidate = $derived(sortedCandidates[1]);
   let countingInProgress = $derived(leadingCandidate?.votes === 0);
   let overallMargin = $derived(sortedCandidates.length > 1 ? sortedCandidates[0].votes - sortedCandidates[1].votes : 0);
   let totalPolled = $derived((constituency.constituency['Voters Total'] || 0) * (constituency.constituency['Polling % (2026)'] || 0) / 100);
@@ -93,8 +94,16 @@
               <span class="votes-count">{formatVotes(leadingCandidate.votes)} votes</span>
               <span class="votes-margin">+{formatVotes(overallMargin)}</span>
             </div>
-            <div class="vote-share-bar-container">
-              <div class="vote-share-bar" style="width: {getVoteShare(leadingCandidate.votes)}%; background: {getAllianceColor(leadingCandidate.alliance)}"></div>
+            <div class="leading-vote-bar-wrapper">
+              <div class="vote-share-bar-container leading-vote-bar">
+                {#if secondCandidate}
+                  <div class="runner-up-marker" style="margin-right: {100 - getVoteShare(secondCandidate.votes)}%; background: {getAllianceColor(secondCandidate.alliance)}"></div>
+                {/if}
+                <div class="vote-share-bar" style="width: {getVoteShare(leadingCandidate.votes)}%; background: {getAllianceColor(leadingCandidate.alliance)}"></div>
+              </div>
+              {#if secondCandidate}
+                <div class="runner-up-alliance-label" style="right: {100 - getVoteShare(secondCandidate.votes)}%; background: {getAllianceColor(secondCandidate.alliance)}; --label-color: {getAllianceColor(secondCandidate.alliance)}">{secondCandidate.alliance}</div>
+              {/if}
             </div>
           </div>
         </div>
@@ -335,6 +344,31 @@
     color: var(--muted);
   }
 
+  .leading-vote-bar-wrapper {
+    position: relative;
+  }
+
+  .runner-up-alliance-label {
+    position: absolute;
+    top: 100%;
+    padding: 1px 6px;
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  .runner-up-alliance-label::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: 0px;
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid var(--label-color);
+  }
+
   .vote-share-bar-container {
     width: 100%;
     height: 16px;
@@ -349,7 +383,24 @@
     border-radius: 8px;
     transition: width 0.3s ease;
     min-width: 0;
-    margin-left: 2px;
+  }
+
+  .leading-vote-bar {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .leading-vote-bar .vote-share-bar {
+    position: relative;
+  }
+
+  .runner-up-marker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+    z-index: 2;
   }
 
   .detail-section {
