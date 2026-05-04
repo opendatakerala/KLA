@@ -23,8 +23,8 @@
       'Rashtriya Janata Dal': '#FF6B6B',
     },
     UDF: {
-      'Indian National Congress': '#00509E',
-      'Indian Union Muslim League': '#0078FF',
+      'Indian National Congress': '#0078FF',
+      'Indian Union Muslim League': '#00509E',
       'Kerala Congress': '#0096D6',
       'Independent': '#29B6F6',
       'Revolutionary Socialist Party': '#4FC3F7',
@@ -172,30 +172,51 @@
     selectedConstituency = null;
   }
 
+  function getLeadingAlliances() {
+    const counts = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
+    for (const c of constituencies) {
+      const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
+      if (sorted.length > 0 && sorted[0].votes > 0) {
+        const winner = sorted[0];
+        const alliance = ['LDF', 'UDF', 'NDA'].includes(winner.alliance) ? winner.alliance : 'Others';
+        counts[alliance]++;
+      }
+    }
+    return Object.entries(counts)
+      .map(([name, count]) => ({ name, count, color: ALLIANCE_COLORS[name] }))
+      .filter(a => a.count > 0)
+      .sort((a, b) => b.count - a.count);
+  }
+
   function getAllianceParties() {
-    const partiesByAlliance = { LDF: new Set(), UDF: new Set(), NDA: new Set(), Others: new Set() };
+    const partiesByAlliance = { LDF: {}, UDF: {}, NDA: {}, Others: {} };
     for (const c of constituencies) {
       const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
       if (sorted.length > 0 && sorted[0].votes > 0) {
         const leader = sorted[0];
         const alliance = ['LDF', 'UDF', 'NDA'].includes(leader.alliance) ? leader.alliance : 'Others';
-        partiesByAlliance[alliance].add(leader.party);
+        partiesByAlliance[alliance][leader.party] = (partiesByAlliance[alliance][leader.party] || 0) + 1;
       }
     }
     const result = [];
     for (const alliance of ['LDF', 'UDF', 'NDA', 'Others']) {
-      const parties = Array.from(partiesByAlliance[alliance]);
-      if (parties.length > 0) {
+      const entries = Object.entries(partiesByAlliance[alliance]);
+      if (entries.length > 0) {
+        const parties = entries
+          .map(([name, count]) => ({
+            name,
+            count,
+            color: getPartyColor(name, alliance),
+          }))
+          .sort((a, b) => b.count - a.count);
         result.push({
           alliance,
-          parties: parties.map(name => ({
-            name,
-            color: getPartyColor(name, alliance),
-          })),
+          totalCount: parties.reduce((sum, p) => sum + p.count, 0),
+          parties,
         });
       }
     }
-    return result;
+    return result.sort((a, b) => b.totalCount - a.totalCount);
   }
 </script>
 
@@ -216,32 +237,24 @@
           </div>
           <div class="legend-alliance-view">
             <div class="legend-title">Alliance</div>
-            {#each Object.entries(ALLIANCE_COLORS) as [alliance, color]}
+            {#each getLeadingAlliances() as alliance}
               <div class="legend-item">
-                <span class="legend-dot" style="background: {color}"></span>
-                <span>{alliance}</span>
+                <span class="legend-dot" style="background: {alliance.color}"></span>
+                <span>{alliance.name} ({alliance.count})</span>
               </div>
             {/each}
-            <div class="legend-item">
-              <span class="legend-dot" style="background: #d1d5db"></span>
-              <span>Pending</span>
-            </div>
           </div>
           <div class="legend-party-view">
             <div class="legend-title">Party</div>
             {#each getAllianceParties() as allianceGroup}
-              <div class="legend-party-group">{allianceGroup.alliance}</div>
+              <div class="legend-party-group">{allianceGroup.alliance} ({allianceGroup.totalCount})</div>
               {#each allianceGroup.parties as party}
                 <div class="legend-item">
                   <span class="legend-dot" style="background: {party.color}"></span>
-                  <span>{party.name}</span>
+                  <span>{party.name} ({party.count})</span>
                 </div>
               {/each}
             {/each}
-            <div class="legend-item">
-              <span class="legend-dot" style="background: #d1d5db"></span>
-              <span>Pending</span>
-            </div>
           </div>
         </div>
       </div>
