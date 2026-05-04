@@ -1,20 +1,24 @@
 <script>
-  import { _ } from '../lib/i18n.js';
+  import { _, locale } from '../lib/i18n.js';
   import { ALLIANCE_COLORS, ALLIANCE_BG } from '../lib/constants.js';
   import ConstituencyCard from './ConstituencyCard.svelte';
+  import ResultsSearchBar from './ResultsSearchBar.svelte';
 
   const API_BASE = import.meta.env.PUBLIC_KLA_API_URL || '';
 
+  let lang = $derived($locale);
+
   let loading = $state(false);
   let error = $state(false);
-  let constituencies = $state([]);
+  let allConstituencies = $state([]);
+  let searchTerm = $state('');
 
   let expandedMap = $state({});
 
   let summary = $derived(() => {
-    if (!constituencies.length) return { total: 0, byAlliance: {} };
+    if (!allConstituencies.length) return { total: 0, byAlliance: {} };
     const byAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
-    for (const c of constituencies) {
+    for (const c of allConstituencies) {
       const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
       if (sorted.length > 0 && sorted[0].votes > 0) {
         const winner = sorted[0];
@@ -22,12 +26,28 @@
         byAlliance[alliance]++;
       }
     }
-    return { total: constituencies.length, byAlliance };
+    return { total: allConstituencies.length, byAlliance };
+  });
+
+  let constituencies = $derived(() => {
+    const data = allConstituencies;
+    if (!searchTerm) return data;
+    const term = searchTerm.toLowerCase();
+    return data.filter(c => {
+      const enName = c.constituency.constituency_Name.toLowerCase();
+      const mlName = (c.constituency['constituency_Name_ (Malayalam)'] || '').toLowerCase();
+      if (enName.includes(term) || mlName.includes(term)) return true;
+      return c.candidates.some(candidate => {
+        const enCandidate = (candidate.name || '').toLowerCase();
+        const mlCandidate = (candidate.name_ml || '').toLowerCase();
+        return enCandidate.includes(term) || mlCandidate.includes(term);
+      });
+    });
   });
 
   let sortedConstituencies = $derived(() => {
-    if (!constituencies.length) return [];
-    return [...constituencies].sort((a, b) => {
+    if (!constituencies().length) return [];
+    return [...constituencies()].sort((a, b) => {
       return Number(a.constituency.constituency_Number) - Number(b.constituency.constituency_Number);
     });
   });
@@ -39,10 +59,10 @@
       const res = await fetch(`${API_BASE}/api/kla2026/results/all.json`);
       if (!res.ok) throw new Error('Failed to fetch');
       const json = await res.json();
-      constituencies = json.data || [];
+      allConstituencies = json.data || [];
     } catch {
       error = true;
-      constituencies = [];
+      allConstituencies = [];
     } finally {
       loading = false;
     }
@@ -53,6 +73,10 @@
     const interval = setInterval(fetchResults, 60000);
     return () => clearInterval(interval);
   });
+
+  function handleSearch(value) {
+    searchTerm = value;
+  }
 
   function toggleConstituency(constituency) {
     const key = constituency.constituency.constituency_Number;
@@ -81,7 +105,7 @@
     </button>
   </div>
 
-  {#if loading && constituencies.length === 0}
+  {#if loading && allConstituencies.length === 0}
     <div class="component-loading">
       <div class="shimmer"></div>
       <span>{$_('charts.loading')}</span>
@@ -90,10 +114,12 @@
     <div class="results-error">
       <span>{$_('charts.failedToLoad')}</span>
     </div>
-  {:else if constituencies.length > 0}
+  {:else if allConstituencies.length > 0}
     <div class="results-content">
+      <div class="results-toolbar">
+        <ResultsSearchBar onSearch={handleSearch} value={searchTerm} />
+      </div>
       <div class="summary-section">
-        <h3 class="summary-title">Summary</h3>
         <div class="summary-cards">
           <div class="summary-card total">
             <span class="card-label">Total</span>
@@ -113,11 +139,18 @@
           {@const key = constituency.constituency.constituency_Number}
           <ConstituencyCard
             constituency={constituency}
+            lang={lang}
             expanded={expandedMap[key] || false}
             onClick={() => toggleConstituency(constituency)}
           />
         {/each}
       </div>
+
+      {#if sortedConstituencies().length === 0 && searchTerm}
+        <div class="results-empty">
+          <span>No constituencies match "{searchTerm}"</span>
+        </div>
+      {/if}
     </div>
   {:else}
     <div class="results-empty">
@@ -208,6 +241,14 @@
   .results-content {
   }
 
+  .results-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
   .results-empty {
     text-align: center;
     padding: 20px;
@@ -218,15 +259,6 @@
 
   .summary-section {
     margin-bottom: 24px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .summary-title {
-    font-size: var(--fs-lg);
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 12px;
   }
 
   .summary-cards {

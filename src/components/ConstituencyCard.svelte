@@ -1,12 +1,19 @@
 <script>
   import { ALLIANCE_COLORS, ALLIANCE_BG } from '../lib/constants.js';
 
-  let { constituency, expanded = $bindable(false), onClick } = $props();
+  let { constituency, lang = 'en', expanded = $bindable(false), onClick } = $props();
+
+  let isMalayalam = $derived(lang === 'ml');
 
   let candidates = $derived(constituency.candidates);
   let sortedCandidates = $derived([...candidates].sort((a, b) => b.votes - a.votes));
   let leadingCandidate = $derived(sortedCandidates[0]);
   let countingInProgress = $derived(leadingCandidate?.votes === 0);
+
+  let constituencyName = $derived(isMalayalam
+    ? constituency.constituency['constituency_Name_ (Malayalam)'] || constituency.constituency.constituency_Name
+    : constituency.constituency.constituency_Name
+  );
 
   function getAllianceColor(alliance) {
     return ALLIANCE_COLORS[alliance] || ALLIANCE_COLORS.Others;
@@ -29,7 +36,7 @@
   <div class="card-header">
     <span class="constituency-number">{constituency.constituency.constituency_Number}</span>
     <div class="constituency-info">
-      <h3 class="constituency-name">{constituency.constituency.constituency_Name}</h3>
+      <h3 class="constituency-name">{constituencyName}</h3>
       <span class="constituency-district">{constituency.constituency.district}</span>
     </div>
     <span class="expand-icon">{expanded ? '−' : '+'}</span>
@@ -43,8 +50,8 @@
         </div>
       {:else}
         <div class="leading-candidate">
-          <div class="candidate-name">{leadingCandidate.name}</div>
-          {#if leadingCandidate.name_ml}
+          <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}</div>
+          {#if !isMalayalam && leadingCandidate.name_ml}
             <div class="candidate-name-ml">{leadingCandidate.name_ml}</div>
           {/if}
           <div class="candidate-details">
@@ -85,12 +92,14 @@
           <span class="col-votes">Votes</span>
         </div>
         {#each sortedCandidates as candidate, index}
+          {@const displayName = isMalayalam && candidate.name_ml ? candidate.name_ml : candidate.name}
+          {@const secondaryName = !isMalayalam && candidate.name_ml ? candidate.name_ml : null}
           <div class="table-row" style="border-left: 4px solid {getAllianceColor(candidate.alliance)}">
             <span class="col-rank">{index + 1}</span>
             <span class="col-candidate">
-              <span class="candidate-name">{candidate.name}</span>
-              {#if candidate.name_ml}
-                <span class="candidate-name-ml">{candidate.name_ml}</span>
+              <span class="candidate-name">{displayName}</span>
+              {#if secondaryName}
+                <span class="candidate-name-ml">{secondaryName}</span>
               {/if}
             </span>
             <span class="col-party">{candidate.party}</span>
