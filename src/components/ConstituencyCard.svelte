@@ -178,7 +178,15 @@
                   {/await}
                 {/if}
                 <div class="candidate-text">
-                  <span class="candidate-name">{displayName}{#if index === 0 && resultDeclared} <span class="won-badge">WON</span>{/if}</span>
+                  <span class="candidate-name">
+                {displayName}
+                {#if index === 0 && resultDeclared}
+                  <span class="won-badge">WON</span>
+                {/if}
+                {#if candidate.sitting === 'YES'}
+                  <span class="sitting-mla-badge">SITTING MLA</span>
+                {/if}
+              </span>
                   {#if secondaryName}
                     <span class="candidate-name-ml">{secondaryName}</span>
                   {/if}
@@ -567,6 +575,19 @@
     font-weight: 600;
     text-transform: uppercase;
     width: fit-content;
+  }
+
+  .sitting-mla-badge {
+    background: var(--gold);
+    color: var(--card);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin-left: 6px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    text-transform: uppercase;
   }
 
   .col-votes {
