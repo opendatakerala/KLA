@@ -20,17 +20,24 @@
   let expandedMap = $state({});
 
   let summary = $derived(() => {
-    if (!allConstituencies.length) return { total: 0, byAlliance: {} };
+    if (!allConstituencies.length) return { total: 0, byAlliance: {}, votesAlliance: {}, totalVotes: 0 };
     const byAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
+    const votesAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
+    let totalPolled = 0;
     for (const c of allConstituencies) {
+      totalPolled += (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100;
       const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
       if (sorted.length > 0 && sorted[0].votes > 0) {
         const winner = sorted[0];
         const alliance = ['LDF', 'UDF', 'NDA'].includes(winner.alliance) ? winner.alliance : 'Others';
         byAlliance[alliance]++;
       }
+      for (const candidate of c.candidates) {
+        const alliance = ['LDF', 'UDF', 'NDA'].includes(candidate.alliance) ? candidate.alliance : 'Others';
+        votesAlliance[alliance] += candidate.votes;
+      }
     }
-    return { total: allConstituencies.length, byAlliance };
+    return { total: allConstituencies.length, byAlliance, votesAlliance, totalVotes: totalPolled };
   });
 
   let constituencies = $derived(() => {
@@ -181,11 +188,14 @@
           <div class="summary-card total">
             <span class="card-label">Total</span>
             <span class="card-value">{summary().total}</span>
+            <span class="card-votes">{Number(Math.round(summary().totalVotes)).toLocaleString('en-IN')} votes</span>
           </div>
           {#each Object.entries(summary().byAlliance).sort((a, b) => b[1] - a[1]) as [alliance, count]}
+            {@const pct = summary().totalVotes > 0 ? (summary().votesAlliance[alliance] / summary().totalVotes * 100).toFixed(1) : '0.0'}
             <div class="summary-card alliance-card" style="background: {getAllianceBg(alliance)}">
               <span class="card-label">{alliance}</span>
               <span class="card-value" style="color: {getAllianceColor(alliance)}">{count}</span>
+              <span class="card-votes">{Number(summary().votesAlliance[alliance]).toLocaleString('en-IN')} ({pct}%)</span>
             </div>
           {/each}
         </div>
@@ -370,6 +380,12 @@
     font-size: var(--fs-xl);
     font-weight: 600;
     color: var(--text);
+  }
+
+  .card-votes {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    font-weight: 500;
   }
 
   .constituency-grid {
