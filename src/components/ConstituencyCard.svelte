@@ -10,7 +10,6 @@
   let candidates = $derived(constituency.candidates);
   let sortedCandidates = $derived([...candidates].sort((a, b) => b.votes - a.votes));
   let leadingCandidate = $derived(sortedCandidates[0]);
-  let secondCandidate = $derived(sortedCandidates[1]);
   let countingInProgress = $derived(leadingCandidate?.votes === 0);
   let overallMargin = $derived(sortedCandidates.length > 1 ? sortedCandidates[0].votes - sortedCandidates[1].votes : 0);
   let totalPolled = $derived(Math.round((constituency.constituency['Voters Total'] || 0) * (constituency.constituency['Polling % (2026)'] || 0) / 100));
@@ -50,6 +49,29 @@
     if (!totalPolled || !votes) return 0;
     return (votes / totalPolled) * 100;
   }
+
+  let allianceVotes = $derived(() => {
+    const votesByAlliance = {};
+    for (const c of candidates) {
+      const alliance = ['LDF', 'UDF', 'NDA'].includes(c.alliance) ? c.alliance : 'Others';
+      votesByAlliance[alliance] = (votesByAlliance[alliance] || 0) + c.votes;
+    }
+    const countedTotal = Object.values(votesByAlliance).reduce((sum, v) => sum + v, 0);
+    const total = roundsCompleted === roundsTotal ? countedTotal : totalPolled;
+    const entries = Object.entries(votesByAlliance).map(([alliance, votes]) => ({
+      alliance,
+      votes,
+      pct: total > 0 ? (votes / total) * 100 : 0,
+    }));
+    return entries.sort((a, b) => b.votes - a.votes);
+  });
+
+  let remainingPct = $derived(() => {
+    if (roundsCompleted === roundsTotal) return 0;
+    const countedTotal = candidates.reduce((sum, c) => sum + c.votes, 0);
+    if (!totalPolled) return 0;
+    return ((totalPolled - countedTotal) / totalPolled) * 100;
+  });
 
   function handleClick() {
     onClick();
@@ -107,15 +129,12 @@
               <span class="votes-count">{formatVotes(leadingCandidate.votes)} votes</span>
               <span class="votes-margin">+{formatVotes(overallMargin)}</span>
             </div>
-            <div class="leading-vote-bar-wrapper">
-              <div class="vote-share-bar-container leading-vote-bar">
-                {#if secondCandidate}
-                  <div class="runner-up-marker" style="margin-right: {100 - getVoteShare(secondCandidate.votes)}%; background: {getAllianceColor(secondCandidate.alliance)}"></div>
-                {/if}
-                <div class="vote-share-bar" style="width: {getVoteShare(leadingCandidate.votes)}%; background: {getAllianceColor(leadingCandidate.alliance)}"></div>
-              </div>
-              {#if secondCandidate}
-                <div class="runner-up-alliance-label" style="right: {100 - getVoteShare(secondCandidate.votes)}%; background: {getAllianceColor(secondCandidate.alliance)}; --label-color: {getAllianceColor(secondCandidate.alliance)}">{secondCandidate.alliance}</div>
+            <div class="alliance-vote-bar">
+              {#each allianceVotes() as allianceVote}
+                <div class="alliance-vote-segment" style="width: {allianceVote.pct}%; background: {getAllianceColor(allianceVote.alliance)}"></div>
+              {/each}
+              {#if remainingPct > 0}
+                <div class="alliance-vote-segment remaining" style="width: {remainingPct}%"></div>
               {/if}
             </div>
           </div>
@@ -401,63 +420,23 @@
     color: var(--muted);
   }
 
-  .leading-vote-bar-wrapper {
-    position: relative;
-  }
-
-  .runner-up-alliance-label {
-    position: absolute;
-    top: 100%;
-    padding: 1px 6px;
-    margin-top: 4px;
-    font-size: 10px;
-    font-weight: 600;
-    color: #fff;
-    text-transform: uppercase;
-    width: fit-content;
-  }
-
-  .runner-up-alliance-label::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    right: 0px;
-    border-left: 4px solid transparent;
-    border-bottom: 4px solid var(--label-color);
-  }
-
-  .vote-share-bar-container {
+  .alliance-vote-bar {
     width: 100%;
-    height: 16px;
+    height: 8px;
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
     background: var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 4px;
+    margin-top: 6px;
   }
 
-  .vote-share-bar {
+  .alliance-vote-segment {
     height: 100%;
-    border-radius: 8px;
     transition: width 0.3s ease;
-    min-width: 0;
   }
 
-  .leading-vote-bar {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .leading-vote-bar .vote-share-bar {
-    position: relative;
-  }
-
-  .runner-up-marker {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 3px;
-    z-index: 2;
+  .alliance-vote-segment.remaining {
+    background: transparent;
   }
 
   .detail-section {
