@@ -7,9 +7,15 @@
   // import { overallTurnoutStore } from '../stores/turnoutStore.js';
   import "@fontsource/manjari";
 
-  const StatsSection = import('./StatsSection.svelte').then(m => m.default);
-  const DataExplorer = import('./DataExplorer.svelte').then(m => m.default);
-  const Modal = import('./Modal.svelte').then(m => m.default);
+  let StatsSection = $state(null);
+  let DataExplorer = $state(null);
+  let Modal = $state(null);
+
+  function loadComponents() {
+    StatsSection = import('./StatsSection.svelte').then(m => m.default);
+    DataExplorer = import('./DataExplorer.svelte').then(m => m.default);
+    Modal = import('./Modal.svelte').then(m => m.default);
+  }
 
   // let overallTurnoutData = $derived($overallTurnoutStore);
   // let overallTurnoutLoading = $derived(overallTurnoutData?.loading || false);
@@ -23,36 +29,42 @@
   <Header />
 
   <div class="container">
-    {#await StatsSection}
-      <div class="component-loading">
-        <div class="shimmer"></div>
-        <span>{$_('charts.loading')}</span>
-      </div>
-    {:then Component}
-      <!-- <TurnoutLineChart 
-        data={overallTurnoutValues} 
-        loading={overallTurnoutLoading} 
-        error={overallTurnoutError} 
-      /> -->
-      <Component />
-    {/await}
+    {#if !StatsSection}
+      <button class="toggle-btn" onclick={loadComponents}>{$_('home.showVotingDetails')}</button>
+    {:else}
+      {#await StatsSection}
+        <div class="component-loading">
+          <div class="shimmer"></div>
+          <span>{$_('charts.loading')}</span>
+        </div>
+      {:then Component}
+        <!-- <TurnoutLineChart 
+          data={overallTurnoutValues} 
+          loading={overallTurnoutLoading} 
+          error={overallTurnoutError} 
+        /> -->
+        <Component />
+      {/await}
 
-    {#await DataExplorer}
-      <div class="component-loading">
-        <div class="shimmer"></div>
-        <span>{$_('charts.loading')}</span>
-      </div>
-    {:then Component}
-      <Component />
-    {/await}
+      {#await DataExplorer}
+        <div class="component-loading">
+          <div class="shimmer"></div>
+          <span>{$_('charts.loading')}</span>
+        </div>
+      {:then Component}
+        <Component />
+      {/await}
+    {/if}
   </div>
 
   <Footer />
   <Disclaimer />
   
-  {#await Modal then Component}
-    <Component />
-  {/await}
+  {#if StatsSection}
+    {#await Modal then Component}
+      <Component />
+    {/await}
+  {/if}
 {/if}
 
 <style>
@@ -102,5 +114,24 @@
     0% { transform: scale(0.95); opacity: 0.5; }
     50% { transform: scale(1.05); opacity: 0.8; }
     100% { transform: scale(0.95); opacity: 0.5; }
+  }
+
+  .toggle-btn {
+    display: block;
+    margin: 32px auto;
+    padding: 12px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Manjari', monospace;
+    font-size: var(--fs-base);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .toggle-btn:hover {
+    background: var(--card2);
+    border-color: var(--gold);
   }
 </style>

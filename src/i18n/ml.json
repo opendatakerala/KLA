@@ -41,6 +41,9 @@
     "dismiss": "ഒഴിവാക്കുക",
     "ok": "ഞാൻ മനസിലാക്കി"
   },
+  "home": {
+    "showVotingDetails": "വോട്ടിംഗ് വിവരങ്ങൾ കാണിക്കുക"
+  },
   "stats": {
     "partyDistribution": "പാർട്ടി വിതരണം",
     "genderDistribution": "ലിംഗ വിതരണം",

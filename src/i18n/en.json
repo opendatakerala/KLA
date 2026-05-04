@@ -41,6 +41,9 @@
     "dismiss": "Dismiss",
     "ok": "I Understand"
   },
+  "home": {
+    "showVotingDetails": "Show voting details"
+  },
   "stats": {
     "partyDistribution": "Party Distribution",
     "genderDistribution": "Gender Distribution",
