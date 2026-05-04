@@ -20,10 +20,11 @@
   let expandedMap = $state({});
 
   let summary = $derived(() => {
-    if (!allConstituencies.length) return { total: 0, byAlliance: {}, byParty: {}, votesAlliance: {}, totalVotes: 0 };
+    if (!allConstituencies.length) return { total: 0, byAlliance: {}, byParty: {}, votesAlliance: {}, votesPartyByAlliance: {}, totalVotes: 0 };
     const byAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
     const votesAlliance = { LDF: 0, UDF: 0, NDA: 0, Others: 0 };
     const byParty = { LDF: {}, UDF: {}, NDA: {}, Others: {} };
+    const votesPartyByAlliance = { LDF: {}, UDF: {}, NDA: {}, Others: {} };
     let totalPolled = 0;
     for (const c of allConstituencies) {
       totalPolled += c.candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
@@ -37,9 +38,10 @@
       for (const candidate of c.candidates) {
         const alliance = ['LDF', 'UDF', 'NDA'].includes(candidate.alliance) ? candidate.alliance : 'Others';
         votesAlliance[alliance] += candidate.votes;
+        votesPartyByAlliance[alliance][candidate.party] = (votesPartyByAlliance[alliance][candidate.party] || 0) + candidate.votes;
       }
     }
-    return { total: allConstituencies.length, byAlliance, byParty, votesAlliance, totalVotes: totalPolled };
+    return { total: allConstituencies.length, byAlliance, byParty, votesAlliance, votesPartyByAlliance, totalVotes: totalPolled };
   });
 
   let constituencies = $derived(() => {
@@ -217,7 +219,9 @@
               <span class="card-separator"></span>
               {#each Object.entries(summary().byParty[alliance] || {}).sort((a, b) => b[1] - a[1]) as [party, partyCount]}
                 {#if partyCount > 0}
-                  <span class="card-party">{partyCount} - {party}</span>
+                  {@const partyVotes = summary().votesPartyByAlliance[alliance]?.[party] || 0}
+                  {@const partyPct = summary().totalVotes > 0 ? (partyVotes / summary().totalVotes * 100).toFixed(1) : '0.0'}
+                  <span class="card-party">{partyCount} - {party} ({Number(partyVotes).toLocaleString('en-IN')} votes, {partyPct}%)</span>
                 {/if}
               {/each}
             </div>
