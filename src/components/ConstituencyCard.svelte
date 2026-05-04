@@ -13,7 +13,7 @@
   let secondCandidate = $derived(sortedCandidates[1]);
   let countingInProgress = $derived(leadingCandidate?.votes === 0);
   let overallMargin = $derived(sortedCandidates.length > 1 ? sortedCandidates[0].votes - sortedCandidates[1].votes : 0);
-  let totalPolled = $derived(Math.round((constituency.constituency['Voters Total'] || 0) * (constituency.constituency['Polling % (2026)'] || 0) / 100));
+  let totalPolled = $derived(constituency.constituency['Voters Total'] || 0);
   let countedVotes = $derived(candidates.reduce((sum, c) => sum + c.votes, 0));
   let countedPct = $derived(totalPolled > 0 ? (countedVotes / totalPolled * 100).toFixed(1) : '0.0');
 
@@ -120,10 +120,6 @@
         <div class="info-item">
           <span class="info-label">Region</span>
           <span class="info-value">{constituency.constituency.region}</span>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Total Voters</span>
-          <span class="info-value">{formatVotes(constituency.constituency['Voters Total'])}</span>
         </div>
         <div class="info-item">
           <span class="info-label">Polling %</span>
