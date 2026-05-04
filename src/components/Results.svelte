@@ -14,7 +14,7 @@
   let allConstituencies = $state([]);
   let searchTerm = $state('');
 
-  let sortMode = $state('count-high');
+  let sortMode = $state('lead');
   let sortOrder = $state('asc');
 
   let expandedMap = $state({});
