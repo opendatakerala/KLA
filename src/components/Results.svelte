@@ -147,7 +147,11 @@
     if (mode === 'lead-ldf' || mode === 'trail-ldf') return getAllianceMargin(c, 'LDF');
     if (mode === 'lead-udf' || mode === 'trail-udf') return getAllianceMargin(c, 'UDF');
     if (mode === 'lead-nda' || mode === 'trail-nda') return getAllianceMargin(c, 'NDA');
-    if (mode === 'count-high' || mode === 'count-low') return getCountedPct(c);
+    if (mode === 'count-high' || mode === 'count-low') {
+      const pct = getCountedPct(c);
+      const declared = c.constituency.resultDeclared !== 'NO' ? 200 : 0;
+      return pct + declared;
+    }
     return 0;
   }
 
