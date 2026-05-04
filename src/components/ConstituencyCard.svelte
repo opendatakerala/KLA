@@ -50,7 +50,7 @@
     return (votes / totalPolled) * 100;
   }
 
-  let allianceVotes = $derived(() => {
+  let allianceVotes = $derived.by(() => {
     const votesByAlliance = {};
     for (const c of candidates) {
       const alliance = ['LDF', 'UDF', 'NDA'].includes(c.alliance) ? c.alliance : 'Others';
@@ -66,11 +66,11 @@
     return entries.sort((a, b) => b.votes - a.votes);
   });
 
-  let remainingPct = $derived(() => {
+  let remainingPct = $derived.by(() => {
     if (roundsCompleted === roundsTotal) return 0;
     const countedTotal = candidates.reduce((sum, c) => sum + c.votes, 0);
     if (!totalPolled) return 0;
-    return ((totalPolled - countedTotal) / totalPolled) * 100;
+    return Math.max(0, ((totalPolled - countedTotal) / totalPolled) * 100);
   });
 
   function handleClick() {
@@ -130,7 +130,7 @@
               <span class="votes-margin">+{formatVotes(overallMargin)}</span>
             </div>
             <div class="alliance-vote-bar">
-              {#each allianceVotes() as allianceVote}
+              {#each allianceVotes as allianceVote}
                 <div class="alliance-vote-segment" style="width: {allianceVote.pct}%; background: {getAllianceColor(allianceVote.alliance)}"></div>
               {/each}
               {#if remainingPct > 0}
@@ -437,6 +437,22 @@
 
   .alliance-vote-segment.remaining {
     background: transparent;
+  }
+
+  .vote-share-bar-container {
+    width: 100%;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .vote-share-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    min-width: 0;
   }
 
   .detail-section {
