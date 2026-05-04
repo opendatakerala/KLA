@@ -98,10 +98,10 @@
               <div class="candidate-name-ml">{leadingCandidate.name_ml}</div>
             {/if}
             <div class="candidate-details">
-              <span class="candidate-party">{leadingCandidate.party}</span>
               <span class="candidate-alliance" style="background: {getAllianceBg(leadingCandidate.alliance)}; color: {getAllianceColor(leadingCandidate.alliance)}">
                 {leadingCandidate.alliance}
               </span>
+              <span class="candidate-party">{leadingCandidate.party}</span>
             </div>
             <div class="candidate-votes">
               <span class="votes-count">{formatVotes(leadingCandidate.votes)} votes</span>
