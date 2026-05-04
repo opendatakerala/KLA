@@ -140,13 +140,13 @@
 
   const sortOptions = [
     { value: 'number', label: 'Constituency #' },
-    { value: 'lead', label: 'Clear Lead (Overall)' },
-    { value: 'lead-ldf', label: 'Clear Lead (LDF)' },
-    { value: 'lead-udf', label: 'Clear Lead (UDF)' },
-    { value: 'lead-nda', label: 'Clear Lead (NDA)' },
-    { value: 'trail-ldf', label: 'Clear Trail (LDF)' },
-    { value: 'trail-udf', label: 'Clear Trail (UDF)' },
-    { value: 'trail-nda', label: 'Clear Trail (NDA)' },
+    { value: 'lead', label: 'Best Performance (Overall)' },
+    { value: 'lead-ldf', label: 'Best Performance (LDF)' },
+    { value: 'lead-udf', label: 'Best Performance (UDF)' },
+    { value: 'lead-nda', label: 'Best Performance (NDA)' },
+    { value: 'trail-ldf', label: 'Worst Performance (LDF)' },
+    { value: 'trail-udf', label: 'Worst Performance (UDF)' },
+    { value: 'trail-nda', label: 'Worst Performance (NDA)' },
     { value: 'tight', label: 'Tight Fight' },
   ];
 </script>
