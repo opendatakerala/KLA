@@ -158,7 +158,7 @@
         </div>
         <div class="info-item">
           <span class="info-label">Counted Votes</span>
-          <span class="info-value">{formatVotes(countedVotes)} ({countedPct}%) - Rounds {roundsCompleted}/{roundsTotal}</span>
+          <span class="info-value">{formatVotes(countedVotes)}{#if roundsCompleted !== roundsTotal && Number(countedPct) <= 100} ({countedPct}%){/if} - Rounds {roundsCompleted}/{roundsTotal}</span>
         </div>
       </div>
 
