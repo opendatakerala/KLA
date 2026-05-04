@@ -101,10 +101,16 @@
     return ALLIANCE_BG[alliance] || ALLIANCE_BG.Others;
   }
 
+  function getVoteShare(c, votes) {
+    const totalPolled = (c.constituency['Voters Total'] || 0) * (c.constituency['Polling % (2026)'] || 0) / 100;
+    if (!totalPolled || !votes) return 0;
+    return (votes / totalPolled) * 100;
+  }
+
   function getOverallMargin(c) {
     const sorted = [...c.candidates].sort((a, b) => b.votes - a.votes);
     if (sorted.length < 2) return 0;
-    return sorted[0].votes - sorted[1].votes;
+    return getVoteShare(c, sorted[0].votes) - getVoteShare(c, sorted[1].votes);
   }
 
   function getAllianceMargin(c, alliance) {
@@ -112,12 +118,12 @@
     if (sorted.length === 0) return 0;
     const allianceCandidate = sorted.find(c => c.alliance === alliance);
     if (!allianceCandidate) {
-      return -sorted[0].votes;
+      return -getVoteShare(c, sorted[0].votes);
     }
     if (sorted[0].alliance === alliance) {
-      return sorted.length > 1 ? sorted[0].votes - sorted[1].votes : sorted[0].votes;
+      return sorted.length > 1 ? getVoteShare(c, sorted[0].votes) - getVoteShare(c, sorted[1].votes) : getVoteShare(c, sorted[0].votes);
     }
-    return -(sorted[0].votes - allianceCandidate.votes);
+    return -(getVoteShare(c, sorted[0].votes) - getVoteShare(c, allianceCandidate.votes));
   }
 
   function getSortValue(c, mode) {
