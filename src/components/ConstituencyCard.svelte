@@ -1,6 +1,8 @@
 <script>
   import { ALLIANCE_COLORS, ALLIANCE_BG } from '../lib/constants.js';
 
+  const candidatePhotos = import.meta.glob('../images/candidate_photos/*.jpg');
+
   let { constituency, lang = 'en', expanded = $bindable(false), onClick } = $props();
 
   let isMalayalam = $derived(lang === 'ml');
@@ -14,6 +16,14 @@
     ? constituency.constituency['constituency_Name_ (Malayalam)'] || constituency.constituency.constituency_Name
     : constituency.constituency.constituency_Name
   );
+
+  function getPhotoSrc(reference) {
+    if (!reference) return null;
+    const key = `../images/candidate_photos/${reference}`;
+    const loader = candidatePhotos[key];
+    if (!loader) return null;
+    return loader().then(m => m.default?.src);
+  }
 
   function getAllianceColor(alliance) {
     return ALLIANCE_COLORS[alliance] || ALLIANCE_COLORS.Others;
@@ -50,17 +60,30 @@
         </div>
       {:else}
         <div class="leading-candidate">
-          <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}</div>
-          {#if !isMalayalam && leadingCandidate.name_ml}
-            <div class="candidate-name-ml">{leadingCandidate.name_ml}</div>
+          {#if leadingCandidate.photo}
+            {#await getPhotoSrc(leadingCandidate.photo)}
+              <div class="candidate-photo-placeholder"></div>
+            {:then photoSrc}
+              {#if photoSrc}
+                <img src={photoSrc} alt="" class="candidate-photo" />
+              {:else}
+                <div class="candidate-photo-placeholder"></div>
+              {/if}
+            {/await}
           {/if}
-          <div class="candidate-details">
-            <span class="candidate-party">{leadingCandidate.party}</span>
-            <span class="candidate-alliance" style="background: {getAllianceBg(leadingCandidate.alliance)}; color: {getAllianceColor(leadingCandidate.alliance)}">
-              {leadingCandidate.alliance}
-            </span>
+          <div class="leading-candidate-info">
+            <div class="candidate-name">{isMalayalam && leadingCandidate.name_ml ? leadingCandidate.name_ml : leadingCandidate.name}</div>
+            {#if !isMalayalam && leadingCandidate.name_ml}
+              <div class="candidate-name-ml">{leadingCandidate.name_ml}</div>
+            {/if}
+            <div class="candidate-details">
+              <span class="candidate-party">{leadingCandidate.party}</span>
+              <span class="candidate-alliance" style="background: {getAllianceBg(leadingCandidate.alliance)}; color: {getAllianceColor(leadingCandidate.alliance)}">
+                {leadingCandidate.alliance}
+              </span>
+            </div>
+            <div class="candidate-votes">{formatVotes(leadingCandidate.votes)} votes</div>
           </div>
-          <div class="candidate-votes">{formatVotes(leadingCandidate.votes)} votes</div>
         </div>
       {/if}
     </div>
@@ -97,10 +120,25 @@
           <div class="table-row" style="border-left: 4px solid {getAllianceColor(candidate.alliance)}">
             <span class="col-rank">{index + 1}</span>
             <span class="col-candidate">
-              <span class="candidate-name">{displayName}</span>
-              {#if secondaryName}
-                <span class="candidate-name-ml">{secondaryName}</span>
-              {/if}
+              <div class="candidate-name-group">
+                {#if candidate.photo}
+                  {#await getPhotoSrc(candidate.photo)}
+                    <div class="table-photo-placeholder"></div>
+                  {:then photoSrc}
+                    {#if photoSrc}
+                      <img src={photoSrc} alt="" class="table-photo" />
+                    {:else}
+                      <div class="table-photo-placeholder"></div>
+                    {/if}
+                  {/await}
+                {/if}
+                <div class="candidate-text">
+                  <span class="candidate-name">{displayName}</span>
+                  {#if secondaryName}
+                    <span class="candidate-name-ml">{secondaryName}</span>
+                  {/if}
+                </div>
+              </div>
             </span>
             <span class="col-party">{candidate.party}</span>
             <span class="col-alliance">
@@ -179,7 +217,6 @@
   }
 
   .card-body {
-    padding-left: 44px;
   }
 
   .counting-status {
@@ -198,9 +235,33 @@
   }
 
   .leading-candidate {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     padding: 10px 12px;
     background: var(--card2);
     border-radius: 8px;
+  }
+
+  .leading-candidate-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .candidate-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .candidate-photo-placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
   }
 
   .candidate-name {
@@ -213,7 +274,6 @@
   .candidate-name-ml {
     font-size: var(--fs-xs);
     color: var(--muted);
-    margin-bottom: 4px;
   }
 
   .candidate-details {
@@ -325,20 +385,36 @@
   .col-candidate {
     flex: 1;
     min-width: 0;
+  }
+
+  .candidate-name-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .candidate-text {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
 
-  .candidate-name {
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    color: var(--text);
+  .table-photo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
-  .candidate-name-ml {
-    font-size: var(--fs-xs);
-    color: var(--muted);
+  .table-photo-placeholder {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
   }
 
   .col-party {
