@@ -143,6 +143,9 @@
                   {/if}
                 </div>
               </div>
+              <div class="vote-share-bar-container">
+                <div class="vote-share-bar" style="width: {getVoteShare(candidate.votes)}%; background: {getAllianceColor(candidate.alliance)}"></div>
+              </div>
             </span>
             <span class="col-party-alliance">
               <span class="party-name">{candidate.party}</span>
@@ -150,14 +153,8 @@
                 {candidate.alliance}
               </span>
             </span>
-            <span class="col-vote-share">
-              <div class="vote-share-bar-container">
-                <div class="vote-share-bar" style="width: {getVoteShare(candidate.votes)}%; background: {getAllianceColor(candidate.alliance)}"></div>
-              </div>
-              <span class="vote-share-pct">{getVoteShare(candidate.votes).toFixed(1)}%</span>
-            </span>
             <span class="col-votes">
-              <span class="votes-count">{formatVotes(candidate.votes)}</span>
+              <span class="votes-count">{formatVotes(candidate.votes)} <span class="votes-pct">({getVoteShare(candidate.votes).toFixed(1)}%)</span></span>
               {#if index === 0 && sortedCandidates.length > 1}
                 <span class="votes-margin">+{formatVotes(overallMargin)}</span>
               {/if}
@@ -326,6 +323,12 @@
     color: var(--gold);
   }
 
+  .votes-pct {
+    font-size: var(--fs-xs);
+    color: var(--muted);
+    font-weight: 500;
+  }
+
   .votes-margin {
     font-size: var(--fs-xs);
     font-weight: 700;
@@ -410,14 +413,21 @@
   }
 
   .col-candidate {
-    flex: 1;
+    flex: 2;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .candidate-name-group {
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+
+  .col-candidate .vote-share-bar-container {
+    width: 100%;
   }
 
   .candidate-text {
@@ -478,100 +488,7 @@
     gap: 2px;
   }
 
-  .col-vote-share {
-    width: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .vote-share-pct {
-    font-size: var(--fs-xs);
-    color: var(--muted);
-    font-weight: 600;
-  }
-
   @media (max-width: 768px) {
-    .constituency-card.expanded {
-      padding: 12px;
-    }
-
-    .detail-info {
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .candidates-table {
-      border: none;
-      border-radius: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .candidate-votes {
-      flex-direction: row;
-      align-items: baseline;
-      gap: 6px;
-    }
-
-    .candidate-votes .votes-margin {
-      font-size: var(--fs-sm);
-    }
-
-    .table-row {
-      display: flex;
-      flex-direction: column;
-      padding: 14px 14px 14px 48px;
-      border-bottom: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--card2);
-      gap: 6px;
-      position: relative;
-    }
-
-    .table-row:last-child {
-      border-bottom: none;
-    }
-
-    .table-row:hover {
-      background: var(--card2);
-    }
-
-    .col-rank {
-      position: absolute;
-      left: 12px;
-      top: 14px;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--fs-sm);
-      color: var(--muted);
-      font-weight: 700;
-      background: var(--border);
-      border-radius: 50%;
-    }
-
-    .col-candidate {
-      width: 100%;
-    }
-
-    .candidate-name-group {
-      gap: 10px;
-    }
-
-    .table-photo,
-    .table-photo-placeholder {
-      width: 40px;
-      height: 40px;
-    }
-
-    .candidate-name {
-      font-size: var(--fs-base);
-    }
-
     .col-votes {
       width: 100%;
       text-align: left;
@@ -587,30 +504,6 @@
     .col-votes .votes-margin {
       font-size: var(--fs-base);
       color: var(--muted);
-    }
-
-    .col-vote-share {
-      width: 100%;
-      flex-direction: row;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .col-vote-share .vote-share-bar-container {
-      flex: 1;
-      margin-top: 0;
-      height: 20px;
-      border-radius: 10px;
-    }
-
-    .col-vote-share .vote-share-bar {
-      border-radius: 10px;
-    }
-
-    .col-vote-share .vote-share-pct {
-      width: 45px;
-      text-align: right;
-      font-size: var(--fs-sm);
     }
 
     .col-party-alliance {
