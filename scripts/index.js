@@ -3,7 +3,7 @@ import generateGenderDistribution from './generate-gender-distribution.js';
 import generateEducationDistribution from './generate-education-distribution.js';
 import generateAgeDistribution from './generate-age-distribution.js';
 import generateSymbolDistribution from './generate-symbol-distribution.js';
-import generateKlaMapSvg from './generate-kla-map-svg.js';
+import generateKlaMapSvg from './generate-kla-map-svg-from-topojson.js';
 import generateConstituencies from './generate-constituencies.js';
 import generateDistrictBounds from './generate-district-bounds.js';
 import generatePartyLookup from './generate-party-lookup.js';
